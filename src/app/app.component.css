@@ -1,0 +1,205 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-is-mobile .example-toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
+h1.example-app-name {
+  margin-left: 8px;
+}
+
+.example-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.example-is-mobile .example-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
+
+
+mat-sidenav.mat-drawer.mat-drawer-side.mat-sidenav.ng-star-inserted.ng-tns-c5-0.ng-trigger.ng-trigger-transform.norrlab-side {
+    padding-top: 64px;
+    position: fixed;
+}
+
+mat-toolbar.example-toolbar.header-toolbar.mat-primary.mat-toolbar.mat-toolbar-single-row {
+    z-index: 999;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    background-color: #fafafb
+
+}
+
+.menu-footer {
+    position: absolute;
+    bottom: 0px;
+    height: 64px;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+
+mat-sidenav.norrlab-side.mat-drawer.mat-sidenav.ng-tns-c5-0.ng-trigger.ng-trigger-transform.mat-drawer-side.ng-star-inserted {
+    width: 200px;
+}
+
+.sub-toolbar{
+	height: 35px;
+	background: #fff;
+}
+
+.example-spacer{
+	flex:1 1 auto;
+}
+
+.row.main-container {
+    margin: 19px;
+}
+ 
+.trade-header {
+    background: #8EE1B6;
+    height: 50px;
+}
+
+.trade-footer {
+    background: #8EE1B6;
+    height: 50px;
+}
+
+.trade-content {
+    height: 160px;
+    padding: 9px;
+}
+
+.trade-container.ng-star-inserted {
+    margin-top: 16px;
+    cursor: pointer;
+	box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%
+}
+
+.trade-header[_ngcontent-rxa-c0] {
+    background: red;
+    height: 50px;
+    justify-content: center;
+    justify-items: center;
+    padding: 3px;
+}
+
+.row.user-publications {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.trade-content {
+    background: #fff;
+}
+
+.sub-menu {
+    display: inline-block;
+    padding: 4px;
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.sub-menu>a { 
+    margin: 10px;
+}
+
+.user-publications-date {
+    color: #ccc;
+    font-size: 13px;
+}
+
+.user-publications-name {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.row.user-publications>p {
+    font-size: 15px;
+    padding-top: 9px;
+}
+
+.col-6.trade-state-win {
+    height: 100%;
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 15px;
+    color: blue;
+}
+
+.trade-header.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.col-6.trade-state-produit {
+    display: block;
+    text-align: -webkit-right;
+    /* justify-content: center; */
+    /* justify-items: center; */
+    padding: 18px;
+}
+
+span.trade-state-produit {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    background: #ccc;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 300;
+} 
+
+mat-sidenav.norrlab-side.mat-drawer.mat-sidenav.ng-tns-c5-0.ng-trigger.ng-trigger-transform.mat-drawer-side.ng-star-inserted {
+    background: #2f353a;
+}
+
+a.mat-list-item.ng-star-inserted {
+    color: #fff;
+}
+
+mat-toolbar.example-toolbar.footer-toolbar.mat-toolbar.mat-primary.mat-toolbar-single-row {
+    background-color: #f0f3f5;
+}
+
+img.norrlab-logo {
+    height: 30px;
+}
+
+button.norrlab-menu-button.mat-icon-button {
+    color: #ccc;
+    height: 45px;
+    margin-left: 9px;
+}
+
+button:focus {
+    outline: 0 !important;
+}
+
+mat-nav-list.mat-nav-list.mat-list-base {
+    padding-top: 0px;
+}
+ 
