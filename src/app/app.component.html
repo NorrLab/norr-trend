@@ -11,64 +11,22 @@
     <mat-sidenav class="norrlab-side" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list> 
-        <a mat-list-item routerLink="." *ngFor="let nav of fillerNav"><mat-icon aria-hidden="false" aria-label="Example home icon">{{nav.icon}}</mat-icon>&nbsp;{{nav.libelle}}</a>
+        <a mat-list-item routerLink="." style="height: 45px"></a>
+        <a [routerLink]="nav.link" mat-list-item   *ngFor="let nav of fillerNav"><mat-icon aria-hidden="false" aria-label="Example home icon">{{nav.icon}}</mat-icon>&nbsp;{{nav.libelle}}</a>
       </mat-nav-list>
       <div class="menu-footer">
         
       </div>
     </mat-sidenav>
 
+    
     <mat-sidenav-content>
-      <div class="sub-toolbar">  
-          <div class="sub-menu">
-            <a href=""> Trades</a> /
-
-            <a href=""> Lessons</a> /
-            <a href=""> Videos</a>
-            
-          </div>
-      </div>
-      <div class="row main-container">  
-            <div class="col-8" >
-              <div *ngFor="let i of [1,2,3]" class="trade-container">
-                
-                  <div class="trade-header row"> 
-                  <div class="col-6 trade-state-win">
-                      Gains ($&nbsp;250)
-                  </div>
-                  <div class="col-6 trade-state-produit">
-                      <span  class="trade-state-produit"><b>EUR/USD</b></span>  
-                  </div>
-                </div> 
-                <div class="trade-content ">
-                    <div class="row">
-                      <div class="col-1" style="padding-left: 25px">
-                         <div mat-card-avatar class="example-header-image"></div>
-                      </div>
-                      <div class="col-11" style="padding-left: 0px">
-                        <div class="user-publications-name">Ulrich O.</div>
-                        <div class="user-publications-date">Published, 12 Jan 2019</div>
-                      </div>
-                    </div>
-                    <div class="row user-publications"> 
-                      <p class="sub-user-publications">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                      </p>
-                    </div>
-                </div>
-              </div>
-            </div>  
-            <div class="col-4">
-              <div *ngFor="let i of [1,2,3]" class="trade-container">
-                <div class="trade-header"> Header</div>
-                <div class="trade-content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-              </div>
-            </div>
-          
-      </div>
+      
+      
+      
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
+
   </mat-sidenav-container>
 
   <mat-toolbar color="primary" class="example-toolbar footer-toolbar"> 
@@ -80,4 +38,3 @@
     Use of this source code is governed by an MIT-style license that
     can be found in the LICENSE file at http://angular.io/license -->
 
-<router-outlet></router-outlet>

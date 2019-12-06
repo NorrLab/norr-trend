@@ -10,8 +10,8 @@ import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 export class AppComponent  implements OnDestroy {
   mobileQuery: MediaQueryList;
 
-  fillerNav = [{"libelle":"Home","icon":"home"},{"libelle":"Users Trades","icon":"mode_comment"},
-  				{"libelle":"Videos","icon":"video_library"},{"libelle":"Lessons","icon":"school"}];
+  fillerNav = [{"libelle":"Home","icon":"home","link":['/home']},{"libelle":"Users Trades","icon":"mode_comment","link":['/user-trades']},
+  				{"libelle":"Videos","icon":"video_library","link":['/videos']},{"libelle":"Lessons","icon":"school","link":['/lessons']}];
   				//Array.from({length: 5}, (_, i) => `Nav Item ${i + 1}`);  'Home','Users Trades','Videos','Lessons',
 
   fillerContent = Array.from({length: 50}, () =>
