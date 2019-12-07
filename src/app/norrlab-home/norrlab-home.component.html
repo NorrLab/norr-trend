@@ -28,19 +28,23 @@
 	      [colspan]="12"
 	      [rowspan]="3" >
 	    <div class="row " >
-	    		<div class="main-advs col-3">
-			    	 <div class="user-witenesses">Partagez votre trading avec la</div>  
-			    </div> 
-	    		<div class="main-advs col-3">
-			    	 <div class="user-witenesses">Partagez votre trading avec la</div>  
-			    </div> 
-	    		<div class="main-advs col-3">
-			    	 <div class="user-witenesses">Partagez votre trading avec la</div>  
-			    </div> 
-	    		<div class="main-advs col-3">
-			    	 <div class="user-witenesses">Partagez votre trading avec la</div>  
-			    </div> 
-  
+    		<div class="main-advs col-3" *ngFor="let advs of [1,2,3,4]">
+		    	 <div class="user-witenesses">
+		    	 	<div class="row">
+		    	 		<div class="col-2">
+		    	 			<img src="assets/norrlab/imageedit_43_5024767093.gif" class="advs-avatar">
+		    	 		</div>
+		    	 		<div class="col-9 advs-user">
+		    	 			<p>Ulrich O.</p>
+		    	 		</div>
+		    	 	</div>
+		    	 	<div class="row comment">
+		    	 		<p>jfejafkjdv,kd,vlkdlvkldkvlkdlvklkvlklvdlvkv,vdkv,k,</p>
+		    	 		<p>jfejafkjdv,kd,vlkdlvkldkvlkdlvklkvlklvdlvkv,vdkv,k,</p>
+		    	 		<p>jfejafkjdv,kd,vlkdlvkldkvlkdlvklkvlklvdlvkv,vdkv,k,</p>
+		    	 	</div>
+		    	 </div>  
+		    </div>  
 	    </div>
 	    
 	  </mat-grid-tile>
