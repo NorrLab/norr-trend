@@ -9,42 +9,66 @@
 </div>
 
 <div class="row main-container">  
-            <div class="col-8" >
-              <div *ngFor="let i of [1,2,3]" class="trade-container">
-                
-                  <div class="trade-header row"> 
-                  <div class="col-6 trade-state-win">
-                      Gains ($&nbsp;250)
-                  </div>
-                  <div class="col-6 trade-state-produit">
-                      <span  class="trade-state-produit"><b>EUR/USD</b></span>  
-                  </div>
-                </div> 
-                <div class="trade-content ">
-                    <div class="row">
-                      <div class="col-1" style="padding-left: 25px">
-                         <div mat-card-avatar class="example-header-image"></div>
-                      </div>
-                      <div class="col-11" style="padding-left: 0px">
-                        <div class="user-publications-name">Ulrich O.</div>
-                        <div class="user-publications-date">Published, 12 Jan 2019</div>
-                      </div>
-                    </div>
-                    <div class="row user-publications"> 
-                      <p class="sub-user-publications">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                      </p>
-                    </div>
-                </div>
-              </div>
-            </div>  
-            <div class="col-4">
-              <div *ngFor="let i of [1,2,3]" class="trade-container">
-                <div class="trade-header"> Header</div>
-                <div class="trade-content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-              </div>
+    <div class="col-8 main-container-left">
+      <mat-card class="example-card" *ngFor="let trade of trades">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{trade.author.lastName}} {{trade.author.name}}</mat-card-title>
+          <mat-card-subtitle>published, 19 Jan. 2019</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{trade.pictureUrl}}" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="trade-card-actions" >
+          <button mat-button>{{trade.product}}</button>
+          <button mat-button [ngClass]="trade.class">Losses ($ {{trade.amout}})</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="col-4 main-container-rights" >  
+      <div>
+        <div class="side-header">
+             <p>Technical analyses</p>
+          </div>
+      <mat-card class="example-card"> 
+        <div class="row">
+            <div class="col-3 analyse-week">
+              <img  style="max-width: 94px;" src="http://localhost:369/images/default-img.jpg" >
             </div>
-          
+            <div class="col-9 analyse-week-news">
+               
+                 lfkglfklhkglkhlkghk <br>
+              dlgklkflgkflkglfkglkflgklfkglfklhkglkhlkghk  ghgggggggggggggg
+              dlgklkflgkflkglfkglkflgklfkglfklhkglkhlkghk ;v ;,v;f,b;,;b,gl,nblg,nlgnl,gln,glnlgknlgklnkgmnkgmnkmgnkgmnlgml<br>
+              mvbfbmgknmgkmnkgmnkmgknùtlh
+              ^lorpiotpjnogjnojgkbjln,bg,nb,;,b;n,b;n,;b,n,nptrh^gorep^gpe$ptg^$krtohpjtojnhotkghp^^o'^tgohotjnlg,hnlgk
+              dlgklkflgkflkglfkglkflgklfkglfklhkglkhlkghk <br>
+              dlgklkflgkflkglfkglkflgk
+               
+            </div>
+        </div> 
+      </mat-card> 
       </div>
+      
+      <div>
+        <div class="side-header">
+           <p>Technical analyses</p>
+        </div>
+        <mat-nav-list>
+          <mat-list-item *ngFor="let link of [1,2,3]">
+             <a matLine href="...">link </a>
+             <button mat-icon-button (click)="showInfo(link)">
+                <mat-icon>info</mat-icon>
+             </button>
+          </mat-list-item>
+        </mat-nav-list>
+      </div>
+    </div>
+
+
+</div>

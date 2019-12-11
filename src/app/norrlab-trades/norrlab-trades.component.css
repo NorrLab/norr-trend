@@ -99,7 +99,7 @@ mat-sidenav.norrlab-side.mat-drawer.mat-sidenav.ng-tns-c5-0.ng-trigger.ng-trigge
 }
 
 .trade-header[_ngcontent-rxa-c0] {
-    background: red;
+    
     height: 50px;
     justify-content: center;
     justify-items: center;
@@ -203,3 +203,97 @@ mat-nav-list.mat-nav-list.mat-list-base {
     padding-top: 0px;
 }
  
+ mat-card.example-card.mat-card.ng-star-inserted {
+    margin: 9px;
+}
+
+.col-3.main-container-rights {
+    margin-top: 9px;
+     margin-bottom: 9px;
+
+}
+
+.user-presentation-content {
+    width: 100%;
+    display: inline-block;
+    padding: 9px;
+    background: #fff;
+    text-align: justify;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+}
+
+.user-presentation{
+    width: 100%; 
+}
+
+.user-presentation-header {
+    height: 35px;
+    background: #8EE1B6;
+    display: inline-block;
+    padding-top: 3px;
+    padding-left: 3px;
+    width: 100%;
+    font-size: 19px;
+    font-weight: 500;
+}
+.trade-losses{
+  background-color: #f44336
+}
+.trade-gains{
+  background-color: #8EE1B6;
+}
+
+.trade-card-actions{
+  text-align: end
+}
+
+img.mat-card-image {
+    height: 245px;
+}
+
+.analyse-new{
+    padding-left: 0px;
+    padding-right: 0px;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+}
+
+.side-header {
+    background-color: #8EE1B6;
+    /* height: 23px; */
+    display: inline-block;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 9px;
+}
+
+.side-header-content {
+       padding: 3px;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.side-header-content > p{ 
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.col-9.analyse-week-news {
+    /* border: 1px dotted blue; */
+    display: inline-block;
+    max-width: 100%; 
+    padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    word-break: break-all;
+
+    font-size: 11px;
+}
+
+.main-container-rights > div{
+  margin-top: 9px;
+  background-color: #fff
+}
