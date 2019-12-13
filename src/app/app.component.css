@@ -203,3 +203,6 @@ mat-nav-list.mat-nav-list.mat-list-base {
     padding-top: 0px;
 }
  
+ .row.main-container {
+    margin: 19px;
+}

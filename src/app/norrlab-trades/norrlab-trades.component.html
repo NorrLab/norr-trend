@@ -35,7 +35,7 @@
         <div class="side-header">
              <p>Technical analyses</p>
           </div>
-      <mat-card class="example-card"> 
+      <mat-card class="example-card" style=" cursor: pointer;"> 
         <div class="row">
             <div class="col-3 analyse-week">
               <img  style="max-width: 94px;" src="http://localhost:369/images/default-img.jpg" >
@@ -54,20 +54,31 @@
         </div> 
       </mat-card> 
       </div>
-      
+      <div style="margin-top: 9px;">
+        <div class="advs-content" >
+           <p>Technical analyses
+           kdvkdnvkndvknknvkfnbknfkbnf
+           fkbvfnkbnfknbkfnbkfkbnfknbkfnb</p>
+
+        </div>
+         
+      </div>
       <div>
         <div class="side-header">
            <p>Technical analyses</p>
         </div>
         <mat-nav-list>
-          <mat-list-item *ngFor="let link of [1,2,3]">
+          <mat-list-item style="padding-left: 9px;padding-right: 9px;" *ngFor="let link of [1,2,3]">
              <a matLine href="...">link </a>
              <button mat-icon-button (click)="showInfo(link)">
                 <mat-icon>info</mat-icon>
              </button>
+          <mat-divider class="divider-archive-analyse"></mat-divider>
           </mat-list-item>
         </mat-nav-list>
       </div>
+
+      
     </div>
 
 
