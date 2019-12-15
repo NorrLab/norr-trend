@@ -12,7 +12,7 @@
 	<div class="col-8 video-container" >
 		<div class="video" style="margin-bottom: 16px" >
 			<div class="video-content col-12">
-				<video  class="player-video viewer" src="http://localhost:369/norrlab-users-video-2018/fondamentaux-du-trading-chapitre-1.mp4">
+				<video  class="player-video viewer" src="http://localhost:369/norrlab-users-video-2018/test.mp4">
 					
 				</video>
 			</div>
@@ -50,39 +50,92 @@
 		<div class="video-description ">
 			<div class="row" style="padding-top: 9px"	>  
 				<div class="col-6">
-					<div class="col-12 video-title">Zendy Rene</div>
+					<div class="col-12 video-title">Desire - The First Step toward Riches | Think and Grow Rich</div>
 					<div class="col-12 video-title-sub">300.000 views, published 02 Jan 2019</div>
 				</div>
 				<div class="col-6 ">
-					<div class="like-dislike row"> <mat-icon>thumb_up</mat-icon><span> 659</span>&nbsp; 
-						<mat-icon>thumb_down</mat-icon><span> 62</span>
+					<div class="like-dislike row"> <mat-icon>thumb_up</mat-icon><span class="like-span"> 659</span>&nbsp; 
+						<mat-icon>thumb_down</mat-icon><span class="like-span"> 62</span>
 						<mat-icon>share</mat-icon>
 					</div>
 				</div>
 			</div>
 		</div>
-		<mat-divider class="divider-archive-analyse"></mat-divider>
-		<div class="video-description-user row">
-			<div class="col-6">
-				<div class="col-12">Zendy Rene</div>
-				<div class="col-12">Zendy Rene</div>
-			</div>
-			<div class="col-6">
-				LIKE
+		<mat-divider class="divider-archive-analyse"></mat-divider> 
+
+		<div class="video-description-author ">
+			<div class="row" style="padding-top: 9px"	>  
+				<div class="col-12">
+					<div class="col-3 video-author-avatar ">
+						<div class="row">
+								<div class="col-3"> 
+									<img src="assets/norrlab/imageedit_43_5024767093.gif" class="advs-avatar main">
+								</div>
+								<div> 
+									<div class="col-12 author-of-vid col-9">  Ulrich O.</div>
+									<div class="col-12"> <p>45k subscriber</p></div>
+								</div>
+						</div>
+					</div> 
+				</div> 
 			</div>
 		</div>
+
 		<mat-divider class="divider-archive-analyse"></mat-divider>
-		<div class="video-description-users-comments row">
-			<div class="col-6">
-				<div class="col-12">Zendy Rene</div>
-				<div class="col-12">Zendy Rene</div>
-			</div>
-			<div class="col-6">
-				LIKE
+		<div class="video-description-author " *ngFor="let comment of [1,2,3]">
+			<div class="row" style="padding-top: 9px"	>  
+				<div class="col-12">
+					<div class="col-3 video-author-avatar">
+						<div class="row">
+								<div class="col-3"> 
+									<img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Charles_Henry_Dow.jpg" class="advs-avatar">
+								</div>
+								<div> 
+									<div class="col-12 author-of-vid col-9">  Charles D.</div> 
+								</div>
+						</div>
+					</div> 
+					<div class="col-12"> 
+						<p class="users-comments"> 
+Dissident Officiel
+3 days ago
+2ème partie de l'émission "Face à l'info" du 11 décembre 2019.
+Soutenez moi gratuitement en visionnant une publicité sur Utip : https://www.utip.io/dissidentofficiel
+
+Retrouvez toutes les interventions d'Eric Zemmour sur http://www.ericzemmour.org/
+
+Merci de vous abonner à la chaîne de secours Dissident Officiel 2 : https://www.youtube.com/channel/UC-14rMLJVb4HKScomtWSGtw
+
+Pour tout commentaire ou question : dissidentofficiel@gmail.com (Le délai de réponse peut être long dépendant du volume des courriels)
+						</p>
+					</div>			
+				</div> 
 			</div>
 		</div>
 	</div>
-	<div class="col-4" style="background-color: green">
-		her i get som content
+	<div class="col-4" style=" padding: 16px">
+		<div class="row list-free-videos" *ngFor="let offVideo of [1,2,3]"> 
+				<div class="col-4">
+									<img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Charles_Henry_Dow.jpg" class="video-list"> </div>
+				<div class="col-8 users-video-comments"> 
+						<p class="users-comments"> 
+Dissident Officiel
+3 days ago
+2ème partie de l'émission "Face à l'info" du 11 décembre 2019.
+Soutenez moi gratuitement en visionnant une publicité sur Utip : https://www.utip.io/dissidentofficiel
+
+Retrouvez toutes les interventions d'Eric Zemmour sur http://www.ericzemmour.org/ 
+						</p>
+				</div>
+		</div>	
+		<div class="row"> 
+			<div class="col-12"> 
+<mat-selection-list #shoes>
+			  <mat-list-option *ngFor="let shoe of [1,2,3,4,5,6]">
+			    l,lk,l,kl,klmklklklmkùlkklm
+			  </mat-list-option>
+			</mat-selection-list>
+			</div>
+		</div>	
 	</div>
 </div>

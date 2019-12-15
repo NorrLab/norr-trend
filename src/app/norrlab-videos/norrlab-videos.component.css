@@ -474,3 +474,66 @@ button.norr-slider.norrlab-play-circle-button.norrlab-play-circle-button-right.m
     margin-left:  45px;
     color:  #ccc;
 }
+
+.like-span{
+    padding-top: 15px;
+    margin-left: 22px;
+    color: #ccc;
+    font-size: 12px;
+}
+
+.video-description-user> div> .col-12>div{
+  background:   #fff;
+}
+
+
+.video-description-author{
+  background:   #fff; 
+}
+img.advs-avatar.main{
+        height: 50px;
+    width: 50px;
+}
+
+img.advs-avatar {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    padding: 2px; 
+    border: 1px solid #8EE1B6;
+}
+
+.video-author-avatar{
+  padding:  16px;
+  background-color:   #fff;
+}
+
+.author-of-vid.col-9 {
+    font-size: 16px;
+    position: ;
+    /* bottom: 0; */
+}
+
+.users-comments{
+  font-size: 13px;
+    display: inline-block;
+    padding: 9px;
+    text-align: justify;
+}
+
+.list-free-videos{
+  background:   #fff;
+  padding:  3px;
+}
+
+.video-list{
+  height: 137px;
+    width: 147px;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    border-radius:  3px;
+}
+
+
+.users-video-comments{
+  
+}
