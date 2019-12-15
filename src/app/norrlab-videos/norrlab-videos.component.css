@@ -515,9 +515,10 @@ img.advs-avatar {
 }
 
 .users-comments{
-  font-size: 13px;
+  font-size: 12px;
     display: inline-block;
-    padding: 9px;
+    /* padding: 9px; */
+    margin-left: 20px;
     text-align: justify;
 }
 
@@ -527,13 +528,18 @@ img.advs-avatar {
 }
 
 .video-list{
-  height: 137px;
-    width: 147px;
+  height: 120px;
+    width: 155px;
     box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
     border-radius:  3px;
+
+  border:   1px solid #8EE1B6;
+  padding:3px;
 }
 
 
 .users-video-comments{
-  
+
+    padding-left: 6px;
+
 }
