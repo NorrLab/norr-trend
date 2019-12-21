@@ -319,3 +319,77 @@ img.mat-card-image {
 .tech-analyse{
   color:  #fff
 }
+
+
+.list-free-videos{
+  background:   #fff;
+  padding:  3px;
+}
+
+.list-free-videos:last-child{
+  margin-bottom:  9px;
+  padding:  3px;
+}
+
+.video-list{
+  height: 115px;
+    width: 145px;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    border-radius:  3px;
+    cursor: pointer;
+  border:   1px solid #8EE1B6;
+  padding:3px;
+}
+
+
+.users-video-comments{
+
+    padding-left: 6px;
+}
+
+.list-header{
+  
+    background-color: #8EE1B6;
+    margin: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 9px;
+    text-align: center;
+    color: #fff;
+}
+.like-dislike>mat-icon{
+  cursor: pointer;
+}
+
+ .mat-list-avatar-video {
+    flex-shrink: 0;
+     width: 100%;
+    height: 90%;
+    padding: 2px;
+    border: 1px solid #fafafa;
+
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    background-color: #fafafb;
+    object-fit: cover;
+    border-radius:  1px
+}
+
+.video-proposition{
+    font-size:  13px
+}
+
+.proposal-video{
+  color:  #8EE1B6
+}
+
+.img-video-button{
+     position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+span.video-proposition-title {
+    font-size: 16px;
+    color:  black
+}
