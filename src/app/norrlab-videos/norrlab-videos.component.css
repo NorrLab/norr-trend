@@ -743,14 +743,24 @@ controls ***********************************************************************
 }
 
 .up-to-minimum-control-progresse{
-  background-color: #000;
-  opacity: 0.1;
-  height: 9px;
-  top: 0px;
-  position: absolute;
-  width: 100%
-}
+  background-color: #8EE1B6;
+    opacity: 0.2;
+    width: 65%;
+    height: 9px;
+    /* top: 0px; */
+    z-index: 999;
+    /* position: absolute; */
+    width: 100%;
 
+    padding-left: 0px;
+    padding-right: 0px;
+
+}
+.up-to-min{
+  background-color: red;
+  width: 65%;
+  height: 9px
+}
 .containing-minimal__controls{ 
     -ms-transform: translateY(0);
     transform: translateY(0);  
@@ -758,8 +768,8 @@ controls ***********************************************************************
 }
 
 .minimal.is-playing .containing-minimal__controls{
-    -ms-transform: translateY(85%); 
-    transform: translateY(85%);
+    -ms-transform: translateY(90%); 
+    transform: translateY(90%);
 }
 
 
