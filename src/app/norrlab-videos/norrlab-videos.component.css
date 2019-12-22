@@ -743,7 +743,7 @@ controls ***********************************************************************
 }
 
 .up-to-minimum-control-progresse{
-  background-color: #8EE1B6;
+  background-color: #000; /*#8EE1B6;*/
     opacity: 0.2;
     width: 65%;
     height: 9px;
@@ -759,7 +759,8 @@ controls ***********************************************************************
 .up-to-min{
   background-color: red;
   width: 65%;
-  height: 9px
+  height: 9px;
+  opacity:  1
 }
 .containing-minimal__controls{ 
     -ms-transform: translateY(0);
