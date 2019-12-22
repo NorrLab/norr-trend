@@ -9,20 +9,20 @@ import {NorrlabMaterialModule} from './norrlab-material/norrlab-material.module'
 import { NorrlabTradesComponent } from './norrlab-trades/norrlab-trades.component';
 import { NorrlabHomeComponent } from './norrlab-home/norrlab-home.component';
 import { NorrlabLessonsComponent } from './norrlab-lessons/norrlab-lessons.component';
-import { NorrlabVideosComponent } from './norrlab-videos/norrlab-videos.component';
-
+import { NorrlabVideosComponent } from './norrlab-videos/norrlab-videos.component'; 
+import { MatVideoModule } from 'mat-video';
 @NgModule({
   declarations: [
     AppComponent,
     NorrlabTradesComponent,
     NorrlabHomeComponent,
     NorrlabLessonsComponent,
-    NorrlabVideosComponent
+    NorrlabVideosComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,NorrlabMaterialModule
+    BrowserAnimationsModule,NorrlabMaterialModule,MatVideoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

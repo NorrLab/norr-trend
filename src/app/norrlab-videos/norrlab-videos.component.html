@@ -12,27 +12,30 @@
 		<div class="col-8 video-container" > 
 			<!-- 
 
-
+	<div>
+				<mat-video src="localOrRemoteVideo.mp4"></mat-video>
+			</div>
 			-->
 
 			<div class="video" style="margin-bottom: 16px" > 
 				<div class="ckin__player minimal ckin__overlay is-playing">
-					<video src="http://localhost:369/norrlab-users-video-2018/test.mp4" data-ckin="minimal" data-overlay="1"></video>
-					<button class="minimal__button--big central-video toggle" title="Toggle Play">
+					<video #videoPlayer src="http://localhost:369/norrlab-users-video-2018/test.mp4" data-ckin="minimal" data-overlay="1"></video>
+					<button (click)="playPause()"class="minimal__button--big central-video toggle" title="Toggle Play">
 							<mat-icon class="">play_circle_outline</mat-icon>
 					</button>  
 					<div class="containing-minimal__controls">up-to-minimum
-						<div class="col-12 up-to-minimum-control-progresse ">
-							<div class="col-12 up-to-min" style="background-color: red; width: 67%; opacity: 1">
+						<div (click)="position__track()" matTooltip="By default, I delay"
+        aria-label="Button that displays a tooltip that has custom delays through a default config" class="col-12 up-to-minimum-control-progresse ">
+							<div #__upToMin class="col-12 up-to-min" style="background-color: red; width: 67%; opacity: 1">
 							
 							</div>
 						</div>	
 						<div class="row minimal__controls ckin__controls">
 							<div class="col-6" style="padding-left: 0px;">
-								<button mat-icon-button class="norrlab-play-circle-button" >
+								<button (click)="playPause()" mat-icon-button class="norrlab-play-circle-button" >
 									<mat-icon>play_circle_outline</mat-icon>
 								</button> 
-								<button mat-icon-button class="norrlab-play-circle-button norrlab-play-circle-button-right"  >
+								<button (click)="changeVolume()" mat-icon-button class="norrlab-play-circle-button norrlab-play-circle-button-right"  >
 									<mat-icon>volume_up</mat-icon>
 								</button> 
 							</div>
@@ -56,7 +59,9 @@
 				<div class="row" style="padding-top: 9px"	>  
 					<div class="col-6">
 						<div class="col-12 video-title">Desire - The First Step toward Riches | Think and Grow Rich</div>
-						<div class="col-12 video-title-sub">300.000 views, published 02 Jan 2019</div>
+						<div class="col-12 video-title-sub">300.000 views, published 02 Jan 2019&nbsp;|&nbsp;
+									{{videoplayer.nativeElement.volume}}
+						</div>
 					</div>
 					<div class="col-6 ">
 						<div class="like-dislike row"> 

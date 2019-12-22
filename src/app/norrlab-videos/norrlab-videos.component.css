@@ -780,3 +780,22 @@ controls ***********************************************************************
   font-size: 171px;
     color: #8EE1B6;
 }
+
+
+.controls  .menu {
+    display: flex;
+    background: green;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 48px;
+}
+
+.controls  .progress {
+    height: 1px;  
+    opacity: 0.1;
+}
+
+.controls[_ngcontent-ynm-c8] .progress[_ngcontent-ynm-c8] {
+    height: 26px;
+}
