@@ -9,49 +9,42 @@
 	</div>
 
 	<div class="row main-container">  
-		<div class="col-8 video-container" > 
-			<!-- 
-
-
-			-->
-
-			<div class="video" style="margin-bottom: 16px" > 
-				<div class="ckin__player minimal ckin__overlay is-playing">
-					<video src="http://localhost:369/norrlab-users-video-2018/test.mp4" data-ckin="minimal" data-overlay="1"></video>
-					<button class="minimal__button--big central-video toggle" title="Toggle Play">
-							<mat-icon class="">play_circle_outline</mat-icon>
-					</button>  
-					<div class="containing-minimal__controls">up-to-minimum
-						<div class="col-12 up-to-minimum-control-progresse ">
-							<div class="col-12 up-to-min" style="background-color: red; width: 67%; opacity: 1">
-							
-							</div>
-						</div>	
-						<div class="row minimal__controls ckin__controls">
-							<div class="col-6" style="padding-left: 0px;">
-								<button mat-icon-button class="norrlab-play-circle-button" >
-									<mat-icon>play_circle_outline</mat-icon>
-								</button> 
-								<button mat-icon-button class="norrlab-play-circle-button norrlab-play-circle-button-right"  >
-									<mat-icon>volume_up</mat-icon>
-								</button> 
-							</div>
-							<div class="col-3"> 
-								<button mat-icon-button class="norrlab-play-circle-button norrlab-play-circle-button-right"  >
-									<mat-icon>volume_up</mat-icon>
-								</button> 
-							</div>
-							<div class="col-3" style="text-align: end" > 
-								<button mat-icon-button class="norrlab-play-circle-button" >
-									<mat-icon>settings</mat-icon>
-								</button> 
-								<button mat-icon-button class="norrlab-play-circle-button norrlab-play-circle-button-right" >
-									<mat-icon>fullscreen</mat-icon>
-								</button>
-							</div>
-							
-						</div>
+		<div class="col-8 video-container" >
+			<div class="video" style="margin-bottom: 16px" >
+				<div class="video-content col-12">
+					<video  class="player-video viewer" src="http://localhost:369/norrlab-users-video-2018/test.mp4">
+						
+					</video>
+				</div>
+				<div class="contains-controls">
+					<div class="bar-separation progress-vid video-content-controls col-12">
+						<div class="video-progess col-12"> </div>
 					</div>
+					<div class="video-content-controls col-12">
+						<div class="row control-buttons">
+							<div class="col-3">
+								<div class="row">
+									<button mat-icon-button class="norrlab-play-circle-button" ><mat-icon>play_circle_outline</mat-icon></button> 
+									<button mat-icon-button class="norrlab-play-circle-button norrlab-play-circle-button-right"  ><mat-icon>volume_up</mat-icon></button> 
+									<button mat-icon-button class="norr-slider norrlab-play-circle-button norrlab-play-circle-button-right"  >
+
+									<mat-slider  ></mat-slider>
+									</button> 
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="row timer"> 
+									00:15/11:45
+								</div>
+							</div>
+							<div class="col-3" style="text-align: end">
+								<div class="row button-fullscreen-setting">
+									<button mat-icon-button class="norrlab-play-circle-button" ><mat-icon>settings</mat-icon></button> 
+									<button mat-icon-button class="norrlab-play-circle-button norrlab-play-circle-button-right" ><mat-icon>fullscreen</mat-icon></button> 
+								</div>
+							</div>
+						</div>
+					</div> 
 				</div>
 			</div>
 			<div class="video-description ">

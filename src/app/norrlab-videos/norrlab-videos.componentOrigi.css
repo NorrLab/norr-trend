@@ -66,6 +66,7 @@ mat-sidenav.norrlab-side.mat-drawer.mat-sidenav.ng-tns-c5-0.ng-trigger.ng-trigge
 
 .row.main-container {
     margin: 19px;
+    background-color:   #fff;
 }
  
 .trade-header {
@@ -318,16 +319,21 @@ img.mat-card-image {
 
 .video-content {
     background: #fff;
-    height: 500px;
+    height: 383px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border: none;
+    outline: none;
 }
 
 .player-video {
   width: 100%;
-  height: 498px
+  height: 400px;
+  outline: none;
 }
 
 .col-8.video-container {
-    background: #fafafa;
+   /* background: #fafafa;*/
 }
 
 .col-8.video-container > .col-12{
@@ -339,164 +345,251 @@ img.mat-card-image {
     background: #fafafa;
 }
 
-#controls{
-  width: 100%;
-    height: 60px;
-    background: #4dbf8c;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    z-index: 9999;
+
+
+.video{
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+  
 }
 
-#controls .playButton {
-    width: 70px;
-    height: 100%;
-    background: #4dbf8c;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-    cursor: pointer;
-    transition: all 0.4s;
-    border-bottom-left-radius: 5px;
+.video-content-controls.col-12 {
+    background-color: #8EE1B6;
+    height: 58px; 
+    margin-top: -5%; 
+
 }
 
-#controls .ProgressContainer .time {
-  width: 80px;
-  height: 25px;
-  background: #2c7a57;
-  position: absolute;
-  top: -20px;
-  left: 0;
-  border-radius: 5px;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  line-height: 25px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: transform 0.3s, opacity 0.3s;
+.video-progess.col-12 {
+        height: 15px;
+        width: 40%;
+    background: red;
+    opacity: 0.6;
+    z-index: 10;  
+    margin-top:   19px
 }
 
- #controls .ProgressContainer {
+.col-12.progress-vid.video-content-controls {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.bar-separation.col-12.progress-vid.video-content-controls {
+    background: #fff;
+    opacity: 0;
+    transition:all 0.9s ease;
+}
+
+.bar-separation.col-12.progress-vid.video-content-controls:hover{
+    background: #fff;
+    opacity: 0.5;
+    transition:all 0.9s ease;
+}
+
+.control-buttons{
+
+}
+
+button.norrlab-play-circle-button.mat-icon-button {
+    /* font-size: 45px; */
     color: #fff;
-    width: calc(100% - 100px);
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
+    padding: 9px;
 }
 
-#controls .ProgressContainer .progressBar {
-  width: 100%;
-  height: 8px;
-  background: #39a072;
-  border-radius: 20px;
-  cursor: pointer;
-  overflow: hidden;
-}
- #controls .ProgressContainer .progressBar:hover + .time {
-  opacity: 1;
-  transform: translateY(0);
+mat-slider.norrlab-play-circle-button.mat-icon-button {
+    /* font-size: 45px; */
+    color: #fff;
+    padding: 9px;
+    font-size: 39px;
 }
 
-#controls .ProgressContainer .time::after {
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  position: absolute;
-  top: 25px;
-  left: 33px;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid #2c7a57;
+mat-icon.mat-icon.notranslate.material-icons.mat-icon-no-color {
+    font-size: 39px;
 }
 
+.button-fullscreen-setting{
 
-#controls .ProgressContainer .timer {
-  margin: 0 10px;
-  font-family: Arial, sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  font-weight: 300;
-  color: #2c7a57;
-  letter-spacing: 1px;
-}
- #controls .volume {
-  width: 150px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  position: relative;
+    display: inline-block;
+    padding-right: 19px;
 }
 
-#controls .volume .icon {
-  width: 25px;
-  height: 25px; 
-  background-size: 100% 100%;
-  cursor: pointer;
-  margin-right: 10px;
+.norrlab-play-circle-button-right{
+  margin-left: 19px
 }
 
- #controls .volume .intensityBar {
-  width: 100px;
-  height: 4px;
-  background: #39a072;
-  border-radius: 20px;
-  max-width: 100px;
-  overflow: hidden;
-  transform-origin: right center;
-  cursor: pointer;
-  transition: all 0.5s;
+button.norr-slider.norrlab-play-circle-button.norrlab-play-circle-button-right.mat-icon-button {
+    padding-top: 5px;
 }
 
-#controls .volume .intensityBar .intensity {
-  width: 50%;
-  height: 100%;
-  background: #fff;
+.mat-slider-horizontal .mat-slider-track-wrapper {
+    height: 6px;
+    width: 100%;
 }
 
- #controls .scale {
-  width: 70px;
-  height: 100%;
-  background: #4dbf8c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 5px;
-  cursor: pointer;
-  transition: all 0.4s;
-  border-bottom-right-radius: 5px;
+.mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label, .mat-accent .mat-slider-track-fill {
+    background-color: #8EE1B6
 }
 
-#controls .scale:hover { background: #40b27f; }
+.contains-controls{
 
-#controls .scale .icon {
-  width: 25px;
-  height: 25px;
-  background-size: 100% 100%; 
-  background-size: 100% 100%;
+ /*transition:all 1s ease;
+  opacity:  0*/
 }
 
-#controls .volume .intensityBar .intensity {
-  width: 50%;
-  height: 100%;
-  background: #fff;
+.contains-controls:hover{
+ /*transition:all 0.9s ease;
+ opacity:   1*/
 }
-
-/*https://www.jqueryscript.net/demo/Flat-Responsive-HTML5-Video-Player-With-jQuery-CSS3*/
 
 .video-description{
-  padding:9px;
+  background-color: #fff;
+  
+    margin-top: 41px;
+}
+
+.col-12.video-title-sub {
+    font-size: 13px;
+    font-weight: bold;
+    color: #606060;
+
+    margin-bottom: 15px;
+}
+
+.col-12.video-title {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.like-dislike{
+  bottom:   0px;
+}
+
+.like-dislike{
+    bottom: 25px;
+    right:  90px;
+    text-align: center;
+    position: absolute;
+}
+
+.like-dislike>mat-icon{ 
+    margin-left:  45px;
+    color:  #ccc;
+}
+
+.like-span{
+    padding-top: 15px;
+    margin-left: 22px;
+    color: #ccc;
+    font-size: 12px;
+}
+
+.video-description-user> div> .col-12>div{
+  background:   #fff;
+}
+
+
+.video-description-author{
+  background:   #fff; 
+}
+img.advs-avatar.main{
+        height: 50px;
+    width: 50px;
+}
+
+img.advs-avatar {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    padding: 2px; 
+    border: 1px solid #8EE1B6;
+}
+
+.video-author-avatar{
+  padding:  16px;
+  background-color:   #fff;
+}
+
+.author-of-vid.col-9 {
+    font-size: 16px;
+    position: ;
+    /* bottom: 0; */
+}
+
+.users-comments{
+  font-size: 12px;
+    display: inline-block;
+    /* padding: 9px; */
+    margin-left: 20px;
+    text-align: justify;
+}
+
+.list-free-videos{
+  background:   #fff;
+  padding:  3px;
+}
+
+.list-free-videos:last-child{
+  margin-bottom:  9px;
+  padding:  3px;
+}
+
+.video-list{
+  height: 115px;
+    width: 145px;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    border-radius:  3px;
+    cursor: pointer;
+  border:   1px solid #8EE1B6;
+  padding:3px;
+}
+
+
+.users-video-comments{
+
+    padding-left: 6px;
+}
+
+.list-header{
+  
+    background-color: #8EE1B6;
+    margin: 15px;
+    font-size: 18px; 
+    padding: 9px;
+    text-align: center;
+    color: #fff;
+}
+.like-dislike>mat-icon{
+  cursor: pointer;
+}
+
+ .mat-list-avatar-video {
+    flex-shrink: 0;
+     width: 100%;
+    height: 90%;
+    padding: 2px;
+    border: 1px solid #fafafa;
+
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    background-color: #fafafb;
+    object-fit: cover;
+    border-radius:  1px
+}
+
+.video-proposition{
+    font-size:  13px
+}
+
+.proposal-video{
+  color:  #8EE1B6
+}
+
+.img-video-button{
+     position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+span.video-proposition-title {
+    font-size: 16px;
+    color:  black
 }

@@ -350,9 +350,8 @@ img.mat-card-image {
 .list-header{
   
     background-color: #8EE1B6;
-    margin: 15px;
+    margin: 16px;
     font-size: 18px;
-    font-weight: bold;
     padding: 9px;
     text-align: center;
     color: #fff;
@@ -392,4 +391,8 @@ img.mat-card-image {
 span.video-proposition-title {
     font-size: 16px;
     color:  black
+}
+
+mat-icon.mat-icon.notranslate.material-icons.mat-icon-no-color {
+    font-size: 45px;
 }

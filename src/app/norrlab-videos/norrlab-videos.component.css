@@ -552,8 +552,7 @@ img.advs-avatar {
   
     background-color: #8EE1B6;
     margin: 15px;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 18px; 
     padding: 9px;
     text-align: center;
     color: #fff;
@@ -593,4 +592,181 @@ img.advs-avatar {
 span.video-proposition-title {
     font-size: 16px;
     color:  black
+}
+/*//////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////*/
+
+.minimal { 
+    position: relative;
+    font-size: 0;
+    overflow: hidden; 
+    cursor: pointer;
+}
+
+.ckin__player {
+    margin-bottom: 20px;
+    font-family: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
+    letter-spacing: 0.02em;
+}
+
+.minimal:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; 
+    transition: opacity .2s;
+    opacity: 1;
+    visibility: visible;
+}
+
+.ckin__overlay:before {
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
+}
+
+/**************************************************************************************************
+video
+******************************************************************************************************/
+video {
+    display: inline-block;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+} 
+video {
+    object-fit: contain;
+}
+/**************************************************************************************************
+button******************************************************************************************************/
+ 
+button, input, optgroup, select, textarea {
+    font-family: sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+button, hr, input {
+    overflow: visible;
+}
+
+
+.minimal__button--big {
+    background: none;
+    border: 0;
+    line-height: 1; 
+    text-align: center;
+    outline: 0;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    opacity: 1;
+    visibility: visible;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+    font-size: 64px;
+    transition: all .2s ease-in;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+button, select {
+    text-transform: none;
+}
+
+
+/**************************************************************************************************
+i ******************************************************************************************************/
+
+[class^="ckin-"], [class*=" ckin-"] {
+    font-family: 'ckin' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+
+/**************************************************************************************************
+controls ******************************************************************************************************/
+.containing-minimal__controls{
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+
+.minimal__controls {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    background: #8EE1B6; 
+    font-size: 32px;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 10px;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    opacity: 1
+}
+
+.minimal__button {
+    background: none;
+    border: 0;
+    line-height: 1;
+    color: #00CF7D;
+    outline: 0;
+    padding: 0;
+    cursor: pointer;
+    -ms-flex-pack: center;
+    justify-content: center;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 50px;
+}
+
+.up-to-minimum-control-progresse{
+  background-color: #000;
+  opacity: 0.1;
+  height: 9px;
+  top: 0px;
+  position: absolute;
+  width: 100%
+}
+
+.containing-minimal__controls{ 
+    -ms-transform: translateY(0);
+    transform: translateY(0);  
+    transition: all .5s;
+}
+
+.minimal.is-playing .containing-minimal__controls{
+    -ms-transform: translateY(85%); 
+    transform: translateY(85%);
+}
+
+
+.minimal.is-playing:hover .containing-minimal__controls{transform:translateY(0)}
+
+
+.central-video{
+  font-size: 171px;
+    color: #8EE1B6;
 }
