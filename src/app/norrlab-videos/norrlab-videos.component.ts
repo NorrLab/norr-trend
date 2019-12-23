@@ -8,8 +8,9 @@ import { Component, OnInit,ViewChild, ElementRef,AfterViewInit } from '@angular/
 })
 export class NorrlabVideosComponent implements OnInit,AfterViewInit {
 
-  @ViewChild("videoPlayer") videoplayer: ElementRef;
-   @ViewChild("__upToMin") __upToMin: ElementRef;
+@ViewChild("videoPlayer") videoplayer: ElementRef;
+@ViewChild("__upToMin") __upToMin: ElementRef;
+norrlab__progress__video: number;
   
   constructor() { }
 

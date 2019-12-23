@@ -403,7 +403,8 @@ mat-slider.norrlab-play-circle-button.mat-icon-button {
 }
 
 mat-icon.mat-icon.notranslate.material-icons.mat-icon-no-color {
-    font-size: 39px;
+    font-size: 30px; 
+    margin-left: 10px;
 }
 
 .button-fullscreen-setting{
@@ -464,20 +465,26 @@ button.norr-slider.norrlab-play-circle-button.norrlab-play-circle-button-right.m
 }
 
 .like-dislike{
-    bottom: 25px;
-    right:  90px;
-    text-align: center;
-    position: absolute;
+    bottom: 25px;  
+    right: 0px;
+    text-align: end;
+    position: relative;
+    bottom: 0px;
+
+    justify-content: center;
+    width: 100%; 
+    margin-right: 9px;
+    margin-left: 0px; 
+    padding-right: 6px;
 }
 
 .like-dislike>mat-icon{ 
-    margin-left:  45px;
+     
     color:  #ccc;
 }
 
 .like-span{
-    padding-top: 15px;
-    margin-left: 22px;
+    padding-top: 15px; 
     color: #ccc;
     font-size: 12px;
 }
@@ -509,9 +516,8 @@ img.advs-avatar {
 }
 
 .author-of-vid.col-9 {
-    font-size: 16px;
-    position: ;
-    /* bottom: 0; */
+    font-size: 16px; 
+    padding-right: 1px; 
 }
 
 .users-comments{
@@ -743,18 +749,14 @@ controls ***********************************************************************
 }
 
 .up-to-minimum-control-progresse{
-  background-color: #000; /*#8EE1B6;*/
+  background-color: #000; 
     opacity: 0.2;
     width: 65%;
-    height: 9px;
-    /* top: 0px; */
-    z-index: 999;
-    /* position: absolute; */
-    width: 100%;
-
+    height: 9px; 
+    z-index: 999; 
+    width: 100%; 
     padding-left: 0px;
-    padding-right: 0px;
-
+    padding-right: 0px; 
 }
 .up-to-min{
   background-color: red;
@@ -799,4 +801,14 @@ controls ***********************************************************************
 
 .controls[_ngcontent-ynm-c8] .progress[_ngcontent-ynm-c8] {
     height: 26px;
+}
+
+.contain-like-block{
+     
+}
+
+.author-avatar {
+    text-align: end;
+    display: inline-block;
+    margin-left: 9px;
 }
