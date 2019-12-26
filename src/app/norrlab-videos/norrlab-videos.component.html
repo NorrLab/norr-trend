@@ -19,12 +19,12 @@
 
 			<div class="video" style="margin-bottom: 16px" > 
 				<div class="ckin__player minimal ckin__overlay is-playing">
-					<video  #videoPlayer src="http://localhost:369/norrlab-users-video-2018/test.mp4" data-ckin="minimal" data-overlay="1"></video>
+					<video  #videoPlayer src="http://192.168.1.10:369/norrlab-users-video-2018/BelattarQuenelleZemmour.mp4" data-ckin="minimal" data-overlay="1"></video>
 					<button (click)="playPause()"class="minimal__button--big central-video toggle" title="Toggle Play">
 							<mat-icon class="">play_circle_outline</mat-icon>
 					</button>  
 					<div class="containing-minimal__controls">up-to-minimum
-						<div (click)="position__track()" matTooltip="By default, I delay"
+						<div (click)="position__track($event)" matTooltip="By default, I delay" #__upToMinimumControlProgresse
         aria-label="Button that displays a tooltip that has custom delays through a default config" class="col-12 up-to-minimum-control-progresse ">
 							<div #__upToMin class="col-12 up-to-min" style="background-color: red; width: 67%; opacity: 1">
 							

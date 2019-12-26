@@ -10,6 +10,8 @@ export class NorrlabVideosComponent implements OnInit,AfterViewInit {
 
 @ViewChild("videoPlayer") videoplayer: ElementRef;
 @ViewChild("__upToMin") __upToMin: ElementRef;
+
+@ViewChild("__upToMinimumControlProgresse") __upToMinimumControlProgresse: ElementRef;//
 norrlab__progress__video: number;
   
   constructor() { }
@@ -52,15 +54,17 @@ norrlab__progress__video: number;
 		}
   }
 
-   updateVideo(){
-  	var time = this.videoplayer.nativeElement.currentTime;
-  	this.norrlab__progress__video = (time*100)/this.videoplayer.nativeElement.duration;
+   updateVideo(){ 
+  	this.norrlab__progress__video = (this.videoplayer.nativeElement.currentTime*100)/this.videoplayer.nativeElement.duration;
   	this.__upToMin.nativeElement.style.width=this.norrlab__progress__video+"%" ; 
   }
 
-  position__track(){ 
-  	var cursorPosition = (this.videoplayer.nativeElement.currentTime * 100)/this.videoplayer.nativeElement.duration;
-  	this.__upToMin.nativeElement.style.width=cursorPosition+"%" ;
+  position__track(event){ 
+  var bcr = this.__upToMinimumControlProgresse.nativeElement.getBoundingClientRect();
+
+  var xPosition   = Math.min(Math.max(0, (event.clientX - bcr.left) / bcr.width), 1)*100;
+  this.__upToMin.nativeElement.style.width=xPosition+"%" ;   
+    this.videoplayer.nativeElement.currentTime = Math.round((xPosition*this.videoplayer.nativeElement.duration) / 100) ; 
   }
 
   ngOnInit() {
