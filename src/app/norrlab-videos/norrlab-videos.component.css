@@ -468,15 +468,16 @@ button.norr-slider.norrlab-play-circle-button.norrlab-play-circle-button-right.m
 .like-dislike{
     bottom: 25px;  
     right: 0px;
-    text-align: end;
-    position: relative;
+    text-align: end; 
     bottom: 0px;
 
     justify-content: center;
     width: 100%; 
     margin-right: 9px;
-    margin-left: 0px; 
-    padding-right: 6px;
+    margin-left: 0px;  
+    padding-right: 15px;
+    position: absolute;
+
 }
 
 .like-dislike>mat-icon{ 
@@ -813,4 +814,31 @@ controls ***********************************************************************
 
 .contain-like-block{
      
+}
+
+.norrlab_track{
+
+}
+
+video::cue {
+    font-size: 1rem;
+}
+
+.must-connect{
+    background-color: #fff;
+    text-align: start;
+    margin-bottom: 9px;
+
+    padding-bottom: 0px;
+
+    position: relative;
+    z-index: 999;
+}
+
+.sign_in{
+
+    text-align: start;
+    display: inline-block; 
+    padding-top: 9px;
+    padding-bottom: 9px;
 }
