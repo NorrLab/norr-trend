@@ -11,6 +11,7 @@ import { NorrlabHomeComponent } from './norrlab-home/norrlab-home.component';
 import { NorrlabLessonsComponent } from './norrlab-lessons/norrlab-lessons.component';
 import { NorrlabVideosComponent } from './norrlab-videos/norrlab-videos.component'; 
 import { MatVideoModule } from 'mat-video';
+import { NorrlabVideoDialogComponent } from './norrlab-videos/dialog/norrlab-video-dialog/norrlab-video-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,7 @@ import { MatVideoModule } from 'mat-video';
     NorrlabHomeComponent,
     NorrlabLessonsComponent,
     NorrlabVideosComponent,
+    NorrlabVideoDialogComponent,
   ],
   imports: [
     BrowserModule,

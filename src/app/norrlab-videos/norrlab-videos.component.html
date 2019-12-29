@@ -19,13 +19,13 @@
 
 			<div class="video" style="margin-bottom: 16px" > 
 				<div class="ckin__player minimal ckin__overlay is-playing">
-					<video  #videoPlayer src="{{norrlabVideo.videoUrl}}" data-ckin="minimal" data-overlay="1">
+					<video  #videoPlayer poster="{{norrlabVideo.videoPoster}}" src="{{norrlabVideo.videoUrl}}" data-ckin="minimal" data-overlay="1">
 						<track class="norrlab_track" default kind="captions" srclang="en" src="assets/norrlab/BelattarQuenelleZemmour.vtt"/>
 					</video>
 					<!-- <button (click)="playPause()"class="minimal__button--big central-video toggle" title="Toggle Play">
 							<mat-icon class="">play_circle_outline</mat-icon>
 					</button> --> 
-					<div class="containing-minimal__controls">up-to-minimum
+					<div class="containing-minimal__controls"> 
 						<div (click)="position__track($event)" matTooltip="By default, I delay" #__upToMinimumControlProgresse
         aria-label="Button that displays a tooltip that has custom delays through a default config" class="col-12 up-to-minimum-control-progresse ">
 							<div #__upToMin class="col-12 up-to-min" style="background-color: red; width: 67%; opacity: 1">
@@ -33,22 +33,34 @@
 							</div>
 						</div>	
 						<div class="row minimal__controls ckin__controls">
-							<div class="col-6" style="padding-left: 0px;">
-								<button (click)="playPause()" mat-icon-button class="norrlab-play-circle-button" >
-									<mat-icon>play_circle_outline</mat-icon>
-								</button> 
-								<button (click)="changeVolume()" mat-icon-button class="norrlab-play-circle-button norrlab-play-circle-button-right"  >
-									<mat-icon>volume_up</mat-icon>
-								</button> 
+							<div class="col-6 row" style="padding-left: 0px;"> 
+									<div style="margin-right: 32px">
+										<button (click)="playPause()" mat-icon-button class="norrlab-play-circle-button" >
+											<mat-icon [hidden]="norrPlayPause">play_circle_outline</mat-icon><mat-icon [hidden]="!norrPlayPause">pause</mat-icon>
+										</button>  
+										<button  (click)="muteVolume()" mat-icon-button class="norrlab-play-circle-button  norrlab-play-circle-button-right"  >
+											<mat-icon [hidden]="!volumeMuted">volume_up</mat-icon><mat-icon [hidden]="volumeMuted">volume_off</mat-icon>
+										</button>
+ 
+
+									</div> 
+									<div #__volumeClass (click)="changeVolume($event)" class="volumeClass">
+										<div  #__volumClassProgress class="volumClassProgress">
+											<div #__roundVolumControl class="roundVolumControl">
+												
+											</div>
+										</div>
+									</div>
+								  
 							</div>
 							<div class="col-3"> 
-								
+								 
 							</div>
 							<div class="col-3" style="text-align: end" > 
 								<button mat-icon-button class="norrlab-play-circle-button" >
 									<mat-icon>settings</mat-icon>
 								</button> 
-								<button mat-icon-button class="norrlab-play-circle-button norrlab-play-circle-button-right" >
+								<button (click)="goFullScreen()" mat-icon-button class="norrlab-play-circle-button " >
 									<mat-icon>fullscreen</mat-icon>
 								</button>
 							</div>
@@ -67,20 +79,20 @@
 					</div>
 					<div class="col-6 contain-like-block">
 						<div #__norrlabSignIn  class="col-12" style="margin: -74px;" > 
-							 <div class="col-12" *ngIf="showSignIn">
+							 <div class="col-12" [hidden]="!showSignIn">
 							 	<mat-card  class="must-connect">
 							 		<div class="col-12">
 							 			<mat-card-subtitle>	
 							 			Like this video?
 						 			</mat-card-subtitle>
 									<mat-card-content> 
-										Sign in to make your opinion count.
+										Sign in to make your opinion count.&nbsp;|&nbsp;{{showSignIn}}
 								 	</mat-card-content>
 							 		</div>
 								 	<mat-divider></mat-divider> 
 								 	<div class="col-12 sign_in" style="text-align: start;display: inline-block;width: 100%;">
 								 		
-							          <span ><a href="" style="text-decoration: none;">SIGN IN</a></span> 
+							          <span ><a (click)="openLoginDialog()" style="text-decoration: none;font-size: 13px;">SIGN IN</a></span> 
 								 	</div>
 							 	</mat-card>
 							 </div>
@@ -144,17 +156,39 @@
 					</div> 
 				</div>
 			</div>
+			<div >
+				<mat-expansion-panel [expanded]="norrlabExpanded === 1" class="add_comment" (opened)="norrlabExpanded = 1"
+                       (closed)="norrlabExpanded = 0">
+			    <mat-expansion-panel-header> 
+			      <div class="col-12 add_comment_header">
+			      	<mat-panel-description class="comment_panel_description">
+			        Add public comment...
+			      </mat-panel-description>	
+			      </div>      
+			    </mat-expansion-panel-header>
+			    <mat-form-field class="video_comment_class">
+				      <input matInput placeholder="">
+			    </mat-form-field>
+			    <div class="col-12 video_comment_class_button"> 
+				 	
+  					<button (click)="valideComment()" mat-flat-button >CANCEL</button>
+  					<button (click)="cancelComment()" mat-flat-button color="primary">COMMENT</button>
+			    </div>
+			  </mat-expansion-panel>
+			</div>
 		</div>
-		<div class="col-4">
-			<div style="padding-top:9px  "  class="row list-free-videos" *ngFor="let offVideo of [1,2,3]"> 
+		<div class="col-4"> 
+			<div #__listFreeVideos style="padding-top:9px  "  class="row list-free-videos" *ngFor="let offVideo of weekFreeVideos"> 
 				 <div class="col-6 img-video-cont"> 
 				 	<div class="img-video-button">
 					    
-				 	<button mat-icon-button class=" proposal-video" ><mat-icon>play_circle_outline</mat-icon></button> 
+				 	<button mat-icon-button (click)="playCurrentVideo(offVideo.videoId)" class=" proposal-video" ><mat-icon>play_circle_outline</mat-icon></button> 
 					 </div>																																																																		
-				 		<img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="https://nucleotrader.com/wp-content/uploads/2019/04/Charles-Henry-Dow-happy-live-420x305.jpg">
+			 		<img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{offVideo.videoPoster}}">
 				 </div>	
 				  <div class="col-6" style="
+		}
+		}
     padding-left: 0px;
     padding-right: 0px;
 "> 

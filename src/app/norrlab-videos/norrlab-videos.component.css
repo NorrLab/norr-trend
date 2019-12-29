@@ -460,16 +460,12 @@ button.norr-slider.norrlab-play-circle-button.norrlab-play-circle-button-right.m
     font-size: 19px;
     font-weight: bold;
 }
+ 
 
 .like-dislike{
-  bottom:   0px;
-}
-
-.like-dislike{
-    bottom: 25px;  
+    bottom: 20px;  
     right: 0px;
-    text-align: end; 
-    bottom: 0px;
+    text-align: end;  
 
     justify-content: center;
     width: 100%; 
@@ -612,7 +608,6 @@ span.video-proposition-title {
     position: relative;
     font-size: 0;
     overflow: hidden; 
-    cursor: pointer;
 }
 
 .ckin__player {
@@ -761,7 +756,7 @@ controls ***********************************************************************
     z-index: 999;
     /* position: absolute; */
     width: 100%;
-
+    cursor: pointer;
     padding-left: 0px;
     padding-right: 0px;
 
@@ -828,9 +823,9 @@ video::cue {
     background-color: #fff;
     text-align: start;
     margin-bottom: 9px;
-
+    border-radius: 0px;
     padding-bottom: 0px;
-
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
     position: relative;
     z-index: 999;
 }
@@ -842,3 +837,74 @@ video::cue {
     padding-top: 9px;
     padding-bottom: 9px;
 }
+
+video::-webkit-media-controls {
+  display: none;
+}
+
+.volumeClass{
+    cursor: pointer;
+    width: 21%;
+    height: 7px; 
+    margin-top: 17px;
+    background: #ccc;  
+}
+
+.volumClassProgress{
+
+    width: 65%;
+    background: #fff;
+    height: 100%;   
+    position: relative;
+}
+
+.roundVolumControl{
+
+    width: 16px;
+    background: #fff; /*#8EE1B6;*/
+    margin-top: -4px;
+    height: 16px;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    right: 0;
+}
+
+ .volumeClass:before{
+    display: none;
+}
+
+.norrlab-play-circle-button-right:hover .volumeClass{
+    display: inline-block;
+    color: red
+}
+
+mat-panel-description.comment_panel_description {
+    color: #0056b3;
+}
+
+.list-free-videos.active {
+       background-color: #eaeaea
+
+}
+
+mat-expansion-panel.add_comment {
+    box-shadow: none;
+}
+.video_comment_class{
+    width: 100%
+}
+
+.video_comment_class_button{
+    text-align: end
+}
+
+.video_comment_class_button>button {
+    margin: 3px;
+    padding: 9px;
+}
+
+.list-free-videos:hover{
+    background-color: #eaeaea
+}
+/**/

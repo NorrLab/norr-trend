@@ -1,8 +1,12 @@
 import { Component, OnInit,ViewChild, ElementRef,AfterViewInit } from '@angular/core'; 
 import { UserService} from '../services/user-service/user.service';
+import { VideoService} from '../services/video-service/video.service';
 
 import {MatSnackBar} from '@angular/material/snack-bar';
 
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+import {NorrlabVideoDialogComponent} from './dialog/norrlab-video-dialog/norrlab-video-dialog.component';
 
 @Component({
   selector: 'app-norrlab-videos',
@@ -15,6 +19,10 @@ export class NorrlabVideosComponent implements OnInit,AfterViewInit {
 @ViewChild("__upToMin") __upToMin: ElementRef;
 @ViewChild("__norrlabSignIn") __norrlabSignIn: ElementRef;
 @ViewChild("__main_container") __main_container: ElementRef;
+@ViewChild("__volumClassProgress") __volumClassProgress: ElementRef;
+@ViewChild("__roundVolumControl") __roundVolumControl: ElementRef;
+@ViewChild("__volumeClass") __volumeClass: ElementRef;
+@ViewChild("__listFreeVideos") __listFreeVideos: ElementRef;
 
 @ViewChild("__upToMinimumControlProgresse") __upToMinimumControlProgresse: ElementRef;//
 
@@ -30,39 +38,84 @@ videoLikes = {
 currentUser:any;
 
 norrlabVideo={
-  "videoUrl":"http://192.168.1.10:369/norrlab-users-video-2018/BelattarQuenelleZemmour.mp4",
+  "videoUrl":"http://192.168.1.10:369/norrlab-users-video-2018/test.mp4",//BelattarQuenelleZemmour
   "videoAuthor":0,
   "videoId":0,
   "videoLikes":{},
+  "videoPoster":"http://192.168.1.10:369/norrlab-users-video-2018/test.jpg"
 }
 
 showSignIn = false;
-
-constructor(private userService:UserService) { }
+norrPlayPause = false;
+volumeMuted = true;
+animal: string;
+  name: string;
+volumePosition :number= 1;
+panelOpenState = false;
+norrlabExpanded:number = 0;
+weekFreeVideos:any = []
+constructor(private userService: UserService,public dialog: MatDialog,private videoService: VideoService) { }
 
 
   playPause(){   
-  	if(this.videoplayer.nativeElement.paused)
-  		this.videoplayer.nativeElement.play();
-  	else
-  		this.videoplayer.nativeElement.pause();
+  	if(this.videoplayer.nativeElement.paused){
+      this.videoplayer.nativeElement.play();
+      this.norrPlayPause = true;
+    }
+  	else{
+
+      this.videoplayer.nativeElement.pause();
+     this.norrPlayPause = false;
+    }
   }
 
   ngAfterViewInit(): void{
   		this.videoplayer.nativeElement.ontimeupdate = () => {
             this.updateVideo();
    		}  
+
+       this.__main_container.nativeElement.onclick = function (argument) {
+           // body... 
+        this.showSignIn = false;
+         }
    		this.avoidControls();
   }
+ 
+ changeVolume(event){
 
-  changeVolume(){
+  
+  var bcr = this.__volumeClass.nativeElement.getBoundingClientRect();
+
+  var xPosition   =  Math.max(0, (event.clientX - bcr.left) / bcr.width)*100;
+   
+  var aWidth = parseFloat(this.__volumClassProgress.nativeElement.style.width);
+  if(xPosition>100){
+
+  this.__volumClassProgress.nativeElement.style.width="100%";
+  }else if(xPosition<0){
+
+  this.__volumClassProgress.nativeElement.style.width="0%";
+  }else{
+
+  this.__volumClassProgress.nativeElement.style.width=xPosition+"%";
+  this.videoplayer.nativeElement.volume= (xPosition/100)
+  } 
+  this.volumePosition = xPosition;
+}
+
+
+  muteVolume(){
 
   	if(this.videoplayer.nativeElement.muted){
 
   		this.videoplayer.nativeElement.muted=false;
+      this.volumeMuted = true;
+      this.__volumClassProgress.nativeElement.style.width=this.volumePosition+"%";
+      this.videoplayer.nativeElement.volume= (this.volumePosition/100);
   	} else{
-
   		this.videoplayer.nativeElement.muted=true;
+      this.volumeMuted = false;
+      this.__volumClassProgress.nativeElement.style.width="0%";
   	}
   }
   
@@ -107,11 +160,7 @@ constructor(private userService:UserService) { }
         this.showSignIn = true;
          console.log(
       )
-         this.__main_container.nativeElement.onclick = function (argument) {
-           // body...
-           alert("clicked showSignIn: "+this.showSignIn)
-        this.showSignIn = false;
-         }
+         
       }
   }
 
@@ -120,14 +169,60 @@ constructor(private userService:UserService) { }
     return this.userService.userStatus(param);
   }
 
-  ngOnInit() {
-  	this.__upToMin.nativeElement.style.width="0%"
- 
+
+openLoginDialog():void {
+  
+  console.log("NorrlabVideoDialogComponent")
+  console.log(NorrlabVideoDialogComponent)
+ const dialogRef = this.dialog.open(NorrlabVideoDialogComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+
+  }
+
+  goFullScreen(){
+
+      if(this.videoplayer.nativeElement.requestFullscreen){
+          this.videoplayer.nativeElement.requestFullscreen()
+      }else if(this.videoplayer.nativeElement.webkitRequestFullscreen){
+                    this.videoplayer.nativeElement.webkitRequestFullscreen();
+      }else if(this.videoplayer.nativeElement.mozRequestFullscreen){
+                    this.videoplayer.nativeElement.mozRequestFullscreen(); 
+      }else if(this.videoplayer.nativeElement.msRequestFullscreen){
+                    this.videoplayer.nativeElement.msRequestFullscreen(); 
+      }
+  }
+
+  valideComment(){
+    this.norrlabExpanded = 0;
+  }
+
+  cancelComment(){
+  }
+
+  playCurrentVideo(param){
+    this.__listFreeVideos.nativeElement.classList.add("active")
+    console.log(this.videoplayer)
+    var video = this.videoService.getVideoSrc(param);
+    this.videoplayer.nativeElement.src =  this.videoService.getVideoSrc(param).videoUrl+"";
+    this.videoplayer.nativeElement.poster =  this.videoService.getVideoSrc(param).videoPoster+"";
+    this.playPause(); 
   } 
 
-  /*
+  getWeekFreeVideos(){
+    console.log(this.videoService.getWeekVideos())
+    this.weekFreeVideos=this.videoService.getWeekVideos();
+  }
 
-currentTime: 56.68009
-duration * 100): 2279.433
-  */
+  ngOnInit() {
+  	this.__upToMin.nativeElement.style.width="0%";
+    this.getWeekFreeVideos()
+ 
+  }  
 }
