@@ -19,7 +19,7 @@
 
 			<div class="video" style="margin-bottom: 16px" > 
 				<div class="ckin__player minimal ckin__overlay is-playing">
-					<video  #videoPlayer poster="{{norrlabVideo.videoPoster}}" src="{{norrlabVideo.videoUrl}}" data-ckin="minimal" data-overlay="1">
+					<video  #videoPlayer poster="{{videoRedayToplay.videoPoster}}" src="{{videoRedayToplay.videoUrl}}" data-ckin="minimal" data-overlay="1">
 						<track class="norrlab_track" default kind="captions" srclang="en" src="assets/norrlab/BelattarQuenelleZemmour.vtt"/>
 					</video>
 					<!-- <button (click)="playPause()"class="minimal__button--big central-video toggle" title="Toggle Play">
@@ -36,10 +36,10 @@
 							<div class="col-6 row" style="padding-left: 0px;"> 
 									<div style="margin-right: 32px">
 										<button (click)="playPause()" mat-icon-button class="norrlab-play-circle-button" >
-											<mat-icon [hidden]="norrPlayPause">play_circle_outline</mat-icon><mat-icon [hidden]="!norrPlayPause">pause</mat-icon>
+											<mat-icon [hidden]="norrPlayPause">play_circle_outline</mat-icon><mat-icon [hidden]="!norrPlayPause ">pause</mat-icon>
 										</button>  
 										<button  (click)="muteVolume()" mat-icon-button class="norrlab-play-circle-button  norrlab-play-circle-button-right"  >
-											<mat-icon [hidden]="!volumeMuted">volume_up</mat-icon><mat-icon [hidden]="volumeMuted">volume_off</mat-icon>
+											<mat-icon [hidden]="!volumeMuted ">volume_up</mat-icon><mat-icon [hidden]="volumeMuted">volume_off</mat-icon>
 										</button>
  
 
@@ -72,14 +72,14 @@
 			<div class="video-description ">
 				<div class="row" style="padding-top: 9px"	>  
 					<div class="col-6">
-						<div class="col-12 video-title">Desire - The First Step toward Riches | Think and Grow Rich</div>
-						<div class="col-12 video-title-sub">300.000 views, published 02 Jan 2019&nbsp;|&nbsp;
+						<div class="col-12 video-title">{{videoRedayToplay.videoTitle}}</div>
+						<div class="col-12 video-title-sub">{{videoRedayToplay.videoViews}} views, published {{videoRedayToplay.videoDate}}&nbsp;|&nbsp;
 									{{videoplayer.nativeElement.volume}}
 						</div>
 					</div>
 					<div class="col-6 contain-like-block">
 						<div #__norrlabSignIn  class="col-12" style="margin: -74px;" > 
-							 <div class="col-12" [hidden]="!showSignIn">
+							 <div #__signIn class="col-12" [hidden]="!showSignIn">
 							 	<mat-card  class="must-connect">
 							 		<div class="col-12">
 							 			<mat-card-subtitle>	
@@ -90,16 +90,16 @@
 								 	</mat-card-content>
 							 		</div>
 								 	<mat-divider></mat-divider> 
-								 	<div class="col-12 sign_in" style="text-align: start;display: inline-block;width: 100%;">
+								 	<div  class="col-12 sign_in" style="text-align: start;display: inline-block;width: 100%;">
 								 		
-							          <span ><a (click)="openLoginDialog()" style="text-decoration: none;font-size: 13px;">SIGN IN</a></span> 
+							          <span ><a (click)="openLoginDialog()" style="text-decoration: none;font-size: 13px;color: #0056b3;cursor: pointer;">SIGN IN</a></span> 
 								 	</div>
 							 	</mat-card>
 							 </div>
 						</div>
 						<div class="like-dislike col-12"> 
-							<mat-icon (click)="likerVideo(true)">thumb_up</mat-icon><span class="like-span"> {{videoLikes.like}}</span>&nbsp; 
-							<mat-icon (click)="likerVideo(false)">thumb_down</mat-icon><span class="like-span"> {{videoLikes.dislike}}</span>
+							<mat-icon (click)="likeVideo(true)">thumb_up</mat-icon><span class="like-span"> {{videoRedayToplay.videoLikes.bonus}}</span>&nbsp; 
+							<mat-icon (click)="likeVideo(false)">thumb_down</mat-icon><span class="like-span"> {{videoRedayToplay.videoLikes.minus}}</span>
 							<mat-icon (click)="shareVideo()">share</mat-icon>
 						</div>
 					</div>
@@ -126,31 +126,22 @@
 			</div>
 
 			<mat-divider class="divider-archive-analyse"></mat-divider>
-			<div class="video-description-author " *ngFor="let comment of [1,2,3]">
+			<div class="video-description-author " *ngFor="let videoComment of videoComments">
 				<div class="row" style="padding-top: 9px"	>  
 					<div class="col-12">
 						<div class="col-3 video-author-avatar">
 							<div class="row">
 									<div class="col-3"> 
-										<img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Charles_Henry_Dow.jpg" class="advs-avatar">
+										<img src="{{videoComment.userPictureUrl}}" class="advs-avatar" alt="{{videoComment.userPictureUrl}}">
 									</div>
 									<div class="col-9" style="text-align: start;padding-left: 0px"> 
-										<div class="col-12 author-of-vid col-9">  Charles D.</div> 
+										<div class="col-12 author-of-vid col-9">  {{videoComment.userName}}&nbsp;|&nbsp;<span class="comment_date">{{videoComment.commentDate}}</span></div> 
 									</div>
 							</div>
 						</div> 
 						<div class="col-12"> 
 							<p class="users-comments"> 
-	Dissident Officiel
-	3 days ago
-	2ème partie de l'émission "Face à l'info" du 11 décembre 2019.
-	Soutenez moi gratuitement en visionnant une publicité sur Utip : https://www.utip.io/dissidentofficiel
-
-	Retrouvez toutes les interventions d'Eric Zemmour sur http://www.ericzemmour.org/
-
-	Merci de vous abonner à la chaîne de secours Dissident Officiel 2 : https://www.youtube.com/channel/UC-14rMLJVb4HKScomtWSGtw
-
-	Pour tout commentaire ou question : dissidentofficiel@gmail.com (Le délai de réponse peut être long dépendant du volume des courriels)
+	 						 {{videoComment.userComment}}
 							</p>
 						</div>			
 					</div> 
@@ -192,8 +183,10 @@
     padding-left: 0px;
     padding-right: 0px;
 "> 
-				 		<div>  <span class="video-proposition-title"> Dissid Retrouvez toutes les interventions  </span></div>
-				 		<div>  <span class="video-proposition"> Dissid Retrouvez toutes les interventions  </span></div>
+				 		<div>  <span class="video-proposition-title"> {{offVideo.videoTitle}}  </span></div>
+				 		<div>  <span class="video-proposition"> {{offVideo.videoDescription}} </span></div>
+
+				 		<div>  <span class="video-proposition"> {{offVideo.videoViews}}&nbsp;views </span></div>
 				 </div>	
 			</div>	
 			<div class="row"> 

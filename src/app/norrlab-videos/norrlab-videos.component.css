@@ -852,7 +852,7 @@ video::-webkit-media-controls {
 
 .volumClassProgress{
 
-    width: 65%;
+    width: 100%;
     background: #fff;
     height: 100%;   
     position: relative;
@@ -907,4 +907,10 @@ mat-expansion-panel.add_comment {
 .list-free-videos:hover{
     background-color: #eaeaea
 }
-/**/
+span.comment_date {
+    white-space: nowrap;
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.8rem;
+    text-transform: none;
+}

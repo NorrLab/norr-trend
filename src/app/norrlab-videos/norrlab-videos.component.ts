@@ -23,6 +23,7 @@ export class NorrlabVideosComponent implements OnInit,AfterViewInit {
 @ViewChild("__roundVolumControl") __roundVolumControl: ElementRef;
 @ViewChild("__volumeClass") __volumeClass: ElementRef;
 @ViewChild("__listFreeVideos") __listFreeVideos: ElementRef;
+@ViewChild("__signIn") __signIn: ElementRef;
 
 @ViewChild("__upToMinimumControlProgresse") __upToMinimumControlProgresse: ElementRef;//
 
@@ -53,13 +54,19 @@ animal: string;
 volumePosition :number= 1;
 panelOpenState = false;
 norrlabExpanded:number = 0;
-weekFreeVideos:any = []
+weekFreeVideos:any = [];
+videoRedayToplay;
+videoComments:any=[]
 constructor(private userService: UserService,public dialog: MatDialog,private videoService: VideoService) { }
 
 
   playPause(){   
-  	if(this.videoplayer.nativeElement.paused){
-      this.videoplayer.nativeElement.play();
+  	if(this.videoplayer.nativeElement.paused){ 
+      this.videoplayer.nativeElement.play().then(__vd =>{
+ 
+      }).catch(error => {  
+      this.videoplayer.nativeElement.play()
+    });
       this.norrPlayPause = true;
     }
   	else{
@@ -74,13 +81,24 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
             this.updateVideo();
    		}  
 
-       this.__main_container.nativeElement.onclick = function (argument) {
-           // body... 
-        this.showSignIn = false;
+       this.__main_container.nativeElement.onclick =  (param) => {
+           // body...  
+           //this.showSignIn = !this.showSignIn;
          }
    		this.avoidControls();
+       this.videoplayer.nativeElement.onended =  () =>{
+           // body... 
+           this.updatePlayerIcon(); 
+         }
+         this.__signIn.onmousedown  = ()=>{
+            alert("do some...")
+          }
   }
  
+ updatePlayerIcon(){
+   this.norrPlayPause = false;
+ } 
+
  changeVolume(event){
 
   
@@ -105,7 +123,8 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
 
 
   muteVolume(){
-
+    console.log("this.videoplayer")
+    console.log(this.videoplayer)
   	if(this.videoplayer.nativeElement.muted){
 
   		this.videoplayer.nativeElement.muted=false;
@@ -146,8 +165,9 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
  
 
 
-  likerVideo(param){ 
-
+  likeVideo(param){ 
+     console.log("__signIn")
+    console.log(this.__signIn)
       if(param==true && this.userNotLikedYet(this.currentUser)){
           this.videoLikes.like +=1;
         // incremente les like
@@ -209,20 +229,30 @@ openLoginDialog():void {
   playCurrentVideo(param){
     this.__listFreeVideos.nativeElement.classList.add("active")
     console.log(this.videoplayer)
-    var video = this.videoService.getVideoSrc(param);
-    this.videoplayer.nativeElement.src =  this.videoService.getVideoSrc(param).videoUrl+"";
-    this.videoplayer.nativeElement.poster =  this.videoService.getVideoSrc(param).videoPoster+"";
+    this.videoRedayToplay = this.videoService.getVideoSrc(param);
+    this.videoplayer.nativeElement.src =  this.videoRedayToplay.videoUrl;
+    this.videoplayer.nativeElement.poster =  this.videoRedayToplay.videoPoster;
+    this.videoplayer.nativeElement.title =  this.videoRedayToplay.videoTitle;
+     this.videoplayer.nativeElement.pause();
     this.playPause(); 
   } 
 
   getWeekFreeVideos(){
     console.log(this.videoService.getWeekVideos())
     this.weekFreeVideos=this.videoService.getWeekVideos();
+
+    this.videoRedayToplay = this.weekFreeVideos[2];
+  }
+
+  getAllVideoComments(){
+    for(var j= 1; j<=3;j++){
+      this.videoComments.push(this.videoService.getAllVideoComments(j));
+    }
   }
 
   ngOnInit() {
   	this.__upToMin.nativeElement.style.width="0%";
     this.getWeekFreeVideos()
- 
+    this.getAllVideoComments()
   }  
 }
