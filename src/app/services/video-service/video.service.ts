@@ -51,13 +51,23 @@ export class VideoService {
 	  		this.norrlabVideo.videoLikes = {"minus":789,"bonus":235,"userId":0}; 
 	  		this.norrlabVideo.videoViews = "1.00"; 
 	  		this.norrlabVideo.videoDescription = " Dissid Retrouvez toutes les interventions Merci de vous abonner à la chaîne de secours Dissident Officiel 2  Dissid Retrouvez toutes les interventions";
+	  	}else if(param == 4){
+	  		this.norrlabVideo.videoId=4;
+	  		this.norrlabVideo.videoUrl = "http://192.168.1.10:369/norrlab-users-video-2018/NorrDom4.mp4";
+	  		this.norrlabVideo.videoTitle = "Desire-The first step toward riches";
+	  		this.norrlabVideo.videoPoster = "http://192.168.1.10:369/norrlab-users-video-2018/NorrDom4.jpg";
+	  		this.norrlabVideo.videoDate = "11 Oct 2019"; 
+	  		
+	  		this.norrlabVideo.videoLikes = {"minus":789,"bonus":235,"userId":0}; 
+	  		this.norrlabVideo.videoViews = "1.00"; 
+	  		this.norrlabVideo.videoDescription = " Dissid Retrouvez toutes les interventions Merci de vous abonner à la chaîne de secours Dissident Officiel 2  Dissid Retrouvez toutes les interventions";
 	  	}
 	  	return this.norrlabVideo;
   }
 
   getWeekVideos(){
   	this.norrlabVideos = []  
-  	for(var j=1;j<=3;j++){
+  	for(var j=1;j<=4;j++){
   		this.norrlabVideos.push(this.getVideoSrc(j))
   	}
   	return this.norrlabVideos;

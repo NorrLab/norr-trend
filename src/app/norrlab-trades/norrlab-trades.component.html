@@ -37,14 +37,14 @@
               
           <button mat-icon-button class=" proposal-video" ><mat-icon  [routerLink]="'/videos'">play_circle_outline</mat-icon></button> 
            </div>                                                                                                                                   
-            <img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="https://nucleotrader.com/wp-content/uploads/2019/04/Charles-Henry-Dow-happy-live-420x305.jpg">
+            <img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{topWeekVideo.videoPoster}}">
          </div> 
           <div class="col-6" style="
     padding-left: 0px;
     padding-right: 0px;
 "> 
-            <div>  <span class="video-proposition-title"> Dissid Retrouvez toutes les interventions  </span></div>
-            <div>  <span class="video-proposition"> Dissid Retrouvez toutes les interventions  </span></div>
+            <div>  <span class="video-proposition-title"> {{topWeekVideo.videoTitle}} </span></div>
+            <div>  <span class="video-proposition"> {{topWeekVideo.videoDescription}}  </span></div>
          </div> 
       </div>  
       <div style="margin-top: 9px;">

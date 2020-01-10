@@ -914,3 +914,13 @@ span.comment_date {
     line-height: 1.8rem;
     text-transform: none;
 }
+
+.showSignIn:not {
+    pointer-events: none;
+}
+
+.must-connect-comment{
+        width: 45%;
+    position: absolute;
+    margin-top: -65px;
+}

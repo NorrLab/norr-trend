@@ -24,10 +24,12 @@ export class NorrlabVideosComponent implements OnInit,AfterViewInit {
 @ViewChild("__volumeClass") __volumeClass: ElementRef;
 @ViewChild("__listFreeVideos") __listFreeVideos: ElementRef;
 @ViewChild("__signIn") __signIn: ElementRef;
+@ViewChild("__checkUser") __checkUser: ElementRef;
+@ViewChild("__matExpansionPanel") __matExpansionPanel: ElementRef;
 
 @ViewChild("__upToMinimumControlProgresse") __upToMinimumControlProgresse: ElementRef;//
 
-
+//norrBody = document.querySelector("");
 norrlab__progress__video: number;
 videoLikes = {
   "likeAuthor":"",
@@ -55,8 +57,9 @@ volumePosition :number= 1;
 panelOpenState = false;
 norrlabExpanded:number = 0;
 weekFreeVideos:any = [];
-videoRedayToplay;
-videoComments:any=[]
+videoReadayToplay;
+videoComments:any=[];
+ableComment:boolean=false;
 constructor(private userService: UserService,public dialog: MatDialog,private videoService: VideoService) { }
 
 
@@ -77,24 +80,42 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
   }
 
   ngAfterViewInit(): void{
+
+       this.__checkUser.nativeElement.onclick = () =>{
+        
+         this.checkUser()
+       }
+
+       this.__checkUser.nativeElement.ontouchend = () =>{
+         this.checkUser()
+       }
   		this.videoplayer.nativeElement.ontimeupdate = () => {
             this.updateVideo();
    		}  
 
        this.__main_container.nativeElement.onclick =  (param) => {
-           // body...  
-           //this.showSignIn = !this.showSignIn;
+           // body...    
+           var valable1= "mat-icon notranslate material-icons mat-icon-no-color";
+           var valable2= "must-connect mat-card";
+           var state = this.checkUser(); 
+           if((param .target.className===valable1 || param .target.className===valable2) && !state){
+               this.showSignIn = true;
+           }else{
+               this.showSignIn = false;
+             } 
          }
    		this.avoidControls();
        this.videoplayer.nativeElement.onended =  () =>{
            // body... 
            this.updatePlayerIcon(); 
          }
-         this.__signIn.onmousedown  = ()=>{
-            alert("do some...")
-          }
+
+
+      // this.__matExpansionPanel.opened.emit("closeLoginPopUp");
+
   }
- 
+
+
  updatePlayerIcon(){
    this.norrPlayPause = false;
  } 
@@ -162,29 +183,34 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
   this.__upToMin.nativeElement.style.width=xPosition+"%" ;   
     this.videoplayer.nativeElement.currentTime = Math.round((xPosition*this.videoplayer.nativeElement.duration) / 100) ; 
   }
- 
-
+   
+  checkUser(){
+    if(true == this.userConnecteddYet(this.currentUser)){
+      this.ableComment = false;
+    }else{
+      
+      this.ableComment =true;
+    }
+    return this.userConnecteddYet(this.currentUser);
+  }
 
   likeVideo(param){ 
      console.log("__signIn")
     console.log(this.__signIn)
-      if(param==true && this.userNotLikedYet(this.currentUser)){
+    console.log("this.__signIn.nativeElement")
+    console.log(this.__signIn.nativeElement)
+      if(param==true && this.userConnecteddYet(this.currentUser)){
           this.videoLikes.like +=1;
         // incremente les like
       }
-      else if(this.userNotLikedYet(this.currentUser)){
+      else if(this.userConnecteddYet(this.currentUser)){
 
         this.videoLikes.dislike +=1;
         // incremente les dislike
-      }else{
-        this.showSignIn = true;
-         console.log(
-      )
-         
-      }
+      } 
   }
 
-  userNotLikedYet(param){
+  userConnecteddYet(param){
    
     return this.userService.userStatus(param);
   }
@@ -221,18 +247,26 @@ openLoginDialog():void {
 
   valideComment(){
     this.norrlabExpanded = 0;
-  }
-
+    this.ableComment = false;
+    console.log("this.__matExpansionPanel")
+    console.log(this.__matExpansionPanel) 
+    this.__matExpansionPanel.expaned = false;
+    }
   cancelComment(){
   }
 
+   matExpansionPanel(event){
+     console.log(event);
+      return this.ableComment = false;
+   }
+
   playCurrentVideo(param){
-    this.__listFreeVideos.nativeElement.classList.add("active")
+    //this.__listFreeVideos.nativeElement.classList.add("active")
     console.log(this.videoplayer)
-    this.videoRedayToplay = this.videoService.getVideoSrc(param);
-    this.videoplayer.nativeElement.src =  this.videoRedayToplay.videoUrl;
-    this.videoplayer.nativeElement.poster =  this.videoRedayToplay.videoPoster;
-    this.videoplayer.nativeElement.title =  this.videoRedayToplay.videoTitle;
+    this.videoReadayToplay = this.videoService.getVideoSrc(param);
+    this.videoplayer.nativeElement.src =  this.videoReadayToplay.videoUrl;
+    this.videoplayer.nativeElement.poster =  this.videoReadayToplay.videoPoster;
+    this.videoplayer.nativeElement.title =  this.videoReadayToplay.videoTitle;
      this.videoplayer.nativeElement.pause();
     this.playPause(); 
   } 
@@ -241,7 +275,7 @@ openLoginDialog():void {
     console.log(this.videoService.getWeekVideos())
     this.weekFreeVideos=this.videoService.getWeekVideos();
 
-    this.videoRedayToplay = this.weekFreeVideos[2];
+    this.videoReadayToplay = this.weekFreeVideos[2];
   }
 
   getAllVideoComments(){
@@ -253,6 +287,7 @@ openLoginDialog():void {
   ngOnInit() {
   	this.__upToMin.nativeElement.style.width="0%";
     this.getWeekFreeVideos()
-    this.getAllVideoComments()
+    this.getAllVideoComments();
+    
   }  
 }

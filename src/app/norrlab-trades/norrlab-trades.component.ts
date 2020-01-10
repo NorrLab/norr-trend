@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TradesService} from '../services/trades-service/trades.service';
+import { VideoService} from '../services/video-service/video.service';
 
 @Component({
   selector: 'app-norrlab-trades',
@@ -8,11 +9,13 @@ import { TradesService} from '../services/trades-service/trades.service';
 })
 export class NorrlabTradesComponent implements OnInit {
   trades; 
-  constructor(private tradesService: TradesService) { } 
+  topWeekVideo;
+  constructor(private tradesService: TradesService, private videoService: VideoService) { } 
 	
   
   ngOnInit() { 
   	this.trades =this.tradesService.getAllTrades();
+  	this.topWeekVideo = this.videoService.getVideoSrc(3);
   }
 
 }
