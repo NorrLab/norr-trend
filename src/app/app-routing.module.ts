@@ -5,9 +5,12 @@ import {NorrlabTradesComponent} from './norrlab-trades/norrlab-trades.component'
 import {NorrlabHomeComponent} from './norrlab-home/norrlab-home.component';
 import {NorrlabLessonsComponent} from './norrlab-lessons/norrlab-lessons.component';
 import {NorrlabVideosComponent} from './norrlab-videos/norrlab-videos.component';
+import { NorrlabLoginComponent } from './norrlab.login/norrlab.login.component';
 
 const routes: Routes = [{path:'home',component:NorrlabHomeComponent},{path:'user-trades',component:NorrlabTradesComponent}
-	,{path:'lessons',component:NorrlabLessonsComponent},{path:'videos',component:NorrlabVideosComponent},{path:'',component:NorrlabHomeComponent}
+	,{path:'lessons',component:NorrlabLessonsComponent},{path:'videos',component:NorrlabVideosComponent},
+	{path:'',component:NorrlabHomeComponent}
+	,{path:'login',component:NorrlabLoginComponent}
 ];
  
 @NgModule({

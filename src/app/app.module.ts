@@ -12,6 +12,9 @@ import { NorrlabLessonsComponent } from './norrlab-lessons/norrlab-lessons.compo
 import { NorrlabVideosComponent } from './norrlab-videos/norrlab-videos.component'; 
 import { MatVideoModule } from 'mat-video';
 import { NorrlabVideoDialogComponent } from './norrlab-videos/dialog/norrlab-video-dialog/norrlab-video-dialog.component';
+import { NorrlabLoginComponent } from './norrlab.login/norrlab.login.component';
+import { HttpClientModule } from '@angular/common/http'; 
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,11 +23,12 @@ import { NorrlabVideoDialogComponent } from './norrlab-videos/dialog/norrlab-vid
     NorrlabLessonsComponent,
     NorrlabVideosComponent,
     NorrlabVideoDialogComponent,
+    NorrlabLoginComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule,NorrlabMaterialModule,MatVideoModule
+    BrowserAnimationsModule,NorrlabMaterialModule,MatVideoModule,FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -569,7 +569,7 @@ img.advs-avatar {
  .mat-list-avatar-video {
     flex-shrink: 0;
      width: 100%;
-    height: 90%;
+    height: 115.859px;
     padding: 2px;
     border: 1px solid #fafafa;
 
@@ -923,4 +923,13 @@ span.comment_date {
         width: 45%;
     position: absolute;
     margin-top: -65px;
+}
+
+.img-video-cont-desc{ 
+    display: inline-block; 
+    padding: 3px;
+}
+
+.video-proposition-description{
+
 }

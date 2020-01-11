@@ -92,14 +92,14 @@
 								 	<mat-divider></mat-divider> 
 								 	<div  class="col-12 sign_in" style="text-align: start;display: inline-block;width: 100%;">
 								 		
-							          <span ><a (click)="openLoginDialog()" style="text-decoration: none;font-size: 13px;color: #0056b3;cursor: pointer;">SIGN IN</a></span> 
+							          <span ><a [routerLink]="'/login'" style="text-decoration: none;font-size: 13px;color: #0056b3;cursor: pointer;">SIGN IN</a></span> 
 								 	</div>
 							 	</mat-card>
 							 </div>
 						</div>
 						<div class="like-dislike col-12"> 
-							<mat-icon (click)="likeVideo($event)">thumb_up</mat-icon><span class="like-span"> {{videoReadayToplay.videoLikes.bonus}}</span>&nbsp; 
-							<mat-icon (click)="likeVideo(false)">thumb_down</mat-icon><span class="like-span"> {{videoReadayToplay.videoLikes.minus}}</span>
+							<mat-icon class="like-span-mat-icon" (click)="likeVideo($event)">thumb_up</mat-icon><span class="like-span"> {{videoReadayToplay.videoLikes.bonus}}</span>&nbsp; 
+							<mat-icon class="like-span-mat-icon" (click)="likeVideo(false)">thumb_down</mat-icon><span class="like-span"> {{videoReadayToplay.videoLikes.minus}}</span>
 							<mat-icon (click)="shareVideo()">share</mat-icon>
 						</div>
 					</div>
@@ -165,13 +165,13 @@
 							 			Comment this video?
 						 			</mat-card-subtitle>
 									<mat-card-content> 
-										Sign in to make your opinion count.
+										Sign in to make your opinion count.{{ableComment}}
 								 	</mat-card-content>
 							 		</div>
 								 	<mat-divider></mat-divider> 
 								 	<div  class="col-12 sign_in" style="text-align: start;display: inline-block;width: 100%;">
 								 		
-							          <span ><a (click)="openLoginDialog()" style="text-decoration: none;font-size: 13px;color: #0056b3;cursor: pointer;">SIGN IN</a></span> 
+							          <span ><a [routerLink]="'/login'"  style="text-decoration: none;font-size: 13px;color: #0056b3;cursor: pointer;">SIGN IN</a></span> 
 								 	</div>
 							 	</mat-card>
 							 </div>
@@ -187,7 +187,7 @@
 			</div>
 		</div>
 		<div class="col-4"> 
-			<div #__listFreeVideos style="padding-top:9px  "  class="row list-free-videos" *ngFor="let offVideo of weekFreeVideos"> 
+			<div #__listFreeVideos style="padding:9px  "  class="row list-free-videos" *ngFor="let offVideo of weekFreeVideos"> 
 				 <div class="col-6 img-video-cont"> 
 				 	<div class="img-video-button">
 					    
@@ -195,16 +195,18 @@
 					 </div>																																																																		
 			 		<img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{offVideo.videoPoster}}">
 				 </div>	
-				  <div class="col-6" style="
+				  <div class="col-6 img-video-cont-desc" style="
 		}
 		}
     padding-left: 0px;
     padding-right: 0px;
 "> 
 				 		<div>  <span class="video-proposition-title"> {{offVideo.videoTitle}}  </span></div>
-				 		<div>  <span class="video-proposition"> {{offVideo.videoDescription}} </span></div>
+				 		<div class="video-proposition-description row"> 
+				 			<div class="video-proposition col-12">  <span > {{offVideo.videoDescription}} </span></div>
 
-				 		<div>  <span class="video-proposition"> {{offVideo.videoViews}}&nbsp;views </span></div>
+				 			<div class="video-proposition col-12">  <span > {{offVideo.videoViews}}&nbsp;views </span></div>
+				 		</div>	
 				 </div>	
 			</div>	
 			<div class="row"> 

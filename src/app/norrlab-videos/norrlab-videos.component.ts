@@ -95,7 +95,7 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
 
        this.__main_container.nativeElement.onclick =  (param) => {
            // body...    
-           var valable1= "mat-icon notranslate material-icons mat-icon-no-color";
+           var valable1= "like-span-mat-icon mat-icon notranslate material-icons mat-icon-no-color";
            var valable2= "must-connect mat-card";
            var state = this.checkUser(); 
            if((param .target.className===valable1 || param .target.className===valable2) && !state){
@@ -163,6 +163,7 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
   	if (this.videoplayer.nativeElement.addEventListener) {
 		    this.videoplayer.nativeElement.addEventListener('contextmenu', function(e) {
 		        e.preventDefault();
+            window.event.returnValue = false;
 		    }, false);
 		} else {
 		    this.videoplayer.nativeElement.attachEvent('oncontextmenu', function() {
@@ -250,7 +251,7 @@ openLoginDialog():void {
     this.ableComment = false;
     console.log("this.__matExpansionPanel")
     console.log(this.__matExpansionPanel) 
-    this.__matExpansionPanel.expaned = false;
+    //this.__matExpansionPanel.expanded = false;
     }
   cancelComment(){
   }

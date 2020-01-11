@@ -50,7 +50,7 @@ export class VideoService {
 	  		
 	  		this.norrlabVideo.videoLikes = {"minus":789,"bonus":235,"userId":0}; 
 	  		this.norrlabVideo.videoViews = "1.00"; 
-	  		this.norrlabVideo.videoDescription = " Dissid Retrouvez toutes les interventions Merci de vous abonner à la chaîne de secours Dissident Officiel 2  Dissid Retrouvez toutes les interventions";
+	  		this.norrlabVideo.videoDescription = " Dissid Retrouvez toutes les ";
 	  	}else if(param == 4){
 	  		this.norrlabVideo.videoId=4;
 	  		this.norrlabVideo.videoUrl = "http://192.168.1.10:369/norrlab-users-video-2018/NorrDom4.mp4";

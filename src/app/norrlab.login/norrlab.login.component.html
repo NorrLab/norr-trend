@@ -1,0 +1,40 @@
+
+<div class="  row" style="      margin-left: 36%;">  
+      <mat-card class="example-card">
+   <mat-card-header>
+     <mat-card-title>Login</mat-card-title>
+   </mat-card-header>
+   <mat-card-content>
+     <form class="example-form">
+       <table class="example-full-width" cellspacing="0">
+         <tr>
+           <td>
+             <mat-form-field class="example-full-width">
+             <input matInput placeholder="Email"  [(ngModel)]="data.email"  name="email" required>
+             </mat-form-field>
+           </td>
+         </tr>
+         <tr>
+         <td><mat-form-field class="example-full-width">
+           <input matInput placeholder="Password" [(ngModel)]="data.password"  type="password" name="password" required>
+         </mat-form-field></td>
+       </tr></table>
+     </form>
+     <div class="signOut row"> 
+        <div class="col-12"><a href=" "> Forgot password?</a></div>
+     </div>
+     <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> -->
+   </mat-card-content>
+   <mat-card-actions>
+     <button mat-raised-button (click)="userLogin()" color="'#8EE1B6'">Login</button>
+   </mat-card-actions>
+ </mat-card> 
+        <mat-card class="example-card-bottom"> 
+   <mat-card-content> 
+     <div class="signOut "> 
+        <div  style="text-align:  center; " > New to NorrLab? <a href=" ">Create an account.</a></div>
+     </div>
+     <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> -->
+   </mat-card-content> 
+ </mat-card> 
+</div>
