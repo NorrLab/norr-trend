@@ -210,24 +210,8 @@
 				 </div>	
 			</div>	
 			<div class="row"> 
-				<div class="col-12" style="	margin-top: 9px"> 
-					<div class="list-header"> To follow</div> 
-				<mat-list>
-				  <mat-list-item *ngFor="let shoe of [1,2,3,4,5,6]">
-				    <img matListAvatar src="https://nucleotrader.com/wp-content/uploads/2019/04/Charles-Henry-Dow-happy-live-420x305.jpg" alt="...">
-				    <h3 matLine> Emile B. </h3>
-				    <p matLine>
-				      <span> EUR/USD</span>
-				      <span class="demo-2"> Dissident Officiel
-	3 days ago
-	2ème partie de l'émission "Face à l'info" du 11 décembre 2019.
-	Soutenez moi gratuitement en visionnant une publicité sur Utip : https://www.utip.io/dissidentofficiel
-
-	Retrouvez toutes les interventions d'Eric Zemmour sur  </span>
-				    </p>
-				  </mat-list-item>
-				</mat-list> 
-
+				<div class="col-12 moreVideosOnDemands" style="	margin-top: 9px"> 
+					<a mat-raised-button class="moreVideosOnDemand" (click)="moreVideosOnDemand($event)">Voir plus de vidéos</a>
 				</div>
 			</div>	
 		</div>

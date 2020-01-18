@@ -68,6 +68,7 @@ img.advs-avatar {
 .col-9.advs-user {
     text-align: left;
     display: inline-block;
+
     font-size: 19px;
 } 
 
@@ -77,4 +78,16 @@ img.advs-avatar {
     padding-top: 9px;
         font-size: 15px;
     font-weight: 500;
+}
+.moreVideosOnDemand{
+  font-size: 28px;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 13px;
+    padding-left: 13px;
+    background-color:  #8EE1B6;
+    text-decoration:  none; 
+    outline:  none; 
+    color:  #fff
 }

@@ -9,7 +9,7 @@
 </div> 
 <div class="row main-container"> 
     <div class="col-12 ">
-      <button mat-button (click)="__sortBy()"><mat-icon>sort</mat-icon>&nbsp;&nbsp;SORT BY</button>
+      <button class="button-sort" mat-button (click)="__sortBy()"><mat-icon>sort</mat-icon>&nbsp;&nbsp;SORT BY</button>
       <mat-card class="sort_by" *ngIf="sortBy">
         <div class="col-12" (click)="__sortByEvent($event)">Newest First</div>
         <div class="col-12" (click)="__sortByEvent($event)">Most Liked</div>
@@ -30,10 +30,11 @@
             {{trade.description}}
           </p>
         </mat-card-content>
-        <mat-card-actions class="trade-card-actions" >
-          <button mat-button><mat-icon class="share_trade">share</mat-icon></button>
-          <button mat-button>{{trade.product}}</button>
-          <button   routerLink="/{{trade._id}}" routerLinkActive="active"mat-button class="mat-button {{trade.profit>0? 'trade-gains':'trade-losses'}}">{{trade.profit>0?"Wins":"Losses"}} ($ {{trade.profit}})</button>
+        <mat-card-actions class="trade-card-actions" > 
+          <button mat-button>{{trade.product}}</button> 
+            <a mat-raised-button routerLinkActive="active" routerLink="/{{trade._id}}"
+            class="mat-raised-button moreVideosOnDemand {{trade.profit>0? 'trade-gains':'trade-losses'}}">{{trade.profit>0?"Wins":"Losses"}} ($ {{trade.profit}})</a>
+        
         </mat-card-actions>
       </mat-card>
       <mat-paginator #__paginator  [length]="norrLabTrades.totalCount"

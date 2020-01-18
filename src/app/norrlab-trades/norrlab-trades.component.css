@@ -425,7 +425,8 @@ overflow: hidden;
 .share_trade{
   font-size: 36px;
     padding-bottom: 36px;
-    color: hsla(200, 46%, 75%, 2.12)
+    color: #ccc;/*hsla(200, 46%, 75%, 2.12)*/
+    text-align:start;
 }
 
 
@@ -446,7 +447,7 @@ mat-icon.mat-icon.notranslate.material-icons.mat-icon-no-color {
     width: 11%;
     position: absolute;
     z-index: 99;
-    padding: 15px 0px 15px 0px;
+    padding: 9px 0px 15px 0px;
     text-align: center;
 }
 
@@ -463,4 +464,10 @@ mat-icon.mat-icon.notranslate.material-icons.mat-icon-no-color {
   transition: background-color .4s ease-in;
 }
 
+.button-sort{
+  color:  #ccc;
+}
 
+.moreVideosOnDemand{
+  outline:  none;  
+}
