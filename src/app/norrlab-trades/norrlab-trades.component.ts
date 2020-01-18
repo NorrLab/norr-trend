@@ -15,20 +15,32 @@ export class NorrlabTradesComponent implements OnInit {
   trades; 
   topWeekVideo;
   norrLabTrades;
+  sortBy:Boolean =  false; 
+  sortCriteria:String="";
+
   constructor(private tradesService: TradesService, private videoService: VideoService) { } 
 	
-  
+  __sortBy(){
+    this.sortBy = ! this.sortBy;
+  }
+
+  __sortByEvent(event){ 
+    this.sortCriteria = event.target.innerHTML;
+    this.sortBy = false;
+    this.getNorrLabTrades(0, 5,this.sortCriteria);
+  }
+
   ngOnInit() { 
   	this.trades =this.tradesService.getAllTrades();
     
   	this.topWeekVideo = this.videoService.getVideoSrc(3);
-    this.getNorrLabTrades(0,5);
+    this.getNorrLabTrades(0,5,null);
   }
 
   // MatPaginator Output
 
-  getNorrLabTrades(pageNumber, nbPerPage){
-    this.tradesService.getNorrLabTrades(pageNumber, nbPerPage).subscribe(trade =>{ 
+  getNorrLabTrades(pageNumber, nbPerPage,criteria){
+    this.tradesService.getNorrLabTrades(pageNumber, nbPerPage,criteria).subscribe(trade =>{ 
         this.norrLabTrades =  trade; 
         console.log("this.norrLabTrades") 
         console.log(this.norrLabTrades.data) 
@@ -39,7 +51,7 @@ export class NorrlabTradesComponent implements OnInit {
 
   loadTraeds(e){
     console.log(e);
-    this.tradesService.getNorrLabTrades(e.pageIndex,e.pageSize).subscribe(trade =>{ 
+    this.tradesService.getNorrLabTrades(e.pageIndex,e.pageSize,this.sortCriteria).subscribe(trade =>{ 
         this.norrLabTrades =  trade; 
         console.log("this.norrLabTrades") 
         console.log(trade.data) 

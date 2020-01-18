@@ -277,7 +277,7 @@ img.mat-card-image {
     font-weight: 500;
     text-align: center;
     padding-top: 9px;
-    
+
     margin-top: 19px;
 }
 
@@ -437,3 +437,30 @@ mat-icon.mat-icon.notranslate.material-icons.mat-icon-no-color {
     text-align: center;
   background:  url("/en/images/technology/reward-screen_c1578327566c.jpg")
 }
+
+.sort_by {
+  color: #606060;
+  padding-left: 15px;
+  cursor: pointer;
+
+    width: 11%;
+    position: absolute;
+    z-index: 99;
+    padding: 15px 0px 15px 0px;
+    text-align: center;
+}
+
+.sort_by  > .col-12 {
+   
+    font-size: 15px;
+    font-weight: 400;
+    padding: 3px 0px 3px 0px;
+}
+
+.sort_by  > .col-12:hover { 
+    background-color: #f0f3f5;
+
+  transition: background-color .4s ease-in;
+}
+
+

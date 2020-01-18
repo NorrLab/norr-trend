@@ -6,12 +6,17 @@
       <a href=""> Videos*</a>
       
     </div>
-</div>
- <div class="col-12">
-   <a href="https://twitter.com/intent/tweet?screen_name=NorrLab&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-size="large" data-related="TRUMP" data-show-screen-name="false" data-show-count="false">Tweet to @NorrLab</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
- </div>
-<div class="row main-container">  
+</div> 
+<div class="row main-container"> 
+    <div class="col-12 ">
+      <button mat-button (click)="__sortBy()"><mat-icon>sort</mat-icon>&nbsp;&nbsp;SORT BY</button>
+      <mat-card class="sort_by" *ngIf="sortBy">
+        <div class="col-12" (click)="__sortByEvent($event)">Newest First</div>
+        <div class="col-12" (click)="__sortByEvent($event)">Most Liked</div>
+      </mat-card>
+    </div> 
     <div class="col-8 main-container-left">
+      
       <mat-card class="example-card" *ngFor="let trade of norrLabTrades.data">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
