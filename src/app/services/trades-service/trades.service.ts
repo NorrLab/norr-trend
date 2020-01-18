@@ -25,7 +25,7 @@ export class TradesService {
   	const params = new HttpParams()
 	.set('pageNumber', pageNumber)
     .set('nbPerPage', nbPerPage)
-    .set('criteria', criteria);
+    .set('criteria', criteria) 
 	return this.httpClient.get<NorrLabTrade>(this.configNorrLabTradesUrl,{params})
   }
 
