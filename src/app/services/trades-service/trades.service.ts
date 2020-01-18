@@ -1,22 +1,31 @@
 import { Injectable } from '@angular/core';
 import {TradesEntity} from '../entities/trade/trades-entity'; 
+import { NorrLabTrade} from '../../interfaces/norr-lab-trade';
+import { HttpClient,HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TradesService {
-	 
+	configNorrLabTradesUrl:string="http://localhost:369/user/free-trades"; 
 	trades = [];
-  constructor() { }
+	
+  constructor(private httpClient:HttpClient) { }//private httpParams:HttpParams
 
   getAllTrades(){
 
   	console.log(TradesEntity) 
 
   	
-  	this.generateUserTrades();
-  	console.log(this.trades);
+  	this.generateUserTrades(); 
   	return this.trades;
+  }
+  getNorrLabTrades(pageNumber, nbPerPage){
+  	//TODO GET URL FROM  ENV 
+  	const params = new HttpParams()
+	.set('pageNumber', pageNumber)
+    .set('nbPerPage', nbPerPage);;
+	return this.httpClient.get<NorrLabTrade>(this.configNorrLabTradesUrl,{params})
   }
 
   generateUserTrades(){

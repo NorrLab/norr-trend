@@ -10,25 +10,28 @@
 
 <div class="row main-container">  
     <div class="col-8 main-container-left">
-      <mat-card class="example-card" *ngFor="let trade of trades">
+      <mat-card class="example-card" *ngFor="let trade of norrLabTrades.data">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{trade.author.lastName}} {{trade.author.name}}</mat-card-title>
-          <mat-card-subtitle>published, 19 Jan. 2019</mat-card-subtitle>
+          <mat-card-title>{{trade.tradeUser.lastName}} {{trade.tradeUser.firstName}}</mat-card-title>
+          <mat-card-subtitle>{{trade.creationDate | date:'medium'}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="{{trade.pictureUrl}}" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
+        <img mat-card-image src="http://localhost:369{{trade.pictureUrl}}" alt="Photo of a Shiba Inu">
+        <mat-card-content class="trade-card-content">
+          <p class="trade-predescrib">
+            {{trade.description}}
           </p>
         </mat-card-content>
         <mat-card-actions class="trade-card-actions" >
           <button mat-button>{{trade.product}}</button>
-          <button mat-button [ngClass]="trade.class">Losses ($ {{trade.amout}})</button>
+          <button mat-button class="mat-button {{trade.profit>0? 'trade-gains':'trade-losses'}}">{{trade.profit>0?"Wins":"Losses"}} ($ {{trade.profit}})</button>
         </mat-card-actions>
       </mat-card>
+      <mat-paginator #__paginator  [length]="norrLabTrades.totalCount"
+              [pageSize]="7"
+              [pageSizeOptions]="[7, 14]"
+              (page)="pageEvent = loadTraeds($event)">
+      </mat-paginator>
     </div>
     <div class="col-4 main-container-rights" >  
       <div style="padding-top:9px  "  class="row list-free-videos" > 

@@ -204,8 +204,12 @@ mat-nav-list.mat-nav-list.mat-list-base {
 }
  
  mat-card.example-card.mat-card.ng-star-inserted {
-    margin: 9px;
-}
+     
+    margin-top: 9px;
+    margin-right: 9px;
+    margin-bottom: 36px;
+    margin-left: 9px;
+} 
 
 .col-3.main-container-rights {
     margin-top: 9px;
@@ -246,7 +250,12 @@ mat-nav-list.mat-nav-list.mat-list-base {
 }
 
 .trade-card-actions{
-  text-align: end
+  text-align: end;
+  padding-top: 0
+}
+
+.trade-card-content{
+    margin-bottom: 0px;
 }
 
 img.mat-card-image {
@@ -395,4 +404,12 @@ span.video-proposition-title {
 
 mat-icon.mat-icon.notranslate.material-icons.mat-icon-no-color {
     font-size: 45px;
+}
+
+.trade-predescrib{
+  display:block;
+text-overflow: ellipsis;
+width: 60%;
+overflow: hidden;
+ white-space: nowrap; 
 }
