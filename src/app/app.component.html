@@ -3,12 +3,12 @@
     <a href="">
       <img class="norrlab-logo" src="assets/norrlab/designed-logo-big.png">
     </a>
-    <button mat-icon-button class="norrlab-menu-button" (click)="snav.toggle()"><mat-icon>menu</mat-icon></button> 
+    <button mat-icon-button class="norrlab-menu-button" (click)="__snav.toggle()"><mat-icon>menu</mat-icon></button> 
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav class="norrlab-side" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+    <mat-sidenav [opened]="true" class="norrlab-side" #__snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list> 
         <a mat-list-item routerLink="." style="height: 45px"></a>

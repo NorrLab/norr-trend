@@ -211,5 +211,10 @@ mat-nav-list.mat-nav-list.mat-list-base {
 }
 
 .menu-icon{
-  color: #8EE1B6
+  color: #5d9478/*#8EE1B6*/
+}
+
+.mat-list-item:hover .menu-icon{
+  color: #8EE1B6;
+  transition: color .3s ease-in;
 }

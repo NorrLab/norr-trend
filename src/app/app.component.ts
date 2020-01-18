@@ -1,13 +1,15 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
-
+import {ChangeDetectorRef, OnDestroy} from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef,AfterViewInit } from '@angular/core'; 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  implements OnDestroy {
+export class AppComponent  implements OnDestroy, OnInit{
+
+@ViewChild("__snav") __snav: ElementRef;
   mobileQuery: MediaQueryList;
 
   fillerNav = [{"libelle":"Home","icon":"home","link":['/home']},{"libelle":"Users Trades","icon":"mode_comment","link":['/user-trades']},
@@ -27,11 +29,19 @@ export class AppComponent  implements OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
+
+  ngOnInit():void{
+      this.__snav.nativeElement.ontoggle(()=>{
+          alert("heas")
+        })
+  }
+
 
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
 }

@@ -7,7 +7,9 @@
       
     </div>
 </div>
-
+ <div class="col-12">
+   <a href="https://twitter.com/intent/tweet?screen_name=NorrLab&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-size="large" data-related="TRUMP" data-show-screen-name="false" data-show-count="false">Tweet to @NorrLab</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+ </div>
 <div class="row main-container">  
     <div class="col-8 main-container-left">
       <mat-card class="example-card" *ngFor="let trade of norrLabTrades.data">
@@ -23,13 +25,14 @@
           </p>
         </mat-card-content>
         <mat-card-actions class="trade-card-actions" >
+          <button mat-button><mat-icon class="share_trade">share</mat-icon></button>
           <button mat-button>{{trade.product}}</button>
-          <button mat-button class="mat-button {{trade.profit>0? 'trade-gains':'trade-losses'}}">{{trade.profit>0?"Wins":"Losses"}} ($ {{trade.profit}})</button>
+          <button   routerLink="/{{trade._id}}" routerLinkActive="active"mat-button class="mat-button {{trade.profit>0? 'trade-gains':'trade-losses'}}">{{trade.profit>0?"Wins":"Losses"}} ($ {{trade.profit}})</button>
         </mat-card-actions>
       </mat-card>
       <mat-paginator #__paginator  [length]="norrLabTrades.totalCount"
-              [pageSize]="7"
-              [pageSizeOptions]="[7, 14]"
+              [pageSize]="5"
+              [pageSizeOptions]="[5,10, 20]"
               (page)="pageEvent = loadTraeds($event)">
       </mat-paginator>
     </div>
@@ -59,13 +62,24 @@
         </div>
          
       </div>
+      <div class="col-12 twitter_new">
+        <!-- You can now use the library component in app.component.html -->
+          <ngx-twitter-timeline 
+              [data]="{sourceType: 'profile',url: 'https://twitter.com/norrlab', screenName: '@NorrLab'}"
+              [opts]="{tweetLimit: 2}"
+          ></ngx-twitter-timeline>
+      </div>
       <div>
+        
+        <div class=" kil">
+          <iframe src="https://widgets2.rt.prorealtime.com/ProRealTime_HTML5Quotes/itcharts.phtml?wid=2020376814&k=04efffb78e7e3c0c649df9ff1387c400" height="250" width ="403" frameborder="0" scrolling="no"></iframe>
+        </div>
         <div class="side-header">
            <p class="tech-analyse">Technical analyses</p>
         </div> 
 
         <mat-list>
-          <mat-list-item *ngFor="let shoe of [1,2,3,4,5,6]">
+          <mat-list-item *ngFor="let shoe of [1,2,3]">
             <img matListAvatar src="https://nucleotrader.com/wp-content/uploads/2019/04/Charles-Henry-Dow-happy-live-420x305.jpg" alt="...">
             <h3 matLine> Emile B. </h3>
             <p matLine>

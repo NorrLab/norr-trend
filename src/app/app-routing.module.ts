@@ -7,10 +7,22 @@ import {NorrlabLessonsComponent} from './norrlab-lessons/norrlab-lessons.compone
 import {NorrlabVideosComponent} from './norrlab-videos/norrlab-videos.component';
 import { NorrlabLoginComponent } from './norrlab.login/norrlab.login.component';
 
-const routes: Routes = [{path:'home',component:NorrlabHomeComponent},{path:'user-trades',component:NorrlabTradesComponent}
+const routes: Routes = [{path:'home',component:NorrlabHomeComponent}
 	,{path:'lessons',component:NorrlabLessonsComponent},{path:'videos',component:NorrlabVideosComponent},
 	{path:'',component:NorrlabHomeComponent}
-	,{path:'login',component:NorrlabLoginComponent}
+	,{path:'login',component:NorrlabLoginComponent},
+	{path:'login',component:NorrlabLoginComponent}
+	,{
+		path:'user-trades',component:NorrlabTradesComponent,
+	 	children:
+	 	[
+
+	 		{path:':tradeId',component:NorrlabHomeComponent},
+	 		{path:'user-trades/:tradeId/daily',component:NorrlabLoginComponent},
+	 		{path:'user-trades/:tradeId/hourly',component:NorrlabLoginComponent},
+	 		{path:'user-trades/:tradeId/managin',component:NorrlabLoginComponent} 
+	 	]
+	 }
 ];
  
 @NgModule({

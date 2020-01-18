@@ -22,16 +22,16 @@ export class NorrlabTradesComponent implements OnInit {
   	this.trades =this.tradesService.getAllTrades();
     
   	this.topWeekVideo = this.videoService.getVideoSrc(3);
-    this.getNorrLabTrades(1,6);
+    this.getNorrLabTrades(0,5);
   }
 
   // MatPaginator Output
 
   getNorrLabTrades(pageNumber, nbPerPage){
     this.tradesService.getNorrLabTrades(pageNumber, nbPerPage).subscribe(trade =>{ 
-        this.norrLabTrades =  trade;
+        this.norrLabTrades =  trade; 
         console.log("this.norrLabTrades") 
-        console.log(trade.data[0].profit) 
+        console.log(this.norrLabTrades.data) 
     },err=>{
         alert(err)
     });
@@ -40,9 +40,9 @@ export class NorrlabTradesComponent implements OnInit {
   loadTraeds(e){
     console.log(e);
     this.tradesService.getNorrLabTrades(e.pageIndex,e.pageSize).subscribe(trade =>{ 
-        this.norrLabTrades =  trade;
+        this.norrLabTrades =  trade; 
         console.log("this.norrLabTrades") 
-        console.log(trade.data[0].profit) 
+        console.log(trade.data) 
     },err=>{
         alert(err)
     });

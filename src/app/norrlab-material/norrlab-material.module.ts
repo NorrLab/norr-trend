@@ -41,6 +41,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 
+// Import ngx-twitter-timeline
+import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 const MaterialModule =[
     
     A11yModule,
@@ -84,7 +86,7 @@ const MaterialModule =[
     MatTooltipModule,
     MatTreeModule,
     PortalModule,
-    ScrollingModule,
+    ScrollingModule,NgxTwitterTimelineModule
     ]
 
 @NgModule({
