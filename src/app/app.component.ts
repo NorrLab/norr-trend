@@ -36,10 +36,7 @@ export class AppComponent  implements OnDestroy, OnInit{
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  ngOnInit():void{
-      this.__snav.nativeElement.ontoggle(()=>{
-          alert("heas")
-        })
+  ngOnInit():void{ 
   }
 
 

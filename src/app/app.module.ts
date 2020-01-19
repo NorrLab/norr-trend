@@ -15,6 +15,7 @@ import { NorrlabVideoDialogComponent } from './norrlab-videos/dialog/norrlab-vid
 import { NorrlabLoginComponent } from './norrlab.login/norrlab.login.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import { FormsModule } from '@angular/forms';
+import { NorrlabDetailTradeComponent } from './norrlab-detail-trade/norrlab-detail-trade.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     NorrlabVideosComponent,
     NorrlabVideoDialogComponent,
     NorrlabLoginComponent,
+    NorrlabDetailTradeComponent,
   ],
   imports: [
     BrowserModule,HttpClientModule,

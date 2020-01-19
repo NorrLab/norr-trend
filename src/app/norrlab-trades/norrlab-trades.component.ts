@@ -18,7 +18,10 @@ export class NorrlabTradesComponent implements OnInit {
   sortBy:Boolean =  false; 
   sortCriteria:String="";
 
-  constructor(private tradesService: TradesService, private videoService: VideoService) { } 
+  constructor(private tradesService: TradesService, private videoService: VideoService) { 
+      
+    this.getNorrLabTrades(0,5,null);
+  } 
 	
   __sortBy(){
     this.sortBy = ! this.sortBy;
@@ -34,7 +37,6 @@ export class NorrlabTradesComponent implements OnInit {
   	this.trades =this.tradesService.getAllTrades();
     
   	this.topWeekVideo = this.videoService.getVideoSrc(3);
-    this.getNorrLabTrades(0,5,null);
   }
 
   // MatPaginator Output

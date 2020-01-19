@@ -32,7 +32,7 @@
         </mat-card-content>
         <mat-card-actions class="trade-card-actions" > 
           <button mat-button>{{trade.product}}</button> 
-            <a mat-raised-button routerLinkActive="active" routerLink="/{{trade._id}}"
+            <a mat-raised-button routerLinkActive="active" routerLink="/user-trades/{{trade._id}}/detail"
             class="mat-raised-button moreVideosOnDemand {{trade.profit>0? 'trade-gains':'trade-losses'}}">{{trade.profit>0?"Wins":"Losses"}} ($ {{trade.profit}})</a>
         
         </mat-card-actions>
