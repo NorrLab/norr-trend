@@ -7,19 +7,19 @@
       
     </div>
 </div> 
-<div class="row main-container">  
+<div class="row main-container"> 
     <div class="col-12 main-container-left">
       
       <mat-card class="example-card" >
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{norrlabTrade.tradeUser.lastName}} {{norrlabTrade.tradeUser.firstName}}</mat-card-title>
+          <mat-card-title>{{__norrlabTrade.tradeUser.lastName}} {{__norrlabTrade.tradeUser.firstName}}</mat-card-title>
           <mat-card-subtitle>creationDate | date:'medium'}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="http://localhost:369{{norrlabTrade.pictureUrl}}" alt="Photo of a Shiba Inu">
+        <img mat-card-image src="http://localhost:369{{__norrlabTrade.pictureUrl}}" alt="Photo of a Shiba Inu">
         <mat-card-content class="trade-card-content">
           <p ><!-- class="trade-predescrib"-->
-            {{norrlabTrade.description}}
+            {{__norrlabTrade.description}}
           </p>
         </mat-card-content>
         <mat-card-actions class="trade-card-actions" > 
@@ -32,11 +32,11 @@
     </div>
      <div > 
  		<div class="row trade_expo" style="background-color: #fafafa;"> 
-			<div class="col-3 trade_position" *ngFor="let detail of [1,2,3,4]"> 
-					<p class="trade_position_title">Daily Entry analuse </p>
+			<div class="col-3 trade_position" *ngFor="let analyse of norrlabTradeAnalyses"> 
+					<p class="trade_position_title">{{analyse.title}} </p>
 					<a mat-raised-button routerLinkActive="active" routerLink="/user-trades/trade_id/detail"
         class="mat-raised-button moreVideosOnDemand ">
-        					<img  class="a_img" src="http://localhost:369{{norrlabTrade.pictureUrl}}">
+        					<img  class="a_img" src="http://localhost:369{{__norrlabTrade.pictureUrl}}">
     				</a>
      		</div>
  		</div>
