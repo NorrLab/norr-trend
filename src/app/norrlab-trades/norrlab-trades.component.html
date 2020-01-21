@@ -17,12 +17,16 @@
     <div class="col-8 main-container-left">
       
       <mat-card class="example-card" *ngFor="let trade of norrLabTrades.data">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-header style="
+    margin-bottom: 15px;
+}">
+          <div mat-card-avatar>
+            <img class="example-header-image" src="http://localhost:369/images{{trade.tradeUser.userPictureUrl? trade.tradeUser.userPictureUrl :'/default_user.png'}}" alt="{{trade.tradeUser.userPictureUrl}}" width="100%">
+          </div>
           <mat-card-title>{{trade.tradeUser.lastName}} {{trade.tradeUser.firstName}}</mat-card-title>
           <mat-card-subtitle>{{trade.creationDate | date:'medium'}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="http://localhost:369{{trade.pictureUrl}}" alt="Photo of a Shiba Inu">
+        <img mat-card-image src="http://localhost:369{{trade.pictureUrl? trade.pictureUrl:'/images/default-img.jpg'}}" alt="Photo of a Shiba Inu">
         <mat-card-content class="trade-card-content">
           <p class="trade-predescrib">
             {{trade.description}}

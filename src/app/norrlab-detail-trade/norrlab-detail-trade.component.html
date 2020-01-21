@@ -3,7 +3,7 @@
       <a href=""> NorrLab</a> /
 
       <a href="/user-trades"> Users Trades</a> /
-      <a href=""> Detail</a>
+      <a href="/user-trades/{{linkTradeId}}/detail"> Detail</a>
       
     </div>
 </div> 
@@ -13,16 +13,22 @@
       <mat-card class="example-card" style="border-radius: 0px;
   box-shadow: none;" >
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
+          <div mat-card-avatar >
+            <img class="example-header-image" src="http://localhost:369/images{{__norrlabTrade.tradeUser.userPictureUrl?__norrlabTrade.tradeUser.userPictureUrl:'/default_user.png'}}"  width="100%">
+          </div>
           <mat-card-title>{{__norrlabTrade.tradeUser.lastName}} {{__norrlabTrade.tradeUser.firstName}}</mat-card-title>
           <mat-card-subtitle>creationDate | date:'medium'}}</mat-card-subtitle>
         </mat-card-header>
         <!--<img mat-card-image src="http://localhost:369{{__norrlabTrade.pictureUrl}}" alt="Photo of a Shiba Inu">-->
         <a mat-raised-button routerLinkActive="active" (click)="showAnalyse(analyse)"  
-            class="mat-raised-button moreVideosOnDemand ">
-                      <img class="detail_img" src="http://localhost:369{{__norrlabTrade.pictureUrl}}"  width="100%" style=" margin-bottom: 25px">
+            class="mat-raised-button moreVideosOnDemand" style="
+    width: 100%;"> 
+                      <img class="detail_img" src="http://localhost:369{{__norrlabTrade.pictureUrl?__norrlabTrade.pictureUrl:'/images/default-img.jpg'}}"  width="100%">
                 </a>
         <mat-card-content class="trade-card-content">
+          <div class="trade_card_cont_title">
+            Trade title
+          </div>
           <p ><!-- class="trade-predescrib"-->
             {{__norrlabTrade.description}}
           </p>
@@ -52,7 +58,9 @@
       <mat-card class="example-card comment-detail" >
         <div class="" *ngFor="let i of  [1,2,3,4] ">
           <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
+          <div mat-card-avatar>
+            <img class="example-header-image" src="http://localhost:369/images/default_user.jpg"  width="100%">
+          </div>
           <mat-card-title>{{__norrlabTrade.tradeUser.lastName}} {{__norrlabTrade.tradeUser.firstName}}</mat-card-title>
           <mat-card-subtitle>creationDate | date:'medium'}}</mat-card-subtitle>
         </mat-card-header> 

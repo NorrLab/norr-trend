@@ -11,6 +11,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class NorrlabDetailTradeComponent implements OnInit {
    __norrlabTrade;
    norrlabTradeAnalyses=[];
+  linkTradeId;
   constructor(private tradesService:TradesService,private route: ActivatedRoute,
   private router: Router) {
     console.log(this.route)
@@ -31,6 +32,8 @@ export class NorrlabDetailTradeComponent implements OnInit {
   		this.tradesService.getNorrLabTrade(tradeId,{})
   		.subscribe(trade =>{
         this.__norrlabTrade = trade;
+        
+        this.linkTradeId = trade._id;
         var entries = this.getTradeingAnalyses(trade.tradeDetail.entry,true);
         var managements = this.getTradeingAnalyses(trade.tradeDetail.management, false)
          
@@ -62,7 +65,6 @@ export class NorrlabDetailTradeComponent implements OnInit {
      return Object.keys(entry).map( function (key) {
       // body...
       if(key=="daily"){
-        //entry[key]._id = entry._id;
         if(state)
           entry[key].title= "Daily entry"
         else
