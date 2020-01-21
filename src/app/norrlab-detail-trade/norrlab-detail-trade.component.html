@@ -2,7 +2,7 @@
     <div class="sub-menu">
       <a href=""> NorrLab</a> /
 
-      <a href=""> Users Trades</a> /
+      <a href="/user-trades"> Users Trades</a> /
       <a href=""> Detail</a>
       
     </div>
@@ -10,13 +10,18 @@
 <div class="row main-container"> 
     <div class="col-12 main-container-left">
       
-      <mat-card class="example-card" >
+      <mat-card class="example-card" style="border-radius: 0px;
+  box-shadow: none;" >
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>{{__norrlabTrade.tradeUser.lastName}} {{__norrlabTrade.tradeUser.firstName}}</mat-card-title>
           <mat-card-subtitle>creationDate | date:'medium'}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="http://localhost:369{{__norrlabTrade.pictureUrl}}" alt="Photo of a Shiba Inu">
+        <!--<img mat-card-image src="http://localhost:369{{__norrlabTrade.pictureUrl}}" alt="Photo of a Shiba Inu">-->
+        <a mat-raised-button routerLinkActive="active" (click)="showAnalyse(analyse)"  
+            class="mat-raised-button moreVideosOnDemand ">
+                      <img class="detail_img" src="http://localhost:369{{__norrlabTrade.pictureUrl}}"  width="100%" style=" margin-bottom: 25px">
+                </a>
         <mat-card-content class="trade-card-content">
           <p ><!-- class="trade-predescrib"-->
             {{__norrlabTrade.description}}
@@ -30,17 +35,40 @@
         </mat-card-actions>
       </mat-card> 
     </div>
-     <div > 
- 		<div class="row trade_expo" style="background-color: #fafafa;"> 
-			<div class="col-3 trade_position" *ngFor="let analyse of norrlabTradeAnalyses"> 
-					<p class="trade_position_title">{{analyse.title}} </p>
-					<a mat-raised-button routerLinkActive="active" routerLink="/user-trades/trade_id/detail"
-        class="mat-raised-button moreVideosOnDemand ">
-        					<img  class="a_img" src="http://localhost:369{{__norrlabTrade.pictureUrl}}">
-    				</a>
+     <div> 
+     		<div class="row trade_expo" style="background-color: #fafafa;"> 
+    			<div class="col-3 trade_position" *ngFor="let analyse of norrlabTradeAnalyses"> 
+    					<p class="trade_position_title">{{analyse.title}} </p>
+    					<a mat-raised-button routerLinkActive="active" (click)="showAnalyse(analyse)"  
+            class="mat-raised-button moreVideosOnDemand ">
+            					<img  class="a_img" src="http://localhost:369{{analyse.pictureUrl?analyse.pictureUrl:'/images/default-img.jpg'}}" width="100%">
+        				</a>
+         		</div>
      		</div>
- 		</div>
      </div>	  
+ 
+      <div class="col-12 main-container-left">
+      
+      <mat-card class="example-card comment-detail" >
+        <div class="" *ngFor="let i of  [1,2,3,4] ">
+          <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{__norrlabTrade.tradeUser.lastName}} {{__norrlabTrade.tradeUser.firstName}}</mat-card-title>
+          <mat-card-subtitle>creationDate | date:'medium'}}</mat-card-subtitle>
+        </mat-card-header> 
+        <mat-card-content class="trade-card-content">
+          <p ><!-- class="trade-predescrib"-->
+            {{__norrlabTrade.description}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="trade-card-actions" > 
+          <button mat-button>product}}</button> 
+            <a mat-raised-button routerLinkActive="active" routerLink="/_id}}"
+            class="mat-raised-button moreVideosOnDemand profit>0? 'trade-gains':'trade-losses'}}">profit>0?"Wins":"Losses"}} ($ profit}})</a>
+        
+        </mat-card-actions>
 
-
+        </div>
+      </mat-card> 
+    </div> 
 </div>

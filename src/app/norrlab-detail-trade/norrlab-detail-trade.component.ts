@@ -34,7 +34,7 @@ export class NorrlabDetailTradeComponent implements OnInit {
         var entries = this.getTradeingAnalyses(trade.tradeDetail.entry,true);
         var managements = this.getTradeingAnalyses(trade.tradeDetail.management, false)
          
-          this.norrlabTradeAnalyses.push(entries[0]);
+        this.norrlabTradeAnalyses.push(entries[0]);
         this.norrlabTradeAnalyses.push(entries[1]);
         
         this.norrlabTradeAnalyses.push(managements[0]);
@@ -47,17 +47,29 @@ export class NorrlabDetailTradeComponent implements OnInit {
   		})
   };
 
+  showAnalyse(analyse){
+    if(analyse.pictureUrl==''){
+
+      this.__norrlabTrade.pictureUrl='/images/default-img.jpg';
+    }else{
+       this.__norrlabTrade.pictureUrl = analyse.pictureUrl; 
+    }
+    this.__norrlabTrade.description = analyse.description;
+  }
+
   getTradeingAnalyses(entry,state){
 
      return Object.keys(entry).map( function (key) {
       // body...
       if(key=="daily"){
+        //entry[key]._id = entry._id;
         if(state)
           entry[key].title= "Daily entry"
         else
           entry[key].title= "Daily management"
       } 
       if( key=="hourly"){
+        //entry[key]._id = entry._id;
         if(state)
           entry[key].title= "Hourly entry"
         else
