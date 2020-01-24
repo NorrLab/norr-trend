@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TradesService} from '../services/trades-service/trades.service';
-import { ActivatedRoute }     from '@angular/router';
+import { TradesService} from '../services/trades-service/trades.service'; 
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { NorrLabTradeComment} from '../interfaces/norrLabTradeComment/norr-lab-trade-comment'; 
 
 @Component({
   selector: 'app-norrlab-detail-trade',
@@ -12,14 +12,21 @@ export class NorrlabDetailTradeComponent implements OnInit {
    __norrlabTrade;
    norrlabTradeAnalyses=[];
   linkTradeId;
+  __marginTop;
+  tradeComments= [];
+  norrLabTradeComment:NorrLabTradeComment;
+
   constructor(private tradesService:TradesService,private route: ActivatedRoute,
   private router: Router) {
     console.log(this.route)
-    console.log(this.route)
- 
-   var tradeId = this.route.snapshot.paramMap.params.tradeId; 
-   console.log(this.route.snapshot.paramMap)
-  	this.getTrade(tradeId)
+    console.log(this.route) 
+    
+  	this.getTrade(this.getTradeId())
+    this.getNorrLabTradeComment(this.getTradeId())
+   }
+
+   getTradeId(){
+     return this.route.snapshot.paramMap.params['tradeId']; 
    }
 
   ngOnInit() {
@@ -32,7 +39,7 @@ export class NorrlabDetailTradeComponent implements OnInit {
   		this.tradesService.getNorrLabTrade(tradeId,{})
   		.subscribe(trade =>{
         this.__norrlabTrade = trade;
-        
+        if(trade._id)
         this.linkTradeId = trade._id;
         var entries = this.getTradeingAnalyses(trade.tradeDetail.entry,true);
         var managements = this.getTradeingAnalyses(trade.tradeDetail.management, false)
@@ -42,14 +49,25 @@ export class NorrlabDetailTradeComponent implements OnInit {
         
         this.norrlabTradeAnalyses.push(managements[0]);
       this.norrlabTradeAnalyses.push(managements[1]);
-        
+        if(this.norrlabTradeAnalyses.length>0){
+          var elm = document.getElementById('col_12_main_container');
+          elm.style.marginTop = '36px'; 
+        }else{
+          elm.style.marginTop = '0px'; 
+        }
 
         console.log(this.norrlabTradeAnalyses )
   		}, err =>{
   			console.log(err)
   		})
   };
-
+getNorrLabTradeComment(tradeId){
+  this.tradeComments =[]
+  this.tradesService.getNorrLabTradeComment(tradeId)
+  .subscribe(comments =>{
+    this.tradeComments = comments;
+  })
+}
   showAnalyse(analyse){
     if(analyse.pictureUrl==''){
 
@@ -59,7 +77,14 @@ export class NorrlabDetailTradeComponent implements OnInit {
     }
     this.__norrlabTrade.description = analyse.description;
   }
-
+createNorrLabTradeComment(){
+  alert();
+  this.norrLabTradeComment.commentTrade = getTradeId();
+  this.tradesService.createNorrLabTradeComment(this.norrLabTradeComment)
+  .subscribe(comment =>{
+    this.getNorrLabTradeComment(this.getTradeId(),)
+  })
+}
   getTradeingAnalyses(entry,state){
 
      return Object.keys(entry).map( function (key) {

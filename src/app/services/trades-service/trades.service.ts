@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {TradesEntity} from '../entities/trade/trades-entity'; 
 import { NorrLabTrade} from '../../interfaces/norr-lab-trade'; 
 import { NorrLabDetail} from '../../interfaces/norr-lab-detail';
+import { NorrLabTradeComment} from '../../interfaces/norrLabTradeComment/norr-lab-trade-comment';
 import { HttpClient,HttpParams } from '@angular/common/http';
 
 @Injectable({
@@ -11,16 +12,15 @@ export class TradesService {
 	configNorrLabTradesUrl:string="http://localhost:369/user/free-trades"; 
 	configNorrLabTradeUrl:string="http://localhost:369/user/free-trade"; 
 	configNorrLabDetailTradeUrl:string="http://localhost:369/user/free-trade-detail"; 
+	configNorrLabTradeCommentUrl:string = "http://localhost:369/user/free-trade-comment"; 
 	trades = [];
+	norrLabTradeComment : NorrLabTradeComment={};
 	
   constructor(private httpClient:HttpClient) { }//private httpParams:HttpParams
 
   getAllTrades(){
 
-  	console.log(TradesEntity) 
-
-  	
-  	this.generateUserTrades(); 
+  	console.log(TradesEntity)  
   	return this.trades;
   }
 
@@ -51,65 +51,22 @@ export class TradesService {
 	return this.httpClient.get<NorrLabTrade>(this.configNorrLabTradeUrl,{params})
   }
 
-  generateUserTrades(){
-	  	for(var j = 0; j<8;j++){
-	  		var trade:TradesEntity;
-			if(j%2==0){
-				trade = this.returnRandomTrade(1,j);
-			}else{
-				trade = this.returnRandomTrade(-1,j);
-			}
-			if(trade.amout < 0){ 
-				trade.class="trade-losses"
-			}else{ 
-				trade.class="trade-gains"
-			}
+  getNorrLabTradeComment(tradeId){
+  	//TODO GET URL FROM  ENV 
+  	const params = new HttpParams()
+	.set('tradeId', tradeId) 
+	return this.httpClient.get<NorrLabTradeComment[]>(this.configNorrLabTradeCommentUrl,{params})
+  }
 
-				this.trades.push(trade);
-			}
-	  	};
+  createNorrLabTradeComment(norrLabTradeComment){
+  	//TODO GET URL FROM  ENV 
+  	const params = new HttpParams()
+	.set('tradeId', tradeId)   
 
-	  	returnRandomTrade( val, j){
-		  	if(val>0){
-		  		return {
-						"id": j,
-						"publicationDate": new Date(),
-						"description": "chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 236 kB [initial] [rendered]",
-						"product": "EUR/USD-"+j,
-						"pl": true,
-						"author": {
-								"id": 1,
-								"name": "OSSENE-"+j,
-								"lastName": "Ulrich",
-								"birth": new Date(),
-								"location": "Strasbourg",
-								"address": "24 rue des riches", 
-							},
-						"amout": -500+j,
-						"class":"",
-						"pictureUrl":"http://localhost:369/norrlab-users-2018/3264aad8ddb03127bb663e1501b982c2"
-					};
-		  }else{
-		  		return {
-						"id": j,
-						"publicationDate": new Date(),
-						"description": "chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 236 kB [initial] [rendered]",
-						"product": "EUR/USD-"+j,
-						"pl": true,
-						"author": {
-								"id": 1,
-								"name": "OSSENE-"+j,
-								"lastName": "Ulrich",
-								"birth": new Date(),
-								"location": "Strasbourg",
-								"address": "24 rue des riches", 
-							},
-						"amout": 500+j,
-						"class":"",
-						"pictureUrl":"http://localhost:369/images/default-img.jpg"
-					};
-		  }
-  	}
+	return this.httpClient.post<NorrLabTradeComment>(this.configNorrLabTradeCommentUrl,norrLabTradeComment)
+  };
+
+ 
   }
 
   

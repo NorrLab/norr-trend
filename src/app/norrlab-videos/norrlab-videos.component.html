@@ -96,9 +96,12 @@
 							 </div>
 						</div>
 						<div class="like-dislike col-12"> 
+
+							<mat-icon (click)="shareVideo()" style="
+    margin-right: 16px;
+">share</mat-icon>
 							<mat-icon class="like-span-mat-icon" (click)="likeVideo($event)">thumb_up</mat-icon><span class="like-span"> {{videoReadayToplay.videoLikes.bonus}}</span>&nbsp; 
 							<mat-icon class="like-span-mat-icon" (click)="likeVideo(false)">thumb_down</mat-icon><span class="like-span"> {{videoReadayToplay.videoLikes.minus}}</span>
-							<mat-icon (click)="shareVideo()">share</mat-icon>
 						</div>
 					</div>
 				</div>

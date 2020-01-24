@@ -1,5 +1,7 @@
 export interface NorrLabTrade {
+	_id:any,
 	message:string,
 	data:any,
-	access:false
+	access:false,
+	tradeDetail:any
 }
