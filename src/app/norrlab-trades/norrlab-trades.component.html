@@ -50,15 +50,15 @@
          <div class="col-6 img-video-cont"> 
           <div class="img-video-button"> 
           <button mat-icon-button class=" proposal-video" ><mat-icon  [routerLink]="'/videos'">play_circle_outline</mat-icon></button> 
-           </div>                                                                                                                               
-            <img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{ topWeekVideo.videoPoster}}" alt="{{topWeekVideo.videoPoster}}">
+           </div>                                                 
+            <img    class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{ topWeekVideo[0].videoPoster}}" alt="{{topWeekVideo[0].videoPoster}}">
          </div> 
           <div class="col-6" style="
     padding-left: 0px;
     padding-right: 0px;
 ">  
-            <div>  <span class="video-proposition-title"> {{topWeekVideo?topWeekVideo.videoTitle:'??'}} </span></div>
-            <div>  <span class="video-proposition"> {{topWeekVideo?topWeekVideo.videoDescription:''}}  </span></div>
+            <div>  <span class="video-proposition-title"> {{topWeekVideo[0]?topWeekVideo[0].videoTitle:'??'}} </span></div>
+            <div>  <span class="video-proposition"> {{topWeekVideo[0]?topWeekVideo[0].videoDescription:''}}  </span></div>
          </div> 
       </div>  
       <div style="margin-top: 9px;">
