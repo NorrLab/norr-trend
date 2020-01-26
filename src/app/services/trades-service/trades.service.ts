@@ -13,8 +13,7 @@ export class TradesService {
 	configNorrLabTradeUrl:string="http://localhost:369/user/free-trade"; 
 	configNorrLabDetailTradeUrl:string="http://localhost:369/user/free-trade-detail"; 
 	configNorrLabTradeCommentUrl:string = "http://localhost:369/user/free-trade-comment"; 
-	trades = [];
-	norrLabTradeComment : NorrLabTradeComment={};
+	trades = []; 
 	
   constructor(private httpClient:HttpClient) { }//private httpParams:HttpParams
 
@@ -60,8 +59,8 @@ export class TradesService {
 
   createNorrLabTradeComment(norrLabTradeComment){
   	//TODO GET URL FROM  ENV 
-  	const params = new HttpParams()
-	.set('tradeId', tradeId)   
+  	//const params = new HttpParams()
+	//.set('tradeId', tradeId)   
 
 	return this.httpClient.post<NorrLabTradeComment>(this.configNorrLabTradeCommentUrl,norrLabTradeComment)
   };

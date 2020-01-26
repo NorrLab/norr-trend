@@ -66,15 +66,32 @@
           </div>
           <form class="example-form" style="
     width: 100%;
-">
-            <mat-form-field style="
+">           
+            <mat-form-field  (click)="onSearchChange($event.target.value)" style="
     width: 100%;
-" class="example-full-width">
-              <input matInput ngModel="norrLabTradeComment.comment" placeholder="ADD COMMENT..." style="width: 100%;font-size: 13px">
+" class="example-full-width" [style.fontSize]="'16px'">
+              <input 
+               name="norr" #message maxlength="300" matInput [(ngModel)]="norrLabTradeCommentComment" placeholder="ADD COMMENT..." style="width: 100%;font-size: 13px"
+              >
+              <!--<textarea matInput (blur)="alertNorr()"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5">
+                  
+              </textarea>
+                
+              <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+            -->
+
+              <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
             </mat-form-field> 
-            <div class="button_send_comment">
-              <button>CANCEL</button>
-              <button (click)="createNorrLabTradeComment(linkTradeId)" >COMMENT</button>
+            <div class="button_send_comment" *ngIf="__isConnected">
+              
+              <button mat-button routerLinkActive="active" (click)="norrLabTradeCommentX()"  
+            class="mat-button moreVideosOnDemand " style="margin-right: 9px">CANCEL</button>
+              <a style="background-color: #8EE1B6" mat-raised-button routerLinkActive="active" (click)="createNorrLabTradeComment(linkTradeId)"  
+            class="mat-raised-button moreVideosOnDemand ">COMMENT</a>
             </div>
           </form>
 
@@ -86,9 +103,9 @@
         <div class=""  *ngFor="let comt of  tradeComments ">
           <mat-card-header>
           <div mat-card-avatar>
-            <img class="example-header-image" src="http://localhost:369/images{{comt.commentUser.userPictureUrl?comt.commentUser.userPictureUrl:'/default_user.png'}}"  width="100%">
+            <img class="example-header-image" src="http://localhost:369/images{{comt.commentUser && comt.commentUser.userPictureUrl?comt.commentUser.userPictureUrl:'/default_user.png'}}"  width="100%">
           </div>
-          <mat-card-title>{{comt.commentUser.lastName?comt.commentUser.lastName : '?'}} {{comt.commentUser.firstName}}</mat-card-title>
+          <mat-card-title>{{comt.commentUser && comt.commentUser.lastName?comt.commentUser.lastName : '?'}} {{comt.commentUser && comt.commentUser.firstName?comt.commentUser.firstName:'?'}}</mat-card-title>
           <mat-card-subtitle>{{comt.commentDate | date:'medium'}} </mat-card-subtitle>
         </mat-card-header> 
         <mat-card-content class="trade-card-content_comment">

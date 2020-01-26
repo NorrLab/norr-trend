@@ -40,6 +40,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { StorageServiceModule } from 'angular-webstorage-service';
 
 // Import ngx-twitter-timeline
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
@@ -86,7 +87,7 @@ const MaterialModule =[
     MatTooltipModule,
     MatTreeModule,
     PortalModule,
-    ScrollingModule,NgxTwitterTimelineModule
+    ScrollingModule,NgxTwitterTimelineModule,StorageServiceModule
     ]
 
 @NgModule({

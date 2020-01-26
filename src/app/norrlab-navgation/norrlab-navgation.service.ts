@@ -22,10 +22,10 @@ export class NorrlabNavgationService {
   getPreviousUrl(){
   	return this.previousUrl;
   }
-  goToNextUrl(){
+  goToNextUrl(nextPage){
   	console.log("previousUrl")
   	console.log(this.previousUrl)
-  	this.router.navigate(['/videos']);
+  	this.router.navigate([nextPage]);
   }
 
 }

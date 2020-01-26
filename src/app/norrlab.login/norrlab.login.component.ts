@@ -23,14 +23,8 @@ export class NorrlabLoginComponent implements OnInit {
   }
 
   userLogin(){ 
-    console.log(this.location);
-  	this.userService.userLogin(this.data).subscribe(res =>{
-  		console.log(res);
-      console.log("this.norrlabNavgationService.goToNextUrl()");
-        this.norrlabNavgationService.goToNextUrl();
-  	},err=>{
-  		alert(err)
-  	})
+    console.log(this.location); 
+  	this.userService.userLogin(this.data,'/user-trades');
   }
 
 }
