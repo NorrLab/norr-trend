@@ -205,9 +205,10 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
 
   likeVideo(param){  
       this.userService.userIsLogged().subscribe(user =>{ 
-          this.norrLabTradeComment.commentUser = user._id;
-          this.videoService.createVideoTradeComment(this.norrLabVideoTradeComment)
-          .subscribe(comment =>{ })
+          //this.norrLabTradeComment.commentUser = user._id;
+          /*this.videoService.createVideoTradeComment(this.norrLabVideoTradeComment)
+          .subscribe(comment =>{ })*/
+          this.upDateNorrLabVideo();
       }, err =>{
         alert("U must be connected!");
       });
@@ -272,16 +273,27 @@ openLoginDialog():void {
       return this.ableComment = false;
    }
 
-  playCurrentVideo(param){
-    //this.__listFreeVideos.nativeElement.classList.add("active")
-    console.log(this.videoplayer)
-    this.videoReadayToplay = this.videoService.getVideoSrc(param);
-    this.videoplayer.nativeElement.src =  this.videoReadayToplay.videoUrl;
-    this.videoplayer.nativeElement.poster =  this.videoReadayToplay.videoPoster;
-    this.videoplayer.nativeElement.title =  this.videoReadayToplay.videoTitle;
-     this.videoplayer.nativeElement.pause();
-    this.playPause(); 
+  playCurrentVideo(param){ 
+    this.videoService.getVideoFree(param,null).subscribe(video =>{
+            this.videoReadayToplay  = video; 
+            this.videoplayer.nativeElement.src =  this.videoReadayToplay.videoUrl;
+        this.videoplayer.nativeElement.poster =  this.videoReadayToplay.videoPoster;
+        this.videoplayer.nativeElement.title =  this.videoReadayToplay.videoTitle;
+         this.videoplayer.nativeElement.pause();
+        this.playPause(); 
+      }); 
   } 
+
+
+
+  upDateNorrLabVideo(){
+    this.videoReadayToplay.videoLikes += 1;
+    this.videoReadayToplay._id = undefined;
+    this.videoService.upDateNorrLabVideo(this.videoReadayToplay)
+    .subscribe(video =>{
+      this.videoReadayToplay = video
+    })
+  }
 
   moreVideosOnDemand(e){
       //TODO REGUEST MORE VIDEO ON RIGHTS
@@ -296,9 +308,10 @@ openLoginDialog():void {
   }
 
   getAllVideoComments(){
-    for(var j= 1; j<=3;j++){
-      this.videoComments.push(this.videoService.getAllVideoComments(j));
-    }
+    this.videoService.getVideoFree(null,null).subscribe(videos =>{
+        this.videoComments = videos;
+        this.weekFreeVideos = videos;
+      });
   }
 
   getVideoFree(videoId){

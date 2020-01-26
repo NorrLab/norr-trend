@@ -28,6 +28,11 @@ export class VideoService {
   		
   }
 
+  upDateNorrLabVideo(video){ 
+  	return this.httpClient.put(VIDEO_URL,video);
+  	
+  }
+
   getVideoSrc(param){
   	this.norrlabVideo={
 	  "videoUrl":"",//BelattarQuenelleZemmour

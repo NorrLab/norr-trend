@@ -123,8 +123,7 @@
 						</div> 
 					</div> 
 				</div>
-			</div>
-
+			</div> 
 			<mat-divider class="divider-archive-analyse"></mat-divider>
 			<div class="video-description-author " *ngFor="let videoComment of videoComments">
 				<div class="row" style="padding-top: 9px"	>  
@@ -191,7 +190,7 @@
 				 <div class="col-6 img-video-cont"> 
 				 	<div class="img-video-button">
 					    
-				 	<button mat-icon-button (click)="playCurrentVideo(offVideo.videoId)" class=" proposal-video" ><mat-icon>play_circle_outline</mat-icon></button> 
+				 	<button mat-icon-button (click)="playCurrentVideo(offVideo._id)" class=" proposal-video" ><mat-icon>play_circle_outline</mat-icon></button> 
 					 </div>																																																																		
 			 		<img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{offVideo.videoPoster}}">
 				 </div>	
