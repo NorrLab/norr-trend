@@ -1,4 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Inject,Injectable } from '@angular/core';  
+import { HttpClient,HttpParams } from '@angular/common/http';
+import { NorrLabVideo} from '../../interfaces/norrLabVideo/norr-lab-video';
+//import { NorrLabVideoComment} from '../../interfaces/norrLabVideo/norr-lab-video';
+
+const VIDEO_URL="http://localhost:369/norr-video";
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +13,20 @@ export class VideoService {
 	norrlabVideo:any;
 	norrlabVideos:any=[];
 	comment:any;
-  constructor() { }
+  constructor(private httpClient:HttpClient) { }
+
+
+  createVideoTradeComment(videoComment){
+  	return this.httpClient.post(VIDEO_URL,videoComment);
+  }
+
+  getVideoFree(videoId, limite){
+  	const params = new HttpParams()
+  	.set('videoId', (videoId?videoId:null))
+	.set('limite', (limite?limite:null))
+  	return this.httpClient.get<NorrLabVideo>(VIDEO_URL,{params});
+  		
+  }
 
   getVideoSrc(param){
   	this.norrlabVideo={
@@ -23,9 +41,9 @@ export class VideoService {
 	}
 	  	if(param == 1){
 	  		this.norrlabVideo.videoId=1; 
-	  		this.norrlabVideo.videoUrl = "http://192.168.1.10:369/norrlab-users-video-2018/test.mp4";
+	  		this.norrlabVideo.videoUrl = "http://localhost:369/norrlab-users-video-2018/test.mp4";
 	  		this.norrlabVideo.videoTitle = "Desire - The First Step toward Riches | Think and Grow Rich";
-	  		this.norrlabVideo.videoPoster = "http://192.168.1.10:369/norrlab-users-video-2018/test.jpg"; 
+	  		this.norrlabVideo.videoPoster = "http://localhost:369/norrlab-users-video-2018/test.jpg"; 
 	  		this.norrlabVideo.videoDate = "29 Dec 2019";
 	  		this.norrlabVideo.videoDescription = " Dissid Retrouvez toutes les interventions  Dissid Retrouvez toutes les interventions";
 	  		
@@ -33,9 +51,9 @@ export class VideoService {
 	  		this.norrlabVideo.videoViews = "326.000"; 
 	  	}else if(param == 2){
 	  		this.norrlabVideo.videoId=2;
-	  		this.norrlabVideo.videoUrl = "http://192.168.1.10:369/norrlab-users-video-2018/fondamentaux-du-trading-chapitre-1.mp4";
+	  		this.norrlabVideo.videoUrl = "http://localhost:369/norrlab-users-video-2018/fondamentaux-du-trading-chapitre-1.mp4";
 	  		this.norrlabVideo.videoTitle = "TKL";
-	  		this.norrlabVideo.videoPoster = "http://192.168.1.10:369/norrlab-users-video-2018/fondamentaux-du-trading-chapitre-1.jpg";
+	  		this.norrlabVideo.videoPoster = "http://localhost:369/norrlab-users-video-2018/fondamentaux-du-trading-chapitre-1.jpg";
 	  		this.norrlabVideo.videoDate = "02 Jan 2019"; 
 	  		this.norrlabVideo.videoDescription = " Dissid Retrouvez toutes les interventions Merci de vous abonner à la chaîne de secours Dissident Officiel 2";
 	  		
@@ -43,9 +61,9 @@ export class VideoService {
 	  		this.norrlabVideo.videoViews = "45.000"; 
 	  	}else if(param == 3) {
 	  		this.norrlabVideo.videoId=3;
-	  		this.norrlabVideo.videoUrl = "http://192.168.1.10:369/norrlab-users-video-2018/BelattarQuenelleZemmour.mp4";
+	  		this.norrlabVideo.videoUrl = "http://localhost:369/norrlab-users-video-2018/BelattarQuenelleZemmour.mp4";
 	  		this.norrlabVideo.videoTitle = "Une quenelle pour Zemmour";
-	  		this.norrlabVideo.videoPoster = "http://192.168.1.10:369/norrlab-users-video-2018/BelattarQuenelleZemmour.jpg";
+	  		this.norrlabVideo.videoPoster = "http://localhost:369/norrlab-users-video-2018/BelattarQuenelleZemmour.jpg";
 	  		this.norrlabVideo.videoDate = "11 Oct 2019"; 
 	  		
 	  		this.norrlabVideo.videoLikes = {"minus":789,"bonus":235,"userId":0}; 
@@ -53,9 +71,9 @@ export class VideoService {
 	  		this.norrlabVideo.videoDescription = " Dissid Retrouvez toutes les ";
 	  	}else if(param == 4){
 	  		this.norrlabVideo.videoId=4;
-	  		this.norrlabVideo.videoUrl = "http://192.168.1.10:369/norrlab-users-video-2018/NorrDom4.mp4";
+	  		this.norrlabVideo.videoUrl = "http://localhost:369/norrlab-users-video-2018/NorrDom4.mp4";
 	  		this.norrlabVideo.videoTitle = "Desire-The first step toward riches";
-	  		this.norrlabVideo.videoPoster = "http://192.168.1.10:369/norrlab-users-video-2018/NorrDom4.jpg";
+	  		this.norrlabVideo.videoPoster = "http://localhost:369/norrlab-users-video-2018/NorrDom4.jpg";
 	  		this.norrlabVideo.videoDate = "11 Oct 2019"; 
 	  		
 	  		this.norrlabVideo.videoLikes = {"minus":789,"bonus":235,"userId":0}; 

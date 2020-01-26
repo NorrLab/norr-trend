@@ -17,7 +17,7 @@
 
 			<div class="video" style="margin-bottom: 16px" > 
 				<div class="ckin__player minimal ckin__overlay is-playing">
-					<video  #videoPlayer poster="{{videoReadayToplay.videoPoster}}" src="{{videoReadayToplay.videoUrl}}" data-ckin="minimal" data-overlay="1">
+					<video  #videoPlayer poster="{{videoReadayToplay?videoReadayToplay.videoPoster:''}}" src="{{videoReadayToplay?videoReadayToplay.videoUrl:''}}" data-ckin="minimal" data-overlay="1">
 						<track class="norrlab_track" default kind="captions" srclang="en" src="assets/norrlab/BelattarQuenelleZemmour.vtt"/>
 					</video>
 					<!-- <button (click)="playPause()"class="minimal__button--big central-video toggle" title="Toggle Play">
@@ -70,9 +70,9 @@
 			<div class="video-description ">
 				<div class="row" style="padding-top: 9px"	>  
 					<div class="col-6">
-						<div class="col-12 video-title">{{videoReadayToplay.videoTitle}}</div>
-						<div class="col-12 video-title-sub">{{videoReadayToplay.videoViews}} views, published {{videoReadayToplay.videoDate}}&nbsp;|&nbsp;
-									{{videoplayer.nativeElement.volume}}
+						<div class="col-12 video-title">{{videoReadayToplay?videoReadayToplay.videoTitle :''}}</div>
+						<div class="col-12 video-title-sub">{{videoReadayToplay?videoReadayToplay.videoViews:''}} views, published {{videoReadayToplay?videoReadayToplay.videoDate:''}}&nbsp;|&nbsp;
+									{{videoReadayToplay?videoplayer.nativeElement.volume:''}}
 						</div>
 					</div>
 					<div class="col-6 contain-like-block">
@@ -96,12 +96,11 @@
 							 </div>
 						</div>
 						<div class="like-dislike col-12"> 
-
 							<mat-icon (click)="shareVideo()" style="
     margin-right: 16px;
 ">share</mat-icon>
-							<mat-icon class="like-span-mat-icon" (click)="likeVideo($event)">thumb_up</mat-icon><span class="like-span"> {{videoReadayToplay.videoLikes.bonus}}</span>&nbsp; 
-							<mat-icon class="like-span-mat-icon" (click)="likeVideo(false)">thumb_down</mat-icon><span class="like-span"> {{videoReadayToplay.videoLikes.minus}}</span>
+							<mat-icon class="like-span-mat-icon" (click)="likeVideo($event)">thumb_up</mat-icon><span class="like-span"> {{videoReadayToplay?videoReadayToplay.videoLikes:'0'}}</span>&nbsp; 
+							<mat-icon class="like-span-mat-icon" (click)="likeVideo(false)">thumb_down</mat-icon><span class="like-span"> {{videoReadayToplay?videoReadayToplay.videoDislikes:'0'}}</span>
 						</div>
 					</div>
 				</div>
@@ -154,29 +153,29 @@
 			    <mat-expansion-panel-header> 
 			      <div class="col-12 add_comment_header">
 			      	<mat-panel-description class="comment_panel_description">
-			        Add public comment...{{ableComment}}
+			        Add public comment...
 			      </mat-panel-description>	
 			      </div>      
 			    </mat-expansion-panel-header>
-			    <mat-form-field class="video_comment_class">
-			    	<div #__signIn class="col-12 showSignIn must-connect-comment" *ngIf="ableComment">
-							 	<mat-card  class="must-connect ">
-							 		<div class="col-12">
-							 			<mat-card-subtitle>	
-							 			Comment this video?
-						 			</mat-card-subtitle>
-									<mat-card-content> 
-										Sign in to make your opinion count.{{ableComment}}
-								 	</mat-card-content>
-							 		</div>
-								 	<mat-divider></mat-divider> 
-								 	<div  class="col-12 sign_in" style="text-align: start;display: inline-block;width: 100%;">
-								 		
-							          <span ><a [routerLink]="'/login'"  style="text-decoration: none;font-size: 13px;color: #0056b3;cursor: pointer;">SIGN IN</a></span> 
-								 	</div>
-							 	</mat-card>
-							 </div>
-				 	<div #__checkUser ><input matInput placeholder="" ></div>
+			    <mat-form-field class="video_comment_class"> 
+			    	<div #__signIn class="col-12 showSignIn must-connect-comment" *ngIf="!asRight()">
+					 	<mat-card  class="must-connect ">
+					 		<div class="col-12">
+					 			<mat-card-subtitle>	
+					 			Comment this video?
+				 			</mat-card-subtitle>
+							<mat-card-content> 
+								Sign in to make your opinion count.{{ableComment}}
+						 	</mat-card-content>
+					 		</div>
+						 	<mat-divider></mat-divider> 
+						 	<div  class="col-12 sign_in" style="text-align: start;display: inline-block;width: 100%;">
+						 		
+					          <span ><a [routerLink]="'/login'"  style="text-decoration: none;font-size: 13px;color: #0056b3;cursor: pointer;">SIGN IN</a></span> 
+						 	</div>
+					 	</mat-card>
+					 </div>
+				 	<div #__checkUser ><input name="norrLabVideoTradeComment" [(ngModel)]="norrLabVideoTradeComment" matInput placeholder="3333333333333333" ></div>
 				      
 			    </mat-form-field>
 			    <div class="col-12 video_comment_class_button"> 

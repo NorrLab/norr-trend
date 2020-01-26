@@ -29,6 +29,10 @@ export class NorrlabVideosComponent implements OnInit,AfterViewInit {
 
 @ViewChild("__upToMinimumControlProgresse") __upToMinimumControlProgresse: ElementRef;//
 
+
+norrLabVideoTradeComment;
+norrLabVideoTrade;
+norrLabTradeComment;
 //norrBody = document.querySelector("");
 norrlab__progress__video: number;
 videoLikes = {
@@ -46,6 +50,10 @@ norrlabVideo={
   "videoId":0,
   "videoLikes":{},
   "videoPoster":"http://192.168.1.10:369/norrlab-users-video-2018/test.jpg"
+}
+
+asRight(){
+  return this.userService.getUser();
 }
 
 showSignIn = false;
@@ -93,7 +101,7 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
             this.updateVideo();
    		}  
 
-       this.__main_container.nativeElement.onclick =  (param) => {
+       /*this.__main_container.nativeElement.onclick =  (param) => {
            // body...    
            var valable1= "like-span-mat-icon mat-icon notranslate material-icons mat-icon-no-color";
            var valable2= "must-connect mat-card";
@@ -103,7 +111,7 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
            }else{
                this.showSignIn = false;
              } 
-         }
+         }*/
    		this.avoidControls();
        this.videoplayer.nativeElement.onended =  () =>{
            // body... 
@@ -186,7 +194,7 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
   }
    
   checkUser(){
-    if(true == this.userConnecteddYet(this.currentUser)){
+    if(this.userService.getUser()){
       this.ableComment = false;
     }else{
       
@@ -195,11 +203,14 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
     return this.userConnecteddYet(this.currentUser);
   }
 
-  likeVideo(param){ 
-     console.log("__signIn")
-    console.log(this.__signIn)
-    console.log("this.__signIn.nativeElement")
-    console.log(this.__signIn.nativeElement)
+  likeVideo(param){  
+      this.userService.userIsLogged().subscribe(user =>{ 
+          this.norrLabTradeComment.commentUser = user._id;
+          this.videoService.createVideoTradeComment(this.norrLabVideoTradeComment)
+          .subscribe(comment =>{ })
+      }, err =>{
+        alert("U must be connected!");
+      });
       if(param==true && this.userConnecteddYet(this.currentUser)){
           this.videoLikes.like +=1;
         // incremente les like
@@ -290,10 +301,14 @@ openLoginDialog():void {
     }
   }
 
+  getVideoFree(videoId){
+    this.videoService.getVideoFree(videoId,null)
+  }
+
   ngOnInit() {
   	this.__upToMin.nativeElement.style.width="0%";
-    this.getWeekFreeVideos()
+    //this.getWeekFreeVideos();
+    this.getVideoFree(null);
     this.getAllVideoComments();
-    
   }  
 }

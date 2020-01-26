@@ -13,7 +13,7 @@ export class NorrlabTradesComponent implements OnInit {
 
 //@ViewChild("__paginator") __paginator: ElementRef;
   trades; 
-  topWeekVideo;
+  topWeekVideo = {};
   norrLabTrades;
   sortBy:Boolean =  false; 
   sortCriteria:String="";
@@ -36,7 +36,9 @@ export class NorrlabTradesComponent implements OnInit {
   ngOnInit() { 
   	this.trades =this.tradesService.getAllTrades();
     
-  	this.topWeekVideo = this.videoService.getVideoSrc(3);
+  	this.videoService.getVideoFree(null,1).subscribe(video =>{
+        this.topWeekVideo = video;
+      });;
   }
 
   // MatPaginator Output
