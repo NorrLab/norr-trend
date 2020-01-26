@@ -1,4 +1,4 @@
- 
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -16,6 +16,9 @@ import { NorrlabLoginComponent } from './norrlab.login/norrlab.login.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import { FormsModule } from '@angular/forms';
 import { NorrlabDetailTradeComponent } from './norrlab-detail-trade/norrlab-detail-trade.component';
+import { NorrLabSnackBarComponentComponent } from './norr-lab-snack-bar-component/norr-lab-snack-bar-component.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +29,7 @@ import { NorrlabDetailTradeComponent } from './norrlab-detail-trade/norrlab-deta
     NorrlabVideoDialogComponent,
     NorrlabLoginComponent,
     NorrlabDetailTradeComponent,
+    NorrLabSnackBarComponentComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,

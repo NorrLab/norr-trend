@@ -3,6 +3,11 @@ import { TradesService} from '../services/trades-service/trades.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NorrLabTradeComment} from '../interfaces/norrLabTradeComment/norr-lab-trade-comment'; 
 import { UserService} from '../services/user-service/user.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NorrLabSnackBarComponentComponent } from '../norr-lab-snack-bar-component/norr-lab-snack-bar-component.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
+
 
 @Component({
   selector: 'app-norrlab-detail-trade',
@@ -18,18 +23,23 @@ export class NorrlabDetailTradeComponent implements OnInit {
   norrLabTradeComment= {} as NorrLabTradeComment;
   norrLabTradeCommentComment = "";
   __isConnected= false;
+   ONLINE_USER;
+
   constructor(private tradesService:TradesService,private route: ActivatedRoute,
-  private router: Router, private userService:UserService) {
+  private router: Router, private userService:UserService,private _snackBar: MatSnackBar) {
     console.log(this.route)
     console.log(this.route) 
     
   	this.getTrade(this.getTradeId())
-    this.getNorrLabTradeComment(this.getTradeId())
+    this.getNorrLabTradeComment(this.getTradeId());
+    this.ONLINE_USER = this.userService.getUser();
    }
 
-   alertNorr(){
-     alert()
-   }
+  openSnackBar() {
+    this._snackBar.openFromComponent(NorrLabSnackBarComponentComponent, {
+      duration: 5 * 1000,
+    });
+  }
 
    norrLabTradeCommentX(){
      this.norrLabTradeCommentComment="";
@@ -100,17 +110,9 @@ createNorrLabTradeComment(){
         this.getNorrLabTradeComment(this.getTradeId(),)
       })
   }, err =>{
-    alert("U must be connected!")
-  });
-
-  /*this.norrLabTradeComment.comment = this.norrLabTradeCommentComment;
-  this.norrLabTradeComment.commentTrade = this.getTradeId();
-  this.tradesService.createNorrLabTradeComment(this.norrLabTradeComment)
-  .subscribe(comment =>{
-     this.norrLabTradeCommentComment="";
-      this.__isConnected= false;
-    this.getNorrLabTradeComment(this.getTradeId(),)
-  })*/
+    alert("U must be connected!");
+    this.openSnackBar() ;
+  }); 
 }
   getTradeingAnalyses(entry,state){
 

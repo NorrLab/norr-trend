@@ -45,6 +45,9 @@ export class UserService {
   	return this.httpClient.get<NorrLabUser>(this.userIsLoggedInUrl,{params});
   } 
 
+  getUser(){
+  	return this.storage.get(STORAGE_USER_KEY);
+  }
 	userMapperToClient(data){
 		 	USER.firstName = data.user.firstName
 			USER.firstName = data.user.firstName;

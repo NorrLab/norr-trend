@@ -59,19 +59,19 @@
       <div class="col-12 main-container-left" id="col_12_main_container" style="padding-top: 0px; ">
       
       <mat-card class="example-card comment-detail" >
-        <div class="">
+        <div class=""> 
           <mat-card-header style="margin-bottom: 25px">
           <div mat-card-avatar>
-            <img class="example-header-image" src="http://localhost:369/images/default_user.jpg"  width="100%">
+            <img class="example-header-image" src="http://localhost:369/images/{{ONLINE_USER && ONLINE_USER.userPictureUrl?ONLINE_USER.userPictureUrl:'default_user.jpg'}}"  width="100%">
           </div>
           <form class="example-form" style="
     width: 100%;
 ">           
             <mat-form-field  (click)="onSearchChange($event.target.value)" style="
     width: 100%;
-" class="example-full-width" [style.fontSize]="'16px'">
+" class="example-full-width" [style.fontSize]="'14px'">
               <input 
-               name="norr" #message maxlength="300" matInput [(ngModel)]="norrLabTradeCommentComment" placeholder="ADD COMMENT..." style="width: 100%;font-size: 13px"
+               name="norr" #message maxlength="350" matInput [(ngModel)]="norrLabTradeCommentComment" placeholder="ADD COMMENT..." style="width: 100%;font-size: 13px"
               >
               <!--<textarea matInput (blur)="alertNorr()"
                 cdkTextareaAutosize
@@ -84,7 +84,7 @@
               <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
             -->
 
-              <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
+              <mat-hint align="end">{{message.value.length}} / 350</mat-hint>
             </mat-form-field> 
             <div class="button_send_comment" *ngIf="__isConnected">
               
