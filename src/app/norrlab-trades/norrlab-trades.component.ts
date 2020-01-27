@@ -3,6 +3,9 @@ import { TradesService} from '../services/trades-service/trades.service';
 import { VideoService} from '../services/video-service/video.service';
 //import { NorrLabTrade} from '../interfaces/norr-lab-trade';
 import {PageEvent} from '@angular/material/paginator';
+import { NorrlabNavgationService } from '../norrlab-navgation/norrlab-navgation.service';
+
+const VIDEO_URL= "/videos";
 
 @Component({
   selector: 'app-norrlab-trades',
@@ -18,14 +21,20 @@ export class NorrlabTradesComponent implements OnInit {
   sortBy:Boolean =  false; 
   sortCriteria:String="";
 
-  constructor(private tradesService: TradesService, private videoService: VideoService) { 
-      
+  constructor(private tradesService: TradesService, private videoService: VideoService,
+    private norrlabNavgationService:NorrlabNavgationService) { 
+     
     this.getNorrLabTrades(0,5,null);
     this.videoService.getVideoFree(null,1).subscribe(video =>{
         this.topWeekVideo = video;
       });
   } 
 	
+  goToVideoPage(videoId){
+    this.videoService.setVideo(this.topWeekVideo);
+    this.norrlabNavgationService.goToNextUrl(VIDEO_URL);
+  }
+
   __sortBy(){
     this.sortBy = ! this.sortBy;
   }

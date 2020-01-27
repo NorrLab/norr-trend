@@ -71,13 +71,12 @@
 				<div class="row" style="padding-top: 9px"	>  
 					<div class="col-6">
 						<div class="col-12 video-title">{{videoReadayToplay?videoReadayToplay.videoTitle :''}}</div>
-						<div class="col-12 video-title-sub">{{videoReadayToplay?videoReadayToplay.videoViews:''}} views, published {{videoReadayToplay?videoReadayToplay.videoDate:''}}&nbsp;|&nbsp;
-									{{videoReadayToplay?videoplayer.nativeElement.volume:''}}
+						<div class="col-12 video-title-sub"><span class="view_video">{{videoReadayToplay?videoReadayToplay.videoViews:''}} views</span> published {{(videoReadayToplay?videoReadayToplay.videoDate:'') | date:'medium'}}
 						</div>
 					</div>
 					<div class="col-6 contain-like-block">
 						<div #__norrlabSignIn  class="col-12" style="margin: -74px;" > 
-							 <div #__signIn class="col-12 showSignIn" [hidden]="!showSignIn">
+							 <div  #__signIn  class="col-12 showSignIn" [hidden]="!showSignIn">
 							 	<mat-card  class="must-connect">
 							 		<div class="col-12">
 							 			<mat-card-subtitle>	
@@ -99,8 +98,8 @@
 							<mat-icon (click)="shareVideo()" style="
     margin-right: 16px;
 ">share</mat-icon>
-							<mat-icon class="like-span-mat-icon" (click)="likeVideo($event)">thumb_up</mat-icon><span class="like-span"> {{videoReadayToplay?videoReadayToplay.videoLikes:'0'}}</span>&nbsp; 
-							<mat-icon class="like-span-mat-icon" (click)="likeVideo(false)">thumb_down</mat-icon><span class="like-span"> {{videoReadayToplay?videoReadayToplay.videoDislikes:'0'}}</span>
+							<mat-icon class="like-span-mat-icon" (click)="likeVideo(1)">thumb_up</mat-icon><span class="like-span"> {{videoReadayToplay?videoReadayToplay.videoLikes:'0'}}</span>&nbsp; 
+							<mat-icon class="like-span-mat-icon" (click)="likeVideo(-1)">thumb_down</mat-icon><span class="like-span"> {{videoReadayToplay?videoReadayToplay.videoDislikes:'0'}}</span>
 						</div>
 					</div>
 				</div>

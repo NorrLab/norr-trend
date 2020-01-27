@@ -49,9 +49,9 @@
       <div style="padding-top:9px  "  class="row list-free-videos" > 
          <div class="col-6 img-video-cont"> 
           <div class="img-video-button"> 
-          <button mat-icon-button class=" proposal-video" ><mat-icon  [routerLink]="'/videos'">play_circle_outline</mat-icon></button> 
+          <button mat-icon-button (click)="goToVideoPage(topWeekVideo[0]._id)" class=" proposal-video" ><mat-icon>play_circle_outline</mat-icon></button> 
            </div>                                                 
-            <img    class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{ topWeekVideo[0].videoPoster}}" alt="{{topWeekVideo[0].videoPoster}}">
+            <img    class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{ topWeekVideo[0]?topWeekVideo[0].videoPoster:''}}" alt="{{ topWeekVideo[0]?topWeekVideo[0].videoPoster:''}}">
          </div> 
           <div class="col-6" style="
     padding-left: 9px;

@@ -8,6 +8,11 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 
 import {NorrlabVideoDialogComponent} from './dialog/norrlab-video-dialog/norrlab-video-dialog.component';
 
+import {Router, ActivatedRoute, Params} from '@angular/router';
+import { NorrlabNavgationService } from '../norrlab-navgation/norrlab-navgation.service';
+
+const VIDEO_URL= "/videos/";
+
 @Component({
   selector: 'app-norrlab-videos',
   templateUrl: './norrlab-videos.component.html',
@@ -68,7 +73,8 @@ weekFreeVideos:any = [];
 videoReadayToplay;
 videoComments:any=[];
 ableComment:boolean=false;
-constructor(private userService: UserService,public dialog: MatDialog,private videoService: VideoService) { }
+constructor(private userService: UserService,public dialog: MatDialog,private videoService: VideoService,
+  private activatedRoute:ActivatedRoute, private router:Router, private norrlabNavgationService:NorrlabNavgationService) { }
 
 
   playPause(){   
@@ -101,17 +107,15 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
             this.updateVideo();
    		}  
 
-       /*this.__main_container.nativeElement.onclick =  (param) => {
+       /**/this.__main_container.nativeElement.onclick =  (param) => {
            // body...    
-           var valable1= "like-span-mat-icon mat-icon notranslate material-icons mat-icon-no-color";
-           var valable2= "must-connect mat-card";
-           var state = this.checkUser(); 
-           if((param .target.className===valable1 || param .target.className===valable2) && !state){
-               this.showSignIn = true;
-           }else{
-               this.showSignIn = false;
-             } 
-         }*/
+            if(this.__signIn.nativeElement.contains( param.target)){
+
+                this.showSignIn=true; 
+            }else{
+              this.showSignIn=false;
+            }
+         }
    		this.avoidControls();
        this.videoplayer.nativeElement.onended =  () =>{
            // body... 
@@ -203,14 +207,15 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
     return this.userConnecteddYet(this.currentUser);
   }
 
+  blurSignIn(){
+    alert()
+  }
+
   likeVideo(param){  
-      this.userService.userIsLogged().subscribe(user =>{ 
-          //this.norrLabTradeComment.commentUser = user._id;
-          /*this.videoService.createVideoTradeComment(this.norrLabVideoTradeComment)
-          .subscribe(comment =>{ })*/
-          this.upDateNorrLabVideo();
-      }, err =>{
-        alert("U must be connected!");
+      this.userService.userIsLogged().subscribe(user =>{  
+          this.upDateNorrLabVideo(param);
+      }, err =>{ 
+        this.showSignIn=true;
       });
       if(param==true && this.userConnecteddYet(this.currentUser)){
           this.videoLikes.like +=1;
@@ -260,11 +265,9 @@ openLoginDialog():void {
 
   valideComment(){
     this.norrlabExpanded = 0;
-    this.ableComment = false;
-    console.log("this.__matExpansionPanel")
-    console.log(this.__matExpansionPanel) 
-    //this.__matExpansionPanel.expanded = false;
+    this.ableComment = false; 
     }
+
   cancelComment(){
   }
 
@@ -274,24 +277,19 @@ openLoginDialog():void {
    }
 
   playCurrentVideo(param){ 
-    this.videoService.getVideoFree(param,null).subscribe(video =>{
-            this.videoReadayToplay  = video; 
-            this.videoplayer.nativeElement.src =  this.videoReadayToplay.videoUrl;
-        this.videoplayer.nativeElement.poster =  this.videoReadayToplay.videoPoster;
-        this.videoplayer.nativeElement.title =  this.videoReadayToplay.videoTitle;
-         this.videoplayer.nativeElement.pause();
-        this.playPause(); 
-      }); 
-  } 
+    this.videoplayer.nativeElement.pause();
+    this.getVideoFree(param);
+  }  
 
+  upDateNorrLabVideo(param){
+    if(param>0)
+      this.videoReadayToplay.videoLikes += 1;
+    else
+      this.videoReadayToplay.videoDislikes += 1;
 
-
-  upDateNorrLabVideo(){
-    this.videoReadayToplay.videoLikes += 1;
     this.videoReadayToplay._id = undefined;
     this.videoService.upDateNorrLabVideo(this.videoReadayToplay)
     .subscribe(video =>{
-      this.videoReadayToplay = video
     })
   }
 
@@ -315,13 +313,20 @@ openLoginDialog():void {
   }
 
   getVideoFree(videoId){
-    this.videoService.getVideoFree(videoId,null)
+    this.videoService.getVideoFree(videoId,null).subscribe(video =>{ 
+        this.videoReadayToplay  = video; 
+            this.videoService.setVideo(this.videoReadayToplay)
+        this.videoplayer.nativeElement.src =  this.videoReadayToplay.videoUrl;
+        this.videoplayer.nativeElement.poster =  this.videoReadayToplay.videoPoster;
+        this.videoplayer.nativeElement.title =  this.videoReadayToplay.videoTitle;
+        this.videoplayer.nativeElement.pause();
+        this.playPause();
+      });
   }
 
   ngOnInit() {
-  	this.__upToMin.nativeElement.style.width="0%";
-    //this.getWeekFreeVideos();
-    this.getVideoFree(null);
+  	this.__upToMin.nativeElement.style.width="0%";  
+      this.getVideoFree(this.videoService.getVideo()._id);
     this.getAllVideoComments();
   }  
 }
