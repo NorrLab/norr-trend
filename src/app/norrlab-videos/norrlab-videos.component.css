@@ -917,6 +917,7 @@ span.comment_date {
 
 .showSignIn:not {
     pointer-events: none;
+    outline: none;
 }
 
 .must-connect-comment{
@@ -944,4 +945,19 @@ span.comment_date {
     text-decoration:    none;   
     text-align:   center;
     outline:    none;   
+}
+
+.view_video{
+    background-color: #8EE1B6;
+    border-radius: 35px;
+    padding: 4px;
+}
+
+.like-span-mat-icon:active{
+    z-index: 9999; 
+    color: #8EE1B6;;
+}
+ 
+mat-icon.like-span-mat-icon.mat-icon.mat-icon-no-color.material-icons.notranslate:active {
+    color: #8EE1B6;
 }

@@ -3,6 +3,7 @@ import { TradesService} from '../services/trades-service/trades.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NorrLabTradeComment} from '../interfaces/norrLabTradeComment/norr-lab-trade-comment'; 
 import { UserService} from '../services/user-service/user.service';
+import { VideoService} from '../services/video-service/video.service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NorrLabSnackBarComponentComponent } from '../norr-lab-snack-bar-component/norr-lab-snack-bar-component.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -26,12 +27,13 @@ export class NorrlabDetailTradeComponent implements OnInit {
    ONLINE_USER;
 
   constructor(private tradesService:TradesService,private route: ActivatedRoute,
-  private router: Router, private userService:UserService,private _snackBar: MatSnackBar) {
+  private router: Router, private userService:UserService,private _snackBar: MatSnackBar
+  , private videoService:VideoService) {
     console.log(this.route)
     console.log(this.route) 
     
-  	this.getTrade(this.getTradeId())
-    this.getNorrLabTradeComment(this.getTradeId());
+  	this.getTrade(this.videoService.getVideo()._id)
+    this.getNorrLabTradeComment(this.videoService.getVideo()._id);
     this.ONLINE_USER = this.userService.getUser();
    }
 
@@ -46,9 +48,6 @@ export class NorrlabDetailTradeComponent implements OnInit {
       this.__isConnected= false;
    }
 
-   getTradeId(){
-     return this.route.snapshot.paramMap.params['tradeId']; 
-   }
 
   ngOnInit() {
   	 console.log(this.route.params)
@@ -101,13 +100,13 @@ getNorrLabTradeComment(tradeId){
 createNorrLabTradeComment(){ 
   this.userService.userIsLogged().subscribe(user =>{
       this.norrLabTradeComment.comment = this.norrLabTradeCommentComment;
-      this.norrLabTradeComment.commentTrade = this.getTradeId();
+      this.norrLabTradeComment.commentTrade = this.videoService.getVideo()._id;
       this.norrLabTradeComment.commentUser = user._id;
       this.tradesService.createNorrLabTradeComment(this.norrLabTradeComment)
       .subscribe(comment =>{
          this.norrLabTradeCommentComment="";
           this.__isConnected= false;
-        this.getNorrLabTradeComment(this.getTradeId(),)
+        this.getNorrLabTradeComment(this.videoService.getVideo()._id,)
       })
   }, err =>{
     alert("U must be connected!");

@@ -31,6 +31,8 @@ export class NorrlabTradesComponent implements OnInit {
   } 
 	
   goToVideoPage(videoId){
+
+    this.videoService.setVideo(undefined);
     this.videoService.setVideo(this.topWeekVideo);
     this.norrlabNavgationService.goToNextUrl(VIDEO_URL);
   }
@@ -53,9 +55,7 @@ export class NorrlabTradesComponent implements OnInit {
 
   getNorrLabTrades(pageNumber, nbPerPage,criteria){
     this.tradesService.getNorrLabTrades(pageNumber, nbPerPage,criteria).subscribe(trade =>{ 
-        this.norrLabTrades =  trade; 
-        console.log("this.norrLabTrades") 
-        console.log(this.norrLabTrades.data) 
+        this.norrLabTrades =  trade;  
     },err=>{
         alert(err)
     });

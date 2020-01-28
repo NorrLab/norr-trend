@@ -78,19 +78,19 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
 
 
   playPause(){   
-  	if(this.videoplayer.nativeElement.paused){ 
+  	//if(this.videoplayer.nativeElement.paused){ 
+      this.videoplayer.nativeElement.pause()
       this.videoplayer.nativeElement.play().then(__vd =>{
- 
+         this.norrPlayPause = true;
       }).catch(error => {  
-      this.videoplayer.nativeElement.play()
-    });
-      this.norrPlayPause = true;
-    }
+      //this.videoplayer.nativeElement.play()
+    }); 
+    /*}
   	else{
 
       this.videoplayer.nativeElement.pause();
      this.norrPlayPause = false;
-    }
+    }*/
   }
 
   ngAfterViewInit(): void{
@@ -278,6 +278,8 @@ openLoginDialog():void {
 
   playCurrentVideo(param){ 
     this.videoplayer.nativeElement.pause();
+         this.norrPlayPause = false;
+     
     this.getVideoFree(param);
   }  
 
@@ -313,13 +315,19 @@ openLoginDialog():void {
   }
 
   getVideoFree(videoId){
+
+    if(videoId==undefined && Array.isArray(this.videoService.getVideo())){
+          videoId = this.videoService.getVideo()[0]._id;
+        }else if(videoId==undefined){
+          videoId = this.videoService.getVideo()._id;
+    }
     this.videoService.getVideoFree(videoId,null).subscribe(video =>{ 
         this.videoReadayToplay  = video; 
             this.videoService.setVideo(this.videoReadayToplay)
         this.videoplayer.nativeElement.src =  this.videoReadayToplay.videoUrl;
         this.videoplayer.nativeElement.poster =  this.videoReadayToplay.videoPoster;
         this.videoplayer.nativeElement.title =  this.videoReadayToplay.videoTitle;
-        this.videoplayer.nativeElement.pause();
+        this.videoplayer.nativeElement.play() 
         this.playPause();
       });
   }

@@ -41,7 +41,7 @@ export class UserService {
 
   userIsLogged(){
   	const params = new HttpParams()
-	.set('userId', this.storage.get(STORAGE_USER_KEY)?this.storage.get(STORAGE_USER_KEY)._id:'0');
+	.set('userId', this.storage.get(STORAGE_USER_KEY)?this.storage.get(STORAGE_USER_KEY)._id:'');
   	return this.httpClient.get<NorrLabUser>(this.userIsLoggedInUrl,{params});
   } 
 

@@ -1,6 +1,7 @@
 import { Inject,Injectable } from '@angular/core';  
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { NorrLabVideo} from '../../interfaces/norrLabVideo/norr-lab-video';
+import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 //import { NorrLabVideoComment} from '../../interfaces/norrLabVideo/norr-lab-video';
 
 const VIDEO_URL="http://localhost:369/norr-video";
@@ -13,7 +14,7 @@ export class VideoService {
 	norrlabVideo:any;
 	norrlabVideos:any=[];
 	comment:any;
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient,@Inject(SESSION_STORAGE) private storage: StorageService) { }
 
 
   createVideoTradeComment(videoComment){
@@ -31,6 +32,14 @@ export class VideoService {
   upDateNorrLabVideo(video){ 
   	return this.httpClient.put(VIDEO_URL,video);
   	
+  }
+
+  getVideo(){
+  	return this.storage.get("VIDEO_KEY");
+  }
+
+  setVideo(video){
+  	this.storage.set("VIDEO_KEY",video);
   }
 
   getVideoSrc(param){
