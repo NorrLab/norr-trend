@@ -78,19 +78,23 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
 
 
   playPause(){   
-  	//if(this.videoplayer.nativeElement.paused){ 
-      this.videoplayer.nativeElement.pause()
+  	if(this.videoplayer.nativeElement.paused){  
       this.videoplayer.nativeElement.play().then(__vd =>{
          this.norrPlayPause = true;
+         console.log("videoPlayed: "+ this.norrPlayPause)
       }).catch(error => {  
-      //this.videoplayer.nativeElement.play()
-    }); 
-    /*}
+          this.videoplayer.nativeElement.play().then(__vd =>{
+         console.log("videoPlayed: "+ this.norrPlayPause)
+      });
+          this.norrPlayPause = false;
+         console.log("videoPlayed: "+ this.norrPlayPause) 
+        }); 
+    }
   	else{
 
       this.videoplayer.nativeElement.pause();
      this.norrPlayPause = false;
-    }*/
+    }
   }
 
   ngAfterViewInit(): void{
@@ -327,7 +331,7 @@ openLoginDialog():void {
         this.videoplayer.nativeElement.src =  this.videoReadayToplay.videoUrl;
         this.videoplayer.nativeElement.poster =  this.videoReadayToplay.videoPoster;
         this.videoplayer.nativeElement.title =  this.videoReadayToplay.videoTitle;
-        this.videoplayer.nativeElement.play() 
+        //this.videoplayer.nativeElement.play() 
         this.playPause();
       });
   }
