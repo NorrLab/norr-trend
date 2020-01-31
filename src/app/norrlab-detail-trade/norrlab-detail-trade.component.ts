@@ -32,8 +32,8 @@ export class NorrlabDetailTradeComponent implements OnInit {
     console.log(this.route)
     console.log(this.route) 
     
-  	this.getTrade(this.videoService.getVideo()._id)
-    this.getNorrLabTradeComment(this.videoService.getVideo()._id);
+  	this.getTrade(this.route.params.value.tradeId)
+    this.getNorrLabTradeComment(this.route.params.value.tradeId);
     this.ONLINE_USER = this.userService.getUser();
    }
 

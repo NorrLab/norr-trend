@@ -1,10 +1,10 @@
 import { Inject,Injectable } from '@angular/core';  
 import { HttpClient,HttpParams } from '@angular/common/http';
-import { NorrLabVideo} from '../../interfaces/norrLabVideo/norr-lab-video';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 //import { NorrLabVideoComment} from '../../interfaces/norrLabVideo/norr-lab-video';
 
 const VIDEO_URL="http://localhost:369/norr-video";
+const VIDEO_VIEWS_URL="http://localhost:369/norr-video/video-views";
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +21,18 @@ export class VideoService {
   	return this.httpClient.post(VIDEO_URL,videoComment);
   }
 
+  upDateViews(videoReadayToplay){
+    this.httpClient.put(VIDEO_VIEWS_URL,videoReadayToplay)
+    .subscribe(rst =>{ 
+      console.log("viewed")
+    } ) ;
+  }
+
   getVideoFree(videoId, limite){
   	const params = new HttpParams()
   	.set('videoId', (videoId?videoId:null))
 	.set('limite', (limite?limite:null))
-  	return this.httpClient.get<NorrLabVideo>(VIDEO_URL,{params});
+  	return this.httpClient.get(VIDEO_URL,{params});
   		
   }
 

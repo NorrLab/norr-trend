@@ -2,6 +2,7 @@ import { Component, OnInit,ViewChild, ElementRef,AfterViewInit } from '@angular/
 import { UserService} from '../services/user-service/user.service';
 import { VideoService} from '../services/video-service/video.service';
 
+import { NorrLabVideo} from '../interfaces/norrLabVideo/norr-lab-user';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -73,6 +74,8 @@ weekFreeVideos:any = [];
 videoReadayToplay;
 videoComments:any=[];
 ableComment:boolean=false;
+videoMapper:any = new Object();
+
 constructor(private userService: UserService,public dialog: MatDialog,private videoService: VideoService,
   private activatedRoute:ActivatedRoute, private router:Router, private norrlabNavgationService:NorrlabNavgationService) { }
 
@@ -81,13 +84,13 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
   	if(this.videoplayer.nativeElement.paused){  
       this.videoplayer.nativeElement.play().then(__vd =>{
          this.norrPlayPause = true;
-         console.log("videoPlayed: "+ this.norrPlayPause)
+         console.log("videoPlayed: "+ this.norrPlayPause);
       }).catch(error => {  
-          this.videoplayer.nativeElement.play().then(__vd =>{
-         console.log("videoPlayed: "+ this.norrPlayPause)
-      });
-          this.norrPlayPause = false;
-         console.log("videoPlayed: "+ this.norrPlayPause) 
+                this.videoplayer.nativeElement.play().then(__vd =>{
+               console.log("videoPlayed: "+ this.norrPlayPause);
+                this.norrPlayPause = true;      
+               // this.videoService.upDateViews(this.videoReadayToplay)
+            }); 
         }); 
     }
   	else{
@@ -124,11 +127,10 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
        this.videoplayer.nativeElement.onended =  () =>{
            // body... 
            this.updatePlayerIcon(); 
-         }
 
-
-      // this.__matExpansionPanel.opened.emit("closeLoginPopUp");
-
+         this.videoReadayToplay.videoViews +=1;
+         this.videoService.upDateViews(this.videoReadayToplay);
+         }  
   }
 
 
@@ -136,9 +138,7 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
    this.norrPlayPause = false;
  } 
 
- changeVolume(event){
-
-  
+ changeVolume(event){ 
   var bcr = this.__volumeClass.nativeElement.getBoundingClientRect();
 
   var xPosition   =  Math.max(0, (event.clientX - bcr.left) / bcr.width)*100;
@@ -216,20 +216,13 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
   }
 
   likeVideo(param){  
+
       this.userService.userIsLogged().subscribe(user =>{  
+           
           this.upDateNorrLabVideo(param);
       }, err =>{ 
         this.showSignIn=true;
-      });
-      if(param==true && this.userConnecteddYet(this.currentUser)){
-          this.videoLikes.like +=1;
-        // incremente les like
-      }
-      else if(this.userConnecteddYet(this.currentUser)){
-
-        this.videoLikes.dislike +=1;
-        // incremente les dislike
-      } 
+      });  
   }
 
   userConnecteddYet(param){
@@ -291,10 +284,13 @@ openLoginDialog():void {
     if(param>0)
       this.videoReadayToplay.videoLikes += 1;
     else
-      this.videoReadayToplay.videoDislikes += 1;
-
-    this.videoReadayToplay._id = undefined;
-    this.videoService.upDateNorrLabVideo(this.videoReadayToplay)
+      this.videoReadayToplay.videoDislikes += 1; 
+    this.videoMapper.video = this.videoReadayToplay;
+          this.videoMapper.videoUserLike = {
+              norrUser:this.userService.getUser()._id, 
+              norrVideo:this.videoReadayToplay._id
+            };
+    this.videoService.upDateNorrLabVideo(this.videoMapper)
     .subscribe(video =>{
     })
   }
