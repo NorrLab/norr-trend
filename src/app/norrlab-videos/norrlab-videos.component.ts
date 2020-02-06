@@ -75,7 +75,12 @@ videoReadayToplay;
 videoComments:any=[];
 ableComment:boolean=false;
 videoMapper:any = new Object();
-
+cmt = {
+  "videoCommentDescription":"",
+  "videoCommentDate":"",
+  "videoCommentVideo":"",
+  "videoCommentUser":"",
+}
 constructor(private userService: UserService,public dialog: MatDialog,private videoService: VideoService,
   private activatedRoute:ActivatedRoute, private router:Router, private norrlabNavgationService:NorrlabNavgationService) { }
 
@@ -155,7 +160,8 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
   this.__volumClassProgress.nativeElement.style.width=xPosition+"%";
   this.videoplayer.nativeElement.volume= (xPosition/100)
   } 
-  this.volumePosition = xPosition;
+  this.volumePosition =  xPosition;
+  this.videoService.setVolumePosition(this.volumePosition)
 }
 
 
@@ -260,12 +266,20 @@ openLoginDialog():void {
       }
   }
 
-  valideComment(){
+  valideComment(){ 
+    this.videoService.valideComment(this.cmt)
+    .subscribe(cmtR =>{
+      console.log("done");
     this.norrlabExpanded = 0;
     this.ableComment = false; 
+    this.cmt.videoCommentDescription=""
+    });
+
     }
 
   cancelComment(){
+    this.norrlabExpanded = 0;
+    this.ableComment = false; 
   }
 
    matExpansionPanel(event){
@@ -309,7 +323,6 @@ openLoginDialog():void {
 
   getAllVideoComments(){
     this.videoService.getVideoFree(null,null).subscribe(videos =>{
-        this.videoComments = videos;
         this.weekFreeVideos = videos;
       });
   }
@@ -318,12 +331,23 @@ openLoginDialog():void {
 
     if(videoId==undefined && Array.isArray(this.videoService.getVideo())){
           videoId = this.videoService.getVideo()[0]._id;
-        }else if(videoId==undefined){
+        }else if(videoId==undefined && this.videoService.getVideo()){
           videoId = this.videoService.getVideo()._id;
     }
     this.videoService.getVideoFree(videoId,null).subscribe(video =>{ 
-        this.videoReadayToplay  = video; 
-            this.videoService.setVideo(this.videoReadayToplay)
+        if(Array.isArray(video)){
+            this.videoReadayToplay  = video[0]; 
+        }else{
+            this.videoReadayToplay  = video; 
+        }
+
+
+        //TODO get video comments, from video id.
+        this.videoService.getVideoFreeComments(this.videoReadayToplay._id).subscribe(comments =>{ 
+            this.videoComments = comments;
+          });
+
+        this.videoService.setVideo(this.videoReadayToplay)
         this.videoplayer.nativeElement.src =  this.videoReadayToplay.videoUrl;
         this.videoplayer.nativeElement.poster =  this.videoReadayToplay.videoPoster;
         this.videoplayer.nativeElement.title =  this.videoReadayToplay.videoTitle;
@@ -334,7 +358,14 @@ openLoginDialog():void {
 
   ngOnInit() {
   	this.__upToMin.nativeElement.style.width="0%";  
-      this.getVideoFree(this.videoService.getVideo()._id);
     this.getAllVideoComments();
+    this.getVideoFree(this.videoService.getVideo()?this.videoService.getVideo()._id:null);
+    
+    this.volumePosition = this.videoService.getVolumePosition(); 
+
+  this.__volumClassProgress.nativeElement.style.width=(this.videoService.getVolumePosition()?this.videoService.getVolumePosition():100)+"%";
+  this.videoplayer.nativeElement.volume= ((this.videoService.getVolumePosition()?this.videoService.getVolumePosition():100)/100) ;
+   
+
   }  
 }

@@ -130,16 +130,21 @@
 						<div class="col-3 video-author-avatar">
 							<div class="row">
 									<div class="col-3"> 
-										<img src="{{videoComment.userPictureUrl}}" class="advs-avatar" alt="{{videoComment.userPictureUrl}}">
+										<img src="http://localhost:369/images{{(videoComment.videoCommentUser.userPictureUrl.length>0)?videoComment.videoCommentUser.userPictureUrl:'/default_user.png'}}" class="advs-avatar" alt="{{(videoComment.videoCommentUser.userPictureUrl.length>0)?videoComment.videoCommentUser.userPictureUrl:'/default_user.png'}}">
 									</div>
 									<div class="col-9" style="text-align: start;padding-left: 0px"> 
-										<div class="col-12 author-of-vid col-9">  {{videoComment.userName}}&nbsp;|&nbsp;<span class="comment_date">{{videoComment.commentDate}}</span></div> 
+										<div class="col-12 author-of-vid col-9">  
+											<div>
+												{{videoComment.videoCommentUser.firstName}} {{videoComment.videoCommentUser.lastName}}
+											</div>
+										<span class="comment_date">{{videoComment.videoCommentDate | date : 'medium'}}</span>
+										</div> 
 									</div>
 							</div>
 						</div> 
 						<div class="col-12"> 
 							<p class="users-comments"> 
-	 						 {{videoComment.userComment}}
+	 						 {{videoComment.videoCommentDescription}}
 							</p>
 						</div>			
 					</div> 
@@ -173,13 +178,13 @@
 						 	</div>
 					 	</mat-card>
 					 </div>
-				 	<div #__checkUser ><input name="norrLabVideoTradeComment" [(ngModel)]="norrLabVideoTradeComment" matInput placeholder="" ></div>
+				 	<div #__checkUser ><input name="norrLabVideoTradeComment" [(ngModel)]="cmt.videoCommentDescription" matInput placeholder="" ></div>
 				      
 			    </mat-form-field>
 			    <div class="col-12 video_comment_class_button"> 
 				 	
-  					<button (click)="valideComment()" mat-flat-button >CANCEL</button>
-  					<button (click)="cancelComment()" mat-flat-button color="primary">COMMENT</button>
+  					<button (click)="cancelComment()" mat-flat-button >CANCEL</button>
+  					<button (click)="valideComment() " mat-flat-button color="primary">COMMENT</button>
 			    </div>
 			  </mat-expansion-panel>
 			</div>

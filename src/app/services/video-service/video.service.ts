@@ -1,10 +1,11 @@
 import { Inject,Injectable } from '@angular/core';  
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
-//import { NorrLabVideoComment} from '../../interfaces/norrLabVideo/norr-lab-video';
+import { UserService} from '../user-service/user.service';
 
 const VIDEO_URL="http://localhost:369/norr-video";
 const VIDEO_VIEWS_URL="http://localhost:369/norr-video/video-views";
+const VIDEO_COMMENT_URL="http://localhost:369/norr-video/comments";
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,25 @@ export class VideoService {
 	norrlabVideo:any;
 	norrlabVideos:any=[];
 	comment:any;
-  constructor(private httpClient:HttpClient,@Inject(SESSION_STORAGE) private storage: StorageService) { }
+  constructor(private httpClient:HttpClient,@Inject(SESSION_STORAGE) private storage: StorageService,
+    private userService:UserService) { }
 
 
   createVideoTradeComment(videoComment){
   	return this.httpClient.post(VIDEO_URL,videoComment);
+  }
+
+  valideComment(cmt){
+    cmt.videoCommentVideo= this.getVideo()._id;
+    cmt.videoCommentUser = this.userService.getUser()._id
+    return this.httpClient.post(VIDEO_COMMENT_URL,cmt);
+  }
+
+  getVideoFreeComments(videoReadayToplayId){
+
+    const params = new HttpParams()
+    .set('videoId', videoReadayToplayId);
+      return this.httpClient.get(VIDEO_COMMENT_URL,{params});
   }
 
   upDateViews(videoReadayToplay){
@@ -27,6 +42,17 @@ export class VideoService {
       console.log("viewed")
     } ) ;
   }
+
+   setVolumePosition(volumePosition){
+
+    this.storage.set("VIDEO_VOLUME",volumePosition);
+   }
+
+   getVolumePosition(){
+
+    return this.storage.get("VIDEO_VOLUME");
+   }
+
 
   getVideoFree(videoId, limite){
   	const params = new HttpParams()

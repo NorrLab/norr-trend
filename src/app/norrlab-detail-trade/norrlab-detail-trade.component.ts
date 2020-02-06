@@ -8,6 +8,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NorrLabSnackBarComponentComponent } from '../norr-lab-snack-bar-component/norr-lab-snack-bar-component.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 
 @Component({
@@ -31,9 +33,9 @@ export class NorrlabDetailTradeComponent implements OnInit {
   , private videoService:VideoService) {
     console.log(this.route)
     console.log(this.route) 
-    
-  	this.getTrade(this.route.params.value.tradeId)
-    this.getNorrLabTradeComment(this.route.params.value.tradeId);
+    var tradeId = this.route.snapshot.params.tradeId;
+  	this.getTrade(tradeId)
+    this.getNorrLabTradeComment(tradeId);
     this.ONLINE_USER = this.userService.getUser();
    }
 
