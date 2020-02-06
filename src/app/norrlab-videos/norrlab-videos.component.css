@@ -924,6 +924,8 @@ span.comment_date {
         width: 45%;
     position: absolute;
     margin-top: -65px;
+    
+    margin-left: -17px;
 }
 
 .img-video-cont-desc{ 
@@ -960,4 +962,9 @@ span.comment_date {
  
 mat-icon.like-span-mat-icon.mat-icon.mat-icon-no-color.material-icons.notranslate:active {
     color: #8EE1B6;
+}
+
+ .mat_success {
+    background-color: #8EE1B6;
+    color: #fff;
 }

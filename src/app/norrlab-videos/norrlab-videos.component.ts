@@ -81,6 +81,8 @@ cmt = {
   "videoCommentVideo":"",
   "videoCommentUser":"",
 }
+__openCmtEdito;
+
 constructor(private userService: UserService,public dialog: MatDialog,private videoService: VideoService,
   private activatedRoute:ActivatedRoute, private router:Router, private norrlabNavgationService:NorrlabNavgationService) { }
 
@@ -206,7 +208,17 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
   this.__upToMin.nativeElement.style.width=xPosition+"%" ;   
     this.videoplayer.nativeElement.currentTime = Math.round((xPosition*this.videoplayer.nativeElement.duration) / 100) ; 
   }
-   
+
+  openCmtEdito(){
+    this.userService.userIsLogged().subscribe(user =>{
+        this.__openCmtEdito=false; 
+      return true
+      }, err =>{ 
+        this.__openCmtEdito=true;
+        return false
+      }); 
+  }
+
   checkUser(){
     if(this.userService.getUser()){
       this.ableComment = false;
@@ -265,8 +277,14 @@ openLoginDialog():void {
                     this.videoplayer.nativeElement.msRequestFullscreen(); 
       }
   }
+  onTextChange(value){
+    //this.openCmtEdito();
+  }
 
-  valideComment(){ 
+  valideComment(){  
+    this.cmt.videoCommentDescription = this.cmt.videoCommentDescription.trim()
+    if(!this.cmt.videoCommentDescription)
+      return;
     this.videoService.valideComment(this.cmt)
     .subscribe(cmtR =>{
       console.log("done");
