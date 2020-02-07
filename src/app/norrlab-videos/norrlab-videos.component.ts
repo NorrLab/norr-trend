@@ -11,6 +11,10 @@ import {NorrlabVideoDialogComponent} from './dialog/norrlab-video-dialog/norrlab
 
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { NorrlabNavgationService } from '../norrlab-navgation/norrlab-navgation.service';
+import { MatIconRegistry } from "@angular/material/icon";
+import { DomSanitizer } from "@angular/platform-browser";
+import { DOCUMENT } from '@angular/platform-browser';
+import { Inject,Injectable } from '@angular/core';
 
 const VIDEO_URL= "/videos/";
 
@@ -32,6 +36,7 @@ export class NorrlabVideosComponent implements OnInit,AfterViewInit {
 @ViewChild("__signIn") __signIn: ElementRef;
 @ViewChild("__checkUser") __checkUser: ElementRef;
 @ViewChild("__matExpansionPanel") __matExpansionPanel: ElementRef;
+@ViewChild("__boardSocialMedia") __boardSocialMedia: ElementRef;
 
 @ViewChild("__upToMinimumControlProgresse") __upToMinimumControlProgresse: ElementRef;//
 
@@ -82,10 +87,47 @@ cmt = {
   "videoCommentUser":"",
 }
 __openCmtEdito;
-
+__shareOnSocialMedia;
+page ={
+  url:""
+}
 constructor(private userService: UserService,public dialog: MatDialog,private videoService: VideoService,
-  private activatedRoute:ActivatedRoute, private router:Router, private norrlabNavgationService:NorrlabNavgationService) { }
+  private activatedRoute:ActivatedRoute, private router:Router,
+  private matIconRegistry:MatIconRegistry, private norrlabNavgationService:NorrlabNavgationService,private domSanitizer:DomSanitizer,
+  @Inject(DOCUMENT) private document: any) {
+  this.matIconRegistry.addSvgIcon(
+    'icon-twiter',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/svg/icons8-twitter.svg')
+    );
+  this.matIconRegistry.addSvgIcon(
+    'icon-facebook',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/svg/icons8-facebook-old.svg')
+    );
+  this.matIconRegistry.addSvgIcon(
+    'icon-linkedin',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/svg/icons8-linkedin.svg')
+    );
+  this.matIconRegistry.addSvgIcon(
+    'icon-instagram',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/svg/icons8-instagram.svg')
+    );
+  this.page.url = this.document.location.origin+router.url;
+  console.log(this.activatedRoute)
+  console.log(this.router)
+   }
 
+
+   shareOnSocialMediaNoArg(){
+     this.__shareOnSocialMedia = true;
+   }
+
+   shareOnSocialMedia(social){
+     this.videoService.shareOnSocialMedia(social);
+   }
+
+   closeShareVideo(){
+     this.__shareOnSocialMedia=false;
+   }
 
   playPause(){   
   	if(this.videoplayer.nativeElement.paused){  
@@ -128,7 +170,7 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
                 this.showSignIn=true; 
             }else{
               this.showSignIn=false;
-            }
+            }   
          }
    		this.avoidControls();
        this.videoplayer.nativeElement.onended =  () =>{

@@ -43,8 +43,6 @@ testem.log
 
 
 
-/src/app/assets/*
-/src/assets/*
 
 # System Files
 .DS_Store

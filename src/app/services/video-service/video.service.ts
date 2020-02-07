@@ -18,7 +18,10 @@ export class VideoService {
   constructor(private httpClient:HttpClient,@Inject(SESSION_STORAGE) private storage: StorageService,
     private userService:UserService) { }
 
-
+  shareOnSocialMedia(social){
+    
+  }
+  
   createVideoTradeComment(videoComment){
   	return this.httpClient.post(VIDEO_URL,videoComment);
   }
