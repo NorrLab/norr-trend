@@ -7,6 +7,10 @@ import { VideoService} from '../services/video-service/video.service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NorrLabSnackBarComponentComponent } from '../norr-lab-snack-bar-component/norr-lab-snack-bar-component.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatIconRegistry } from "@angular/material/icon";
+import { DomSanitizer } from "@angular/platform-browser";
+import { DOCUMENT } from '@angular/platform-browser';
+import { Inject,Injectable } from '@angular/core';
 
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -27,16 +31,38 @@ export class NorrlabDetailTradeComponent implements OnInit {
   norrLabTradeCommentComment = "";
   __isConnected= false;
    ONLINE_USER;
-
+     page ={
+  url:""
+}
+    __activedSocialShare;
   constructor(private tradesService:TradesService,private route: ActivatedRoute,
   private router: Router, private userService:UserService,private _snackBar: MatSnackBar
-  , private videoService:VideoService) {
+  , private videoService:VideoService,private domSanitizer:DomSanitizer,
+  @Inject(DOCUMENT) private document: any,
+  private matIconRegistry:MatIconRegistry) {
     console.log(this.route)
     console.log(this.route) 
     var tradeId = this.route.snapshot.params.tradeId;
   	this.getTrade(tradeId)
     this.getNorrLabTradeComment(tradeId);
     this.ONLINE_USER = this.userService.getUser();
+     this.matIconRegistry.addSvgIcon(
+    'icon-twiter',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/svg/icons8-twitter.svg')
+    );
+  this.matIconRegistry.addSvgIcon(
+    'icon-facebook',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/svg/icons8-facebook-old.svg')
+    );
+  this.matIconRegistry.addSvgIcon(
+    'icon-linkedin',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/svg/icons8-linkedin.svg')
+    );
+  this.matIconRegistry.addSvgIcon(
+    'icon-instagram',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/svg/icons8-instagram.svg')
+    );
+  this.page.url = this.document.location.origin+router.url;
    }
 
   openSnackBar() {
@@ -44,6 +70,29 @@ export class NorrlabDetailTradeComponent implements OnInit {
       duration: 5 * 1000,
     });
   }
+
+  reloadComponent() {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/user-trades/'+this.route.snapshot.params.tradeId+'/detail']);
+  }    
+
+activeSocialShare(){
+  this.__activedSocialShare = true;
+}
+
+copyInputMessage(inputElement){
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+    setTimeout(() =>{ 
+     this.__activedSocialShare = false;
+    },1000)
+  }
+
+closeShareVideo(){
+   this.__activedSocialShare = false ;
+}
 
    norrLabTradeCommentX(){
      this.norrLabTradeCommentComment="";

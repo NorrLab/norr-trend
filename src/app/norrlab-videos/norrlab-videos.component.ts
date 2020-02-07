@@ -116,6 +116,16 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
   console.log(this.router)
    }
 
+   /* To copy Text from Textbox */
+  copyInputMessage(inputElement){
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+    setTimeout(() =>{ 
+     this.__shareOnSocialMedia = false;
+    },1000)
+  }
+
 
    shareOnSocialMediaNoArg(){
      this.__shareOnSocialMedia = true;

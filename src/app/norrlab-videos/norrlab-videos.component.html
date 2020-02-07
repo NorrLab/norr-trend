@@ -126,11 +126,11 @@
 								 	<div  class="col-12 sign_in share_by_url" style="text-align: start;display: inline-block;width: 100%;">
 								 		 <div class="row" style="padding-right: 9px;">
 								 		 	<div class="col-10" >
-								 		 		<input (ngModelChange)="onTextChange($event)" style="
+								 		 		<input #userInput type="text" (ngModelChange)="onTextChange($event)" style="
     font-size: 17px;"  name="" [(ngModel)]="page.url" matInput placeholder="" >
 								 		 	</div>
 								 		 	<div class="col-2" > 
-								 		 		<a class="copyClass" (click)="moreVideosOnDemand($event)">
+								 		 		<a class="copyClass" style="color: blue" (click)="copyInputMessage(userInput)">
 										 			COPY
 												</a>
 								 		 	</div>

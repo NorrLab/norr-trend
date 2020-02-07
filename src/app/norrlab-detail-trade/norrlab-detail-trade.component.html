@@ -33,10 +33,63 @@
             {{__norrlabTrade.description}}
           </p>
         </mat-card-content>
-        <mat-card-actions class="trade-card-actions" > 
+        <mat-card-actions class="trade-card-actions" >
+
+           <div class="col-12" class=" shareSocial" *ngIf="__activedSocialShare">
+                    <mat-card-subtitle> 
+                    <div class="row" style="
+    margin-left: 0px;
+    margin-right: 0px;
+" >
+                      <div class="col-6">Share!</div>
+
+                    <div class="col-6" style="text-align: end"  >
+                      <mat-icon (click)="closeShareVideo()" style="cursor: pointer;">close</mat-icon>
+                    </div>
+                    </div>
+                    </mat-card-subtitle>
+
+                  <mat-divider></mat-divider> 
+                  <mat-card-content style="margin-top: 30px">  
+                    <div class="row" style="
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 9px;
+    padding-right: 9px;
+">
+                      <a  class="moreVideosOnDemand"><mat-icon svgIcon="icon-twiter"></mat-icon>TWITTER
+                  </a>
+                  <a  class="col-3 moreVideosOnDemand" (click)="moreVideosOnDemand($event)">  
+                    <mat-icon svgIcon="icon-facebook"></mat-icon>FACEBBOK
+                  </a>
+                  <a  class="col-3 moreVideosOnDemand" (click)="moreVideosOnDemand($event)">
+                    <mat-icon svgIcon="icon-linkedin"></mat-icon>LINKEDIN
+                  </a>
+                  <a  class="col-3 moreVideosOnDemand" (click)="moreVideosOnDemand($event)">
+                    <mat-icon svgIcon="icon-instagram"></mat-icon>INSTAGRAM
+                  </a>
+                    </div>
+                    
+                  <div  class="col-12 sign_in share_by_url" style="text-align: start;display: inline-block;width: 100%;">
+                     <div class="row" style="padding-right: 9px;">
+                      <div class="col-10" >
+                        <input #userInput type="text" (ngModelChange)="onTextChange($event)" style="
+    font-size: 17px;"  name="" [(ngModel)]="page.url" matInput placeholder="" >
+                      </div>
+                      <div class="col-2" > 
+                        <a class="copyClass" style="color: blue" (click)="copyInputMessage(userInput)">
+                          COPY
+                        </a>
+                      </div>
+                     </div> 
+                  </div>
+                  </mat-card-content>
+                </div>
+
           <div style="padding-right: 32px"> 
-              <mat-icon>restore_page</mat-icon> 
-          <mat-icon>share</mat-icon> 
+           
+              <mat-icon (click)="reloadComponent()">restore_page</mat-icon> 
+          <mat-icon (click)="activeSocialShare()">share</mat-icon> 
           <mat-icon>thumb_up_alt</mat-icon>
           <mat-icon>thumb_down_alt</mat-icon>
           </div>
