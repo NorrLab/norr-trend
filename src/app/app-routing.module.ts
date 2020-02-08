@@ -7,6 +7,13 @@ import {NorrlabLessonsComponent} from './norrlab-lessons/norrlab-lessons.compone
 import {NorrlabVideosComponent} from './norrlab-videos/norrlab-videos.component';
 import { NorrlabLoginComponent } from './norrlab.login/norrlab.login.component';
 import { NorrlabDetailTradeComponent } from './norrlab-detail-trade/norrlab-detail-trade.component';
+import { NorrlabVideoEditComponent } from './norrlab-video-edit/norrlab-video-edit.component';
+import { NorrlabVideoChannelComponent } from './norrlab-video-channel/norrlab-video-channel.component';
+import { NorrlabMemberShipsComponent } from './norrlab-member-ships/norrlab-member-ships.component';
+import { NorrlabPositionBublicationComponent } from './norrlab-position-bublication/norrlab-position-bublication.component';
+import { NorrlabAccountManagerComponent } from './norrlab-account-manager/norrlab-account-manager.component';
+
+
 
 const routes: Routes = [{path:'home',component:NorrlabHomeComponent}
 	,{path:'lessons',component:NorrlabLessonsComponent},
@@ -26,6 +33,11 @@ const routes: Routes = [{path:'home',component:NorrlabHomeComponent}
 	 		{path:'user-trades/:tradeId/managin',component:NorrlabLoginComponent} */
 	 	]
 	 }
+	,{path:'videos-edition',component:NorrlabVideoEditComponent}
+	,{path:'videos-channel',component:NorrlabVideoChannelComponent}
+	,{path:'memberships',component:NorrlabMemberShipsComponent}
+	,{path:'position-bublication',component:NorrlabPositionBublicationComponent}
+	,{path:'account-manager/:userId',component:NorrlabAccountManagerComponent}
 ];
  
 @NgModule({

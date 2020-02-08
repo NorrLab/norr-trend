@@ -28,11 +28,17 @@ export class UserService {
   	return false;
   }
 
+  signOut(){
+    //TODO post to save last onile date and duration
+    var user = this.storage.get(STORAGE_USER_KEY);
+    this.storage.set(STORAGE_USER_KEY,null);
+  }
+
   userLogin(data,nextPage){
   	return this.httpClient.post(this.userLoginUrl,data).subscribe(user =>{
   		console.log(user);
       console.log("this.norrlabNavgationService.goToNextUrl()");
-        this.norrlabNavgationService.goToNextUrl(nextPage);
+        //this.norrlabNavgationService.goToNextUrl(nextPage);
         this.storage.set(STORAGE_USER_KEY,  this.userMapperToClient(user));
   	},err=>{
   		alert(err);

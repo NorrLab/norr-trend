@@ -1,0 +1,127 @@
+<div class="sub-toolbar">  
+    <div class="sub-menu">
+      <a href=""> NorrLab</a> /
+
+      <a href=""> Channel</a>
+    </div>
+</div>
+
+
+<div #__main_container class="row main-container">  
+	<div class="col-12" > 
+		<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults || isRateLimitReached">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+      GitHub's API rate limit has been reached. It will be reset in one minute.
+    </div>
+  </div>
+
+  <div class="example-table-container">
+<!-- 'Video', 'Visibility', 'Restriction', 'Date'-->
+    <table mat-table [dataSource]="data" class="example-table"
+           matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
+      <!-- Video Column -->
+      <ng-container matColumnDef="Video">
+        <th mat-header-cell *matHeaderCellDef>Video</th>
+        <td mat-cell *matCellDef="let row">
+          <div class="row">
+            <div class="col-6 video_poster">
+              <img mat-card-image src="http://localhost:369{{trade? trade.pictureUrl:'/images/default-img.jpg'}}" alt="Photo of a Shiba Inu">
+            </div>
+            <div class="col-6 video_poster">
+              
+              <button mat-icon-button (click)="goToVideoPage(topWeekVideo[0]._id)" class=" proposal-video" ><mat-icon>edit </mat-icon></button>
+              <button mat-icon-button (click)="goToVideoPage(topWeekVideo[0]._id)" class=" proposal-video" ><mat-icon>bar_chart</mat-icon></button>
+              <button mat-icon-button (click)="goToVideoPage(topWeekVideo[0]._id)" class=" proposal-video" ><mat-icon>insert_comment</mat-icon></button>
+
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+          <div class="example-element-detail"
+               [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="example-element-diagram">
+              <div class="example-element-position"> element.position}} </div>
+              <div class="example-element-symbol"> element.symbol}} </div>
+              <div class="example-element-name"> element.name}} </div>
+              <div class="example-element-weight"> element.weight}} </div>
+            </div>
+            <div class="example-element-description">
+              element.description}}333
+              <span class="example-element-description-attribution"> -- Wikipedia </span>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Visibility Column -->
+      <ng-container matColumnDef="Visibility">
+        <th mat-header-cell *matHeaderCellDef>Visibility</th>
+        <td mat-cell *matCellDef="let row"> 
+          <div class="row">
+            <div class="col-2">
+              <mat-icon>remove_red_eye</mat-icon> 
+            </div>
+            <div class="col-2 public_private">
+              {{row.visibility?row.visibility:'Public'}}
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Restriction Column -->
+      <ng-container matColumnDef="Restriction">
+        <th mat-header-cell *matHeaderCellDef>Restriction</th>
+        <td mat-cell *matCellDef="let row">{{row.restriction?row.restriction:'None'}} </td>
+      </ng-container>
+
+      <!-- Created Column -->
+      <ng-container matColumnDef="Created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Created
+        </th>
+        <td mat-cell *matCellDef="let row">{{row.created_at | date}}</td>
+      </ng-container>
+
+      <!-- Views Column -->
+      <ng-container matColumnDef="Views">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Views
+        </th>
+        <td mat-cell *matCellDef="let row">{{row.views?row.views:'0'}}</td>
+      </ng-container>
+
+      <!-- Comments Column -->
+      <ng-container matColumnDef="Comments">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Comments
+        </th>
+        <td mat-cell *matCellDef="let row"><a href="">{{row.comments?row.comments:'0'}}</a></td>
+      </ng-container>
+
+      <!-- Likes(vs Dislike) Column -->
+      <ng-container matColumnDef="Likes (vs Dislike)">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Likes(vs Dislike)
+        </th>
+        <td mat-cell *matCellDef="let row">{{row.likesVsDislike?row.likesVsDislike:'0/0'}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row class="example-element-row" *matRowDef="let row; columns: displayedColumns;"
+      (click)="expandedElement = expandedElement === element ? null : element">
+        
+      </tr>
+    </table>
+  </div> 
+
+  <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+</div>
+			
+	</div>
+</div>

@@ -4,8 +4,51 @@
       <img class="norrlab-logo" src="assets/norrlab/designed-logo-big.png">
     </a>
     <button mat-icon-button class="norrlab-menu-button" (click)="__snav.toggle()"><mat-icon>menu</mat-icon></button> 
-  </mat-toolbar>
 
+    <span class="example-spacer"></span>
+    <div class="col-4" style="text-align: end"> 
+    <button mat-icon-button class="norrlab-share-video-button  " (click)="goToVideoEdition()"><mat-icon >video_call</mat-icon></button>
+    <button mat-icon-button class="norrlab-sign-in-button" (click)="__goToProfil()"><mat-icon [ngClass]="{'logged' : __isLogged}">account_circle</mat-icon></button>  
+     <div class="userProfil" *ngIf="__showUserProfil">
+      <div class="row profilClass">
+        <div class="col-2">
+          <div class="col-12" mat-card-avatar>
+            <img class="example-header-image" src="http://localhost:369/images/{{ONLINE_USER && ONLINE_USER.userPictureUrl?ONLINE_USER.userPictureUrl:'default_user.jpg'}}"  width="100%">
+          </div> 
+        </div>
+        <div class="col-8">
+          
+          <div class="col-12"> 
+            <div style="color: #000;
+    height: 18px;">{{ONLINE_USER.lastName}} {{ONLINE_USER.firstName}}</div>
+
+            <div style="font-size: 13px">{{ONLINE_USER.email}}</div>
+          </div>
+          <div class="col-12"> 
+            <a (click)="gorToAccountManager()" style="font-size: 11px;cursor: pointer;color: #007bff">Manage your NorrLab account</a>
+          </div>
+        </div>
+      </div>
+
+                  <mat-divider></mat-divider> 
+      <div class="listProfil" style="margin-top: 9px">
+
+        <ul>
+         <li (click)="goToUserChannel()" class="list_profil"><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">personal_video</mat-icon><span class="anySpan">your channel </span> </li>
+         <li class="list_profil" (click)="gorToPositionPublication()"><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">trending_up</mat-icon> <span class="anySpan">publish position</span> </li>
+         <li (click)="gorToMemberShips()" class="list_profil"><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">attach_money</mat-icon><span class="anySpan">paid memebership </span> </li>
+         <li class="list_profil" (click)="__signOut()" ><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">supervised_user_circle</mat-icon> <span class="anySpan">sign out</span> </li> 
+       </ul>
+      </div> 
+
+     </div> 
+    </div>
+  </mat-toolbar>
+  <style type="text/css">
+    .mat-drawer-inner-container {
+    background: #2f353a;
+}
+  </style>
   <mat-sidenav-container class="example-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav [opened]="true" class="norrlab-side" #__snav [mode]="mobileQuery.matches ? 'over' : 'side'"

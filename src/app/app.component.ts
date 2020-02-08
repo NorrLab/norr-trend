@@ -1,6 +1,8 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, OnDestroy} from '@angular/core';
 import { Component, OnInit,ViewChild, ElementRef,AfterViewInit } from '@angular/core'; 
+import { UserService} from './services/user-service/user.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router'; 
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,10 @@ export class AppComponent  implements OnDestroy, OnInit{
 
 @ViewChild("__snav") __snav: ElementRef;
   mobileQuery: MediaQueryList;
-
+  __isLogged;
+  __userProfil;
+  __showUserProfil = false;
+  ONLINE_USER;
   fillerNav = [{"libelle":"Home","icon":"home","link":['/home']},{"libelle":"Users Trades","icon":"mode_comment","link":['/user-trades']},
   				{"libelle":"Videos","icon":"video_library","link":['/videos']},{"libelle":"Lessons","icon":"school","link":['/lessons']}];
   				//Array.from({length: 5}, (_, i) => `Nav Item ${i + 1}`);  'Home','Users Trades','Videos','Lessons',
@@ -25,7 +30,8 @@ export class AppComponent  implements OnDestroy, OnInit{
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private userService:UserService, private router:Router,
+    private activatedRoute: ActivatedRoute,) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -34,9 +40,79 @@ export class AppComponent  implements OnDestroy, OnInit{
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+
+  }
+
+  goToUserChannel(){
+      this.__showUserProfil =  !this.__showUserProfil; 
+    this.goTo('videos-channel')
+  }
+
+  __signOut(){
+    this.userService.signOut();
+
+      this.__showUserProfil =  !this.__showUserProfil; 
+    this.goTo('home')
+  }
+
+  goTo(destination) {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([destination]);
+  }   
+
+  gorToMemberShips(){
+      this.__showUserProfil =  !this.__showUserProfil; 
+    this.goTo('memberships')
+  }
+
+  gorToAccountManager(){
+      this.__showUserProfil =  !this.__showUserProfil; 
+    this.goTo('account-manager/'+this.userService.getUser()._id+'')
+  }
+
+  goToVideoEdition(){ 
+    this.goTo('videos-edition')    
+  }
+
+  gorToPositionPublication(){
+      this.__showUserProfil =  !this.__showUserProfil; 
+    this.goTo('position-bublication')
+  }
+
+  __goToProfil(){
+    this.userService.userIsLogged().subscribe(user =>{
+      this.__showUserProfil =  !this.__showUserProfil; 
+      return true;
+    }, err =>{
+      this.__isLogged =  false; 
+      this.goTo('/login');  
+      return false;
+    })
+  }
+
+  isLogged(){
+    this.userService.userIsLogged().subscribe(user =>{
+      this.__isLogged =  true; 
+      this.ONLINE_USER = user;
+      return true;
+    }, err =>{
+      this.__isLogged =  false; 
+      return false;
+    })
+  }
+
+  goToProfilOrLog(){
+    this.userService.userIsLogged().subscribe(user =>{
+      
+      this.__userProfil =  true;  
+    }, err =>{
+      this.__userProfil =  false;
+    })
   }
 
   ngOnInit():void{ 
+    this.isLogged();
   }
 
 

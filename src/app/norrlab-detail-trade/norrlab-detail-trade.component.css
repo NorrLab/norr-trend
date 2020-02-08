@@ -16,6 +16,10 @@
 
 }
 
+.profile-detail:active{  
+  transform: translateY(6px); 
+}
+
  .mat_success {
     background-color: #8EE1B6;
     color: #fff;
@@ -60,6 +64,8 @@
     border: 1px solid #ccc;
     padding: 6px;
     cursor: pointer;
+    letter-spacing: .02em;
+    transition: color .15s ease-in-out;
 }
 
 h1.example-app-name {

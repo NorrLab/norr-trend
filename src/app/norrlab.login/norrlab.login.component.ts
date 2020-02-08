@@ -16,15 +16,24 @@ export class NorrlabLoginComponent implements OnInit {
 			"email":"some",
 			"password":"123tx"
 		}
-  constructor(private userService:UserService, private location:Location, private norrlabNavgationService:NorrlabNavgationService) { }
+  constructor(private userService:UserService, private location:Location, private norrlabNavgationService:NorrlabNavgationService,
+    private router:Router) { }
 
   ngOnInit() {
 
   }
 
+  reloadComponent() {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate(['/user-trades/']);
+      } 
+
   userLogin(){ 
     console.log(this.location); 
-  	this.userService.userLogin(this.data,'/user-trades');
+  	this.userService.userLogin(this.data,'/user-trades')
+      this.reloadComponent() 
+    ;
   }
 
 }

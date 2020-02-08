@@ -151,7 +151,7 @@ getNorrLabTradeComment(tradeId){
     this.__norrlabTrade.description = analyse.description;
   }
 createNorrLabTradeComment(){
-if(!norrLabTradeCommentComment.trim()) 
+if(!this.norrLabTradeCommentComment.trim()) 
   return;
   this.userService.userIsLogged().subscribe(user =>{
       this.norrLabTradeComment.comment = this.norrLabTradeCommentComment;
