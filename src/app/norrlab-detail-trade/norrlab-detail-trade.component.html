@@ -47,9 +47,7 @@
                       <mat-icon (click)="closeShareVideo()" style="cursor: pointer;">close</mat-icon>
                     </div>
                     </div>
-                    </mat-card-subtitle>
-
-                  <mat-divider></mat-divider> 
+                    </mat-card-subtitle> 
                   <mat-card-content style="margin-top: 30px">  
                     <div class="row" style="
     margin-left: 0px;
@@ -69,7 +67,7 @@
                     <mat-icon svgIcon="icon-instagram"></mat-icon>INSTAGRAM
                   </a>
                     </div>
-                    
+
                   <div  class="col-12 sign_in share_by_url" style="text-align: start;display: inline-block;width: 100%;">
                      <div class="row" style="padding-right: 9px;">
                       <div class="col-10" >
@@ -123,28 +121,19 @@
             <mat-form-field  (click)="onSearchChange($event.target.value)" style="
     width: 100%;
 " class="example-full-width" [style.fontSize]="'14px'">
-              <input 
+              <input type="text" 
                name="norr" #message maxlength="350" matInput [(ngModel)]="norrLabTradeCommentComment" placeholder="ADD COMMENT..." style="width: 100%;font-size: 13px"
-              >
-              <!--<textarea matInput (blur)="alertNorr()"
-                cdkTextareaAutosize
-                #autosize="cdkTextareaAutosize"
-                cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5">
-                  
-              </textarea>
-                
-              <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
-            -->
+              > 
 
               <mat-hint align="end">{{message.value.length}} / 350</mat-hint>
             </mat-form-field> 
-            <div class="button_send_comment" *ngIf="__isConnected">
+            <div class="" *ngIf="__isConnected">
               
-              <button mat-button routerLinkActive="active" (click)="norrLabTradeCommentX()"  
-            class="mat-button moreVideosOnDemand " style="margin-right: 9px">CANCEL</button>
-              <a style="background-color: #8EE1B6" mat-raised-button routerLinkActive="active" (click)="createNorrLabTradeComment(linkTradeId)"  
-            class="mat-raised-button moreVideosOnDemand ">COMMENT</a>
+              <button mat-button (click)="__cancel($event)"  
+            class="mat-button moreVideosOnDemand " style="margin-right: 9px">
+              CANCEL
+            </button>
+            <button  (click)="createNorrLabTradeComment(linkTradeId)" [disabled]="!__isConnected" mat-button class="mat-button mat_success moreVideosOnDemand">COMMENT</button>
             </div>
           </form>
 

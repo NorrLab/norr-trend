@@ -94,9 +94,11 @@ closeShareVideo(){
    this.__activedSocialShare = false ;
 }
 
-   norrLabTradeCommentX(){
-     this.norrLabTradeCommentComment="";
-      this.__isConnected= false;
+   __cancel(event){
+        if(event.target.classList.contains("mat-button-wrapper")){
+          this.norrLabTradeCommentComment="";
+           this.__isConnected= false; 
+         }
    }
 
 
@@ -148,7 +150,9 @@ getNorrLabTradeComment(tradeId){
     }
     this.__norrlabTrade.description = analyse.description;
   }
-createNorrLabTradeComment(){ 
+createNorrLabTradeComment(){
+if(!norrLabTradeCommentComment.trim()) 
+  return;
   this.userService.userIsLogged().subscribe(user =>{
       this.norrLabTradeComment.comment = this.norrLabTradeCommentComment;
       this.norrLabTradeComment.commentTrade = this.videoService.getVideo()._id;
@@ -198,7 +202,11 @@ createNorrLabTradeComment(){
   }
 
   onSearchChange(data){ 
-    return this.isConnected(data);
+    this.userService.userIsLogged().subscribe(user =>{
+               this.__isConnected = true; 
+           },err=>{
+             this.__isConnected = false; 
+           })
   }
 
 }

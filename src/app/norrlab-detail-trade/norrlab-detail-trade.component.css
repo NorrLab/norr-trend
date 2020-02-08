@@ -16,6 +16,11 @@
 
 }
 
+ .mat_success {
+    background-color: #8EE1B6;
+    color: #fff;
+}
+
 .moreVideosOnDemand{ 
  
      box-sizing: border-box;
