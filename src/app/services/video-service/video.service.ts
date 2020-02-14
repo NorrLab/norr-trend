@@ -2,11 +2,13 @@ import { Inject,Injectable } from '@angular/core';
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 import { UserService} from '../user-service/user.service';
+import { NorrLabVideo} from '../../interfaces/norrLabVideo/norr-lab-video';
+import {merge, Observable, of as observableOf} from 'rxjs';
 
 const VIDEO_URL="http://localhost:369/norr-video";
 const VIDEO_VIEWS_URL="http://localhost:369/norr-video/video-views";
 const VIDEO_COMMENT_URL="http://localhost:369/norr-video/comments";
-
+//
 @Injectable({
   providedIn: 'root'
 })
@@ -57,11 +59,11 @@ export class VideoService {
    }
 
 
-  getVideoFree(videoId, limite){
+  getVideoFree(videoId, limite): Observable<NorrLabVideo[]> {
   	const params = new HttpParams()
   	.set('videoId', (videoId?videoId:null))
 	.set('limite', (limite?limite:null))
-  	return this.httpClient.get(VIDEO_URL,{params});
+  	return this.httpClient.get<NorrLabVideo[]>(VIDEO_URL,{params});
   		
   }
 
@@ -76,6 +78,11 @@ export class VideoService {
 
   setVideo(video){
   	this.storage.set("VIDEO_KEY",video);
+  }
+
+  getVideosByUserId(): Observable<NorrLabVideo[]> {
+      const url = VIDEO_URL+'/'+this.userService.getUser()._id+'/videos';
+    return this.httpClient.get<NorrLabVideo[]>(url);
   }
 
   getVideoSrc(param){

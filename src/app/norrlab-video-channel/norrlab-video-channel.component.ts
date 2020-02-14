@@ -7,6 +7,8 @@ import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {NorrLabVideo} from '../interfaces/norrLabVideo/norr-lab-video';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { VideoService} from '../services/video-service/video.service';
+import { UserService} from '../services/user-service/user.service';
 
 
 @Component({
@@ -31,14 +33,25 @@ export class NorrlabVideoChannelComponent  implements AfterViewInit {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
-  
-  expandedElement: PeriodicElement | null;
+  ONLINE_USER : any;
+  expandedElement:  null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient, private videoService:VideoService,private userService: UserService) {}
+  
+  goToSubscriberList(){
+
+  }
 
   ngAfterViewInit() {
+
+    this.videoService.getVideosByUserId().subscribe(videos =>{
+      this.norrlabVideos = videos;
+    })
+
+    this.ONLINE_USER = this.userService.getUser(); 
+
     this.exampleDatabase = new ExampleHttpDatabase(this._httpClient);
 
     // If the user changes the sort order, reset back to the first page.
@@ -66,7 +79,9 @@ export class NorrlabVideoChannelComponent  implements AfterViewInit {
           this.isRateLimitReached = true;
           return observableOf([]);
         })
-      ).subscribe(data => this.data = data);
+      ).subscribe(data => {
+        //this.data = data
+      });
   }
 }
 
