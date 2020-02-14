@@ -1,0 +1,49 @@
+.sub-toolbar{
+	height: 35px;
+	background: #fff;
+}
+
+.sub-menu {
+    display: inline-block;
+    padding: 4px;
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.row.main-container {
+    margin: 19px;
+    background-color: #fafafa;
+}
+
+.video_title {
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 3px;
+    height: 71px; 
+}
+
+.in_title{
+	margin-left: 9px;
+	margin-right: 9px;
+
+	margin-top: 3px;
+	margin-bottom: 9px
+}
+
+.in_title_6_1{
+	color: #ccc;
+    padding-right: 0px;
+    padding-right: 3px;
+    font-size: 12px;
+}
+
+.textarea_title{
+	outline: none;
+	font-size: 16px;
+	padding: 3px; 
+	display: block;
+}
+
+.video_title{
+
+}

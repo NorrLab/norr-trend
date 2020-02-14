@@ -9,6 +9,7 @@ import {NorrLabVideo} from '../interfaces/norrLabVideo/norr-lab-video';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { VideoService} from '../services/video-service/video.service';
 import { UserService} from '../services/user-service/user.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router'; 
 
 
 @Component({
@@ -38,11 +39,32 @@ export class NorrlabVideoChannelComponent  implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private _httpClient: HttpClient, private videoService:VideoService,private userService: UserService) {}
+  constructor(private _httpClient: HttpClient, private videoService:VideoService,private userService: UserService,
+    private router:Router) {}
   
   goToSubscriberList(){
 
   }
+
+  goToVideoEditPage(videoId){ 
+    this.goTo('/videos-edition/'+videoId)
+  }
+
+  goToVideoChartPage(){
+
+  }
+
+  goToVideoCommentPage(){
+  }
+
+
+
+  goTo(destination) {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([destination]);
+  }   
+
 
   ngAfterViewInit() {
 

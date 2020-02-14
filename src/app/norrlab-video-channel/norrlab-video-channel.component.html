@@ -50,7 +50,7 @@
         <th mat-header-cell *matHeaderCellDef>Video</th>
         <td mat-cell *matCellDef="let row">
           <div class="row">
-            <div class="col-4 video_poster">
+            <div class="col-4 video_poster" (click)="goToVideoEditPage(row._id)" style="cursor: pointer;">
               <img mat-card-image src="{{row.videoPoster? row.videoPoster:'http://localhost:369/images/default-img.jpg'}}" alt="Photo of a Shiba Inu">
             </div>
             <div class="col-7 video_poster">
@@ -58,9 +58,9 @@
                 {{row.videoTitle}}
               </div>
               <div class="channel_video">
-                <button mat-icon-button (click)="goToVideoPage(topWeekVideo[0]._id)" class=" proposal-video" ><mat-icon>edit </mat-icon></button>
-                <button mat-icon-button (click)="goToVideoPage(topWeekVideo[0]._id)" class=" proposal-video" ><mat-icon>bar_chart</mat-icon></button>
-                <button mat-icon-button (click)="goToVideoPage(topWeekVideo[0]._id)" class=" proposal-video" ><mat-icon>insert_comment</mat-icon></button>
+                <button mat-icon-button (click)="goToVideoEditPage(row._id)" class=" proposal-video" ><mat-icon>edit </mat-icon></button>
+                <button mat-icon-button (click)="goToVideoChartPage()" class=" proposal-video" ><mat-icon>bar_chart</mat-icon></button>
+                <button mat-icon-button (click)="goToVideoCommentPage()" class=" proposal-video" ><mat-icon>insert_comment</mat-icon></button>
               </div>
 
             </div>
@@ -73,7 +73,7 @@
         <th mat-header-cell *matHeaderCellDef>Visibility</th>
         <td mat-cell *matCellDef="let row"> 
           <div class="row col-12">
-            <div class="col-12 video_status" *ngIf="row.public">
+            <div class="col-12 video_status" *ngIf="row.public" >
               <mat-icon>visibility</mat-icon> 
             </div>
             <div class="col-12 video_status" *ngIf="!row.public">

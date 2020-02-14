@@ -45,7 +45,7 @@ export class AppComponent  implements OnDestroy, OnInit{
 
   goToUserChannel(){
       this.__showUserProfil =  !this.__showUserProfil; 
-    this.goTo('videos-channel')
+    this.goTo('videos-channel/'+this.userService.getUser()._id)
   }
 
   __signOut(){

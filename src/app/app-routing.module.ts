@@ -33,8 +33,8 @@ const routes: Routes = [{path:'home',component:NorrlabHomeComponent}
 	 		{path:'user-trades/:tradeId/managin',component:NorrlabLoginComponent} */
 	 	]
 	 }
-	,{path:'videos-edition',component:NorrlabVideoEditComponent}
-	,{path:'videos-channel',component:NorrlabVideoChannelComponent}
+	,{path:'videos-edition/:videoId',component:NorrlabVideoEditComponent}
+	,{path:'videos-channel/:userId',component:NorrlabVideoChannelComponent}
 	,{path:'memberships',component:NorrlabMemberShipsComponent}
 	,{path:'position-bublication',component:NorrlabPositionBublicationComponent}
 	,{path:'account-manager/:userId',component:NorrlabAccountManagerComponent}
