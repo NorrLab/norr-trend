@@ -85,6 +85,11 @@ export class VideoService {
     return this.httpClient.get<NorrLabVideo[]>(url);
   }
 
+  getVideosToUpdateByUserId(videoId): Observable<NorrLabVideo> {
+      const url = VIDEO_URL+'/'+this.userService.getUser()._id+'/videos/'+videoId;
+    return this.httpClient.get<NorrLabVideo>(url);
+  }
+
   getVideoSrc(param){
   	this.norrlabVideo={
 	  "videoUrl":"",//BelattarQuenelleZemmour

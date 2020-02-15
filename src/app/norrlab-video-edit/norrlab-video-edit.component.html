@@ -7,29 +7,50 @@
 	</div>
 <mat-tab-group>
   <mat-tab label="Basic">
-  	<div class="row main-container" style="color: red">
-  		<div class="col-8">
-  			<div class="col-12">
-  				<div class="col-6 ">
-  					<div  class="video_title">
-			         	<div class="in_title row">
-			         		<div class="col-6 in_title_6_1">
-			         			Title (required)
-			         		</div>
-			         		<div class="col-6">
-			         			<mat-icon>help_outline</mat-icon>
+  	<div class="row main-container">
+  		<div class="col-12">
+  			<div class="row " style="margin: 13px">
+  				<div class="col-6  col_6_left"> 
+			         <div class="row">
+			         	<div class="col-12 norr-lab-mat-card">
+			         		<div class="in_title row">
+				         		<div class="col-3 in_title_6_1">
+				         			Title (required)
+				         		</div>
+				         		<div class="col-6 after_in_title_6_1">
+				         			<mat-icon>help_outline</mat-icon>
+				         		</div>
+				         	</div>
+			         		<div role="textarea" contenteditable="true" class="col-12 textarea_title" placeholde="dome" #textarea tabindex="1" ngModel="videoToUpdate.videoTitle">
+			         		
 			         		</div>
 			         	</div>
-			         	<div role="textarea" contenteditable="true" class="textarea_title" #textarea tabindex="1">
+			         </div>
+			         <div class="row">
+			         	<div class="col-12 norr-lab-mat-card" style="height: 156px">
+			         		<div class="in_title row">
+				         		<div class="col-3 in_title_6_1">
+				         			Description  
+				         		</div> 
+				         	</div>
+			         		<div style="display: block;overflow: hidden;box-sizing: content-box;" role="textarea" contenteditable="true" class="col-12 textarea_title" placeholde="dome" #textarea tabindex="1">
 			         		
+			         		</div>
+			         	</div>
+			         </div>
+  				</div>
+
+  				<div class="col-6 col_6_right"> 
+			         <div class="row">
+			         	<div class="col-12 " style="padding-bottom: 0px;height: 156px;">
+			         		<video src="{{videoToUpdate.videoUrl}}" style="width: 100%">
+			         			videoUrl
+			         		</video>
 			         	</div>
 			         </div>
   				</div>
   			</div>
-  		</div>
-  		<div class="col-4">
-  			some infos
-  		</div>
+  		</div> {{videoToUpdate|json}}
   	</div>
   </mat-tab>
   <mat-tab label="More options">
