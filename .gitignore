@@ -47,3 +47,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+/src/app/norrlab-video-edit/norrlab-video-edit.componentOri.css
+/src/app/norrlab-video-edit/norrlab-video-edit.componentOri.html

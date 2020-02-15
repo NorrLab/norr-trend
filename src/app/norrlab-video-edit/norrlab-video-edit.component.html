@@ -7,51 +7,105 @@
 	</div>
 <mat-tab-group>
   <mat-tab label="Basic">
-  	<div class="row main-container">
-  		<div class="col-12">
-  			<div class="row " style="margin: 13px">
-  				<div class="col-6  col_6_left"> 
-			         <div class="row">
-			         	<div class="col-12 norr-lab-mat-card">
-			         		<div class="in_title row">
-				         		<div class="col-3 in_title_6_1">
-				         			Title (required)
-				         		</div>
-				         		<div class="col-6 after_in_title_6_1">
-				         			<mat-icon>help_outline</mat-icon>
-				         		</div>
-				         	</div>
-			         		<div role="textarea" contenteditable="true" class="col-12 textarea_title" placeholde="dome" #textarea tabindex="1" ngModel="videoToUpdate.videoTitle">
-			         		
-			         		</div>
+  	<div class="container_video_edit"> 
+  			<div class="row"> 
+				<div class="col-6">
+					<div class="norr-lab-mat-card"> 
+						<div class="in_title">
+			         		<div class="col-4">
+			         			<span class="in_title_6_1">Title (required)</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
+			         		</div> 
 			         	</div>
-			         </div>
-			         <div class="row">
-			         	<div class="col-12 norr-lab-mat-card" style="height: 156px">
-			         		<div class="in_title row">
-				         		<div class="col-3 in_title_6_1">
-				         			Description  
-				         		</div> 
-				         	</div>
-			         		<div style="display: block;overflow: hidden;box-sizing: content-box;" role="textarea" contenteditable="true" class="col-12 textarea_title" placeholde="dome" #textarea tabindex="1">
-			         		
-			         		</div>
+			         	<div role="textarea" contenteditable="true" class="col-12 textarea_title" placeholde="dome" #textarea tabindex="1" (ngModel)="videoToUpdate.videoTitle">
+			         		{{videoToUpdate.videoTitle}}
+	         			</div>
+			         	<div class="col-12" style="text-align: end; font-size: 12px;color: #ccc">
+			         			{{videoToUpdate.videoTitle.length}}/60
 			         	</div>
-			         </div>
-  				</div>
+					</div>
 
-  				<div class="col-6 col_6_right"> 
-			         <div class="row">
-			         	<div class="col-12 " style="padding-bottom: 0px;height: 156px;">
-			         		<video src="{{videoToUpdate.videoUrl}}" style="width: 100%">
-			         			videoUrl
-			         		</video>
+					<div class="norr-lab-mat-card"> 
+						<div class="in_title">
+			         		<div class="col-4">
+			         			<span class="in_title_6_1">Description</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
+			         		</div> 
 			         	</div>
-			         </div>
-  				</div>
-  			</div>
-  		</div> {{videoToUpdate|json}}
-  	</div>
+			         	<div role="textarea" contenteditable="true" class="col-12 textarea_title" placeholde="dome" #textarea tabindex="1" (ngModel)="videoToUpdate.videoTitle">
+			         		{{videoToUpdate.videoDescription}}
+	         			</div>
+			         	<div class="col-12" style="text-align: end; font-size: 12px;color: #ccc">
+			         			{{videoToUpdate.videoDescription.length}}/200
+			         	</div>
+					</div>
+					<div class="norrthumbnail" style=" padding-top:  9px"> 
+						<div > 
+								<p> <span class="thumb_title"> Thumbnail</span> <br> 
+Select or upload a picture that shows what's in your video. A good thumbnail stands out and draws viewers' attention</p>
+						</div>
+					</div>	
+					<div class="thumbnail_video"> 
+						<ul class="video_poster row"> 
+							<li class="video_poster_li col-3" *ngFor="let g of [1,2,3,4] "> 
+								<div> 
+									<img class="poster_example" src="{{videoToUpdate.videoPoster}}">
+								</div>		
+							</li>
+						</ul>		
+					</div>
+					<div class="norr-lab-mat-card"> 
+						<div class="in_title">
+			         		<div class="col-4">
+			         			<span class="in_title_6_1">Tags</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
+			         		</div> 
+			         	</div> 
+			         	<div class="col-12" style="font-size: 12px;color: #ccc;text-align: 	center;">
+			         		 	
+			         	</div>
+					</div>	
+				</div>
+				<div class="col-6">  
+					<div> 
+						<video class="video_to_edit" src="{{videoToUpdate.videoUrl}}"> 
+								
+						</video>
+					</div>
+					<div class="video_properties"> 
+						<div class="video_properties_link_title">
+							<p>  Video link</p>
+						</div>
+						<div class="video_properties_link">
+							<a (click)="watchvideo(videoToUpdate._id)">
+								{{videoToUpdate.videoUrl}}
+							</a>		
+						</div>	
+						<div class="video_properties_link_title" style="margin-top: 12px">
+							<p>  File name</p>
+						</div>
+						<div class="video_properties_link">
+							<p (click)="watchvideo(videoToUpdate._id)">
+								{{videoToUpdate.videoUrl}}
+							</p>		
+						</div>		
+					</div>
+					<!--other option such as visibility--> 
+					<div class="norr-lab-mat-card"> 
+						<div class="in_title">
+			         		<div class="col-4">
+			         			<span class="in_title_6_1">Visibility</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
+			         		</div> 
+			         	</div> 
+			         	<div class="col-12" style="font-size: 12px;color: #ccc;text-align: 	center;">
+			         		<mat-form-field class="col-12">
+							  <mat-select disableRipple>
+							    <mat-option value="1">Public</mat-option>
+							    <mat-option value="2">Subscribers</mat-option> 
+							  </mat-select>
+							</mat-form-field>	
+			         	</div>
+					</div>
+				</div>
+  			</div>	
+  	</div>	
   </mat-tab>
   <mat-tab label="More options">
 

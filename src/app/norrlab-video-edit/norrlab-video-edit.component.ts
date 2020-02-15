@@ -13,7 +13,18 @@ export class NorrlabVideoEditComponent implements OnInit {
 
   constructor(private activatedRoute:ActivatedRoute ,private  videoService:VideoService,private userService:UserService) { }
 
- 
+ infoDescription(){
+ 	alert(this.videoToUpdate.videoDescription.length)
+ }
+
+ infoTitle(){
+ 	alert(this.videoToUpdate.videoTitle.length)
+ }
+
+watchvideo(videoToUpdateId){
+
+}
+
   ngOnInit() {
   	 var videoId = this.activatedRoute.snapshot.params.videoId;
   	 this.videoService.getVideosToUpdateByUserId(videoId)
