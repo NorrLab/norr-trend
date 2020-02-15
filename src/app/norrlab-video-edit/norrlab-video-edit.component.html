@@ -47,7 +47,7 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 						<ul class="video_poster row"> 
 							<li class="video_poster_li col-3" *ngFor="let g of [1,2,3,4] "> 
 								<div> 
-									<img class="poster_example" src="{{videoToUpdate.videoPoster}}">
+									<img class="poster_example" src="{{videoToUpdate && videoToUpdate.videoPoster? videoToUpdate.videoPoster:''}}">
 								</div>		
 							</li>
 						</ul>		
@@ -108,7 +108,102 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
   	</div>	
   </mat-tab>
   <mat-tab label="More options">
+  		<div class="container_video_edit"> 
+  			<div class="row"> 
+				<div class="col-6">
+					<div class="norr-lab-mat-card"> 
+						<div class="in_title">
+			         		<div class="col-4">
+			         			<span class="in_title_6_1">Recording date</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
+			         		</div> 
+			         	</div>
+			         	<div class="col-12" style="text-align: end; font-size: 12px;color: #ccc">
+			         		<mat-form-field class="col-12">
+		         				  <mat-label>Choose a date</mat-label>
+								  <input matInput [matDatepicker]="picker">
+								  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+								  <mat-datepicker #picker></mat-datepicker>
+							</mat-form-field>	
+  
+			         	</div>
+					</div>
 
+					<div class="norr-lab-mat-card"> 
+						<div class="in_title">
+			         		<div class="col-4">
+			         			<span class="in_title_6_1">Video location</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
+			         		</div> 
+			         	</div> 
+			         	<div class="col-12" style="text-align: end; font-size: 12px;color: #ccc">
+			         			<form class="example-form">
+								  <mat-form-field class="col-12  example-full-width">
+								    <input type="text"
+								           placeholder="Search"
+								           aria-label="Number"
+								           matInput
+								           [formControl]="myControlLoc"
+								           [matAutocomplete]="auto">
+								    <mat-autocomplete #auto="matAutocomplete">
+								      <mat-option *ngFor="let optionLoc of optionLocation" [value]="optionLoc">
+								        {{optionLoc}}
+								      </mat-option>
+								    </mat-autocomplete>
+								  </mat-form-field>
+								</form>
+			         	</div>
+					</div> 
+					<div class="norr-lab-mat-card"> 
+						<div class="in_title">
+			         		<div class="col-4">
+			         			<span class="in_title_6_1">Category</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
+			         		</div> 
+			         	</div> 
+			         	<div class="col-12" style="text-align: end; font-size: 12px;color: #ccc">
+			         			<form class="example-form1">
+								  <mat-form-field class="col-12  example-full-width">
+								    <input type="text"
+								           placeholder="Search"
+								           aria-label="Number"
+								           matInput
+								           [formControl]="myControl12"
+								           [matAutocomplete]="auto">
+								    <mat-autocomplete #auto="matAutocomplete">
+								      <mat-option *ngFor="let option of optionCategory" [value]="option">
+								        {{option}}
+								      </mat-option>
+								    </mat-autocomplete>
+								  </mat-form-field>
+								</form>
+			         	</div>
+					</div>  
+				</div>
+				<div class="col-6">  
+					<div> 
+						<video class="video_to_edit" src="{{videoToUpdate.videoUrl}}"> 
+								
+						</video>
+					</div>
+					<div class="video_properties"> 
+						<div class="video_properties_link_title">
+							<p>  Video link</p>
+						</div>
+						<div class="video_properties_link">
+							<a (click)="watchvideo(videoToUpdate._id)">
+								{{videoToUpdate.videoUrl}}
+							</a>		
+						</div>	
+						<div class="video_properties_link_title" style="margin-top: 12px">
+							<p>  File name</p>
+						</div>
+						<div class="video_properties_link">
+							<p (click)="watchvideo(videoToUpdate._id)">
+								{{videoToUpdate.videoUrl}}
+							</p>		
+						</div>		
+					</div>
+				</div>
+  			</div>	
+  	</div>	
   </mat-tab> 
   <span class="space"></span>
   <div>some</div>

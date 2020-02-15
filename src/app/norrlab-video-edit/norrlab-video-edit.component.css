@@ -129,6 +129,8 @@ p {
 	cursor: 	pointer;	
 }
 
-
+mat-datepicker-toggle{
+	outline: 	none;	
+}
 
 

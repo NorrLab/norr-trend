@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VideoService} from '../services/video-service/video.service';
 import { UserService} from '../services/user-service/user.service'; 
+import {FormControl} from '@angular/forms';
 
 import {Router, ActivatedRoute, Params} from '@angular/router';
 @Component({
@@ -10,7 +11,11 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 })
 export class NorrlabVideoEditComponent implements OnInit {
   videoToUpdate;
-
+  myControlLoc = new FormControl();
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
+  optionLocation: string[] = ['Paris', 'Bitam', 'Strasbourg','Abidjan','Dakar','Cairo'];
+optionCategory: string[] = ['FOREX', 'STOCK', 'CFD','FUTURES'];
   constructor(private activatedRoute:ActivatedRoute ,private  videoService:VideoService,private userService:UserService) { }
 
  infoDescription(){
