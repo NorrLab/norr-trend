@@ -23,12 +23,36 @@
     /*box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);*/
     border: 1px solid #ccc;
     margin-bottom: 9px;
+} 
+
+.col-12.up-mat_success {
+    text-align: end;
+    position: absolute;
 }
 
 .video_to_edit {
    width: 100%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+} 
+
+.mat-datepicker-toggle> .mat-icon-button {
+    outline: none;
+    color: red
+} 
+
+.mat_success_undo{ 
+    z-index: 999;
+    outline: none;
+    margin-right: 7px
+}
+
+.mat_success {
+    background-color: #8EE1B6;
+    color: #fff;
+    cursor: pointer;
+    z-index: 999;
+    outline: none;		
 }
 
 .video_properties{
@@ -73,11 +97,14 @@ mat-icon.help_in_title_6_1.mat-icon.notranslate.material-icons.mat-icon-no-color
     color: #ccc;
 }
 
-.col-12.ng-pristine.ng-untouched.ng-valid.textarea_title {
+ 
+
+.col-12.textarea_title {
     font-size: 16px;
     line-height: 2;
     outline: none;
 }
+
 
 img.poster_example:hover{
 	border: 1px solid #ccc;

@@ -5,19 +5,24 @@
 	      <a href=""> Video edition</a>
 	    </div>
 	</div>
+
+	<div class="col-12 up-mat_success" > <!-- [disabled]="__openCmtEdito" -->
+		<button (click)="undoChanges()" class="mat_success_undo" style="z-index: 999" mat-flat-button >UNDO CHANGES</button>
+		 <button (click)="saveChanges()" mat-flat-button class="mat_success">SAVE</button> 
+	</div>	
 <mat-tab-group>
   <mat-tab label="Basic">
   	<div class="container_video_edit"> 
   			<div class="row"> 
 				<div class="col-6">
 					<div class="norr-lab-mat-card"> 
-						<div class="in_title">
+						<div class="in_title"> 
 			         		<div class="col-4">
 			         			<span class="in_title_6_1">Title (required)</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
 			         		</div> 
 			         	</div>
-			         	<div role="textarea" contenteditable="true" class="col-12 textarea_title" placeholde="dome" #textarea tabindex="1" (ngModel)="videoToUpdate.videoTitle">
-			         		{{videoToUpdate.videoTitle}}
+			         	<div role="textarea" [textContent]="videoToUpdate.videoTitle" contenteditable="true" class="col-12 textarea_title"  #textarea tabindex="1" (input)="videoToUpdate.videoTitle=$event.target.innerText">
+			         		
 	         			</div>
 			         	<div class="col-12" style="text-align: end; font-size: 12px;color: #ccc">
 			         			{{videoToUpdate.videoTitle.length}}/60
@@ -27,11 +32,11 @@
 					<div class="norr-lab-mat-card"> 
 						<div class="in_title">
 			         		<div class="col-4">
-			         			<span class="in_title_6_1">Description</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
+			         			<span class="in_title_6_1">Description</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoDescription()">help_outline</mat-icon>
 			         		</div> 
 			         	</div>
-			         	<div role="textarea" contenteditable="true" class="col-12 textarea_title" placeholde="dome" #textarea tabindex="1" (ngModel)="videoToUpdate.videoTitle">
-			         		{{videoToUpdate.videoDescription}}
+			         	<div role="textarea" contenteditable="true" class="col-12 textarea_title" placeholde="dome" #textarea
+			         	[textContent]="videoToUpdate.videoDescription" tabindex="1" (input)="videoToUpdate.videoDescription=$event.target.innerText"> 
 	         			</div>
 			         	<div class="col-12" style="text-align: end; font-size: 12px;color: #ccc">
 			         			{{videoToUpdate.videoDescription.length}}/200
@@ -64,8 +69,8 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 					</div>	
 				</div>
 				<div class="col-6">  
-					<div> 
-						<video class="video_to_edit" src="{{videoToUpdate.videoUrl}}"> 
+					<div>  
+						<video class="video_to_edit"  src="{{videoToUpdate.videoUrl}}"> 
 								
 						</video>
 					</div>
@@ -144,15 +149,15 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 								           [formControl]="myControlLoc"
 								           [matAutocomplete]="auto">
 								    <mat-autocomplete #auto="matAutocomplete">
-								      <mat-option *ngFor="let optionLoc of optionLocation" [value]="optionLoc">
-								        {{optionLoc}}
+								      <mat-option *ngFor="let opt of norrOptionLocation" [value]="opt">
+								        {{opt}}
 								      </mat-option>
 								    </mat-autocomplete>
 								  </mat-form-field>
 								</form>
 			         	</div>
 					</div> 
-					<div class="norr-lab-mat-card"> 
+					<!--<div class="norr-lab-mat-card"> 
 						<div class="in_title">
 			         		<div class="col-4">
 			         			<span class="in_title_6_1">Category</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
@@ -162,7 +167,7 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 			         			<form class="example-form1">
 								  <mat-form-field class="col-12  example-full-width">
 								    <input type="text"
-								           placeholder="Search"
+								           placeholder="Category"
 								           aria-label="Number"
 								           matInput
 								           [formControl]="myControl12"
@@ -175,13 +180,13 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 								  </mat-form-field>
 								</form>
 			         	</div>
-					</div>  
+					</div>  -->
 				</div>
-				<div class="col-6">  
-					<div> 
-						<video class="video_to_edit" src="{{videoToUpdate.videoUrl}}"> 
+				<div class="col-6">   
+					<div >  
+						<video class="video_to_edit"  src="{{videoToUpdate.videoUrl}}"> 
 								
-						</video>
+						</video> 
 					</div>
 					<div class="video_properties"> 
 						<div class="video_properties_link_title">

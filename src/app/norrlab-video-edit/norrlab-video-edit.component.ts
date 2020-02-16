@@ -14,8 +14,10 @@ export class NorrlabVideoEditComponent implements OnInit {
   myControlLoc = new FormControl();
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
-  optionLocation: string[] = ['Paris', 'Bitam', 'Strasbourg','Abidjan','Dakar','Cairo'];
+
 optionCategory: string[] = ['FOREX', 'STOCK', 'CFD','FUTURES'];
+  norrOptionLocation: string[] = ['Paris', 'Bitam', 'Strasbourg','Abidjan','Dakar','Cairo'];
+  tmpVideo:any = new Object();
   constructor(private activatedRoute:ActivatedRoute ,private  videoService:VideoService,private userService:UserService) { }
 
  infoDescription(){
@@ -23,22 +25,38 @@ optionCategory: string[] = ['FOREX', 'STOCK', 'CFD','FUTURES'];
  }
 
  infoTitle(){
- 	alert(this.videoToUpdate.videoTitle.length)
+ 	alert(this.videoToUpdate.videoTitle.length+'||'+this.videoToUpdate.videoTitle)
  }
 
 watchvideo(videoToUpdateId){
 
 }
 
+valideUpdate(){
+
+}
+
+undoChanges(){
+   this.logaPage();
+}
+
+saveChanges(){
+  
+}
+
   ngOnInit() {
-  	 var videoId = this.activatedRoute.snapshot.params.videoId;
-  	 this.videoService.getVideosToUpdateByUserId(videoId)
-  	 .subscribe( video =>{
-  	 	this.videoToUpdate = video;
-  	 },error=>{
-  	 	alert("error")
-  	 })
+  	 this.logaPage();
   }
 
+  logaPage(){
+    var videoId = this.activatedRoute.snapshot.params.videoId;
+     this.videoService.getVideosToUpdateByUserId(videoId)
+     .subscribe( video =>{
+       this.videoToUpdate = video; 
+       //this.videoToUpdate.videoUrl = undefined;
+     },error=>{
+       alert("error")
+     })
+  }
 
 }
