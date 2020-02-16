@@ -65,6 +65,13 @@ showSuccess() {
     this.videoToUpdate;
     this.toastr.success('Changes saved');
 }
+onDateChanges(){
+   this.videoToUpdate.recordingDate = (this.recordingDate.value).toISOString() 
+}
+
+onLocationChanges(){
+   this.videoToUpdate.videoLocation = (this.myControlLoc.value)  
+}
 
   ngOnInit() {
   	 this.logaPage();

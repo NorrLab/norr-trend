@@ -17,7 +17,7 @@
 				<div class="col-6">
 					<div class="norr-lab-mat-card"> 
 						<div class="in_title"> 
-			         		<div class="col-4">
+			         		<div class="col-6">
 			         			<span class="in_title_6_1">Title (required)</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
 			         		</div> 
 			         	</div>
@@ -31,7 +31,7 @@
 
 					<div class="norr-lab-mat-card"> 
 						<div class="in_title">
-			         		<div class="col-4">
+			         		<div class="col-6">
 			         			<span class="in_title_6_1">Description</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoDescription()">help_outline</mat-icon>
 			         		</div> 
 			         	</div>
@@ -59,7 +59,7 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 					</div>
 					<div class="norr-lab-mat-card"> 
 						<div class="in_title">
-			         		<div class="col-4">
+			         		<div class="col-6">
 			         			<span class="in_title_6_1">Tags</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
 			         		</div> 
 			         	</div> 
@@ -95,7 +95,7 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 					<!--other option such as visibility--> 
 					<div class="norr-lab-mat-card"> 
 						<div class="in_title">
-			         		<div class="col-4">
+			         		<div class="col-6">
 			         			<span class="in_title_6_1">Visibility</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
 			         		</div> 
 			         	</div>
@@ -118,17 +118,14 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 				<div class="col-6">
 					<div class="norr-lab-mat-card"> 
 						<div class="in_title">
-			         		<div class="col-4">
+			         		<div class="col-6">
 			         			<span class="in_title_6_1">Recording date</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
 			         		</div> 
-			         	</div>recordingDate:= {{videoToUpdate.recordingDate}}
-			         	<div>
-			         		{{recordingDate.value}}
-			         	</div>
+			         	</div> 
 			         	<div class="col-12" style="text-align: end; font-size: 12px;color: #ccc">
 			         		<mat-form-field class="col-12">
 		         				  <mat-label>Choose a date</mat-label>
-								  <input matInput [matDatepicker]="picker" [formControl]="recordingDate"  [ngModel]="videoToUpdate.recordingDate">
+								  <input matInput (dateChange)="onDateChanges()" [matDatepicker]="picker" [formControl]="recordingDate"  [ngModel]="videoToUpdate.recordingDate">
 								  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 								  <mat-datepicker #picker></mat-datepicker>
 							</mat-form-field>	
@@ -138,7 +135,7 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 
 					<div class="norr-lab-mat-card"> 
 						<div class="in_title">
-			         		<div class="col-4">
+			         		<div class="col-6">
 			         			<span class="in_title_6_1">Video location</span>	&nbsp;<mat-icon class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon>
 			         		</div> 
 			         	</div>videoLocation:= {{videoToUpdate.videoLocation}}
@@ -150,6 +147,7 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 								           aria-label="Number"
 								           matInput
 								           [formControl]="myControlLoc"
+								           (change)="onLocationChanges()"
 								           [ngModel]="videoToUpdate.videoLocation"
 								           [matAutocomplete]="auto">
 								    <mat-autocomplete #auto="matAutocomplete">
