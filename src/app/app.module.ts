@@ -23,6 +23,7 @@ import { NorrlabTradePublicationComponent } from './norrlab-trade-publication/no
 import { NorrlabMemberShipsComponent } from './norrlab-member-ships/norrlab-member-ships.component';
 import { NorrlabPositionBublicationComponent } from './norrlab-position-bublication/norrlab-position-bublication.component';
 import { NorrlabAccountManagerComponent } from './norrlab-account-manager/norrlab-account-manager.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -46,7 +47,12 @@ import { NorrlabAccountManagerComponent } from './norrlab-account-manager/norrla
   imports: [
     BrowserModule,HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule,NorrlabMaterialModule,MatVideoModule,FormsModule
+    BrowserAnimationsModule,NorrlabMaterialModule,MatVideoModule,FormsModule,ToastrModule.forRoot({
+    timeOut: 1000,
+    positionClass: 'toast-top-right',
+    preventDuplicates: true,
+    toastClass:'norr-ngx-toastr'
+  })
   ],
   providers: [],
   bootstrap: [AppComponent]

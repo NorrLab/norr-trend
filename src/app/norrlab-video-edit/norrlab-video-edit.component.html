@@ -8,7 +8,7 @@
 
 	<div class="col-12 up-mat_success" > <!-- [disabled]="__openCmtEdito" -->
 		<button (click)="undoChanges()" class="mat_success_undo" style="z-index: 999" mat-flat-button >UNDO CHANGES</button>
-		 <button (click)="saveChanges()" mat-flat-button class="mat_success">SAVE</button> 
+		 <button (click)="saveChanges(videoToUpdate)" mat-flat-button class="mat_success">SAVE</button> 
 	</div>	
 <mat-tab-group>
   <mat-tab label="Basic">
@@ -102,8 +102,8 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 			         	<div class="col-12" style="font-size: 12px;color: #ccc;text-align: 	center;">
 			         		<mat-form-field class="col-12">
 							  <mat-select disableRipple>
-							    <mat-option value="1">Public</mat-option>
-							    <mat-option value="2">Subscribers</mat-option> 
+							    <mat-option value="true">Public</mat-option>
+							    <mat-option value="false">Subscribers</mat-option> 
 							  </mat-select>
 							</mat-form-field>	
 			         	</div>

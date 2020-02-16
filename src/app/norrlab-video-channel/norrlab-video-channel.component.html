@@ -10,7 +10,7 @@
   <div class="video-author-avatar">
     <div class="row">
         <div class="col-1">  
-          <img  alt="{{ONLINE_USER && ONLINE_USER.userPictureUrl?ONLINE_USER.userPictureUrl:'no pic'}} " src="http://localhost:369/images{{ONLINE_USER && ONLINE_USER.userPictureUrl?ONLINE_USER.userPictureUrl :'/default_user.png'}}" class="channel-avatar main"> 
+          <img  alt=" " src="http://localhost:369/images{{ONLINE_USER?ONLINE_USER.userPictureUrl :'/default_user.png'}}" class="channel-avatar main"> 
         </div>
         <div class="col-9 author-avatar" style="
     padding-left: 0px;

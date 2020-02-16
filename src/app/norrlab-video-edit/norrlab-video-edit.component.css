@@ -25,6 +25,11 @@
     margin-bottom: 9px;
 } 
 
+.norr-ngx-toastr {
+    background-color:#8EE1B6;
+    color: red
+}
+
 .col-12.up-mat_success {
     text-align: end;
     position: absolute;
