@@ -92,7 +92,7 @@ export class VideoService {
 
   editChannelVideosUserId(video): Observable<NorrLabVideo> {
       const url = VIDEO_URL+'/'+this.userService.getUser()._id+'/videos/'+video._id;
-    return this.httpClient.patch<NorrLabVideo>(url,video);
+    return this.httpClient.put<NorrLabVideo>(url,video);
   }
 
   getVideoSrc(param){

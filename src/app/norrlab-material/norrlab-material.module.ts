@@ -41,7 +41,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { StorageServiceModule } from 'angular-webstorage-service';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'; 
+//import { MatMomentDateModule,MomentDateAdapter  } from "@angular/material-moment-adapter";
+import { MatMomentDateModule  } from "@angular/material-moment-adapter";
 
 // Import ngx-twitter-timeline
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
@@ -88,7 +90,8 @@ const MaterialModule =[
     MatTooltipModule,
     MatTreeModule,
     PortalModule,
-    ScrollingModule,NgxTwitterTimelineModule,StorageServiceModule,FormsModule, ReactiveFormsModule
+    ScrollingModule,NgxTwitterTimelineModule,StorageServiceModule,FormsModule, ReactiveFormsModule,
+    MatMomentDateModule/*,MomentDateAdapter */
     ]
 
 @NgModule({

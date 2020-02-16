@@ -8,5 +8,7 @@ export interface NorrLabVideo {
 	videoLikes:any,
 	videoDislikes:any,
 	videoViews:any,
-	videoUser:any
+	videoUser:any,
+	public:boolean
+	recordingDate:any
 }
