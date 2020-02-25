@@ -3,6 +3,8 @@ import { NorrLabUser} from '../../interfaces/norrLabUser/norr-lab-user';
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { NorrlabNavgationService } from '../../norrlab-navgation/norrlab-navgation.service';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
+import { ToastrService } from 'ngx-toastr';
+import {Router, ActivatedRoute, Params} from '@angular/router'; 
 
 
 
@@ -22,7 +24,7 @@ export class UserService {
   userLoginUrl = "http://localhost:369/norr-user/login"; 
   userIsLoggedInUrl = "http://localhost:369/norr-user/"; 
   constructor(private httpClient:HttpClient, private norrlabNavgationService:NorrlabNavgationService,
-  	@Inject(SESSION_STORAGE) private storage: StorageService) { }
+  	@Inject(SESSION_STORAGE) private storage: StorageService,private toastr: ToastrService, private router:Router) { }
 
   userStatus(param) {
   	return false;
@@ -34,14 +36,20 @@ export class UserService {
     this.storage.set(STORAGE_USER_KEY,null);
   }
 
+
+  reloadComponent() {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate(['/user-trades/']);
+      } 
+
   userLogin(data,nextPage){
-  	return this.httpClient.post(this.userLoginUrl,data).subscribe(user =>{
-  		console.log(user);
-      console.log("this.norrlabNavgationService.goToNextUrl()");
-        //this.norrlabNavgationService.goToNextUrl(nextPage);
+  	return this.httpClient.post(this.userLoginUrl,data).subscribe(user =>{ 
         this.storage.set(STORAGE_USER_KEY,  this.userMapperToClient(user));
+        this.reloadComponent()
+
   	},err=>{
-  		alert(err);
+      this.toastr.error('provide good email and password') 
   	});
   }
 

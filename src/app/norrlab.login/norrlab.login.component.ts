@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService} from '../services/user-service/user.service';
-import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common'; 
 import { NorrlabNavgationService } from '../norrlab-navgation/norrlab-navgation.service';
+import { ToastrService } from 'ngx-toastr';
+import {Router, ActivatedRoute, Params} from '@angular/router'; 
 
 @Component({
   selector: 'app-norrlab.login',
@@ -23,17 +24,11 @@ export class NorrlabLoginComponent implements OnInit {
 
   }
 
-  reloadComponent() {
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate(['/user-trades/']);
-      } 
 
   userLogin(){ 
     console.log(this.location); 
-  	this.userService.userLogin(this.data,'/user-trades')
-      this.reloadComponent() 
-    ;
+  	this.userService.userLogin(this.data,'/user-trades');
+      
   }
 
 }

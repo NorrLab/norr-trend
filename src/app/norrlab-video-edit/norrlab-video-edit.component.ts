@@ -4,6 +4,9 @@ import { UserService} from '../services/user-service/user.service';
 import {FormControl} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import {Router, ActivatedRoute, Params} from '@angular/router'; 
+import { DomSanitizer } from "@angular/platform-browser";
+import { DOCUMENT } from '@angular/platform-browser';
+import { Inject,Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-norrlab-video-edit',
@@ -21,9 +24,12 @@ export class NorrlabVideoEditComponent implements OnInit {
   norrOptionLocation: string[] = ['Paris', 'Bitam', 'Strasbourg','Abidjan','Dakar','Cairo'];
   tmpVideo:any = new Object();
   selected;
-  
+  page = {url:""}
   constructor(private activatedRoute:ActivatedRoute ,private  videoService:VideoService,private userService:UserService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,private router:Router,private domSanitizer:DomSanitizer,
+  @Inject(DOCUMENT) private document: any) {
+          this.myControlLoc = new FormControl() ;
+     }
 
  infoDescription(){
  	alert(this.videoToUpdate.videoDescription.length)
@@ -52,6 +58,7 @@ undoChanges(){
    this.logaPage();
 }
 
+
 saveChanges(video){
   video.public = this.selected=='Subscribers'?false:true;
   this.valideUpdate(video);
@@ -73,12 +80,21 @@ onLocationChanges(){
    this.videoToUpdate.videoLocation = (this.myControlLoc.value)  
 }
 
+uploadThumbnail(){
+     alert("uploadThumbnail()") 
+}
+
+
   ngOnInit() {
   	 this.logaPage();
   }
 
   logaPage(){
+
+    
+
     var videoId = this.activatedRoute.snapshot.params.videoId;
+    this.page.url = this.document.location.origin+'/videos/'+videoId;
      this.videoService.getVideosToUpdateByUserId(videoId)
      .subscribe( video =>{
        console.log("video")

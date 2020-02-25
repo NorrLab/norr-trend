@@ -149,3 +149,7 @@ mat-icon{
 button{
   outline: none;
 }
+
+.mat-card-image:first-child {
+   margin-top: 0px;
+}

@@ -17,8 +17,14 @@ import { NorrlabAccountManagerComponent } from './norrlab-account-manager/norrla
 
 const routes: Routes = [{path:'home',component:NorrlabHomeComponent}
 	,{path:'lessons',component:NorrlabLessonsComponent},
-	{path:'videos',component:NorrlabVideosComponent},
-	{path:'videos/:videoId',component:NorrlabVideosComponent},
+	{
+		path:'videos',component:NorrlabVideosComponent,
+	 	children:
+	 	[ 
+	 		{path:':videoId',component:NorrlabVideosComponent}
+	 	]
+	}
+	,
 	{path:'',component:NorrlabHomeComponent}
 	,{path:'login',component:NorrlabLoginComponent},
 	{path:'login',component:NorrlabLoginComponent}

@@ -361,7 +361,8 @@ openLoginDialog():void {
     this.videoplayer.nativeElement.pause();
          this.norrPlayPause = false;
      
-    this.getVideoFree(param);
+    //this.getVideoFree(param);
+    this.goTo('videos/'+param);
   }  
 
   upDateNorrLabVideo(param){
@@ -391,11 +392,19 @@ openLoginDialog():void {
     this.videoReadayToplay = this.weekFreeVideos[2];
   }
 
-  getAllVideoComments(){
+  getAllVideoComments(videoId) {
     this.videoService.getVideoFree(null,null).subscribe(videos =>{
-        this.weekFreeVideos = videos;
+        this.weekFreeVideos = videos;   
+        this.getVideoFree(videoId);
       });
   }
+
+  goTo(destination) {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate([destination]); 
+     // this.getVideoFree(this.activatedRoute.snapshot.params.videoId?this.activatedRoute.snapshot.params.videoId:this.weekFreeVideos[0]._id);
+}  
 
   getVideoFree(videoId){
 
@@ -422,14 +431,15 @@ openLoginDialog():void {
         this.videoplayer.nativeElement.poster =  this.videoReadayToplay.videoPoster;
         this.videoplayer.nativeElement.title =  this.videoReadayToplay.videoTitle;
         //this.videoplayer.nativeElement.play() 
-        this.playPause();
+        //this.playPause();
+        
       });
   }
 
   ngOnInit() {
   	this.__upToMin.nativeElement.style.width="0%";  
-    this.getAllVideoComments();
-    this.getVideoFree(this.videoService.getVideo()?this.videoService.getVideo()._id:null);
+    var videoId = this.activatedRoute.snapshot.firstChild?this.activatedRoute.snapshot.firstChild.url[0].path:null;
+    this.getAllVideoComments(videoId);
     
     this.volumePosition = this.videoService.getVolumePosition(); 
 
