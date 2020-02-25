@@ -40,7 +40,8 @@ export class NorrlabVideoEditComponent implements OnInit {
  }
 
 watchvideo(videoToUpdateId){
-
+    var url = 'videos/'+videoToUpdateId;
+    this.goTo(url);
 }
 
 valideUpdate(video){
@@ -84,6 +85,12 @@ uploadThumbnail(){
      alert("uploadThumbnail()") 
 }
 
+goTo(destination) {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate([destination]); 
+     // this.getVideoFree(this.activatedRoute.snapshot.params.videoId?this.activatedRoute.snapshot.params.videoId:this.weekFreeVideos[0]._id);
+}  
 
   ngOnInit() {
   	 this.logaPage();
@@ -91,7 +98,7 @@ uploadThumbnail(){
 
   logaPage(){
 
-    
+
 
     var videoId = this.activatedRoute.snapshot.params.videoId;
     this.page.url = this.document.location.origin+'/videos/'+videoId;
