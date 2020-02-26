@@ -25,6 +25,7 @@ export class NorrlabVideoEditComponent implements OnInit {
   tmpVideo:any = new Object();
   selected;
   page = {url:""}
+
   constructor(private activatedRoute:ActivatedRoute ,private  videoService:VideoService,private userService:UserService,
     private toastr: ToastrService,private router:Router,private domSanitizer:DomSanitizer,
   @Inject(DOCUMENT) private document: any) {
@@ -44,7 +45,35 @@ watchvideo(videoToUpdateId){
     this.goTo(url);
 }
 
+selectedFile: File= null;
+tmpThumbnail;
+
+onFileInput(event){
+  var file = event.dataTransfer ? event.dataTransfer.file[0] : <File>event.target.files[0];
+  var pattern = /image-*/;
+
+  var reader = new FileReader(); 
+  if(!file.type.match(pattern)){
+    alert('error')
+    return;
+  }
+
+  reader.onload =  this._handleReaderLoaded.bind(this);
+  reader.readAsDataURL(file);
+
+}
+
+ _handleReaderLoaded(e) {
+    let reader = e.target;
+    this.tmpThumbnail = reader.result;
+    console.log(this.tmpThumbnail)
+  }
+
 valideUpdate(video){
+    if(this.tmpThumbnail){
+      video.videoPoster = this.tmpThumbnail;
+    }
+
     this.videoService.editChannelVideosUserId(video).subscribe(result =>{
       console.log("result")
       console.log(result); 

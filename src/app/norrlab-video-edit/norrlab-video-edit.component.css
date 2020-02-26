@@ -177,3 +177,13 @@ mat-datepicker-toggle{
 .mat-card-image:first-child {
     margin-top: 0px;
 }
+
+img.poster_example_one_img {
+    width: 100%;
+    height: 46px
+}
+
+.choosen.poster_example_one {
+        padding: 3px;
+    border-radius: 3px;
+}

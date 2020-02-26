@@ -53,17 +53,21 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 					<div class="thumbnail_video"> 
 						<ul class="video_poster row"> 
 							<li class="video_poster_li col-3">
-								<div matTooltip="Choose the thumbnail that best represents your video. To be able to add custom thumbnails your account needs to be verified and in good standing."
-			         			[matTooltipPosition]="'above'"  class="poster_example_one" (click)="uploadThumbnail()">  
-								<!--		<mat-icon matTooltip="A catchy title can help you hook viewers. When you create video titles, it's a good idea to include keywords that your audience is likely to use when looking for videos like yours."
-			         			[matTooltipPosition]="'above'"class="help_in_title_6_1" (click)="infoTitle()">help_outline</mat-icon> -->
-									<mat-icon style="color:#ccc">add_photo_alternate</mat-icon>
+								<div *ngIf="!tmpThumbnail"  matTooltip="Choose the thumbnail that best represents your video. To be able to add custom thumbnails your account needs to be verified and in good standing."
+			         			[matTooltipPosition]="'above'"  class="poster_example_one" (click)="fileInput.click()">  
+									<mat-icon  style="color:#ccc">add_photo_alternate</mat-icon>
 									
-								</div>		
+  									<input style="display: none;" #fileInput type="file" accept="image/*" (change)="onFileInput($event)" />
+								</div> 
+								<div (click)="fileInput2.click()" class="poster_example_one choosen" *ngIf="tmpThumbnail"> 
+									<img class="poster_example_one_img" src="{{tmpThumbnail}}">
+									
+									<input style="display: none;" #fileInput2 type="file" accept="image/*" (change)="onFileInput($event)" />
+								</div>			
 							</li> 
 							<li class="video_poster_li col-3" *ngFor="let g of [1,2,3] "> 
-								<div> 
-									<img class="poster_example" src="{{videoToUpdate && videoToUpdate.videoPoster? videoToUpdate.videoPoster:''}}">
+								<div > 
+									<img  class="poster_example" src="{{videoToUpdate && videoToUpdate.videoPoster? videoToUpdate.videoPoster:''}}">
 								</div>		
 							</li>
 						</ul>		
