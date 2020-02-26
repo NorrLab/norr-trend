@@ -25,8 +25,20 @@
 			         	<div role="textarea" [textContent]="videoToUpdate.videoTitle" contenteditable="true" class="col-12 textarea_title"  #textarea tabindex="1" (input)="videoToUpdate.videoTitle=$event.target.innerText">
 			         		
 	         			</div>
-			         	<div class="col-12" style="text-align: end; font-size: 12px;color: #ccc">
-			         			{{videoToUpdate.videoTitle.length}}/30
+			         	<div class="row row_validation" >
+			         			<div class="col-10">
+			         				<div *ngIf="videoToUpdate.videoTitle.length>37" class="row" style="text-align: start; padding-right: 19px">
+				         				<div class="col-1" style="color: red;text-align: start;padding-right: 25px;">
+				         					<mat-icon>cancel</mat-icon>
+				         				</div>
+				         				<div class="col-10" style="text-align: start;padding-left: 0px;margin-top: 3px;">
+				         				<span style="color: red">&nbsp; Video Title lenght should not excede 37 </span> 	
+				         				</div>
+				         			</div>
+			         			</div>
+			         			<div class="col-2" style="text-align: end;">
+			         				{{videoToUpdate.videoTitle.length}}/37
+			         			</div>
 			         	</div>
 					</div>
 
@@ -40,8 +52,20 @@
 			         	<div role="textarea" contenteditable="true" class="col-12 textarea_title" placeholde="dome" #textarea
 			         	[textContent]="videoToUpdate.videoDescription" tabindex="1" (input)="videoToUpdate.videoDescription=$event.target.innerText"> 
 	         			</div>
-			         	<div class="col-12" style="text-align: end; font-size: 12px;color: #ccc">
+			         	<div class="row row_validation">
+			         		<div class="col-10">
+			         				<div  *ngIf="videoToUpdate.videoDescription.length>130" class="row" style="text-align: start; padding-right: 19px">
+				         				<div class="col-1" style="color: red;text-align: start;padding-right: 25px;">
+				         					<mat-icon>cancel</mat-icon>
+				         				</div>
+				         				<div class="col-10" style="text-align: start;padding-left: 0px;margin-top: 3px;">
+				         				<span style="color: red">&nbsp; Video description lenght should not excede 130 </span> 	
+				         				</div>
+				         			</div>
+			         			</div>
+			         			<div class="col-2" style="text-align: end;">
 			         			{{videoToUpdate.videoDescription.length}}/130
+			         		</div>
 			         	</div>
 					</div>
 					<div class="norrthumbnail" style=" padding-top:  9px"> 
@@ -61,7 +85,7 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 								</div> 
 								<div (click)="fileInput2.click()" class="poster_example_one choosen" *ngIf="tmpThumbnail"> 
 									<img class="poster_example_one_img" src="{{tmpThumbnail}}">
-									
+
 									<input style="display: none;" #fileInput2 type="file" accept="image/*" (change)="onFileInput($event)" />
 								</div>			
 							</li> 
@@ -78,14 +102,16 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 			         			<span class="in_title_6_1">Tags</span> 
 			         		</div> 
 			         	</div> 
-			         	<div class="col-12" style="font-size: 12px;color: #ccc;text-align: 	center;">
-			         		 	
+			         	<div class="col-12" style="font-size: 12px;color: #ccc;">
+			         		 	<div role="textarea" [textContent]="videoToUpdate.videoTitle" contenteditable="true" class="col-12 textarea_title"  #textarea tabindex="1" (input)="videoToUpdate.videoTitle=$event.target.innerText">
+			         		
+	         			</div>
 			         	</div>
 					</div>	
 				</div>
 				<div class="col-6">  
 					<div>  
-						<video class="video_to_edit"  src="{{videoToUpdate.videoUrl}}"> 
+						<video controls="true"  class="video_to_edit"  src="{{videoToUpdate.videoUrl}}" poster="{{videoToUpdate.videoPoster}}"> 
 								
 						</video>
 					</div>
@@ -202,7 +228,7 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 				</div>
 				<div class="col-6">   
 					<div >  
-						<video class="video_to_edit"  src="{{videoToUpdate.videoUrl}}"> 
+						<video controls="true" class="video_to_edit"  src="{{videoToUpdate.videoUrl}}" poster="{{videoToUpdate.videoPoster}}"> 
 								
 						</video> 
 					</div>
