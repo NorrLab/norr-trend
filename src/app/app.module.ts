@@ -24,6 +24,7 @@ import { NorrlabMemberShipsComponent } from './norrlab-member-ships/norrlab-memb
 import { NorrlabPositionBublicationComponent } from './norrlab-position-bublication/norrlab-position-bublication.component';
 import { NorrlabAccountManagerComponent } from './norrlab-account-manager/norrlab-account-manager.component';
 import { ToastrModule } from 'ngx-toastr';
+import { NorrlabVideoCreationComponent } from './norrlab-video-creation/norrlab-video-creation.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ToastrModule } from 'ngx-toastr';
     NorrlabTradePublicationComponent,
     NorrlabMemberShipsComponent,
     NorrlabPositionBublicationComponent,
-    NorrlabAccountManagerComponent
+    NorrlabAccountManagerComponent,
+    NorrlabVideoCreationComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,

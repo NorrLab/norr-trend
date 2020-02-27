@@ -1,12 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { VideoService} from '../services/video-service/video.service';
-import { UserService} from '../services/user-service/user.service'; 
-import {FormControl} from '@angular/forms';
+import { UserService} from '../services/user-service/user.service';  
 import { ToastrService } from 'ngx-toastr';
 import {Router, ActivatedRoute, Params} from '@angular/router'; 
 import { DomSanitizer } from "@angular/platform-browser";
 import { DOCUMENT } from '@angular/platform-browser';
 import { Inject,Injectable } from '@angular/core';
+import {COMMA, ENTER} from '@angular/cdk/keycodes'; 
+import {MatChipInputEvent} from '@angular/material';
+import {FormControl, FormGroup} from '@angular/forms';
+
+
+export interface Tag{
+  name:string,
+  _id:any,
+  videoId:any
+}
 
 @Component({
   selector: 'app-norrlab-video-edit',
@@ -18,7 +27,49 @@ export class NorrlabVideoEditComponent implements OnInit {
   myControlLoc:FormControl;
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
+  tags: Tag[] = [
+  ];
+
+  //Tags chips
+  removable = true;
+newTag = new FormControl([]);
+  group = new FormGroup({
+    newTag: this.newTag
+  })
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA]; 
+
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.tags.push({
+        name:value.trim(),
+        _id:undefined,
+        videoId:this.activatedRoute.snapshot.params.videoId
+      });
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+
+    this.newTag.setValue(this.tags);
+  }
+
+  remove(fruit: Tag): void {
+    const index = this.tags.indexOf(fruit);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
+    this.newTag.setValue(this.tags);
+  }
+//Tags end
   recordingDate: FormControl;
+  
 
   optionCategory: string[] = ['FOREX', 'STOCK', 'CFD','FUTURES'];
   norrOptionLocation: string[] = ['Paris', 'Bitam', 'Strasbourg','Abidjan','Dakar','Cairo'];

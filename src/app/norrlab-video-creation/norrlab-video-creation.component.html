@@ -102,30 +102,10 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 			         			<span class="in_title_6_1">Tags</span> 
 			         		</div> 
 			         	</div> 
-			         	<div class="col-12" style="font-size: 12px;color: #ccc;text-align: 	center;"> 
-			         		 <form [formGroup]='group'>
-								  <mat-form-field class="example-chip-list">
-								    <mat-chip-list #chipList
-								                   required
-								                   formControlName='newTag'>
-								      <mat-chip *ngFor="let tag of tags"
-								                removable="true"
-								                (removed)="remove(tag)">
-								        {{tag.name}}
-								        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-								      </mat-chip>
-								      <input class="input_chips"
-								            formContorlName='newTag'
-								            [matChipInputFor]="chipList"
-								            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-								            [matChipInputAddOnBlur]="addOnBlur"
-								            (matChipInputTokenEnd)="add($event)">
-								    </mat-chip-list>
-								      <!-- add mat-error  -->
-								    <mat-error *ngIf="group.controls.newTag.hasError('required')">required!</mat-error>
-								  </mat-form-field>
-								</form>
-
+			         	<div class="col-12" style="font-size: 12px;color: #ccc;">
+			         		 	<div role="textarea" [textContent]="videoToUpdate.videoTitle" contenteditable="true" class="col-12 textarea_title"  #textarea tabindex="1" (input)="videoToUpdate.videoTitle=$event.target.innerText">
+			         		
+	         			</div>
 			         	</div>
 					</div>	
 				</div>

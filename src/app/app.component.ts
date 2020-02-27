@@ -71,8 +71,8 @@ export class AppComponent  implements OnDestroy, OnInit{
     this.goTo('account-manager/'+this.userService.getUser()._id+'')
   }
 
-  goToVideoEdition(){ 
-    this.goTo('videos-edition')    
+  goToVideoCreation(){ 
+    this.goTo('video-creation')    
   }
 
   gorToPositionPublication(){

@@ -12,6 +12,7 @@ import { NorrlabVideoChannelComponent } from './norrlab-video-channel/norrlab-vi
 import { NorrlabMemberShipsComponent } from './norrlab-member-ships/norrlab-member-ships.component';
 import { NorrlabPositionBublicationComponent } from './norrlab-position-bublication/norrlab-position-bublication.component';
 import { NorrlabAccountManagerComponent } from './norrlab-account-manager/norrlab-account-manager.component';
+import { NorrlabVideoCreationComponent } from './norrlab-video-creation/norrlab-video-creation.component';
 
 
 
@@ -28,7 +29,8 @@ const routes: Routes = [{path:'home',component:NorrlabHomeComponent}
 	{path:'',component:NorrlabHomeComponent}
 	,{path:'login',component:NorrlabLoginComponent},
 	{path:'login',component:NorrlabLoginComponent}
-	,{path:'user-trades/:tradeId/detail',component:NorrlabDetailTradeComponent},
+	,{path:'user-trades/:tradeId/detail',component:NorrlabDetailTradeComponent}
+	,{path:'video-creation',component:NorrlabVideoCreationComponent},
 	{
 		path:'user-trades',component:NorrlabTradesComponent,
 	 	children:
