@@ -14,8 +14,8 @@
   <mat-tab label="Basic">
   	<div class="container_video_edit"> 
   			<div class="row"> 
-				<div class="col-6">
-					<div class="norr-lab-mat-card"> 
+				<div class="col-6"> 
+					<div [ngClass]="valideFormTitle()?'norr-lab-mat-card invalide':'norr-lab-mat-card'" > 
 						<div class="in_title"> 
 			         		<div class="col-6">
 			         			<span class="in_title_6_1">Title (required)</span>	&nbsp;<mat-icon matTooltip="A catchy title can help you hook viewers. When you create video titles, it's a good idea to include keywords that your audience is likely to use when looking for videos like yours."
@@ -27,12 +27,12 @@
 	         			</div>
 			         	<div class="row row_validation" >
 			         			<div class="col-10">
-			         				<div *ngIf="videoToUpdate.videoTitle.length>37" class="error_show row" style="text-align: start; padding-right: 19px">
+			         				<div *ngIf="videoToUpdate.videoTitle.length>37 || videoToUpdate.videoTitle.length==0" class="error_show row" style="text-align: start; padding-right: 19px">
 				         				<div class="col-1" style="color: red;text-align: start;padding-right: 25px;">
 				         					<mat-icon>cancel</mat-icon>
 				         				</div>
 				         				<div class="col-10" style="text-align: start;padding-left: 0px;margin-top: 3px;">
-				         				<span style="color: red">&nbsp; Video Title lenght should not excede 37 </span> 	
+				         				<span style="color: red">&nbsp;Your title can't be empty and lenght should not exceede 37 </span> 	
 				         				</div>
 				         			</div>
 			         			</div>
@@ -42,7 +42,7 @@
 			         	</div>
 					</div>
 
-					<div class="norr-lab-mat-card"> 
+					<div [ngClass]="valideFormDescription()?'norr-lab-mat-card invalide':'norr-lab-mat-card'" > 
 						<div class="in_title">
 			         		<div class="col-6">
 			         			<span class="in_title_6_1">Description</span>	&nbsp;<mat-icon matTooltip="Writing descriptions with keywords can help viewers find your videos more easily through search. You can give an overview of your video and place keywords at the beginning of the description."
@@ -59,7 +59,7 @@
 				         					<mat-icon>cancel</mat-icon>
 				         				</div>
 				         				<div class="col-10" style="text-align: start;padding-left: 0px;margin-top: 3px;">
-				         				<span style="color: red">&nbsp; Video description lenght should not excede 130 </span> 	
+				         				<span style="color: red">&nbsp; Your description should not exceede 130 </span> 	
 				         				</div>
 				         			</div>
 			         			</div>
@@ -96,7 +96,7 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 							</li>
 						</ul>		
 					</div>
-					<div class="norr-lab-mat-card"> 
+					<div   [ngClass]="valideFormTags()?'norr-lab-mat-card invalide':'norr-lab-mat-card'"> 
 						<div class="in_title">
 			         		<div class="col-6">
 			         			<span class="in_title_6_1">Tags</span> 
@@ -130,13 +130,18 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 
 			         	</div>
 			         	<div class="row row_validation"> 
-			         		<div class="col-10">
+			         		<div class="col-10"> 
 			         				<div  *ngIf="tags.length>23" class="error_show row" style="text-align: start; padding-right: 19px">
 				         				<div class="col-1" style="color: red;text-align: start;padding-right: 25px;">
 				         					<mat-icon>cancel</mat-icon>
 				         				</div>
 				         				<div class="col-10" style="text-align: start;padding-left: 0px;margin-top: 3px;">
 				         				<span style="color: red">&nbsp; Your tags exceed the allowed character count. </span> 	
+				         				</div>
+				         			</div>
+				         			<div  *ngIf="tags.length<23" class="error_show row" style="text-align: start; padding-right: 19px">
+				         				<div class="col-10" style="text-align: start;padding-left: 17px;margin-top: 3px;">
+				         				<span >&nbsp; Enter comma-separated values. </span> 	
 				         				</div>
 				         			</div>
 			         			</div>
@@ -154,21 +159,20 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 					</div>
 					<div class="video_properties"> 
 						<div class="video_properties_link_title">
-							<p>  Video link</p>
+							<div class="row">
+								<div class="col-10">
+									<p>  Video link</p>
+								</div>
+								<div (click)="copyVideoLink()" class="col-2 copy_link">
+									<p>  COPY</p>
+								</div>
+							</div>
 						</div>
 						<div class="video_properties_link">
 							<a (click)="watchvideo(videoToUpdate._id)">
 								{{page.url}}
 							</a>		
-						</div>	
-						<div class="video_properties_link_title" style="margin-top: 12px">
-							<p>  File name</p>
-						</div>
-						<div class="video_properties_link">
-							<p (click)="watchvideo(videoToUpdate._id)">
-								{{videoToUpdate.videoUrl}}
-							</p>		
-						</div>		
+						</div>	 		
 					</div>
 					<!--other option such as visibility--> 
 					<div class="norr-lab-mat-card"> 
@@ -271,21 +275,20 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 					</div>
 					<div class="video_properties"> 
 						<div class="video_properties_link_title">
-							<p>  Video link</p>
+							<div class="row">
+								<div class="col-10">
+									<p>  Video link</p>
+								</div>
+								<div (click)="copyVideoLink()" class="col-2 copy_link">
+									<p>  COPY</p>
+								</div>
+							</div>
 						</div>
 						<div class="video_properties_link">
 							<a (click)="watchvideo(videoToUpdate._id)">
 								{{page.url}}
 							</a>		
-						</div>	
-						<div class="video_properties_link_title" style="margin-top: 12px">
-							<p>  File name</p>
-						</div>
-						<div class="video_properties_link">
-							<p (click)="watchvideo(videoToUpdate._id)">
-								{{videoToUpdate.videoUrl}}
-							</p>		
-						</div>		
+						</div>	 		
 					</div>
 				</div>
   			</div>	

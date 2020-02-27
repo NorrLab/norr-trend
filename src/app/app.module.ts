@@ -51,9 +51,15 @@ import { NorrlabVideoCreationComponent } from './norrlab-video-creation/norrlab-
     AppRoutingModule,
     BrowserAnimationsModule,NorrlabMaterialModule,MatVideoModule,FormsModule,ToastrModule.forRoot({
     timeOut: 1000,
-    positionClass: 'toast-top-right',
+    positionClass: /*'toast-top-right'*/'inline',
     preventDuplicates: true,
-    toastClass:'norr-ngx-toastr'
+    toastClass:'norr-ngx-toastr',
+    iconClasses: {
+      error: 'toast-error',
+      info: 'toast-info',
+      success: 'toast-success',
+      warning: 'toast-warning'
+    }
   })
   ],
   providers: [],

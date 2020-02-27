@@ -114,6 +114,7 @@ onFileInput(event){
 
 }
 
+
  _handleReaderLoaded(e) {
     let reader = e.target;
     this.tmpThumbnail = reader.result;
@@ -125,12 +126,20 @@ valideUpdate(video){
       video.videoPoster = this.tmpThumbnail;
     }
 
+    if(this.videoToUpdate.videoTitle.length==0 ||  this.tags.length>23 || this.videoToUpdate.videoTitle.length > 37 || this.videoToUpdate.videoDescription.length> 130){
+      this.showError('Error editing video!');
+      return;
+    }
     this.videoService.editChannelVideosUserId(video).subscribe(result =>{
       this.updateTags();
       this.showSuccess();
     },err =>{
-      this.showError();
+      this.showError("Error editing video!");
     })
+}
+
+copyVideoLink(){
+  this.showInfo("Video link copied")
 }
 
 updateTags(){
@@ -159,14 +168,19 @@ saveChanges(video){
   this.valideUpdate(video);
 }
 
-showError(){
-    this.toastr.success('Erros!');
+showError(message){
+    this.toastr.error(message);
 }
 
 showSuccess() {
     this.videoToUpdate;
     this.toastr.success('Changes saved');
 }
+
+showInfo(message){
+  this.toastr.success(message);
+}
+
 onDateChanges(){
    this.videoToUpdate.recordingDate = (this.recordingDate.value).toISOString() 
 }
@@ -188,7 +202,7 @@ goTo(destination) {
 
   ngOnInit() {
   	 this.logaPage();
-  }
+  } 
 
   logaPage(){
 
@@ -214,5 +228,18 @@ goTo(destination) {
        alert("error")
      })
   }
+
+
+       valideFormTitle() {
+         return this.videoToUpdate.videoTitle.length==0 || this.videoToUpdate.videoTitle.length>37 ;
+       }
+
+       valideFormDescription() {
+         return this.videoToUpdate.videoDescription.length>130 ;
+       }
+
+       valideFormTags() {
+         return this.tags.length>23 ;
+       }
 
 }

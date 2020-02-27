@@ -25,6 +25,10 @@
     margin-bottom: 9px;
 } 
 
+.norr-lab-mat-card.invalide{
+    border: 1px solid #ea0d0d;
+}
+
 .norr-ngx-toastr {
     background-color:#8EE1B6;
     color: red
@@ -163,12 +167,12 @@ p {
 }
 
 .video_properties_link_title >p{
-    font-size: 11px;
+    font-size: 16px;
 }
 
 .video_properties_link>a{
 	color: #065fd4;
-	font-size: 	16px;
+	font-size: 	13px;
 	cursor: 	pointer;	
 }
 
@@ -209,3 +213,15 @@ img.poster_example_one_img {
 .example-chip-list {
     width: 100%;
 }
+
+.copy_link {
+    text-align: center;  
+}
+ 
+.copy_link > p {
+    padding: 3px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    color: blue;
+}
+ 
