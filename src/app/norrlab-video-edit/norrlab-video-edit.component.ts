@@ -138,9 +138,7 @@ valideUpdate(video){
     })
 }
 
-copyVideoLink(){
-  this.showInfo("Video link copied")
-}
+
 
 updateTags(){
   this.tags.map( function (tag) {
@@ -229,6 +227,12 @@ goTo(destination) {
      })
   }
 
+  copyVideoLink(inputElement){
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+    this.showInfo("Video link copied") 
+  }
 
        valideFormTitle() {
          return this.videoToUpdate.videoTitle.length==0 || this.videoToUpdate.videoTitle.length>37 ;

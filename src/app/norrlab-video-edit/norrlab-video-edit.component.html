@@ -163,15 +163,14 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 								<div class="col-10">
 									<p>  Video link</p>
 								</div>
-								<div (click)="copyVideoLink()" class="col-2 copy_link">
+								<div (click)="copyVideoLink(link2)" class="col-2 copy_link">
 									<p>  COPY</p>
 								</div>
 							</div>
 						</div>
 						<div class="video_properties_link">
-							<a (click)="watchvideo(videoToUpdate._id)">
-								{{page.url}}
-							</a>		
+							<input class="link_input" [ngModel]="page.url" #link2 (click)="watchvideo(videoToUpdate._id)">
+								 	
 						</div>	 		
 					</div>
 					<!--other option such as visibility--> 
@@ -279,13 +278,13 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 								<div class="col-10">
 									<p>  Video link</p>
 								</div>
-								<div (click)="copyVideoLink()" class="col-2 copy_link">
+								<div (click)="copyVideoLink(link)" class="col-2 copy_link">
 									<p>  COPY</p>
 								</div>
 							</div>
 						</div>
 						<div class="video_properties_link">
-							<a (click)="watchvideo(videoToUpdate._id)">
+							<a #link (click)="watchvideo(videoToUpdate._id)">
 								{{page.url}}
 							</a>		
 						</div>	 		

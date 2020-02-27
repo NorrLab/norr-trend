@@ -225,3 +225,14 @@ img.poster_example_one_img {
     color: blue;
 }
  
+
+ input.link_input {
+    width: 100%;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 2px;
+    font-size: 13px;
+    color: cornflowerblue;
+    cursor: pointer;
+    outline: none;
+}
