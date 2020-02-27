@@ -8,7 +8,15 @@ import {merge, Observable, of as observableOf} from 'rxjs';
 const VIDEO_URL="http://localhost:369/norr-video";
 const VIDEO_VIEWS_URL="http://localhost:369/norr-video/video-views";
 const VIDEO_COMMENT_URL="http://localhost:369/norr-video/comments";
+const VIDEO_TAGS_URL = VIDEO_URL+"/tags";
 //
+
+export interface Tag{
+  name:string,
+  _id:any,
+  videoId:any
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -88,6 +96,16 @@ export class VideoService {
   getVideosToUpdateByUserId(videoId): Observable<NorrLabVideo> {
       const url = VIDEO_URL+'/'+this.userService.getUser()._id+'/videos/'+videoId;
     return this.httpClient.get<NorrLabVideo>(url);
+  }
+
+  getVideoTags(videoId){
+    const url = VIDEO_TAGS_URL+'/'+videoId;
+    return this.httpClient.get<Tag[]>(url);
+  } 
+
+  updateVideoTags(tags){
+    const url = VIDEO_TAGS_URL;
+    return this.httpClient.post(url, tags);
   }
 
   editChannelVideosUserId(video): Observable<NorrLabVideo> {

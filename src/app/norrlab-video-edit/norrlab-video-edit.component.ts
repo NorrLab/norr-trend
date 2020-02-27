@@ -45,7 +45,7 @@ newTag = new FormControl([]);
     // Add our fruit
     if ((value || '').trim()) {
       this.tags.push({
-        name:value.trim(),
+        name:value.toUpperCase().trim(),
         _id:undefined,
         videoId:this.activatedRoute.snapshot.params.videoId
       });
@@ -126,12 +126,26 @@ valideUpdate(video){
     }
 
     this.videoService.editChannelVideosUserId(video).subscribe(result =>{
-      console.log("result")
-      console.log(result); 
+      this.updateTags();
       this.showSuccess();
     },err =>{
       this.showError();
     })
+}
+
+updateTags(){
+  this.tags.map( function (tag) {
+    // body...
+    if(tag._id)
+      tag._id = undefined;
+  })
+  this.videoService.updateVideoTags(this.tags)
+  .subscribe( tags =>{
+
+  },err => {
+      alert("update tags err")
+    }
+  )
 }
 
 undoChanges(){
@@ -182,17 +196,20 @@ goTo(destination) {
 
     var videoId = this.activatedRoute.snapshot.params.videoId;
     this.page.url = this.document.location.origin+'/videos/'+videoId;
+
+    this.videoService.getVideoTags(videoId)
+    .subscribe(tags =>{
+      this.tags = tags;
+    },error =>{
+      alert('tags error')
+    })
+
      this.videoService.getVideosToUpdateByUserId(videoId)
-     .subscribe( video =>{
-       console.log("video")
-       console.log(video)
+     .subscribe( video =>{ 
        this.videoToUpdate = video; 
        this.selected = video.public?'Public':'Subscribers';
        this.recordingDate = new FormControl(video.recordingDate) ;
-       this.myControlLoc = new FormControl(video.videoLocation);
-       //this.videoToUpdate.videoUrl = undefined;
-       console.log('this.recordingDate')
-       console.log(this.recordingDate) 
+       this.myControlLoc = new FormControl(video.videoLocation); 
      },error=>{
        alert("error")
      })
