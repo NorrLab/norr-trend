@@ -59,8 +59,8 @@
               </div>
               <div class="channel_video">
                 <button mat-icon-button (click)="goToVideoEditPage(row._id)" class=" proposal-video" ><mat-icon>edit </mat-icon></button>
-                <button mat-icon-button (click)="goToVideoChartPage()" class=" proposal-video" ><mat-icon>bar_chart</mat-icon></button>
-                <button mat-icon-button (click)="goToVideoCommentPage()" class=" proposal-video" ><mat-icon>insert_comment</mat-icon></button>
+                <button mat-icon-button (click)="goToVideoChartPage(row._id)" class=" proposal-video" ><mat-icon>bar_chart</mat-icon></button>
+                <button mat-icon-button (click)="goToVideoCommentPage(row._id)" class=" proposal-video" ><mat-icon>insert_comment</mat-icon></button>
               </div>
 
             </div>

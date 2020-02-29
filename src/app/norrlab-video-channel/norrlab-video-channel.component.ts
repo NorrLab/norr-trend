@@ -50,11 +50,12 @@ export class NorrlabVideoChannelComponent  implements AfterViewInit {
     this.goTo('/videos-edition/'+videoId)
   }
 
-  goToVideoChartPage(){
-
+  goToVideoChartPage(videoId){
+    this.goTo('/video/'+videoId+'/analytics')
   }
 
-  goToVideoCommentPage(){
+  goToVideoCommentPage(videoId){
+    this.goTo('/video/'+videoId+'/analytics')
   }
 
 

@@ -25,6 +25,8 @@ import { NorrlabPositionBublicationComponent } from './norrlab-position-bublicat
 import { NorrlabAccountManagerComponent } from './norrlab-account-manager/norrlab-account-manager.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NorrlabVideoCreationComponent } from './norrlab-video-creation/norrlab-video-creation.component';
+import { NorrlabVideoAnalyticsComponent } from './norrlab-video-analytics/norrlab-video-analytics.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -44,11 +46,11 @@ import { NorrlabVideoCreationComponent } from './norrlab-video-creation/norrlab-
     NorrlabMemberShipsComponent,
     NorrlabPositionBublicationComponent,
     NorrlabAccountManagerComponent,
-    NorrlabVideoCreationComponent
+    NorrlabVideoCreationComponent,NorrlabVideoAnalyticsComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,
-    AppRoutingModule,
+    AppRoutingModule,ChartsModule,
     BrowserAnimationsModule,NorrlabMaterialModule,MatVideoModule,FormsModule,ToastrModule.forRoot({
     timeOut: 1000,
     positionClass: /*'toast-top-right'*/'inline',

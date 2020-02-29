@@ -4,6 +4,7 @@ import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 import { UserService} from '../user-service/user.service';
 import { NorrLabVideo} from '../../interfaces/norrLabVideo/norr-lab-video';
 import {merge, Observable, of as observableOf} from 'rxjs';
+import {NorrLabView} from '../../interfaces/norrLabVideo/norr-lab-view';
 
 const VIDEO_URL="http://localhost:369/norr-video";
 const VIDEO_VIEWS_URL="http://localhost:369/norr-video/video-views";
@@ -106,6 +107,16 @@ export class VideoService {
   updateVideoTags(tags){
     const url = VIDEO_TAGS_URL;
     return this.httpClient.post(url, tags);
+  }
+
+  getVideoAnalytics(videoId){
+      var url = VIDEO_URL+'/analytics/'+videoId;
+      return this.httpClient.get<NorrLabView[]>(url);
+  }
+
+  createVideoAnalytics(video){
+      var url = VIDEO_URL+'/analytics';
+      return this.httpClient.post(url,video);
   }
 
   editChannelVideosUserId(video): Observable<NorrLabVideo> {
