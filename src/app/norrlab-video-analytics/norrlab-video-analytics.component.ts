@@ -3,10 +3,13 @@ import { Component, OnInit, ViewChild  } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
+import * as pluginZoom from 'chartjs-plugin-zoom';
 
 import { VideoService} from '../services/video-service/video.service';
 import { UserService} from '../services/user-service/user.service';
 import {Router, ActivatedRoute, Params} from '@angular/router'; 
+import { NorrlabNavgationService } from '../norrlab-navgation/norrlab-navgation.service';
+
 
 
 @Component({
@@ -17,17 +20,21 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 export class NorrlabVideoAnalyticsComponent implements OnInit {
 
 
-  constructor(private userService:UserService,private activatedRoute:ActivatedRoute,private videoService:VideoService) {
+  constructor(private userService:UserService,private activatedRoute:ActivatedRoute,private videoService:VideoService,
+    private norrlabNavgationService:NorrlabNavgationService) {
 
   }
 
   public lineChartData: ChartDataSets[] = [
    
-    { data: [{y:3,x:new Date("1990-01-01")},{y:5,x:new Date("1990-01-02")},{y:9,x:new Date("1991-01-01")},{y:65,x:new Date("2011-01-01")}, {y:35,x:new Date("2011-02-01")},{y:6,x:new Date("2011-06-01")} ], label: 'Series C', yAxisID: 'y-axis-0' },
+    { data: [{y:3,x:new Date("1990-01-01")},{y:5,x:new Date("1990-01-02")},{y:9,x:new Date("1991-01-01")},{y:65,x:new Date("2011-01-01")}, {y:35,x:new Date("2011-02-01")},{y:6,x:new Date("2011-06-01")} ],
+     label: 'Views', yAxisID: 'y-axis-0',fill: true
+
+     },
      
   ];
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChartOptions: (ChartOptions & { annotation: any }) ;
+  public lineChartOptions: (ChartOptions & { plugins: any }) ;
   public lineChartColors: Color[] = [
     { // grey
       backgroundColor: 'rgba(188, 240, 213, 0.67)',
@@ -42,25 +49,58 @@ export class NorrlabVideoAnalyticsComponent implements OnInit {
   ];
   public lineChartLegend = true;
   public lineChartType = 'line';
-  public lineChartPlugins = [pluginAnnotations];
+  public lineChartPlugins = [pluginAnnotations,pluginZoom];
 
-  @ViewChild('baseChart'/* BaseChartDirective, { static: true }*/) chart: BaseChartDirective;
+  public year = 'red';//"'#8EE1B6'"
+
+  public order: string = 'value';
+
+  @ViewChild(BaseChartDirective/*'baseChart' BaseChartDirective, { static: true }*/) chart: BaseChartDirective;
+
+
     norrLabAnalytics : [] = [];
+    countries;
+
   ngOnInit() { 
   	this.videoService.getVideoAnalytics(this.activatedRoute.snapshot.params.videoId)
     .subscribe(analytics =>{
-        var tmpDatas:[] =[];
-          this.lineChartOptions = {
+        var tmpDatas:[];
+
+        this.countries =[
+            {
+               name:"France",
+               value:78
+            },
+            {
+               name:"Canada",
+               value:1
+            },
+            {
+               name:"New-Yourk",
+               value:10
+            },
+            {
+               name:"Pekin",
+               value:9
+            },
+        ]
+
+        this.lineChartOptions = {
+
     responsive: true,
-    scales: {
-      bounds:true,
+    scales: { 
       // We use this empty structure as a placeholder for dynamic theming.
       xAxes: [{
             type: 'time', 
             time: {
-                unit: 'month',
-                min:analytics[0].viewedDate
+                unit: 'year',
+                displayFormats: { month: 'MM' },
+                
             },
+            ticks:{
+                min:analytics[0]?new Date(analytics[0].viewedDate):new Date("2020-04-03T01:12:53.298+00:00"),
+                
+            }
        
         }],
       yAxes: [
@@ -71,7 +111,7 @@ export class NorrlabVideoAnalyticsComponent implements OnInit {
         } 
       ]
     },
-    annotation: {
+    plugins: {
       annotations: [
         {
           type: 'line',
@@ -100,6 +140,27 @@ export class NorrlabVideoAnalyticsComponent implements OnInit {
           }
         },
       ],
+    zoom: {
+                // Container for pan options
+                pan: {
+                    // Boolean to enable panning
+                    enabled: true,
+
+                    // Panning directions. Remove the appropriate direction to disable 
+                    // Eg. 'y' would only allow panning in the y direction
+                    mode: 'x'
+                },
+
+                // Container for zoom options
+                zoom: {
+                    // Boolean to enable zooming
+                    enabled: true,
+
+                    // Zooming directions. Remove the appropriate direction to disable 
+                    // Eg. 'y' would only allow zooming in the y direction
+                    mode: 'x',
+                }
+            },
     },
   };
         analytics.forEach((analytic,i) =>{  
@@ -109,19 +170,24 @@ export class NorrlabVideoAnalyticsComponent implements OnInit {
               this.lineChartData[0].data[i] = item;
         }) 
     })
-  }
+  } 
 
-  public randomize(): void {
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        this.lineChartData[i].data[j] = this.generateNumber(i);
-      }
-    }
+  public updateChartYear(){
+
+  } 
+
+  public updateChartMonth(){
+    
+  } 
+
+  public updateChartDay(){
+    this.lineChartOptions.scales.xAxes[0].time.unit='day';  
+    this.lineChartOptions.scales.xAxes[0].ticks.min="1990-04-01"
     this.chart.update();
   }
 
-  public goToComment(): void{
-    
+  public goToVideoComment(): void{
+      this.norrlabNavgationService.goTo('/videos/'+this.activatedRoute.snapshot.params.videoId)
   }
 
   private generateNumber(i: number) {
@@ -130,8 +196,7 @@ export class NorrlabVideoAnalyticsComponent implements OnInit {
 
   // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-    alert()
+    console.log(event, active); 
   }
 
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
@@ -145,6 +210,7 @@ export class NorrlabVideoAnalyticsComponent implements OnInit {
 
   public pushOne() {
     this.lineChartData.forEach((x, i) => {
+      //TODO update data
       const num = this.generateNumber(i);
       const data: number[] = x.data as number[];
       data.push(num);

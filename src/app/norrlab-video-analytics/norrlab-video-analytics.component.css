@@ -267,11 +267,16 @@ p.col-4.top_views_country_value_perc {
 }
 
 .under_line{
-    
+
     border-bottom: 1px solid #ccfd;
 }
 
-
+button.button_time.mat-raised-button {
+    margin-right: 16px;
+    outline:    none;  
+    background-color: #8EE1B6 ;
+    color: #fff;
+}
 
 
 

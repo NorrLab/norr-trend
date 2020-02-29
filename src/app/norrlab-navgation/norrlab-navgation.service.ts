@@ -28,4 +28,10 @@ export class NorrlabNavgationService {
   	this.router.navigate([nextPage]);
   }
 
+  goTo(destination) {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([destination]);
+  } 
+
 }

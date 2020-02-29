@@ -45,6 +45,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 //import { MatMomentDateModule,MomentDateAdapter  } from "@angular/material-moment-adapter";
 import { MatMomentDateModule  } from "@angular/material-moment-adapter";
 
+import { OrderModule } from 'ngx-order-pipe';
 // Import ngx-twitter-timeline
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 const MaterialModule =[
@@ -91,7 +92,7 @@ const MaterialModule =[
     MatTreeModule,
     PortalModule,
     ScrollingModule,NgxTwitterTimelineModule,StorageServiceModule,FormsModule, ReactiveFormsModule,
-    MatMomentDateModule/*,MomentDateAdapter */
+    MatMomentDateModule/*,MomentDateAdapter */,OrderModule
     ]
 
 @NgModule({

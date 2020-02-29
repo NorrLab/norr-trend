@@ -12,8 +12,8 @@
         <div class="container_video_edit"> 
         <div class="row">  
         <div class="col-12">   
-          <div class="chart_container">
-                <canvas baseChart width="400" height="120"
+          <div class="chart_container"> 
+                <canvas  baseChart width="400" height="120"
                 [datasets]="lineChartData"
                 [labels]="lineChartLabels"
                 [options]="lineChartOptions"
@@ -23,9 +23,16 @@
                 [plugins]="lineChartPlugins"
                 (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>
+
+                <!-- <progress id="animationProgress" max="1" value="0" style="width: 100%;background-color:  blue"></progress> -->
             </div>
           <div class="video_properties"> 
-            <button> butn</button>      
+            <div class="col-12"> 
+                <button mat-raised-button class="button_time" (click)="updateChartYear()">YEARLY</button>
+            <button mat-raised-button class="button_time" (click)="updateChartMonth()">MONTHLY</button>
+            <button mat-raised-button class="button_time" (click)="updateChartDay(baseChart)">DAILY</button>
+            </div>  
+       
           </div>
         </div>
 
@@ -34,19 +41,19 @@
                 <div class="row"> 
                     <div class="col-6"> 
                         <div class="top_views_title"> 
-                          <p> <span  class="under_line"> Views since publication</span> </p> 
+                          <p> <span  class="under_line"> Top countries</span> </p> 
                         </div>
-                        <div class="row top_views_content"> 
-                            <p class="col-4 top_views_country" > Fance</p>
+                        <div class="row top_views_content" *ngFor="let country of (countries | orderBy:order:true)"> <!--  -->
+                            <p class="col-4 top_views_country" > {{country.name}}</p>
 
-                            <p class="col-4  top_views_country_value" >78 %</p>
+                            <p class="col-4  top_views_country_value" >{{country.value}} %</p>
                         </div> 
                         <div class="top_views_title"> 
                           <p> <span  class="under_line"> Comments</span></p>
                         </div> 
                         <div class="row top_views_content"> 
                             <p class="col-4 top_views_country" > &nbsp;</p>
-                            <p class="col-4  top_views_country_value" style="color: blue;cursor: pointer;" click="goToComment()" >52</p>
+                            <p class="col-4  top_views_country_value" style="color: blue;cursor: pointer;" (click)="goToVideoComment()" >52</p>
                             <p class="col-4  top_views_country_value_perc" >78 %</p>
                         </div>
                     </div>
