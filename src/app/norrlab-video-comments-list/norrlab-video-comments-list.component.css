@@ -24,10 +24,15 @@
     border: 1px solid #ccc;
     margin-bottom: 9px;
 } 
-
+.textarea_title{
+    background-color: #f4f4f4;
+    text-align: start;
+    padding:    9px
+}
 .norr-lab-mat-card.invalide{
         border: 2px solid #f4f4f4;
         padding: 9px;
+
 }
 
 .norr-ngx-toastr {
@@ -235,15 +240,7 @@ img.poster_example_one_img {
     padding: 9px; 
     margin-bottom: 14px;
     box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
-}
-
-.chart_container { 
-    background: #cccccc40;
-    
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
-    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
-}
+} 
 
 .top_views_title {  
     text-align: start;
@@ -256,16 +253,7 @@ img.poster_example_one_img {
 
 .row.top_views_content {
     text-align: start;
-}
-
-p.col-4.top_views_country_value {
-    text-align: center ;
-}
-
-p.col-4.top_views_country_value_perc {
-    text-align: end;
-}
-
+}   
 .under_line{
 
     border-bottom: 1px solid #ccfd;
@@ -276,9 +264,81 @@ button.button_time.mat-raised-button {
     outline:    none;  
     background-color: #8EE1B6 ;
     color: #fff;
+} 
+
+
+.chart_container {
+    /* background: #cccccc40; */
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    /* box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12); */
+}
+
+
+.example-header-image {
+  background-size: cover;
+    height: 53px;
+    width: 53px;
+    border-radius: 50%;
+    padding: 2px;
+    cursor: pointer;
+    /* border-style: unset; */
+    border: 1px solid #8EE1B6;
+}
+
+.span_title:hover{
+    background-color: #000;
+    color:  #fff;
+    cursor: pointer;    
+}
+
+.span_title{
+
+    padding-right: 9px;
+    padding-left: 9px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: #ccc;
+        border-radius: 12px;
+}
+ 
+
+.content-list:hover{    
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
 }
 
 .span_date{
-    color:  red
+        display:    block;  
+        color:  #ccc;
+        font-size:  13px;
 }
 
+.col-2.top_views_country_value_perc {
+    text-align: end;
+}
+
+.span_titl_reply:hover{
+        color: blue;
+        cursor: pointer;
+}
+
+.span_titl_reply{
+    color:rgba(0, 0, 0, 0.55)
+}
+
+.span_titl_link:hover{
+        color: #000;
+        cursor: pointer;
+}
+
+.span_titl_link{
+    color:rgba(0, 0, 0, 0.55)
+}
+
+.top_views_country_value {
+    font-size: 14px;
+    padding-left: 0px;
+    /* padding-right: 57px; */
+    text-align: start;
+    padding-bottom: 1px;
+}

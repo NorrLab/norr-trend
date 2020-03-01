@@ -26,6 +26,7 @@ import { NorrlabAccountManagerComponent } from './norrlab-account-manager/norrla
 import { ToastrModule } from 'ngx-toastr';
 import { NorrlabVideoCreationComponent } from './norrlab-video-creation/norrlab-video-creation.component';
 import { NorrlabVideoAnalyticsComponent } from './norrlab-video-analytics/norrlab-video-analytics.component';
+import { NorrlabVideoCommentsListComponent } from './norrlab-video-comments-list/norrlab-video-comments-list.component';
 import { ChartsModule } from 'ng2-charts';
 
 
@@ -46,7 +47,7 @@ import { ChartsModule } from 'ng2-charts';
     NorrlabMemberShipsComponent,
     NorrlabPositionBublicationComponent,
     NorrlabAccountManagerComponent,
-    NorrlabVideoCreationComponent,NorrlabVideoAnalyticsComponent
+    NorrlabVideoCreationComponent,NorrlabVideoAnalyticsComponent,NorrlabVideoCommentsListComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,

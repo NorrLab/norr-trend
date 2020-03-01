@@ -55,7 +55,7 @@ export class NorrlabVideoChannelComponent  implements AfterViewInit {
   }
 
   goToVideoCommentPage(videoId){
-    this.goTo('/video/'+videoId+'/analytics')
+    this.goTo('/comments-list/'+videoId)
   }
 
 

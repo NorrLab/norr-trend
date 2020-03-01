@@ -1,3 +1,83 @@
-<p>
-  norrlab-video-comments-list works!
-</p>
+  <div class="sub-toolbar">  
+      <div class="sub-menu">
+        <a href=""> NorrLab</a> /
+
+        <a href=""> Video comments</a>
+      </div>
+  </div>   
+<mat-tab-group>
+  <mat-tab label="Video comments
+">
+
+        <div class="container_video_edit"> 
+        <div class="row">
+
+          <div class="col-12" > 
+            <div class="norr-lab-mat-card invalide"> 
+                <div class="row"> 
+                    <div class="col-6"> 
+                        <div class="top_views_title"> 
+                          <p> <span  class="under_line"> Title</span> </p> 
+                        </div>
+                        <div class="row top_views_content"> <!--  -->
+                            <p class="col-1 top_views_country" > </p>
+
+                            <p class="col-4  top_views_country_value" >{{video.videoTitle}}</p>
+                        </div> 
+                        <div class="top_views_title"> 
+                          <p> <span  class="under_line"> Description</span></p>
+                        </div> 
+                        <div class="row top_views_content"> 
+                            <p class="col-1 top_views_country" > &nbsp;</p>
+                            <p class="col-8  top_views_country_value" (click)="goToVideoComment()" >
+                              {{video.videoDescription}}
+                            </p> 
+                        </div>
+                    </div>
+                    <div class="col-6">  
+                              
+        <div class="col-12"  style="  padding-right:0px">   
+          <div class="chart_container"> 
+            <video  src="{{video?video.videoUrl:''}}" style="width: 100%"> </video>
+
+                <!-- <progress id="animationProgress" max="1" value="0" style="width: 100%;background-color:  blue"></progress> -->
+            </div> 
+        </div>
+
+                    </div> 
+                </div>  
+                  <div *ngFor="let comment of videoComments" class="top_views_content content-list" style="background-color: #f4f4f4;padding: 9px;margin: 9px;border-radius: 6px  "> 
+                      <div class="row"> 
+                          <div class="col-1 top_views_country" > 
+                            <img class="example-header-image" src="http://localhost:369/images{{comment.tradeUser?comment.tradeUser.userPictureUrl:'/default_user.png'}}"  width="100%">
+                      <!--   http://localhost:369/images{{(videoComment.videoCommentUser.userPictureUrl.length>0)?videoComment.videoCommentUser.userPictureUrl:'/default_user.png'}}-->
+                        </div>
+                        <div class="col-10" style="  padding-left: 0px;">
+                            <p class="col-12 top_views_country_value"><span class="span_title">  Ulrich Ossene </span>
+                             &nbsp; &#8226; &nbsp;
+                              <span class="span_date">{{comment.videoCommentDate | date: 'medium'}}</span> </p>
+                            <p class="col-12 top_views_country_value" style="padding-left: 6px"> 
+Dissid Retrouvez toutes les interventions Dissid Retrouvez toutes les interventions </p>
+                            <p (click)="_enableReply()" class="col-12 top_views_country_value" style="padding-left: 6px"><span class="span_titl_reply">  REPLY </span> </p>
+                            <div *ngIf="enableReply" class="norr-lab-mat-card" style="background-color: #f4f4f4;padding-bottom: 0px;"> 
+                              <div class="in_title" style=" text-align:  start; padding:  6px;font-size:  13px; color:  blue"> 
+                                 REPLY
+                                </div>
+                                <div role="textarea" contenteditable="true" class="col-12 textarea_title"  #textarea tabindex="1">
+                                 <!-- [textContent]="videoToUpdate.videoTitle" (input)="videoToUpdate.videoTitle=$event.target.innerText" --> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1  top_views_country_value_perc"><mat-icon  class="span_titl_link">open_in_new</mat-icon></div>
+                      </div>  
+                  </div> 
+            </div>
+          </div>
+
+
+        </div>  
+        </div>   
+  </mat-tab> 
+  <span class="space"></span>
+  <div>some</div>
+</mat-tab-group>
