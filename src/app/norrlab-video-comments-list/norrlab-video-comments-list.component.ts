@@ -44,8 +44,8 @@ export class NorrlabVideoCommentsListComponent implements OnInit {
   }
 
   public createReplyComment(){
-
-    this.commentService.createReplyComment(this.replyComment)
+//TODO create reply
+    this.commentService.createReplyComment(null)
     .subscribe(replyComment =>{
       alert('ok')
     }, err =>{
