@@ -310,7 +310,7 @@ button.button_time.mat-raised-button {
 .span_date{
         display:    block;  
         color:  #ccc;
-        font-size:  13px;
+        font-size:  16px;
 }
 
 .col-2.top_views_country_value_perc {
@@ -342,3 +342,19 @@ button.button_time.mat-raised-button {
     text-align: start;
     padding-bottom: 1px;
 }
+
+.col-12.video_comment_class_button {
+    text-align: end;
+}
+
+.col-12.video_comment_class_button >button{
+        margin-left: 6px;
+        outline: none;  
+}
+
+
+
+
+
+
+

@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NorrlabNavgationService } from '../norrlab-navgation/norrlab-navgation.service';
 import { VideoService} from '../services/video-service/video.service';
+import { CommentService} from '../services/comment-service/comment-service';
 import { NorrLabVideo} from '../interfaces/norrLabVideo/norr-lab-video';
+
+
+
+
 
 @Component({
   selector: 'app-norrlab-video-comments-list',
@@ -12,16 +17,62 @@ import { NorrLabVideo} from '../interfaces/norrLabVideo/norr-lab-video';
 export class NorrlabVideoCommentsListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-  private router: Router, private norrlabNavgationService:NorrlabNavgationService, private videoService:VideoService) { }
+  private router: Router, private norrlabNavgationService:NorrlabNavgationService, private videoService:VideoService,
+  private commentService:CommentService) {
+
+  }
+
   public video:NorrLabVideo;
    enableReply:boolean = false;
   public videoComments:any ;
 
-  public _enableReply(){
-    this.enableReply = !this.enableReply;
+  public replyComments;
+
+
+  public getReplyComments(){
+    this.commentService.getReplyComments()
+    .subscribe(replies =>{
+        this.replyComments = replies;
+    },err =>{
+      alert('error')
+    })
   }
 
+  public createReplyComment(){
 
+    this.commentService.createReplyComment(this.replyComment)
+    .subscribe(replyComment =>{
+      alert('ok')
+    }, err =>{
+      alert('not ok!!!..')
+    })
+  }
+
+  public _enableReply(cmt){
+    console.log(cmt);
+    this.desableOther(this.videoComments,true,cmt); 
+    cmt.display = !cmt.display;
+  }
+
+  public order: string = 'videoCommentDate';
+
+  private desableOther(videoComments,all,cmt) {
+     videoComments.forEach(_cmt =>{
+        if(!all){
+            _cmt.display = false;
+        } else if(_cmt._id!=cmt._id){
+             _cmt.display = false;
+        }
+      });
+   }
+
+   public cancelReply(){ 
+    this.desableOther(this.videoComments,false,undefined); 
+   }
+
+  public goToVideoPage(){
+    this.norrlabNavgationService.goTo('/videos/'+this.route.snapshot.params.videoId);
+  }
 
   ngOnInit() {
   	var videoId = this.route.snapshot.params.videoId;
@@ -33,6 +84,10 @@ export class NorrlabVideoCommentsListComponent implements OnInit {
       //TODO get video comments, from video id.
       this.videoService.getVideoFreeComments(this.video._id).subscribe(comments =>{ 
           this.videoComments = comments;
+          this.videoComments.forEach(cmt =>{
+            cmt.display = false;
+            this.getReplyComments();
+          })
       });
   	})
   }
