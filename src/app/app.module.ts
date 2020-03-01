@@ -28,6 +28,7 @@ import { NorrlabVideoCreationComponent } from './norrlab-video-creation/norrlab-
 import { NorrlabVideoAnalyticsComponent } from './norrlab-video-analytics/norrlab-video-analytics.component';
 import { NorrlabVideoCommentsListComponent } from './norrlab-video-comments-list/norrlab-video-comments-list.component';
 import { ChartsModule } from 'ng2-charts';
+import { NorrlabUserComponent } from './norrlab-user/norrlab-user.component';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { ChartsModule } from 'ng2-charts';
     NorrlabMemberShipsComponent,
     NorrlabPositionBublicationComponent,
     NorrlabAccountManagerComponent,
-    NorrlabVideoCreationComponent,NorrlabVideoAnalyticsComponent,NorrlabVideoCommentsListComponent
+    NorrlabVideoCreationComponent,NorrlabVideoAnalyticsComponent,NorrlabVideoCommentsListComponent, NorrlabUserComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,

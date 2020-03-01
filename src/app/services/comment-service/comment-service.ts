@@ -10,28 +10,7 @@ const VIDEO_URL="http://localhost:369/norr-video";
 const VIDEO_VIEWS_URL="http://localhost:369/norr-video/video-views";
 const VIDEO_COMMENT_URL="http://localhost:369/norr-video/comments";
 const VIDEO_TAGS_URL = VIDEO_URL+"/tags";
-const COMMENT_REPLY_URL = 'comment/reply/';
-const fackReplies = [{
-_id:"any",
-description:"string",
-commentType:1,
-commentUser:"any",
-commentComment:"any"
-},{
-_id:"any",
-description:"string",
-commentType:3,
-commentUser:"any",
-commentComment:"any"
-},{
-_id:"any",
-description:"string",
-commentType:2,
-commentUser:"any",
-commentComment:"any"
-}
-
-]
+const COMMENT_REPLY_URL = 'http://localhost:369/norr-video/comment/reply/';
 //
 
 export interface Tag{

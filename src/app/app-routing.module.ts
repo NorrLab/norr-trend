@@ -15,12 +15,14 @@ import { NorrlabAccountManagerComponent } from './norrlab-account-manager/norrla
 import { NorrlabVideoCreationComponent } from './norrlab-video-creation/norrlab-video-creation.component';
 import { NorrlabVideoAnalyticsComponent } from './norrlab-video-analytics/norrlab-video-analytics.component';
 import { NorrlabVideoCommentsListComponent } from './norrlab-video-comments-list/norrlab-video-comments-list.component';
+import { NorrlabUserComponent } from './norrlab-user/norrlab-user.component';
 
  
 
 const routes: Routes = [{path:'home',component:NorrlabHomeComponent}
 	,{path:'lessons',component:NorrlabLessonsComponent}
 	,{path:'comments-list/:videoId',component:NorrlabVideoCommentsListComponent},
+	{path:'user/:userId',component:NorrlabUserComponent},
 	{
 		path:'videos',component:NorrlabVideosComponent,
 	 	children:

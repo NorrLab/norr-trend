@@ -22,6 +22,11 @@ export class NorrlabVideoCommentsListComponent implements OnInit {
 
   }
 
+  public goToUserProfile(videoId){
+
+    this.norrlabNavgationService.goTo('/user/'+videoId);
+  }
+
   public video:NorrLabVideo;
    enableReply:boolean = false;
   public videoComments:any ;
