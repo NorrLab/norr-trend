@@ -46,6 +46,9 @@
 
                     </div> 
                 </div>  
+                <div *ngIf="videoComments.length>0" class="sort_class"> 
+                    <mat-icon (click)="_sortBy()" >sort</mat-icon> 
+                </div>  
                   <div *ngFor="let comment of (videoComments | orderBy:order:true)" class="top_views_content content-list" style="background-color: #f4f4f4;padding: 9px;margin: 9px;border-radius: 6px  "> 
                       <div class="row"> 
                           <div class="col-1 top_views_country" > 

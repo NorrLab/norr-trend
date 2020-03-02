@@ -43,6 +43,10 @@ export class NorrlabVideoCommentsListComponent implements OnInit {
     })
   }
 
+  public _sortBy(){
+    alert('sortBy')
+  }
+
   public createReplyComment(){
 //TODO create reply
     this.commentService.createReplyComment(null)

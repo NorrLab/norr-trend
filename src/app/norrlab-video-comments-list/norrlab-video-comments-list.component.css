@@ -352,9 +352,20 @@ button.button_time.mat-raised-button {
         outline: none;  
 }
 
+.sort_class{
+    text-align:  start;
+    margin-left:  9px;
+    color:  rgba(0, 0, 0, 0.55)
+}
 
+.sort_class > mat-icon:hover{
+    cursor: pointer;
+    color:  #000/*rgba(0, 0, 0, 0.55)*/
+}
 
-
+.sort_class > mat-icon{ 
+    color:  rgba(0, 0, 0, 0.55)/**/
+}
 
 
 
