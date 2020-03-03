@@ -14,6 +14,21 @@ export class NorrLabMatPaginatorIntl extends MatPaginatorIntl {
 
 
 
+@Component({
+  selector: 'app-norrlab-page'
+})
+export class NorrLabMatPaginatorIntl extends MatPaginatorIntl implements OnInit {
+   itemsPerPageLabel = 'Comments per page';
+   nextPageLabel     = 'Next comments';
+   previousPageLabel = 'Previous comments';
+
+   ngOnInit(){
+     alert("ooo")
+   }
+}
+
+
+
 
 @Component({
   selector: 'app-norrlab-video-comments-list',

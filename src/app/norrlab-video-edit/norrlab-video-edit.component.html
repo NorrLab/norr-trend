@@ -27,7 +27,7 @@
 	         			</div>
 			         	<div class="row row_validation" >
 			         			<div class="col-10">
-			         				<div *ngIf="videoToUpdate.videoTitle.length>37 || videoToUpdate.videoTitle.length==0" class="error_show row" style="text-align: start; padding-right: 19px">
+			         				<div *ngIf="videoToUpdate.videoTitle.trim().length>37 || videoToUpdate.videoTitle.trim().length==0" class="error_show row" style="text-align: start; padding-right: 19px">
 				         				<div class="col-1" style="color: red;text-align: start;padding-right: 25px;">
 				         					<mat-icon>cancel</mat-icon>
 				         				</div>

@@ -96,6 +96,10 @@ watchvideo(videoToUpdateId){
     this.goTo(url);
 }
 
+isValid(){
+  return videoToUpdate.videoTitle.trim().length>37 || videoToUpdate.videoTitle.trim().length==0;
+}
+
 selectedFile: File= null;
 tmpThumbnail;
 
@@ -235,7 +239,7 @@ goTo(destination) {
   }
 
        valideFormTitle() {
-         return this.videoToUpdate.videoTitle.length==0 || this.videoToUpdate.videoTitle.length>37 ;
+         return this.videoToUpdate.videoTitle.trim().length==0 || this.videoToUpdate.videoTitle.trim().length>37 ;
        }
 
        valideFormDescription() {

@@ -359,9 +359,9 @@ button.button_time.mat-raised-button {
     color:  #000/*rgba(0, 0, 0, 0.55)*/
 }
 
-.sort_by> div{ 
+mat-paginator{ 
     /**/
-    
+    outline: none;
 
 }
 
