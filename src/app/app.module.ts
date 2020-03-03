@@ -30,6 +30,10 @@ import { NorrlabVideoCommentsListComponent } from './norrlab-video-comments-list
 import { ChartsModule } from 'ng2-charts';
 import { NorrlabUserComponent } from './norrlab-user/norrlab-user.component';
 
+import { MatPaginatorIntl } from '@angular/material';
+import { NorrLabMatPaginatorIntl } from './norrlab-video-comments-list/norrlab-video-comments-list.component';
+
+
 
 @NgModule({
   declarations: [
@@ -66,7 +70,7 @@ import { NorrlabUserComponent } from './norrlab-user/norrlab-user.component';
     }
   })
   ],
-  providers: [],
+  providers: [{ provide: MatPaginatorIntl, useClass: NorrLabMatPaginatorIntl}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

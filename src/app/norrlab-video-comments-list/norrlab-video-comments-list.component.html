@@ -46,8 +46,19 @@
 
                     </div> 
                 </div>  
-                <div *ngIf="videoComments.length>0" class="sort_class"> 
-                    <mat-icon (click)="_sortBy()" >sort</mat-icon> 
+                <div *ngIf="videoComments.length>0"> 
+                    <div  class="_comment" style="text-align: start;"> 
+                        <mat-icon onMouseOut="this.style.color='rgba(0, 0, 0, 0.55)'" onMouseOver="this.style.color='#000'" style="text-align: start;color:  rgba(0, 0, 0, 0.55);cursor: pointer;" (click)="_sortBy()" >sort</mat-icon> 
+                    </div>
+                    <div *ngIf="__norrSort"  class="col-3 sort_options" style="position: absolute;z-index: 9;padding-left: 0px;padding-right: 0px;"> 
+                        <mat-card style="">
+                          <div class="sort_by">  
+                          <div onMouseOut="this.style.background='#fff'" onMouseOver="this.style.background='#f4f4f4'" style="line-height: 2;font-size: 16px;cursor:  pointer;"  class="col-12" (click)="__sortByEvent($event)">Most recent</div>
+                          <div onMouseOut="this.style.background='#fff'" onMouseOver="this.style.background='#f4f4f4'" style="line-height: 2;font-size: 16px;cursor:  pointer;"  class="col-12" (click)="__sortByEvent($event)">By subscribers</div>
+                          <div onMouseOut="this.style.background='#fff'" onMouseOver="this.style.background='#f4f4f4'" style="line-height: 2;font-size: 16px;cursor:  pointer;"  class="col-12" (click)="__sortByEvent($event)">Replied</div>
+                          </div>
+                        </mat-card>
+                    </div>
                 </div>  
                   <div *ngFor="let comment of (videoComments | orderBy:order:true)" class="top_views_content content-list" style="background-color: #f4f4f4;padding: 9px;margin: 9px;border-radius: 6px  "> 
                       <div class="row"> 
@@ -85,6 +96,12 @@
                         <div class="col-1  top_views_country_value_perc"><mat-icon (click)="goToVideoPage()" class="span_titl_link">open_in_new</mat-icon></div>
                       </div>  
                   </div> 
+                  <div> 
+                      <mat-paginator [length]="100"
+                                    [pageSize]="5"
+                                    [pageSizeOptions]="[5, 10, 25]">
+                      </mat-paginator>
+                  </div>
             </div>
           </div>
 
@@ -92,6 +109,9 @@
         </div>  
         </div>   
   </mat-tab> 
+  <mat-tab label="Trade comments
+"> 
+  </mat-tab>
   <span class="space"></span>
   <div>some</div>
 </mat-tab-group>

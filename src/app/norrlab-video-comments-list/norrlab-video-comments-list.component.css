@@ -351,21 +351,28 @@ button.button_time.mat-raised-button {
         margin-left: 6px;
         outline: none;  
 }
-
-.sort_class{
-    text-align:  start;
-    margin-left:  9px;
-    color:  rgba(0, 0, 0, 0.55)
+._comment[_ngcontent-dul-c8] {
+    
 }
-
-.sort_class > mat-icon:hover{
+.sort_comment > div> mat-icon:hover{
     cursor: pointer;
     color:  #000/*rgba(0, 0, 0, 0.55)*/
 }
 
-.sort_class > mat-icon{ 
-    color:  rgba(0, 0, 0, 0.55)/**/
+.sort_by> div{ 
+    /**/
+    
+
 }
 
+.sort_comment{
+    text-align:  start;
+    margin-left:  9px;
+    color:  red
+}
 
+.sort_comment {
+    text-align: start;
 
+    color:  rgba(0, 0, 0, 0.55)
+}

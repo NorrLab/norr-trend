@@ -3,8 +3,14 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NorrlabNavgationService } from '../norrlab-navgation/norrlab-navgation.service';
 import { VideoService} from '../services/video-service/video.service';
 import { CommentService} from '../services/comment-service/comment-service';
-import { NorrLabVideo} from '../interfaces/norrLabVideo/norr-lab-video';
+import { NorrLabVideo} from '../interfaces/norrLabVideo/norr-lab-video'; 
+import { MatPaginatorIntl } from '@angular/material';
 
+export class NorrLabMatPaginatorIntl extends MatPaginatorIntl {
+   itemsPerPageLabel = 'Comments per page';
+   nextPageLabel     = 'Next comments';
+   previousPageLabel = 'Previous comments';
+}
 
 
 
@@ -43,9 +49,6 @@ export class NorrlabVideoCommentsListComponent implements OnInit {
     })
   }
 
-  public _sortBy(){
-    alert('sortBy')
-  }
 
   public createReplyComment(){
 //TODO create reply
@@ -64,6 +67,15 @@ export class NorrlabVideoCommentsListComponent implements OnInit {
   }
 
   public order: string = 'videoCommentDate';
+
+  public __norrSort= false; 
+  
+  public __sortByEvent(event){
+  }
+
+  public _sortBy(){
+      this.__norrSort = !this.__norrSort
+  }
 
   private desableOther(videoComments,all,cmt) {
      videoComments.forEach(_cmt =>{
