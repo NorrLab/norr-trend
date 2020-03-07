@@ -97,7 +97,7 @@ watchvideo(videoToUpdateId){
 }
 
 isValid(){
-  return videoToUpdate.videoTitle.trim().length>37 || videoToUpdate.videoTitle.trim().length==0;
+  return this.videoToUpdate.videoTitle.trim().length>37 || this.videoToUpdate.videoTitle.trim().length==0;
 }
 
 selectedFile: File= null;

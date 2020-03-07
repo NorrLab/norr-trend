@@ -6,11 +6,6 @@ import { CommentService} from '../services/comment-service/comment-service';
 import { NorrLabVideo} from '../interfaces/norrLabVideo/norr-lab-video'; 
 import { MatPaginatorIntl } from '@angular/material';
 
-export class NorrLabMatPaginatorIntl extends MatPaginatorIntl {
-   itemsPerPageLabel = 'Comments per page';
-   nextPageLabel     = 'Next comments';
-   previousPageLabel = 'Previous comments';
-}
 
 
 
