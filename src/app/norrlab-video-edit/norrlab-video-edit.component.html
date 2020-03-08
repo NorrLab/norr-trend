@@ -7,9 +7,10 @@
 	</div>
 
 	<div class="col-12 up-mat_success" > <!-- [disabled]="__openCmtEdito" -->
-		<button (click)="undoChanges()" class="mat_success_undo" style="z-index: 999" mat-flat-button >UNDO CHANGES</button>
-		 <button (click)="saveChanges(videoToUpdate)" mat-flat-button class="mat_success">SAVE</button> 
-	</div>	
+		<button  [disabled]="disabledSave()" (click)="undoChanges()" class="mat_success_undo" style="z-index: 999" mat-flat-button >UNDO CHANGES</button>
+		 <button (click)="saveChanges(videoToUpdate)" [disabled]="disabledSave()" mat-flat-button class="mat_success">SAVE</button> 
+
+	</div>	 
 <mat-tab-group>
   <mat-tab label="Basic">
   	<div class="container_video_edit"> 

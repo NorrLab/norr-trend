@@ -181,6 +181,8 @@ valideUpdate(video){
 }
 
 __videoLoaded = false;
+_percentValue=0;
+
 private preUpload(payLoad){
 
   this.videoService.createChannelVideosUserId(payLoad)
@@ -189,34 +191,34 @@ private preUpload(payLoad){
           case HttpEventType.UploadProgress:{
                         const progress = Math.round(100 * event.loaded / event.total);
                         console.log(progress);
-                        if(!this.__videoLoaded){
+                        this._percentValue = progress;
+                        if(this.__volumClassProgress){
                           this.__volumClassProgress.nativeElement.style.width=progress+"%";
                         }
                       }
 
           case HttpEventType.Response:{
-                        console.log(event);  
-                          
+                        console.log(event);
+                        if (event!= undefined && (event instanceof HttpResponse) ){
+                            this.videoService.createVideoUserId(payLoad.video)
+                            .subscribe(vd =>{
+                              this.videoToUpdate = vd;
+                              this.__videoLoaded = true; 
+                              this.showSuccess();
+                              this.goTo(`videos-edition/${this.videoToUpdate._id}`)
+                            },err =>{
+                              this.showError("Error occures while creating video!")
+                            })
+                        }        
                   }
 
           default:{
-                               console.log(`Unhandled event: ${event.type}`);
+                     console.log(`Unhandled event: ${event.type}`);
                   }
 
         }
-  }) ).subscribe(result =>{
-      //this.updateTags();
-      this.showSuccess();
-      console.log(`Check result:= ${result} `);
-
-      this.videoService.createVideoUserId(payLoad.video)
-      .subscribe(vd =>{
-        this.videoToUpdate = vd;
-                        this.__videoLoaded = true; 
-      },err =>{
-        this.showError("Error occures while creating video!")
-      })
-
+  }) ).subscribe(result =>{ 
+      console.log(`Check result:= ${result} `); 
     }) 
 
 }

@@ -91,13 +91,18 @@ newTag = new FormControl([]);
  	alert(this.videoToUpdate.videoTitle.length+'||'+this.videoToUpdate.videoTitle)
  }
 
+ disabledSave(): boolean{ 
+var state =  (this.videoToUpdate.videoTitle ==  this.videoToUpdate.videoFileName) || (this.valideFormDescription()) || !this.isValid();
+   return state;
+ }
+
 watchvideo(videoToUpdateId){
     var url = 'videos/'+videoToUpdateId;
     this.goTo(url);
 }
 
 isValid(){
-  return this.videoToUpdate.videoTitle.trim().length>37 || this.videoToUpdate.videoTitle.trim().length==0;
+  return this.videoToUpdate.videoTitle.trim().length<37 && this.videoToUpdate.videoTitle.trim().length>0;
 }
 
 selectedFile: File= null;

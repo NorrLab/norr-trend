@@ -2,14 +2,9 @@
 	    <div class="sub-menu">
 	      <a href=""> NorrLab</a> /
 
-	      <a href=""> Video edition</a>
+	      <a href=""> Upload video</a>
 	    </div>
-	</div>
-
-	<div class="col-12 up-mat_success" > <!-- [disabled]="__openCmtEdito" -->
-		<button   class="mat_success_undo" style="z-index: 999" mat-flat-button >UNDO CHANGES</button>
-		 <button (click)="valideUpdate(videoToUpdate)"   mat-flat-button class="mat_success">SAVE</button> 
-	</div>	
+	</div> 
 <mat-tab-group>
   <mat-tab label="Basic">
   	<div class="container_video_edit"> 
@@ -17,246 +12,21 @@
 
   				<div class="col-12 main_upload copy_link"> 
 					<img (click)="fileInput_video.click()" class="cloud_upload" src="assets/icons/svg/cloud_upload-24px.svg" alt="Kiwi standing on oval">
-     			 <input name="fileInputVideo" style="display: none;" #fileInput_video type="file" accept="video/*" (change)="onFileVideoInput($event)" />
+     			 	<input name="fileInputVideo" style="display: none;" #fileInput_video type="file" accept="video/*" (change)="onFileVideoInput($event)" />
 
 				</div>
 				<div class="col-12 sub_title_upload">
 					<p class="video_select_clss" >Select video file to upload</p>
 				</div>
-				<div class="col-12 sub_title_upload">
+				<div *ngIf="_percentValue>0" class="col-12 sub_title_upload">
 					<div class="progress_container">
-						<div #__volumClassProgress class="_in_progress progress">
+						<div #__volumClassProgress matTooltip="{{_percentValue}}%"
+			         			[matTooltipPosition]="'right'" class="_in_progress progress">
 							
 						</div>
 					</div>
 				</div>
-  			</div>
-  			<div class="row" *ngIf="__videoLoaded"> 
-				<div class="col-6"> 
-					<div class="video_properties_link_title"  style="background-color: #f4f4f4">
-							<div class="row">
-								<div class="col-6" style="text-align: center;">
-									
-								</div>
-								
-							</div>
-						</div>
-					<div class="norr-lab-mat-card invalide" > 
-						<div class="in_title"> 
-			         		<div class="col-6">
-			         			<span class="in_title_6_1">Title (required)</span>	&nbsp;<mat-icon matTooltip="A catchy title can help you hook viewers. When you create video titles, it's a good idea to include keywords that your audience is likely to use when looking for videos like yours."
-			         			[matTooltipPosition]="'above'"class="help_in_title_6_1">help_outline</mat-icon>
-			         		</div> 
-			         	</div>
-			         	<div role="textarea" [textContent]="videoToUpdate.videoTitle" contenteditable="true" class="col-12 textarea_title"  #textarea tabindex="1" (input)="videoToUpdate.videoTitle=$event.target.innerText">
-			         		
-	         			</div>
-			         	<div class="row row_validation" >
-			         			<div class="col-10">
-			         				<div *ngIf="videoToUpdate.videoTitle.trim().length>37 || videoToUpdate.videoTitle.trim().length==0" class="error_show row" style="text-align: start; padding-right: 19px">
-				         				<div class="col-1" style="color: red;text-align: start;padding-right: 25px;">
-				         					<mat-icon>cancel</mat-icon>
-				         				</div>
-				         				<div class="col-10" style="text-align: start;padding-left: 0px;margin-top: 3px;">
-				         				<span style="color: red">&nbsp;Your title can't be empty and lenght should not exceede 37 </span> 	
-				         				</div>
-				         			</div>
-			         			</div>
-			         			<div class="col-2" style="text-align: end;">
-			         				{{videoToUpdate.videoTitle.length}}/37
-			         			</div>
-			         	</div>
-					</div>
-
-					<div class="norr-lab-mat-card invalide"  [attr.disabled]="true" > 
-						<div class="in_title">
-			         		<div class="col-6">
-			         			<span class="in_title_6_1">Description</span>	&nbsp;<mat-icon matTooltip="Writing descriptions with keywords can help viewers find your videos more easily through search. You can give an overview of your video and place keywords at the beginning of the description."
-			         			[matTooltipPosition]="'above'" class="help_in_title_6_1">help_outline</mat-icon>
-			         		</div> 
-			         	</div>
-			         	<div role="textarea" contenteditable="true" class="col-12 textarea_title" placeholde="dome" #textarea
-			         	[textContent]="videoToUpdate.videoDescription" tabindex="1" (input)="videoToUpdate.videoDescription=$event.target.innerText"> 
-	         			</div>
-			         	<div class="row row_validation">
-			         		<div class="col-10">
-			         				<div  *ngIf="videoToUpdate.videoDescription.length>130" class="error_show row" style="text-align: start; padding-right: 19px">
-				         				<div class="col-1" style="color: red;text-align: start;padding-right: 25px;">
-				         					<mat-icon>cancel</mat-icon>
-				         				</div>
-				         				<div class="col-10" style="text-align: start;padding-left: 0px;margin-top: 3px;">
-				         				<span style="color: red">&nbsp; Your description should not exceede 130 </span> 	
-				         				</div>
-				         			</div>
-			         			</div>
-			         			<div class="col-2" style="text-align: end;">
-			         			{{videoToUpdate.videoDescription.length}}/130
-			         		</div>
-			         	</div>
-					</div>  
-						
-				</div>
-				<div class="col-6">  
-					<div   class="norr-lab-mat-card invalide"> 
-						<div class="in_title">
-			         		<div class="col-6">
-			         			<span class="in_title_6_1">Tags</span> 
-			         		</div> 
-			         	</div> 
-			         	<div class="col-12" style="font-size: 12px;color: #ccc;text-align: 	center;"> 
-
-			         		 <form [formGroup]='group'>
-								  <mat-form-field class="example-chip-list">
-								    <mat-chip-list #chipList
-								                   required
-								                   formControlName='newTag'>
-								      <mat-chip *ngFor="let tag of tags"
-								                removable="true"
-								                (removed)="remove(tag)">
-								        {{tag.name}}
-								        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-								      </mat-chip>
-								      <input class="input_chips"
-								            formContorlName='newTag'
-								            [matChipInputFor]="chipList"
-								            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-								            [matChipInputAddOnBlur]="addOnBlur"
-								            (matChipInputTokenEnd)="add($event)">
-								    </mat-chip-list>
-								      <!-- add mat-error
-								    <mat-error *ngIf="group.controls.newTag.hasError('required')">required!</mat-error>
-								      -->
-								  </mat-form-field>
-								</form>
-
-			         	</div>
-			         	<div class="row row_validation"> 
-			         		<div class="col-10"> 
-			         				<div  *ngIf="tags.length>23" class="error_show row" style="text-align: start; padding-right: 19px">
-				         				<div class="col-1" style="color: red;text-align: start;padding-right: 25px;">
-				         					<mat-icon>cancel</mat-icon>
-				         				</div>
-				         				<div class="col-10" style="text-align: start;padding-left: 0px;margin-top: 3px;">
-				         				<span style="color: red">&nbsp; Your tags exceed the allowed character count. </span> 	
-				         				</div>
-				         			</div>
-				         			<div  *ngIf="tags.length<23" class="error_show row" style="text-align: start; padding-right: 19px">
-				         				<div class="col-10" style="text-align: start;padding-left: 17px;margin-top: 3px;">
-				         				<span >&nbsp; Enter comma-separated values. </span> 	
-				         				</div>
-				         			</div>
-			         			</div>
-			         			<div class="col-2" style="text-align: end;">
-			         			{{tags.length}}/23
-			         		</div>
-			         	</div>
-					</div>
-					<div>  
-						<video *ngIf="videoLoaded" controls="true"  class="video_to_edit"  src="videoUrl}}" poster="videoPoster}}"> 
-								
-						</video> 
-					</div>
-					<div class="video_properties"> 
-						
-						<div class="video_properties_link">
-							<input class="link_input" #link2>
-								 	
-						</div>	 		
-					</div>
-					<!--other option such as visibility--> 
-					<div class="norr-lab-mat-card"> 
-						<div class="in_title">
-			         		<div class="col-6">
-			         			<span class="in_title_6_1">Visibility</span> 
-			         		</div> 
-			         	</div>
-			         	<div class="col-12" style="font-size: 12px;color: #ccc;text-align: 	center;">
-			         		<mat-form-field class="col-12">
-							  <mat-select disableRipple [(value)]="selected">
-							    <mat-option value="Public">Public</mat-option>
-							    <mat-option value="Subscribers">Subscribers</mat-option> 
-							  </mat-select>
-							</mat-form-field>	
-			         	</div>
-					</div>
-				</div>
-  			</div>	
-  	</div>	
-  </mat-tab>
-  <mat-tab label="More options">
-  		<div class="container_video_edit"> 
-  			<div class="row"> 
-				<div class="col-6">
-					<div class="norr-lab-mat-card"> 
-						<div class="in_title">
-			         		<div class="col-6">
-			         			<span class="in_title_6_1">Recording date</span> 
-			         		</div> 
-			         	</div> 
-			         	<div class="col-12" style="text-align: end; font-size: 12px;color: #ccc">
-			         		<mat-form-field class="col-12">
-		         				  <mat-label>Choose a date</mat-label>
-								  <input matInput [matDatepicker]="picker"  [ngModel]="videoToUpdate.recordingDate">
-								  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-								  <mat-datepicker #picker></mat-datepicker>
-							</mat-form-field>	
-  
-			         	</div>
-					</div>
-
-					<div class="norr-lab-mat-card"> 
-						<div class="in_title">
-			         		<div class="col-6">
-			         			<span class="in_title_6_1">Video location</span> 
-			         		</div> 
-			         	</div> 
-			         	<div class="col-12" style="text-align: end; font-size: 12px;color: #ccc">
-			         			<form class="example-form">
-								  <mat-form-field class="col-12  example-full-width">
-								    <input type="text"
-								           placeholder="Search"
-								           aria-label="Number"
-								           matInput
-								           [formControl]="myControlLoc"
-								           (change)="onLocationChanges()"
-								           [ngModel]="videoToUpdate.videoLocation"
-								           [matAutocomplete]="auto">
-
-								  </mat-form-field>
-								    <mat-autocomplete  [displayWith]="onLocationChanges()" #auto="matAutocomplete">
-								      <mat-option *ngFor="let opt of norrOptionLocation" [value]="opt">
-								        {{opt}}
-								      </mat-option>
-								    </mat-autocomplete>
-								</form>
-			         	</div>
-					</div>  
-				</div>
-				<div class="col-6">   
-					<div >  
-						<video controls="true" class="video_to_edit"  src="videoUrl}}" poster="videoPoster}}"> 
-								
-						</video> 
-					</div>
-					<div class="video_properties"> 
-						<div class="video_properties_link_title">
-							<div class="row">
-								<div class="col-10">
-									<p>  Video link</p>
-								</div>
-								<div  class="col-2 copy_link">
-									<p>  COPY</p>
-								</div>
-							</div>
-						</div>
-						<div class="video_properties_link">
-							<a #link >
-								 age.url}}
-							</a>		
-						</div>	 		
-					</div>
-				</div>
-  			</div>	
+  			</div> 
   	</div>	
   </mat-tab> 
   <span class="space"></span>
