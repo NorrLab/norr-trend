@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { VideoService} from '../services/video-service/video.service';
 import { UserService} from '../services/user-service/user.service';  
 import { ToastrService } from 'ngx-toastr';
@@ -10,6 +10,9 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
 import {FormControl, FormGroup} from '@angular/forms'; 
 import {environment} from './../../environments/environment.prod'; 
+import { HttpClient,HttpParams,HttpResponse,HttpEventType } from '@angular/common/http'; 
+import { map } from  'rxjs/operators';
+
 
 export interface Tag{
   name:string,
@@ -23,6 +26,9 @@ export interface Tag{
   styleUrls: ['./norrlab-video-creation.component.css']
 })
 export class NorrlabVideoCreationComponent implements OnInit {
+
+@ViewChild("__volumClassProgress") __volumClassProgress: ElementRef;
+
   videoToUpdate={
     _id:"any",  
   videoUrl:'string',
@@ -125,7 +131,12 @@ private videoFile: FormData;
 
 public onFileVideoInput(event){
   this.videoFile = event.target.files[0];
+  var payLoad= {
+      fileInputVideo: this.videoFile,
+      video: this.videoToUpdate
+    }
 
+  this.preUpload(payLoad);
 }
 
 onFileInput(event){
@@ -167,21 +178,44 @@ valideUpdate(video){
       return;
     }
 
-    this.videoService.createChannelVideosUserId(payLoad).subscribe(result =>{
+}
+
+__videoLoaded = false;
+private preUpload(payLoad){
+
+  this.videoService.createChannelVideosUserId(payLoad)
+  .pipe(map(event =>{
+    switch (event.type){
+          case HttpEventType.UploadProgress:{
+                        const progress = Math.round(100 * event.loaded / event.total);
+                        console.log(progress);
+                        this.__volumClassProgress.nativeElement.style.width=progress+"%";
+                      }case HttpEventType.Response:{
+                        console.log(event); 
+                        this.__volumClassProgress.nativeElement.style.width=100+"%";
+                          
+                  }default:{
+                               console.log(`Unhandled event: ${event.type}`);
+                  }
+
+        }
+  }) ).subscribe(result =>{
       //this.updateTags();
       this.showSuccess();
-      this.videoService.createVideoUserId(video)
+      console.log(`Check result:= ${result} `);
+
+      this.videoService.createVideoUserId(payLoad.video)
       .subscribe(vd =>{
         this.videoToUpdate = vd;
+                        this.__videoLoaded = true;
+
       },err =>{
         this.showError("Error occures while creating video!")
       })
 
-    },err =>{
-      this.showError("Error editing video!");
-    })
-}
+    }) 
 
+}
 
 
 updateTags(){

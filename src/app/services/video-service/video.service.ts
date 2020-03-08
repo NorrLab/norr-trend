@@ -78,6 +78,11 @@ export class VideoService {
   		
   }
 
+  deleteVideo(videoId){
+
+    return this.httpClient.delete(VIDEO_URL+'/delete/'+videoId )
+  }
+
   upDateNorrLabVideo(video){ 
   	return this.httpClient.put(VIDEO_URL,video);
   	
@@ -133,12 +138,17 @@ export class VideoService {
     formData.append('fileInputVideo', uploadForm.get('profile').value);
 
       const url = VIDEO_URL_CREATE+this.userService.getUser()._id;
-    return this.httpClient.post(url,formData);
+    return this.httpClient.post(url,formData,{
+      reportProgress: true,
+      observe: 'events'
+    });
   }
 
   createVideoUserId(video): Observable<NorrLabVideo> {
      const url = VIDEO_URL+'/'+this.userService.getUser()._id;
-    return this.httpClient.post<NorrLabVideo>(url,video);
+    return this.httpClient.post<NorrLabVideo>(url,video, {
+      reportProgress: true
+    });
   }
 
   editChannelVideosUserId(video): Observable<NorrLabVideo> {
