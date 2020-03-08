@@ -8,7 +8,9 @@ import { DOCUMENT } from '@angular/platform-browser';
 import { Inject,Injectable } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes'; 
 import {MatChipInputEvent} from '@angular/material';
-import {FormControl, FormGroup} from '@angular/forms'; 
+import {FormControl, FormGroup} from '@angular/forms';
+
+ 
 
 export interface Tag{
   name:string,
@@ -29,15 +31,13 @@ export class NorrlabVideoCreationComponent implements OnInit {
   videoPoster:'string',
   videoDescription:'string',
   videoDate:new Date(),
-  videoLikes:0,
-  videoDislikes:0,
-  videoViews:0,
+  videoLikes:"any",
+  videoDislikes:"any",
+  videoViews:"any",
   videoUser:"any",
   recordingDate:new Date(),
-  videoLocation:"",
-  videoFileName:""
-  }; 
-
+  videoLocation:"locations"
+  };
   myControlLoc:FormControl;
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
@@ -94,7 +94,7 @@ newTag = new FormControl([]);
   constructor(private activatedRoute:ActivatedRoute ,private  videoService:VideoService,private userService:UserService,
     private toastr: ToastrService,private router:Router,private domSanitizer:DomSanitizer,
   @Inject(DOCUMENT) private document: any) {
-          this.myControlLoc = new FormControl() ; 
+          this.myControlLoc = new FormControl() ;
      }
 
  infoDescription(){
@@ -116,13 +116,6 @@ isValid(){
 
 selectedFile: File= null;
 tmpThumbnail;
-
-private videoFile: FormData;
-
-public onFileVideoInput(event){
-  this.videoFile = event.target.files[0];
-
-}
 
 onFileInput(event){
   var file = event.dataTransfer ? event.dataTransfer.file[0] : <File>event.target.files[0];
@@ -146,14 +139,7 @@ onFileInput(event){
     console.log(this.tmpThumbnail)
   }
 
-uploadForm: FormGroup;  
-
 valideUpdate(video){
-    var payLoad= {
-      fileInputVideo: this.videoFile,
-      video: video
-    }
-
     if(this.tmpThumbnail){
       video.videoPoster = this.tmpThumbnail;
     }
@@ -162,17 +148,9 @@ valideUpdate(video){
       this.showError('Error editing video!');
       return;
     }
-
-    this.videoService.createChannelVideosUserId(payLoad).subscribe(result =>{
-      //this.updateTags();
+    this.videoService.editChannelVideosUserId(video).subscribe(result =>{
+      this.updateTags();
       this.showSuccess();
-      this.videoService.createVideoUserId(video)
-      .subscribe(vd =>{
-        this.videoToUpdate = vd;
-      },err =>{
-        this.showError("Error occures while creating video!")
-      })
-
     },err =>{
       this.showError("Error editing video!");
     })
@@ -240,14 +218,31 @@ goTo(destination) {
 
   ngOnInit() {
      this.logaPage();
-
   } 
 
-  logaPage(){ 
-    
-    /*var videoId = this.activatedRoute.snapshot.params.videoId;
+  logaPage(){
+
+
+
+    var videoId = this.activatedRoute.snapshot.params.videoId;
     this.page.url = this.document.location.origin+'/videos/'+videoId;
-    */
+
+    this.videoService.getVideoTags(videoId)
+    .subscribe(tags =>{
+      this.tags = tags;
+    },error =>{
+      this.showError('Error editing video!');
+    })
+
+     this.videoService.getVideosToUpdateByUserId(videoId)
+     .subscribe( video =>{ 
+       //this.videoToUpdate = video; 
+       this.selected = video.public?'Public':'Subscribers';
+       //this.recordingDate = new FormControl(video.recordingDate) ;
+       //this.myControlLoc = new FormControl(video.videoLocation); 
+     },error=>{
+       this.showError('Error editing video!');
+     })
   }
 
   copyVideoLink(inputElement){
