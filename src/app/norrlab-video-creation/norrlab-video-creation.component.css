@@ -247,3 +247,34 @@ img.poster_example_one_img {
 .cloud_upload{
     cursor: pointer;
 }
+
+.col-12.copy_link.main_upload {
+    /*background: #f4f4f4;*/
+    
+    z-index: 9999;
+    text-align: center;
+}
+
+.col-12.video_select_clss{
+    text-align: center;
+}
+
+.col-12.sub_title_upload {
+    text-align: center;
+    font-size: -3px;
+}
+
+.col-12.sub_title_upload>p { 
+    font-size: 24px;
+    font-weight: 200;
+}
+
+.progress_container {
+    background: #e9ecef;
+}
+
+._in_progress.progress {
+    background: #8EE1B6;
+    width: 65%;
+    border-radius: 5px;
+}

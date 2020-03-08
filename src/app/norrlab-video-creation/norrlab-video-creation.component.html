@@ -13,19 +13,32 @@
 <mat-tab-group>
   <mat-tab label="Basic">
   	<div class="container_video_edit"> 
-  			<div class="row"> 
+  			<div class="row">
+
+  				<div class="col-12 main_upload copy_link"> 
+					<img (click)="fileInput_video.click()" class="cloud_upload" src="assets/icons/svg/cloud_upload-24px.svg" alt="Kiwi standing on oval">
+     			 <input name="fileInputVideo" style="display: none;" #fileInput_video type="file" accept="video/*" (change)="onFileVideoInput($event)" />
+
+				</div>
+				<div class="col-12 sub_title_upload">
+					<p class="video_select_clss" >Select video file to upload</p>
+				</div>
+				<div class="col-12 sub_title_upload">
+					<div class="progress_container">
+						<div class="_in_progress progress">
+							
+						</div>
+					</div>
+				</div>
+  			</div>
+  			<div class="row" *ngIf="__videoLoadded"> 
 				<div class="col-6"> 
 					<div class="video_properties_link_title"  style="background-color: #f4f4f4">
 							<div class="row">
 								<div class="col-6" style="text-align: center;">
 									
 								</div>
-								<div class="col-6 copy_link">
-									<img (click)="fileInput_video.click()" matTooltip="A catchy title can help you hook viewers. When you create video titles, it's a good idea to include keywords that your audience is likely to use when looking for videos like yours."
-			         			[matTooltipPosition]="'above'" class="cloud_upload" src="assets/icons/svg/cloud_upload-24px.svg" alt="Kiwi standing on oval">
-			         			 <input name="fileInputVideo" style="display: none;" #fileInput_video type="file" accept="video/*" (change)="onFileVideoInput($event)" />
- 
-								</div>
+								
 							</div>
 						</div>
 					<div class="norr-lab-mat-card invalide" > 
@@ -55,7 +68,7 @@
 			         	</div>
 					</div>
 
-					<div class="norr-lab-mat-card invalide" > 
+					<div class="norr-lab-mat-card invalide"  [attr.disabled]="true" > 
 						<div class="in_title">
 			         		<div class="col-6">
 			         			<span class="in_title_6_1">Description</span>	&nbsp;<mat-icon matTooltip="Writing descriptions with keywords can help viewers find your videos more easily through search. You can give an overview of your video and place keywords at the beginning of the description."
@@ -80,35 +93,7 @@
 			         			{{videoToUpdate.videoDescription.length}}/130
 			         		</div>
 			         	</div>
-					</div>
-					<div class="norrthumbnail" style=" padding-top:  9px"> 
-						<div > 
-								<p> <span class="thumb_title"> Thumbnail</span> <br> 
-Select or upload a picture that shows what's in your video. A good thumbnail stands out and draws viewers' attention</p>
-						</div>
-					</div>	
-					<div class="thumbnail_video"> 
-						<ul class="video_poster row"> 
-							<li class="video_poster_li col-3">
-								<div *ngIf="!tmpThumbnail"  matTooltip="Choose the thumbnail that best represents your video. To be able to add custom thumbnails your account needs to be verified and in good standing."
-			         			[matTooltipPosition]="'above'"  class="poster_example_one">  
-									<mat-icon  style="color:#ccc">add_photo_alternate</mat-icon>
-									
-  									<input style="display: none;" #fileInput type="file" accept="image/*" (change)="onFileInput($event)" />
-								</div> 
-								<div class="poster_example_one choosen" *ngIf="tmpThumbnail"> 
-									<img class="poster_example_one_img" src="{{tmpThumbnail}}">
-
-									<input style="display: none;" #fileInput2 type="file" accept="image/*" (change)="onFileInput($event)" />
-								</div>			
-							</li> 
-							<li class="video_poster_li col-3" *ngFor="let g of [1,2,3] "> 
-								<div > 
-									<img  class="poster_example" src="{{videoToUpdate && videoToUpdate.videoPoster? videoToUpdate.videoPoster:''}}">
-								</div>		
-							</li>
-						</ul>		
-					</div>
+					</div>  
 						
 				</div>
 				<div class="col-6">  

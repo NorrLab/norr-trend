@@ -45,6 +45,8 @@ export class NorrlabVideoCreationComponent implements OnInit {
   tags: Tag[] = [
   ];
 
+
+  __contentEdit = true;
   //Tags chips
   removable = true;
 newTag = new FormControl([]);
