@@ -71,8 +71,16 @@ export class AppComponent  implements OnDestroy, OnInit{
     this.goTo('account-manager/'+this.userService.getUser()._id+'')
   }
 
-  goToVideoCreation(){ 
-    this.goTo('video-creation')    
+  goToVideoCreation(){
+    this.userService.userIsLogged().subscribe(user =>{ 
+
+      this.goTo('video-creation')  
+      return true;
+    }, err =>{
+      this.__isLogged =  false; 
+      this.goTo('/login');  
+      return false;
+    })   
   }
 
   gorToPositionPublication(){
@@ -91,14 +99,19 @@ export class AppComponent  implements OnDestroy, OnInit{
     })
   }
 
+  userIsLogged;
+  __userIsLogged(){
+    return this.userService.getUser()!= undefined;
+  }
+
   isLogged(){
     this.userService.userIsLogged().subscribe(user =>{
       this.__isLogged =  true; 
       this.ONLINE_USER = user;
-      return true;
+      return this.userIsLogged== true;
     }, err =>{
       this.__isLogged =  false; 
-      return false;
+      return this.userIsLogged == false;
     })
   }
 
@@ -113,8 +126,16 @@ export class AppComponent  implements OnDestroy, OnInit{
 
   ngOnInit():void{ 
     this.isLogged();
+
+    this.__getUserPicture();
   }
 
+
+  __getUserPicture(): string{
+    var picture = `http://localhost:369/images${this.ONLINE_USER && this.ONLINE_USER.userPictureUrl?this.ONLINE_USER.userPictureUrl: '/default_user.jpg'}`
+
+      return picture;
+    } 
 
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
 }

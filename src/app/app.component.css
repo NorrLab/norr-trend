@@ -97,11 +97,11 @@ mat-sidenav.norrlab-side.mat-drawer.mat-sidenav.ng-tns-c5-0.ng-trigger.ng-trigge
 }
 
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  /*background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
   height: 45px;
   width: 45px;
-  border-radius: 50%
+  border-radius: 50%*/
 }
 
 .trade-header[_ngcontent-rxa-c0] {

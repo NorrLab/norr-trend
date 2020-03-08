@@ -7,16 +7,17 @@
 
     <span class="example-spacer"></span>
     <div class="col-4" style="text-align: end"> 
-    <button mat-icon-button class="norrlab-share-video-button  " (click)="goToVideoCreation()"><mat-icon >video_call</mat-icon></button>
-    <button mat-icon-button class="norrlab-sign-in-button" (click)="__goToProfil()"><mat-icon [ngClass]="{'logged' : __isLogged}">account_circle</mat-icon></button>  
+    <button *ngIf="__userIsLogged()" mat-icon-button class="norrlab-share-video-button  " (click)="goToVideoCreation()"><mat-icon >notification_important</mat-icon></button>
+    <button *ngIf="__userIsLogged()" mat-icon-button class="norrlab-share-video-button  " (click)="goToVideoCreation()"><mat-icon >video_call</mat-icon></button>
+    <button mat-icon-button class="norrlab-sign-in-button" (click)="__goToProfil()"><mat-icon [ngClass]="{'logged' : __userIsLogged()}">account_circle</mat-icon></button>  
      <div class="userProfil" *ngIf="__showUserProfil">
       <div class="row profilClass">
         <div class="col-2">
           <div class="col-12" mat-card-avatar>
-            <img class="example-header-image" src="http://localhost:369/images/{{ONLINE_USER && ONLINE_USER.userPictureUrl?ONLINE_USER.userPictureUrl:'default_user.jpg'}}"  width="100%">
+            <img class="example-header-image" [src]="__getUserPicture().trim()"  width="100%">
           </div> 
         </div>
-        <div class="col-8">
+        <div class="col-8">__getUserPicture() {{__getUserPicture()}}
           
           <div class="col-12"> 
             <div style="color: #000;
@@ -37,7 +38,7 @@
          <li (click)="goToUserChannel()" class="list_profil"><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">personal_video</mat-icon><span class="anySpan">your channel </span> </li>
          <li class="list_profil" (click)="gorToPositionPublication()"><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">trending_up</mat-icon> <span class="anySpan">publish position</span> </li>
          <li (click)="gorToMemberShips()" class="list_profil"><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">attach_money</mat-icon><span class="anySpan">paid memebership </span> </li>
-         <li class="list_profil" (click)="__signOut()" ><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">supervised_user_circle</mat-icon> <span class="anySpan">sign out</span> </li> 
+         <li class="list_profil" (click)="__signOut()" ><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">power_settings_new</mat-icon> <span class="anySpan">sign out</span> </li> 
        </ul>
       </div> 
 

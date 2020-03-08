@@ -137,6 +137,11 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
      this.videoService.shareOnSocialMedia(social);
    }
 
+   
+   __defaultPicture(): string {
+     return "/assets/norrlab/backgroud-images/norrLabBackGround.PNG"
+   }
+
    closeShareVideo(){
      this.__shareOnSocialMedia=false;
    }

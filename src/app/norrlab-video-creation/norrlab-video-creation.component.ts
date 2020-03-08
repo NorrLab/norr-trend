@@ -288,6 +288,9 @@ goTo(destination) {
   } 
 
   logaPage(){ 
+
+    if(!this.userService.getUser())
+        this.goTo('/home')
     
     /*var videoId = this.activatedRoute.snapshot.params.videoId;
     this.page.url = this.document.location.origin+'/videos/'+videoId;

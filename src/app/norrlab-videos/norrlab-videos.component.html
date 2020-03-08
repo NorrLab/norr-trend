@@ -11,7 +11,7 @@
 
 			<div class="video" style="margin-bottom: 16px" > 
 				<div class="ckin__player minimal ckin__overlay is-playing">
-					<video preload="true"  #videoPlayer poster="{{videoReadayToplay?videoReadayToplay.videoPoster:''}}" src="{{__env?__env:''}}" data-ckin="minimal" data-overlay="1">
+					<video preload="true"  #videoPlayer poster="{{videoReadayToplay?videoReadayToplay.videoPoster:__defaultPicture()}}" src="{{__env?__env:''}}" data-ckin="minimal" data-overlay="1">
 						<track class="norrlab_track" default kind="captions" srclang="en" src="assets/norrlab/BelattarQuenelleZemmour.vtt"/>
 					</video>
 					<!-- <button (click)="playPause()"class="minimal__button--big central-video toggle" title="Toggle Play">
@@ -169,7 +169,7 @@
 						<div class="col-3 video-author-avatar">
 							<div class="row">
 									<div class="col-3"> 
-										<img src="http://localhost:369/images{{(videoComment.videoCommentUser.userPictureUrl.length>0)?videoComment.videoCommentUser.userPictureUrl:'/default_user.png'}}" class="advs-avatar" alt="{{(videoComment.videoCommentUser.userPictureUrl.length>0)?videoComment.videoCommentUser.userPictureUrl:'/default_user.png'}}">
+										<img src="http://localhost:369/images{{(videoComment.videoCommentUser.userPictureUrl.length>0)?videoComment.videoCommentUser.userPictureUrl:__defaultPicture()}}" class="advs-avatar" alt="{{(videoComment.videoCommentUser.userPictureUrl.length>0)?videoComment.videoCommentUser.userPictureUrl:'/default_user.png'}}">
 									</div>
 									<div class="col-9" style="text-align: start;padding-left: 0px"> 
 										<div class="col-12 author-of-vid col-9">  
@@ -237,7 +237,7 @@
 					    
 				 	<button mat-icon-button (click)="playCurrentVideo(offVideo._id)" class=" proposal-video" ><mat-icon>play_circle_outline</mat-icon></button> 
 					 </div>																																																																		
-			 		<img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{offVideo.videoPoster}}">
+			 		<img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{offVideo.videoPoster?offVideo.videoPoster:__defaultPicture()}}">
 				 </div>	
 				  <div class="col-6 img-video-cont-desc" style="
 		}
