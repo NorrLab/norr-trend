@@ -16,6 +16,8 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { DOCUMENT } from '@angular/platform-browser';
 import { Inject,Injectable } from '@angular/core';
 
+import {environment} from './../../environments/environment.prod'; 
+
 const VIDEO_URL= "/videos/";
 
 @Component({
@@ -383,14 +385,7 @@ openLoginDialog():void {
   moreVideosOnDemand(e){
       //TODO REGUEST MORE VIDEO ON RIGHTS
       alert('TODO REGUEST MORE VIDEOs ON RIGHTS')
-  }
-
-  getWeekFreeVideos(){
-    console.log(this.videoService.getWeekVideos())
-    this.weekFreeVideos=this.videoService.getWeekVideos();
-
-    this.videoReadayToplay = this.weekFreeVideos[2];
-  }
+  } 
 
   getAllVideoComments(videoId) {
     this.videoService.getVideoFree(null,null).subscribe(videos =>{
@@ -405,7 +400,7 @@ openLoginDialog():void {
       this.router.navigate([destination]); 
      // this.getVideoFree(this.activatedRoute.snapshot.params.videoId?this.activatedRoute.snapshot.params.videoId:this.weekFreeVideos[0]._id);
 }  
-
+__env;
   getVideoFree(videoId){
 
     if(videoId==undefined && Array.isArray(this.videoService.getVideo())){
@@ -420,7 +415,7 @@ openLoginDialog():void {
             this.videoReadayToplay  = video; 
         }
 
-
+        this.__env = 'http://'+environment.apiUrl+this.videoReadayToplay.videoUrl
         //TODO get video comments, from video id.
         this.videoService.getVideoFreeComments(this.videoReadayToplay._id).subscribe(comments =>{ 
             this.videoComments = comments;

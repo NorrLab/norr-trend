@@ -34,7 +34,6 @@ import { MatPaginatorIntl } from '@angular/material';
 import { NorrLabMatPaginatorIntl } from './norrlab-video-comments-list/norrlab-video-comments-list.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

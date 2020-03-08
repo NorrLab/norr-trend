@@ -210,7 +210,7 @@ img.poster_example_one_img {
 }
 
 .copy_link {
-    text-align: center;  
+    text-align: end;  
 }
  
 .copy_link > p {
@@ -236,4 +236,14 @@ img.poster_example_one_img {
     height: 186px;
     text-align: center;
     background-color: #f4f4f454
+}
+
+.video_properties_link_title{
+
+    padding: 9px;
+    margin-bottom: 9px;
+}
+
+.cloud_upload{
+    cursor: pointer;
 }

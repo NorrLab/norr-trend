@@ -7,17 +7,11 @@
 	</div>
 
 	<div #__main_container class="row main-container">  
-		<div class="col-8 video-container" > 
-			<!-- 
-
-	<div>
-				<mat-video src="localOrRemoteVideo.mp4"></mat-video>
-			</div>
-			-->
+		<div class="col-8 video-container" >  
 
 			<div class="video" style="margin-bottom: 16px" > 
 				<div class="ckin__player minimal ckin__overlay is-playing">
-					<video preload="true"  #videoPlayer poster="{{videoReadayToplay?videoReadayToplay.videoPoster:''}}" src="{{videoReadayToplay?videoReadayToplay.videoUrl:''}}" data-ckin="minimal" data-overlay="1">
+					<video preload="true"  #videoPlayer poster="{{videoReadayToplay?videoReadayToplay.videoPoster:''}}" src="{{__env?__env:''}}" data-ckin="minimal" data-overlay="1">
 						<track class="norrlab_track" default kind="captions" srclang="en" src="assets/norrlab/BelattarQuenelleZemmour.vtt"/>
 					</video>
 					<!-- <button (click)="playPause()"class="minimal__button--big central-video toggle" title="Toggle Play">
@@ -160,8 +154,8 @@
 										<img src="assets/norrlab/imageedit_43_5024767093.gif" class="advs-avatar main">
 									</div>
 									<div class="col-9 author-avatar"> 
-										<div class="col-12 author-of-vid col-9">  Ulrich O.</div>
-										<div class="col-12" style="padding-right: 6px;"> <p>45k subscriber</p></div>
+										<div class="col-12 author-of-vid col-9">{{videoReadayToplay.videoUser.lastName}} {{videoReadayToplay.videoUser.firstName}}</div>
+										<div class="col-12" style="padding-right: 6px;"> <p>{{videoReadayToplay.videoUser.userFollowers}} subscriber</p></div>
 									</div>
 							</div>
 						</div> 
