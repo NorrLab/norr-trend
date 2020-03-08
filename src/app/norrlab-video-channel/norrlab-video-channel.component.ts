@@ -72,6 +72,10 @@ export class NorrlabVideoChannelComponent  implements AfterViewInit {
         this.router.navigate([destination]);
   }   
 
+  __defaultPicture(): string {
+     return "/assets/norrlab/backgroud-images/norrLabBackGround.PNG"
+   }
+
   getVideosByUserId(){
     this.videoService.getVideosByUserId().subscribe(videos =>{
         this.norrlabVideos = videos;

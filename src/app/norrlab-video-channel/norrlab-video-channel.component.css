@@ -76,6 +76,18 @@ img.mat-card-image {
 .video_poster {
     padding-top: 9px;
     padding-bottom: 9px;
+    border-radius: 5px
+}
+
+.video_poster>mat-card-image{
+
+    border-radius: 5px
+}
+
+img.edit_mg.mat-card-image {
+    border-radius: 6px;
+    padding: 1px;
+    border: 1px solid #ccc;
 }
 
 .video_poster > button {

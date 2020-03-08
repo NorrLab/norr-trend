@@ -54,7 +54,8 @@
 .mat_success_undo{ 
     z-index: 999;
     outline: none;
-    margin-right: 7px
+    margin-right: 7px;
+    cursor: pointer;
 }
 
 .mat_success {
