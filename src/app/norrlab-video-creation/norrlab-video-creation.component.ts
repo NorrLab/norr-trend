@@ -30,16 +30,16 @@ export class NorrlabVideoCreationComponent implements OnInit {
 @ViewChild("__volumClassProgress") __volumClassProgress: ElementRef;
 
   videoToUpdate={
-    _id:"any",  
-  videoUrl:'string',
-  videoTitle:'string',
-  videoPoster:'string',
-  videoDescription:'string',
+    _id:"",  
+  videoUrl:'',
+  videoTitle:'',
+  videoPoster:'',
+  videoDescription:'',
   videoDate:new Date(),
   videoLikes:0,
   videoDislikes:0,
   videoViews:0,
-  videoUser:"any",
+  videoUser:"",
   recordingDate:new Date(),
   videoLocation:"",
   videoFileName:""

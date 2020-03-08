@@ -92,9 +92,17 @@ newTag = new FormControl([]);
  }
 
  disabledSave(): boolean{ 
-var state =  (this.videoToUpdate.videoTitle ==  this.videoToUpdate.videoFileName) || (this.valideFormDescription()) || !this.isValid();
-   return state;
+    var state =  this.isSameTitle() || (this.valideFormDescription()) || !this.isValid();
+       return state;
  }
+
+ __defaultPicture(): string {
+   return "/assets/norrlab/backgroud-images/norrLabBackGround.PNG"
+ }
+
+isSameTitle(): boolean{
+  return (this.videoToUpdate.videoTitle ==  this.videoToUpdate.videoFileName)
+}
 
 watchvideo(videoToUpdateId){
     var url = 'videos/'+videoToUpdateId;

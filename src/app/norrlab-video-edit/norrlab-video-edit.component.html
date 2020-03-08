@@ -16,7 +16,7 @@
   	<div class="container_video_edit"> 
   			<div class="row"> 
 				<div class="col-6"> 
-					<div [ngClass]="valideFormTitle()?'norr-lab-mat-card invalide':'norr-lab-mat-card'" > 
+					<div [ngClass]="(valideFormTitle()||isSameTitle())?'norr-lab-mat-card invalide':'norr-lab-mat-card'" > 
 						<div class="in_title"> 
 			         		<div class="col-6">
 			         			<span class="in_title_6_1">Title (required)</span>	&nbsp;<mat-icon matTooltip="A catchy title can help you hook viewers. When you create video titles, it's a good idea to include keywords that your audience is likely to use when looking for videos like yours."
@@ -92,7 +92,7 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 							</li> 
 							<li class="video_poster_li col-3" *ngFor="let g of [1,2,3] "> 
 								<div > 
-									<img  class="poster_example" src="{{videoToUpdate && videoToUpdate.videoPoster? videoToUpdate.videoPoster:''}}">
+									<img  class="poster_example" src="{{videoToUpdate && videoToUpdate.videoPoster? videoToUpdate.videoPoster:__defaultPicture()}}">
 								</div>		
 							</li>
 						</ul>		
@@ -154,7 +154,7 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 				</div>
 				<div class="col-6">  
 					<div>  
-						<video controls="true"  class="video_to_edit"  src="{{videoToUpdate.videoUrl}}" poster="{{videoToUpdate.videoPoster}}"> 
+						<video controls="true"  class="video_to_edit"  src="{{videoToUpdate.videoUrl}}" poster="{{videoToUpdate && videoToUpdate.videoPoster.trim()? videoToUpdate.videoPoster:__defaultPicture()}}"> 
 								
 						</video>
 					</div>
