@@ -383,14 +383,7 @@ openLoginDialog():void {
   moreVideosOnDemand(e){
       //TODO REGUEST MORE VIDEO ON RIGHTS
       alert('TODO REGUEST MORE VIDEOs ON RIGHTS')
-  }
-
-  getWeekFreeVideos(){
-    console.log(this.videoService.getWeekVideos())
-    this.weekFreeVideos=this.videoService.getWeekVideos();
-
-    this.videoReadayToplay = this.weekFreeVideos[2];
-  }
+  } 
 
   getAllVideoComments(videoId) {
     this.videoService.getVideoFree(null,null).subscribe(videos =>{

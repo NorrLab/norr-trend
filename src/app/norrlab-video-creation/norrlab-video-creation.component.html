@@ -8,13 +8,26 @@
 
 	<div class="col-12 up-mat_success" > <!-- [disabled]="__openCmtEdito" -->
 		<button   class="mat_success_undo" style="z-index: 999" mat-flat-button >UNDO CHANGES</button>
-		 <button   mat-flat-button class="mat_success">SAVE</button> 
+		 <button (click)="valideUpdate(videoToUpdate)"   mat-flat-button class="mat_success">SAVE</button> 
 	</div>	
 <mat-tab-group>
   <mat-tab label="Basic">
   	<div class="container_video_edit"> 
   			<div class="row"> 
 				<div class="col-6"> 
+					<div class="video_properties_link_title"  style="background-color: #f4f4f4">
+							<div class="row">
+								<div class="col-6" style="text-align: center;">
+									
+								</div>
+								<div class="col-6 copy_link">
+									<img (click)="fileInput_video.click()" matTooltip="A catchy title can help you hook viewers. When you create video titles, it's a good idea to include keywords that your audience is likely to use when looking for videos like yours."
+			         			[matTooltipPosition]="'above'" class="cloud_upload" src="assets/icons/svg/cloud_upload-24px.svg" alt="Kiwi standing on oval">
+			         			 <input name="fileInputVideo" style="display: none;" #fileInput_video type="file" accept="video/*" (change)="onFileVideoInput($event)" />
+ 
+								</div>
+							</div>
+						</div>
 					<div class="norr-lab-mat-card invalide" > 
 						<div class="in_title"> 
 			         		<div class="col-6">
@@ -96,6 +109,9 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 							</li>
 						</ul>		
 					</div>
+						
+				</div>
+				<div class="col-6">  
 					<div   class="norr-lab-mat-card invalide"> 
 						<div class="in_title">
 			         		<div class="col-6">
@@ -149,28 +165,14 @@ Select or upload a picture that shows what's in your video. A good thumbnail sta
 			         			{{tags.length}}/23
 			         		</div>
 			         	</div>
-					</div>	
-				</div>
-				<div class="col-6">  
+					</div>
 					<div>  
 						<video *ngIf="videoLoaded" controls="true"  class="video_to_edit"  src="videoUrl}}" poster="videoPoster}}"> 
 								
-						</video>
-						<div class="video_to_edit_upload">  
-								<img src="assets/icons/svg/cloud_upload-24px.svg" alt="Kiwi standing on oval">
-						</div>
+						</video> 
 					</div>
 					<div class="video_properties"> 
-						<div class="video_properties_link_title">
-							<div class="row">
-								<div class="col-10">
-									<p>  Video link</p>
-								</div>
-								<div class="col-2 copy_link">
-									<p>  COPY</p>
-								</div>
-							</div>
-						</div>
+						
 						<div class="video_properties_link">
 							<input class="link_input" #link2>
 								 	

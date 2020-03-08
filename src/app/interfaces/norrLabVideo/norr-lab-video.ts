@@ -11,5 +11,6 @@ export interface NorrLabVideo {
 	videoUser:any,
 	public:boolean
 	recordingDate:any,
-	videoLocation:string
+	videoLocation:string,
+	videoFileName:string,
 }
