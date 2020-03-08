@@ -126,6 +126,18 @@
         <td mat-cell *matCellDef="let row">{{row.videoLikes?row.videoLikes:'0'}}/{{row.videoDislikes?row.videoDislikes:'0'}}</td>
       </ng-container>
 
+      <!-- delete Column -->
+      <ng-container matColumnDef=" ">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+           
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <div  class="col-12 video_status_garbage">
+            <mat-icon (click)="deleteVideo(row._id)" >delete_forever</mat-icon> 
+          </div>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row class="example-element-row" *matRowDef="let row; columns: displayedColumns;"
       (click)="expandedElement = expandedElement === element ? null : element">

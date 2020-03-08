@@ -189,12 +189,17 @@ private preUpload(payLoad){
           case HttpEventType.UploadProgress:{
                         const progress = Math.round(100 * event.loaded / event.total);
                         console.log(progress);
-                        this.__volumClassProgress.nativeElement.style.width=progress+"%";
-                      }case HttpEventType.Response:{
-                        console.log(event); 
-                        this.__volumClassProgress.nativeElement.style.width=100+"%";
+                        if(!this.__videoLoaded){
+                          this.__volumClassProgress.nativeElement.style.width=progress+"%";
+                        }
+                      }
+
+          case HttpEventType.Response:{
+                        console.log(event);  
                           
-                  }default:{
+                  }
+
+          default:{
                                console.log(`Unhandled event: ${event.type}`);
                   }
 
@@ -207,8 +212,7 @@ private preUpload(payLoad){
       this.videoService.createVideoUserId(payLoad.video)
       .subscribe(vd =>{
         this.videoToUpdate = vd;
-                        this.__videoLoaded = true;
-
+                        this.__videoLoaded = true; 
       },err =>{
         this.showError("Error occures while creating video!")
       })

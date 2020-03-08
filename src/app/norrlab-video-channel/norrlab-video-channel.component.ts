@@ -25,7 +25,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   ]
 })
 export class NorrlabVideoChannelComponent  implements AfterViewInit {
-  displayedColumns: string[] = ['Video', 'Visibility', 'Restriction', 'Created','Views','Comments','Likes (vs Dislike)'];
+  displayedColumns: string[] = ['Video', 'Visibility', 'Restriction', 'Created','Views','Comments','Likes (vs Dislike)',' ' ];
   exampleDatabase: ExampleHttpDatabase | null;
   data: GithubIssue[] = [];
 
@@ -59,6 +59,12 @@ export class NorrlabVideoChannelComponent  implements AfterViewInit {
   }
 
 
+  deleteVideo(videoId){
+     this.videoService.deleteVideo(videoId)
+     .subscribe( deleted =>{
+       alert(`${deleted} `)
+     })
+  }
 
   goTo(destination) {
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -66,12 +72,18 @@ export class NorrlabVideoChannelComponent  implements AfterViewInit {
         this.router.navigate([destination]);
   }   
 
+  getVideosByUserId(){
+    this.videoService.getVideosByUserId().subscribe(videos =>{
+        this.norrlabVideos = videos;
+      })
+  }
 
   ngAfterViewInit() {
-
+/*
     this.videoService.getVideosByUserId().subscribe(videos =>{
       this.norrlabVideos = videos;
-    })
+    })*/
+    this.getVideosByUserId();
 
     this.ONLINE_USER = this.userService.getUser(); 
 
@@ -119,6 +131,7 @@ export interface GithubIssue {
   state: string;
   title: string;
 }
+
 
 /** An example database that the data source uses to retrieve data for the table. */
 export class ExampleHttpDatabase {

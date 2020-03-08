@@ -13,7 +13,7 @@
 <mat-tab-group>
   <mat-tab label="Basic">
   	<div class="container_video_edit"> 
-  			<div class="row">
+  			<div class="row" *ngIf="!__videoLoaded">
 
   				<div class="col-12 main_upload copy_link"> 
 					<img (click)="fileInput_video.click()" class="cloud_upload" src="assets/icons/svg/cloud_upload-24px.svg" alt="Kiwi standing on oval">
@@ -25,13 +25,13 @@
 				</div>
 				<div class="col-12 sub_title_upload">
 					<div class="progress_container">
-						<div class="_in_progress progress">
+						<div #__volumClassProgress class="_in_progress progress">
 							
 						</div>
 					</div>
 				</div>
   			</div>
-  			<div class="row" *ngIf="__videoLoadded"> 
+  			<div class="row" *ngIf="__videoLoaded"> 
 				<div class="col-6"> 
 					<div class="video_properties_link_title"  style="background-color: #f4f4f4">
 							<div class="row">

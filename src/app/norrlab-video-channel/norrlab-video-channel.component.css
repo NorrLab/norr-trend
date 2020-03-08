@@ -94,6 +94,15 @@ tr.example-element-row:not(.example-expanded-row):hover {
   color: #8EE1B6
 }
 
+.video_status_garbage{
+  color: #ccc;
+}
+
+.video_status_garbage:hover{
+  color: red;
+  cursor: pointer;
+}
+
 .channel-avatar{
   width: 89px;
   height: 89px;
