@@ -399,6 +399,11 @@ openLoginDialog():void {
       });
   }
 
+  goToUserProfil(){
+    var url =  `user-profil/${this.videoReadayToplay.videoUser._id}`;
+    window.location.href=url;
+  }
+
   goTo(destination) {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';

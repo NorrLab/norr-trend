@@ -17,12 +17,14 @@ import { NorrlabVideoAnalyticsComponent } from './norrlab-video-analytics/norrla
 import { NorrlabVideoCommentsListComponent } from './norrlab-video-comments-list/norrlab-video-comments-list.component';
 import { NorrlabUserComponent } from './norrlab-user/norrlab-user.component';
 
+import { UserProfilComponent } from './user-profil/user-profil.component';
  
 
 const routes: Routes = [{path:'home',component:NorrlabHomeComponent}
 	,{path:'lessons',component:NorrlabLessonsComponent}
 	,{path:'comments-list/:videoId',component:NorrlabVideoCommentsListComponent},
 	{path:'user/:userId',component:NorrlabUserComponent},
+	{path:'user-profil/:userId',component:UserProfilComponent},
 	{
 		path:'videos',component:NorrlabVideosComponent,
 	 	children:

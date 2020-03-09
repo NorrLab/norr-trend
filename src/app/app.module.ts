@@ -32,6 +32,7 @@ import { NorrlabUserComponent } from './norrlab-user/norrlab-user.component';
 
 import { MatPaginatorIntl } from '@angular/material';
 import { NorrLabMatPaginatorIntl } from './norrlab-video-comments-list/norrlab-video-comments-list.component';
+import { UserProfilComponent } from './user-profil/user-profil.component';
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import { NorrLabMatPaginatorIntl } from './norrlab-video-comments-list/norrlab-v
     NorrlabMemberShipsComponent,
     NorrlabPositionBublicationComponent,
     NorrlabAccountManagerComponent,
-    NorrlabVideoCreationComponent,NorrlabVideoAnalyticsComponent,NorrlabVideoCommentsListComponent, NorrlabUserComponent
+    NorrlabVideoCreationComponent,NorrlabVideoAnalyticsComponent,NorrlabVideoCommentsListComponent, NorrlabUserComponent, UserProfilComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,

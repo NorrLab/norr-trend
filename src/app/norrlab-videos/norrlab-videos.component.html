@@ -65,7 +65,7 @@
 				<div class="row" style="padding-top: 9px"	>  
 					<div class="col-6">
 						<div class="col-12 video-title">{{videoReadayToplay?videoReadayToplay.videoTitle :''}}</div>
-						<div class="col-12 video-title-sub"><span class="view_video">{{videoReadayToplay?videoReadayToplay.videoViews:''}} views</span> published {{(videoReadayToplay?videoReadayToplay.videoDate:'') | date:'medium'}}
+						<div class="col-12 video-title-sub"><span class="view_video">{{videoReadayToplay?videoReadayToplay.videoViews:''}} views</span>&nbsp; &#8226;&nbsp; published {{(videoReadayToplay?videoReadayToplay.videoDate:'') | date:'medium'}}
 						</div>
 					</div>
 					<div class="col-6 contain-like-block">
@@ -148,14 +148,22 @@
 			<div class="video-description-author ">
 				<div class="row" style="padding-top: 9px"	>  
 					<div class="col-12">
-						<div class="col-3 video-author-avatar ">
-							<div class="row">
-									<div class="col-3"> 
+						<div class="col-12 video-author-avatar ">
+							<div class="row" style="padding-left: 9px;">
+									<!--<div class="col-3"> 
 										<img src="assets/norrlab/imageedit_43_5024767093.gif" class="advs-avatar main">
+									</div>-->
+									<div class="chip col-4" (click)="goToUserProfil()" >
+										<img src="assets/norrlab/imageedit_43_5024767093.gif">
+										<div>
+											<div>{{videoReadayToplay.videoUser.lastName}} {{videoReadayToplay.videoUser.firstName}}</div>
+										</div>
 									</div>
-									<div class="col-9 author-avatar"> 
-										<div class="col-12 author-of-vid col-9">{{videoReadayToplay.videoUser.lastName}} {{videoReadayToplay.videoUser.firstName}}</div>
-										<div class="col-12" style="padding-right: 6px;"> <p>{{videoReadayToplay.videoUser.userFollowers}} subscriber</p></div>
+
+									<div class="col-9 author-avatar">  
+										<span class="subscriber_class">
+											{{videoReadayToplay.videoUser.userFollowers}}6985
+										</span>&nbsp;subscribers 
 									</div>
 							</div>
 						</div> 

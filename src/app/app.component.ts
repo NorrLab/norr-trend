@@ -71,6 +71,10 @@ export class AppComponent  implements OnDestroy, OnInit{
     this.goTo('account-manager/'+this.userService.getUser()._id+'')
   }
 
+  goToUserProfil(){
+    
+  }
+
   goToVideoCreation(){
     this.userService.userIsLogged().subscribe(user =>{ 
 

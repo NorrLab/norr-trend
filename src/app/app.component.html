@@ -3,11 +3,12 @@
     <a href="">
       <img class="norrlab-logo" src="assets/norrlab/designed-logo-big.png">
     </a>
-    <button mat-icon-button class="norrlab-menu-button" (click)="__snav.toggle()"><mat-icon>menu</mat-icon></button> 
+    <button mat-icon-button class="norrlab-menu-button" (click)="__snav.toggle()"><mat-icon>menu</mat-icon></button>   
     <img class="cloud_upload" src="assets/icons/svg/forex-seeklogo.com.svg" alt="Kiwi standing on oval">
+    
     <span class="example-spacer"></span>
     <div class="col-4" style="text-align: end"> 
-    <button *ngIf="__userIsLogged()" mat-icon-button class="norrlab-share-video-button  " (click)="goToVideoCreation()"><mat-icon >notification_important</mat-icon></button>
+    <button *ngIf="__userIsLogged()" mat-icon-button class="norrlab-share-video-button  " (click)="goToVideoCreation()"><mat-icon >notification_important</mat-icon><span class="span_notifs" > 5</span> </button>
     <button *ngIf="__userIsLogged()" mat-icon-button class="norrlab-share-video-button  " (click)="goToVideoCreation()"><mat-icon >video_call</mat-icon></button>
     <button mat-icon-button class="norrlab-sign-in-button" (click)="__goToProfil()"><mat-icon [ngClass]="{'logged' : __userIsLogged()}">account_circle</mat-icon></button>  
      <div class="userProfil" *ngIf="__showUserProfil">
@@ -59,6 +60,7 @@
         <a [routerLink]="nav.link" mat-list-item   *ngFor="let nav of fillerNav"><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon">{{nav.icon}}</mat-icon>&nbsp;{{nav.libelle}}</a>
       </mat-nav-list>
       <div class="menu-footer"> 
+        
       </div>
     </mat-sidenav>
 
