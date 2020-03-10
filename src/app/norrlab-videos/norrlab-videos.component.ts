@@ -420,6 +420,16 @@ openLoginDialog():void {
     window.location.href=url;
   }
 
+  __enableReply:boolean = false;
+
+  enableReply(){
+    this.__enableReply = ! this.__enableReply; 
+  }
+
+  cancelReply(){
+    this.__enableReply = false;
+  }
+
   goTo(destination) {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';

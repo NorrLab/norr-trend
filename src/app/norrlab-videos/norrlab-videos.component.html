@@ -199,10 +199,27 @@
 
 					<div class="col-12">
 						<div class="col-3">
-						 	<span class="reply_comment" >REPLY</span>
+						 	<span (click)="enableReply()" class="reply_comment" >REPLY</span>
 						</div>
 					</div> 
 				</div>
+				<div class="row" *ngIf="__enableReply">
+					<div class="col-1"></div>
+					<div  class="col-10 norr-lab-mat-card" style="background-color: #f4f4f4;padding-bottom: 0px;text-align: center;"> 
+                      <div class="in_title" style=" text-align:  start; padding:  6px;font-size:  13px; color:  blue"> 
+                         REPLY
+                        </div>
+                        <div role="textarea" contenteditable="true" class="col-12 textarea_title"  #textarea tabindex="1">  
+                        </div>
+                    </div>
+					<div class="col-1"></div>
+				</div> 
+				<div *ngIf="__enableReply" class="col-12 row video_comment_class_button">  
+                  <div class="col-12" style="text-align: end">
+                  	<button (click)="cancelReply()" mat-flat-button class="mat_cancel">CANCEL</button>
+                  	<button (click)="cancelReply()" mat-flat-button class="mat_success">COMMENT</button>
+                  </div> 
+                </div>
 			</div>
 			<div (click)="openCmtEdito()">
 

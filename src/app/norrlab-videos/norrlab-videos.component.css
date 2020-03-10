@@ -1073,3 +1073,28 @@ cursor: pointer;
 .reply_comment:hover{
     color: blue;
 }
+
+.norr-lab-mat-card:not([class*=mat-elevation-z]) { 
+    border: 1px solid #ccc;
+    margin: 9px;
+    border-radius: 3px;
+} 
+
+.textarea_title{
+    background-color: #f4f4f4;
+    text-align: start;
+    padding: 9px;
+    margin-bottom: 9px;
+    font-size: 16px;
+    outline: none;
+}
+
+.mat_cancel{
+    height: 25px;
+    background-color: #f1f1f1;
+}
+
+.mat_success{
+    height: 25px;
+    margin-left: 9px
+}
