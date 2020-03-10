@@ -192,11 +192,23 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
    		this.avoidControls();
        this.videoplayer.nativeElement.onended =  () =>{
            // body... 
+           this.videoReadayToplay.videoViews +=1;
            this.updatePlayerIcon(); 
+         var payLoad = {
+                   
+                  count: this.videoReadayToplay.videoViews,
+                  viewedDate: new Date(),
+                  videoId: this.videoReadayToplay._id 
+              }
+         
+         this.videoService.createVideoAnalytics(payLoad)
+         .subscribe(analyse =>{
+           this.videoService.upDateViews(this.videoReadayToplay);
+         },err =>{
+           alert('error')
+         })
 
-         this.videoReadayToplay.videoViews +=1;
-         this.videoService.upDateViews(this.videoReadayToplay);
-         }  
+        }  
   }
 
 
