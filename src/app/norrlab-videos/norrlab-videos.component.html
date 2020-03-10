@@ -153,7 +153,7 @@
 									<!--<div class="col-3"> 
 										<img src="assets/norrlab/imageedit_43_5024767093.gif" class="advs-avatar main">
 									</div>-->
-									<div class="chip col-4" (click)="goToUserProfil()" >
+									<div class="chip col-4" (click)="goToUserProfil(videoReadayToplay.videoUser._id)" >
 										<img src="assets/norrlab/imageedit_43_5024767093.gif">
 										<div>
 											<div>{{videoReadayToplay.videoUser.lastName}} {{videoReadayToplay.videoUser.firstName}}</div>
@@ -177,11 +177,11 @@
 						<div class="col-3 video-author-avatar">
 							<div class="row">
 									<div class="col-3"> 
-										<img src="http://localhost:369/images{{(videoComment.videoCommentUser.userPictureUrl.length>0)?videoComment.videoCommentUser.userPictureUrl:__defaultPicture()}}" class="advs-avatar" alt="{{(videoComment.videoCommentUser.userPictureUrl.length>0)?videoComment.videoCommentUser.userPictureUrl:'/default_user.png'}}">
+										<img (click)="goToUserProfil(videoComment.videoCommentUser._id)" src="{{(videoComment.videoCommentUser.userPictureUrl.length>0)?('http://localhost:369/images'+ videoComment.videoCommentUser.userPictureUrl):__defaultPicture()}}" class="advs-avatar" alt="{{(videoComment.videoCommentUser.userPictureUrl.length>0)?videoComment.videoCommentUser.userPictureUrl:'/default_user.png'}}">
 									</div>
 									<div class="col-9" style="text-align: start;padding-left: 0px"> 
 										<div class="col-12 author-of-vid col-9">  
-											<div>
+											<div  (click)="goToUserProfil(videoComment.videoCommentUser._id)" class="comment_user" >
 												{{videoComment.videoCommentUser.firstName}} {{videoComment.videoCommentUser.lastName}}
 											</div>
 										<span class="comment_date">{{videoComment.videoCommentDate | date : 'medium'}}</span>
@@ -193,7 +193,14 @@
 							<p class="users-comments"> 
 	 						 {{videoComment.videoCommentDescription}}
 							</p>
-						</div>			
+						</div>
+									
+					</div>
+
+					<div class="col-12">
+						<div class="col-3">
+						 	<span class="reply_comment" >REPLY</span>
+						</div>
 					</div> 
 				</div>
 			</div>
@@ -245,7 +252,7 @@
 					    
 				 	<button mat-icon-button (click)="playCurrentVideo(offVideo._id)" class=" proposal-video" ><mat-icon>play_circle_outline</mat-icon></button> 
 					 </div>																																																																		
-			 		<img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{offVideo.videoPoster?offVideo.videoPoster:__defaultPicture()}}">
+			 		<img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{offVideo.videoPoster?offVideo.videoPoster:__defaultVideoPicture()}}">
 				 </div>	
 				  <div class="col-6 img-video-cont-desc" style="
 		}

@@ -138,8 +138,12 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
    }
 
    
-   __defaultPicture(): string {
+   __defaultVideoPicture(): string {
      return "/assets/norrlab/backgroud-images/norrLabBackGround.PNG"
+   }
+
+    __defaultPicture(): string {
+     return `/assets/norrlab/default_user.jpg`
    }
 
    closeShareVideo(){
@@ -411,8 +415,8 @@ openLoginDialog():void {
       });
   }
 
-  goToUserProfil(){
-    var url =  `user-profil/${this.videoReadayToplay.videoUser._id}`;
+  goToUserProfil(userId){
+    var url =  `user-profil/${userId}`;
     window.location.href=url;
   }
 
