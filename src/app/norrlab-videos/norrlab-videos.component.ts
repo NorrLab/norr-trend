@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild, ElementRef,AfterViewInit } from '@angular/core'; 
 import { UserService} from '../services/user-service/user.service';
 import { VideoService} from '../services/video-service/video.service';
+import { CommentService } from '../services/comment-service/comment-service';
 
 import { NorrLabVideo} from '../interfaces/norrLabVideo/norr-lab-user';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -96,7 +97,7 @@ page ={
 constructor(private userService: UserService,public dialog: MatDialog,private videoService: VideoService,
   private activatedRoute:ActivatedRoute, private router:Router,
   private matIconRegistry:MatIconRegistry, private norrlabNavgationService:NorrlabNavgationService,private domSanitizer:DomSanitizer,
-  @Inject(DOCUMENT) private document: any) {
+  @Inject(DOCUMENT) private document: any, private commentService:CommentService) {
   this.matIconRegistry.addSvgIcon(
     'icon-twiter',
       this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/svg/icons8-twitter.svg')
@@ -422,13 +423,40 @@ openLoginDialog():void {
 
   __enableReply:boolean = false;
 
-  enableReply(){
-    this.__enableReply = ! this.__enableReply; 
+  deactivateAllOtherCmts(cmt,all){
+
+      this.replyVideoComment = "";
+      this.videoComments.forEach(_cmt =>{    
+        if(all){
+            _cmt.display = false;
+        }else if(_cmt._id != cmt._id){
+             _cmt.display = false;
+          }            
+      })
   }
 
-  cancelReply(){
-    this.__enableReply = false;
+  replyVideoComment="ALPHA";
+
+  enableReply( cmt){
+    this.deactivateAllOtherCmts(cmt,false);
+    cmt.display = ! cmt.display; 
   }
+
+  cancelReply(cmt){ 
+    this.deactivateAllOtherCmts(cmt,false);
+  }
+
+  submitReply(videoComment){
+      var payLoad = {
+        videoCommentId:videoComment._id,
+        videoCommentReply:this.replyVideoComment,
+        replyUser: this.userService.getUser()._id,
+        replyDate: new Date(),
+        videoId:this.videoReadayToplay._id
+      }
+      this.commentService.createCommentReplies(videoComment._id,payLoad);  
+      window.location.reload();
+    }
 
   goTo(destination) {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -441,7 +469,8 @@ __env;
 
     if(videoId==undefined && Array.isArray(this.videoService.getVideo())){
           videoId = this.videoService.getVideo()[0]._id;
-        }else if(videoId==undefined && this.videoService.getVideo()){
+        }
+        else if(videoId==undefined && this.videoService.getVideo()){
           videoId = this.videoService.getVideo()._id;
     }
     this.videoService.getVideoFree(videoId,null).subscribe(video =>{ 
@@ -451,10 +480,24 @@ __env;
             this.videoReadayToplay  = video; 
         }
 
-        this.__env = 'http://'+environment.apiUrl+this.videoReadayToplay.videoUrl
+        this.__env = environment.apiUrl+this.videoReadayToplay.videoUrl
         //TODO get video comments, from video id.
         this.videoService.getVideoFreeComments(this.videoReadayToplay._id).subscribe(comments =>{ 
             this.videoComments = comments;
+            if(comments instanceof Array){
+              this.videoComments.forEach(cmt =>{
+                cmt.display = false; 
+                this.commentService.getCommentReplies(cmt._id)
+                .subscribe(replies =>{
+                    cmt.replies =  replies
+                }, err =>{
+                  console.log(err)
+                })
+            console.log(`${this.commentService.getCommentReplies(cmt._id)}`)
+              })
+            }
+          },err =>{
+            alert(`${err}`)
           });
 
         this.videoService.setVideo(this.videoReadayToplay)

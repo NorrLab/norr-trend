@@ -5,13 +5,16 @@ import { UserService} from '../user-service/user.service';
 import { NorrLabVideo} from '../../interfaces/norrLabVideo/norr-lab-video';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {NorrLabView} from '../../interfaces/norrLabVideo/norr-lab-view';
-
-const VIDEO_URL="http://localhost:369/norr-video";
-const VIDEO_VIEWS_URL="http://localhost:369/norr-video/video-views";
-const VIDEO_COMMENT_URL="http://localhost:369/norr-video/comments";
-const VIDEO_TAGS_URL = VIDEO_URL+"/tags";
-const COMMENT_REPLY_URL = 'http://localhost:369/norr-video/comment/reply/';
+import {environment} from '../../../environments/environment.prod'; 
+ 
 //
+ 
+const VIDEO_URL=environment.apiUrl+"/norr-video";
+const VIDEO_VIEWS_URL=environment.apiUrl+"/norr-video/video-views";
+const VIDEO_COMMENT_URL=environment.apiUrl+"/norr-video/comments";
+const VIDEO_TAGS_URL = VIDEO_URL+"/tags";
+const COMMENT_REPLY_URL = environment.apiUrl+'/comment/reply/';
+
 
 export interface Tag{
   name:string,
@@ -45,6 +48,19 @@ export class CommentService {
   valideComment(cmt){  
     cmt.videoCommentUser = this.userService.getUser()._id
     return this.httpClient.post(VIDEO_COMMENT_URL,cmt);
+  }
+
+  getCommentReplies(cmtId) {
+    return this.httpClient.get<ReplyComment[]>(COMMENT_REPLY_URL+cmtId);
+  }
+
+  createCommentReplies(cmtId,reply) {
+    this.httpClient.post(COMMENT_REPLY_URL+cmtId,reply)
+    .subscribe(replies =>{
+        return replies
+    }, err =>{
+      console.log(err)
+    })
   }
 
   getVideoFreeComments(videoReadayToplayId){

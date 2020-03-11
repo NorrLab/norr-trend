@@ -732,7 +732,7 @@ controls ***********************************************************************
     padding: 10px;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    opacity: 1; 
+    opacity: 0.9; 
     cursor: auto;
 }
 

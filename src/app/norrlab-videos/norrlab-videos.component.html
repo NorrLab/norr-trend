@@ -5,7 +5,6 @@
 	      <a href=""> Videos*</a>
 	    </div>
 	</div>
-
 	<div #__main_container class="row main-container">  
 		<div class="col-8 video-container" >  
 
@@ -153,16 +152,16 @@
 									<!--<div class="col-3"> 
 										<img src="assets/norrlab/imageedit_43_5024767093.gif" class="advs-avatar main">
 									</div>-->
-									<div class="chip col-4" (click)="goToUserProfil(videoReadayToplay.videoUser._id)" >
+									<div class="chip col-4" (click)="goToUserProfil(videoReadayToplay?.videoUser?._id)" >
 										<img src="assets/norrlab/imageedit_43_5024767093.gif">
 										<div>
-											<div>{{videoReadayToplay.videoUser.lastName}} {{videoReadayToplay.videoUser.firstName}}</div>
+											<div>{{videoReadayToplay?.videoUser?.lastName}} {{videoReadayToplay?.videoUser?.firstName}}</div>
 										</div>
 									</div>
 
 									<div class="col-9 author-avatar">  
 										<span class="subscriber_class">
-											{{videoReadayToplay.videoUser.userFollowers}}6985
+											{{videoReadayToplay?.videoUser?.userFollowers}}6985
 										</span>&nbsp;subscribers 
 									</div>
 							</div>
@@ -199,25 +198,27 @@
 
 					<div class="col-12">
 						<div class="col-3">
-						 	<span (click)="enableReply()" class="reply_comment" >REPLY</span>
+						 	<span (click)="enableReply(videoComment)" class="reply_comment" >REPLY</span> 
+						 	&nbsp; &#8226; &nbsp;
+						 	<span class="reply_comment_facts">{{videoComment?.replies?.length}} replies</span>
 						</div>
 					</div> 
 				</div>
-				<div class="row" *ngIf="__enableReply">
+				<div class="row" *ngIf="videoComment.display">
 					<div class="col-1"></div>
 					<div  class="col-10 norr-lab-mat-card" style="background-color: #f4f4f4;padding-bottom: 0px;text-align: center;"> 
                       <div class="in_title" style=" text-align:  start; padding:  6px;font-size:  13px; color:  blue"> 
                          REPLY
                         </div>
-                        <div role="textarea" contenteditable="true" class="col-12 textarea_title"  #textarea tabindex="1">  
+                        <div role="textarea"  [textContent]="replyVideoComment" contenteditable="true" class="col-12 textarea_title" (input)="replyVideoComment=$event.target.innerText"  #textarea tabindex="1">  
                         </div>
                     </div>
 					<div class="col-1"></div>
 				</div> 
-				<div *ngIf="__enableReply" class="col-12 row video_comment_class_button">  
+				<div *ngIf="videoComment.display" class="col-12 row video_comment_class_button">  
                   <div class="col-12" style="text-align: end">
-                  	<button (click)="cancelReply()" mat-flat-button class="mat_cancel_cancel">CANCEL</button>
-                  	<button (click)="cancelReply()" mat-flat-button class="mat_success_success">COMMENT</button>
+                  	<button (click)="cancelReply(videoComment)" mat-flat-button class="mat_cancel_cancel">CANCEL</button>
+                  	<button (click)="submitReply(videoComment)" mat-flat-button class="mat_success_success">COMMENT</button>
                   </div> 
                 </div>
 			</div>

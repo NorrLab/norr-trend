@@ -6,10 +6,11 @@ import { NorrLabVideo} from '../../interfaces/norrLabVideo/norr-lab-video';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {NorrLabView} from '../../interfaces/norrLabVideo/norr-lab-view';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {environment} from '../../../environments/environment.prod'; 
 
-const VIDEO_URL="http://localhost:369/norr-video";
-const VIDEO_VIEWS_URL="http://localhost:369/norr-video/video-views";
-const VIDEO_COMMENT_URL="http://localhost:369/norr-video/comments";
+const VIDEO_URL=environment.apiUrl+"/norr-video";
+const VIDEO_VIEWS_URL=environment.apiUrl+"/norr-video/video-views";
+const VIDEO_COMMENT_URL=environment.apiUrl+"/norr-video/comments";
 const VIDEO_TAGS_URL = VIDEO_URL+"/tags";
 const VIDEO_URL_CREATE = VIDEO_URL+"/create-video/"
 //
