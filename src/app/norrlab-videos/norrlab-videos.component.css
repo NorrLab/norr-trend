@@ -1101,3 +1101,22 @@ cursor: pointer;
     color: #fff;
     margin-bottom: 9px
 }
+
+.drop_arrow_reply{
+    font-size: 14px;
+    /* padding-top: 0px; */
+    margin-top: -3px;
+}
+
+mat-icon.drop_arrow_reply.mat-icon.notranslate.material-icons.mat-icon-no-color {
+    position: absolute;
+    font-size: 24px;
+    margin-left: 0px;
+    cursor: pointer;
+    color: #ccc
+}
+
+mat-icon.drop_arrow_reply.mat-icon.notranslate.material-icons.mat-icon-no-color:hover {
+    color: #000
+
+}

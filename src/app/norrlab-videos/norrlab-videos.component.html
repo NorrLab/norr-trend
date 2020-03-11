@@ -199,8 +199,9 @@
 					<div class="col-12">
 						<div class="col-3">
 						 	<span (click)="enableReply(videoComment)" class="reply_comment" >REPLY</span> 
-						 	&nbsp; &#8226; &nbsp;
-						 	<span class="reply_comment_facts">{{videoComment?.replies?.length}} replies</span>
+						 	
+						 	<span *ngIf="!videoComment.display" class="reply_comment_facts">&nbsp; &#8226; &nbsp;{{videoComment?.replies?.length}} replies
+						 		<mat-icon class="drop_arrow_reply">arrow_drop_down</mat-icon> </span>
 						</div>
 					</div> 
 				</div>
