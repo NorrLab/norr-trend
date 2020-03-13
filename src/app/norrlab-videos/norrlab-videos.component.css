@@ -1120,3 +1120,24 @@ mat-icon.drop_arrow_reply.mat-icon.notranslate.material-icons.mat-icon-no-color:
     color: #000
 
 }
+
+.col-11.albi_ween {
+    padding-left: 3px;
+}
+
+span.reply-advs-avatar {
+    padding: 3px;
+    background: #fafafe;
+    border-radius: 45px;
+    cursor: pointer;
+    color: #000;
+}
+
+span.reply-advs-avatar:hover {
+    background: #000;  
+    color: #fff;
+}
+
+.reply-date{
+    
+}

@@ -403,6 +403,13 @@ openLoginDialog():void {
     .subscribe(video =>{
     })
   }
+  public showReply: boolean = false;
+
+
+  __norrEnableReply(_cmt){ 
+    this.deactivateAllOtherCmts(_cmt,false);
+    _cmt.displayReply = !_cmt.displayReply;
+  }
 
   moreVideosOnDemand(e){
       //TODO REGUEST MORE VIDEO ON RIGHTS
@@ -429,8 +436,10 @@ openLoginDialog():void {
       this.videoComments.forEach(_cmt =>{    
         if(all){
             _cmt.display = false;
+            _cmt.displayReply = false;
         }else if(_cmt._id != cmt._id){
              _cmt.display = false;
+             _cmt.displayReply = false;
           }            
       })
   }

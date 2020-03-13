@@ -27,7 +27,7 @@ export class NorrlabVideoAnalyticsComponent implements OnInit {
 
   public lineChartData: ChartDataSets[] = [
    
-    { data: [{y:3,x:new Date("1990-01-01")},{y:5,x:new Date("1990-01-02")},{y:9,x:new Date("1991-01-01")},{y:65,x:new Date("2011-01-01")}, {y:35,x:new Date("2011-02-01")},{y:6,x:new Date("2011-06-01")} ],
+    { data: [ ],
      label: 'Views', yAxisID: 'y-axis-0',fill: true
 
      },
