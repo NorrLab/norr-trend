@@ -224,10 +224,10 @@
 
 	                      <div class="row in_title" style=" text-align:  start; padding:  6px;font-size:  13px; color:  blue"> 
 	                         <div class="col-1">
-	                         	<img (click)="goToUserProfil(videoComment?.videoCommentUser?._id)" src="{{(videoComment?.videoCommentUser?.userPictureUrl.length>0)?('http://localhost:369/images'+ videoComment?.videoCommentUser?.userPictureUrl):__defaultPicture()}}" class="advs-avatar" alt="{{(videoComment?.videoCommentUser?.userPictureUrl.length>0)?videoComment?.videoCommentUser?.userPictureUrl:'/default_user.png'}}">
+	                         	<img (click)="goToUserProfil(reply?.replyUser?._id)" src="{{(reply?.replyUser?.userPictureUrl.length>0)?('http://localhost:369/images'+ reply?.replyUser?.userPictureUrl):__defaultPicture()}}" class="advs-avatar" alt="{{(reply?.replyUser?.userPictureUrl.length>0)?reply?.replyUser?.userPictureUrl:'/default_user.png'}}">
 	                         </div>
 	                         <div class="col-11 albi_ween">
-	                         	<span class="reply-advs-avatar">{{reply?.replyUser?.lastName}} {{reply?.replyUser?.firstName}}</span>&nbsp;&#8226;&nbsp;
+	                         	<span (click)="goToUserProfil(reply?.replyUser?._id)" class="reply-advs-avatar">{{reply?.replyUser?.lastName}} {{reply?.replyUser?.firstName}}</span>&nbsp;&#8226;&nbsp;
 	                         	<span class="reply-date" >
 	                         		{{reply?.replyDate | date:'medium'}}
 	                         	</span>
