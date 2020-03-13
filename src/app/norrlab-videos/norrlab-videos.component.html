@@ -198,10 +198,11 @@
 
 					<div class="col-12">
 						<div class="col-3">
-						 	<span (click)="enableReply(videoComment)" class="reply_comment" >REPLY</span> 
+							<span *ngIf="videoComment?._hideReply" class="hidde_reply" >&nbsp;</span>
+						 	<span (click)="enableReply(videoComment)" [attr.disabled]="true" class="reply_comment" >REPLY</span> 
 						 	
 						 	<span *ngIf="!videoComment?.display" class="reply_comment_facts">&nbsp; &#8226; &nbsp;{{videoComment?.replies?.length}} replies
-						 		<mat-icon (click)="__norrEnableReply(videoComment)" class="drop_arrow_reply">arrow_drop_down</mat-icon> </span>
+						 		<mat-icon (click)="__norrShoweReplied(videoComment)" class="drop_arrow_reply">arrow_drop_down</mat-icon> </span>
 						</div>
 					</div> 
 				</div>
@@ -228,11 +229,11 @@
 	                         <div class="col-11 albi_ween">
 	                         	<span class="reply-advs-avatar">{{reply?.replyUser?.lastName}} {{reply?.replyUser?.firstName}}</span>&nbsp;&#8226;&nbsp;
 	                         	<span class="reply-date" >
-	                         		{{reply?.replyDate}}
+	                         		{{reply?.replyDate | date:'medium'}}
 	                         	</span>
 	                         </div>
 	                       </div>
-	                        <div role="textarea"  [textContent]="reply?.videoCommentReply" contenteditable="true" class="col-12 textarea_title" (input)="replyVideoComment=$event.target.innerText"  #textarea tabindex="1">  
+	                        <div role="textarea"  [textContent]="reply?.videoCommentReply" contenteditable="false" class="col-12 textarea_title" (input)="replyVideoComment=$event.target.innerText"  #textarea tabindex="1">  
 	                        </div>
 	                    </div>
 						<div class="col-1"></div>
@@ -266,7 +267,7 @@
 					 			Comment this video?
 				 			</mat-card-subtitle>
 							<mat-card-content> 
-								Sign in to make your opinion count.{{ableComment}}
+								Sign in to make your opinion count.
 						 	</mat-card-content>
 					 		</div>
 						 	<mat-divider></mat-divider> 

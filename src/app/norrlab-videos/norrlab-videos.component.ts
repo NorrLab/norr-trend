@@ -403,12 +403,16 @@ openLoginDialog():void {
     .subscribe(video =>{
     })
   }
+
+   _hideReply= false;
+
   public showReply: boolean = false;
 
 
-  __norrEnableReply(_cmt){ 
-    this.deactivateAllOtherCmts(_cmt,false);
+  __norrShoweReplied(_cmt){ 
+    this.deactivateAllOrOtherCmts(_cmt,false);
     _cmt.displayReply = !_cmt.displayReply;
+    _cmt._hideReply = ! _cmt._hideReply
   }
 
   moreVideosOnDemand(e){
@@ -430,16 +434,18 @@ openLoginDialog():void {
 
   __enableReply:boolean = false;
 
-  deactivateAllOtherCmts(cmt,all){
+  deactivateAllOrOtherCmts(cmt,all){
 
       this.replyVideoComment = "";
       this.videoComments.forEach(_cmt =>{    
         if(all){
             _cmt.display = false;
             _cmt.displayReply = false;
+            _cmt._hideReply = false
         }else if(_cmt._id != cmt._id){
              _cmt.display = false;
              _cmt.displayReply = false;
+             _cmt._hideReply = false
           }            
       })
   }
@@ -447,12 +453,12 @@ openLoginDialog():void {
   replyVideoComment="ALPHA";
 
   enableReply( cmt){
-    this.deactivateAllOtherCmts(cmt,false);
+    this.deactivateAllOrOtherCmts(cmt,false);
     cmt.display = ! cmt.display; 
   }
 
   cancelReply(cmt){ 
-    this.deactivateAllOtherCmts(cmt,false);
+    this.deactivateAllOrOtherCmts(cmt,false);
   }
 
   submitReply(videoComment){
@@ -498,7 +504,9 @@ __env;
                 cmt.display = false; 
                 this.commentService.getCommentReplies(cmt._id)
                 .subscribe(replies =>{
-                    cmt.replies =  replies
+                    cmt.replies =  replies; 
+                    cmt.displayReply = false;
+                    cmt._hideReply = false;
                 }, err =>{
                   console.log(err)
                 })

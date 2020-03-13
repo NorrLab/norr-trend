@@ -1139,5 +1139,14 @@ span.reply-advs-avatar:hover {
 }
 
 .reply-date{
-    
+    color: #ccc
+}
+
+.hidde_reply {
+    width: 30%;
+    background: red;
+    position: absolute;
+    opacity: 0;
+    height: 23px;
+    background-color: red
 }
