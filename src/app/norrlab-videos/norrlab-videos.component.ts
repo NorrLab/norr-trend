@@ -19,6 +19,34 @@ import { Inject,Injectable } from '@angular/core';
 import {environment} from './../../environments/environment.prod'; 
 
 const VIDEO_URL= "/videos/";
+const map = new Map();
+  var facebook = {
+    url:"https://www.facebook.com/sharer/sharer.php?u=",
+     
+  }
+
+  var linkedin = {
+    url:"https://www.linkedin.com/shareArticle/?apiUrl=",
+    title:"&title=",
+    summary:"&summary=",
+    source:"&source="
+  }
+
+  var twitter = {
+    url:"https://twitter.com/intent/tweet?url=",
+    text:"&text=",
+    hashtags:"&hashtags=",
+  }
+
+  var whatsapp = {
+    url:"https://web.whatsapp.com/",
+     
+  } 
+  map.set('facebook',facebook);
+  map.set('linkedin',linkedin);
+  map.set('twitter',twitter);
+  map.set('whatsapp',whatsapp);
+
 
 @Component({
   selector: 'app-norrlab-videos',
@@ -63,6 +91,25 @@ norrlabVideo={
   "videoId":0,
   "videoLikes":{},
   "videoPoster":"http://192.168.1.10:369/norrlab-users-video-2018/test.jpg"
+} 
+
+
+public shareOn(index){
+  
+    var url = map.get(index).url
+    var title = map.get(index).title
+    var summary = map.get(index).summary
+    var source = map.get(index).source
+    var text = map.get(index).text
+    var hashtags = map.get(index).hashtags
+
+    var left = (screen.width - 670) / 2;
+    var top = (screen.height - 670) / 2;
+    var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
+    
+    url = `${url+window.location.href}${title?title:''}${summary?summary:''}${source?source:''}
+    ${text?text:''}${hashtags?hashtags:''}`
+    window.open(url,"NewWindow",params);
 }
 
 asRight(){
@@ -128,8 +175,9 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
     },1000)
   }
 
-  public shareOn(event){
-     
+
+  private shareSocile(social){
+
   }
 
    shareOnSocialMediaNoArg(){
