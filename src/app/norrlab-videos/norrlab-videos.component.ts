@@ -15,8 +15,7 @@ import { NorrlabNavgationService } from '../norrlab-navgation/norrlab-navgation.
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { DOCUMENT } from '@angular/platform-browser';
-import { Inject,Injectable } from '@angular/core';
-
+import { Inject,Injectable } from '@angular/core'; 
 import {environment} from './../../environments/environment.prod'; 
 
 const VIDEO_URL= "/videos/";
@@ -129,6 +128,9 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
     },1000)
   }
 
+  public shareOn(event){
+     
+  }
 
    shareOnSocialMediaNoArg(){
      this.__shareOnSocialMedia = true;

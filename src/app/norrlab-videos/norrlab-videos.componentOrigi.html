@@ -1,63 +1,143 @@
 	<div class="sub-toolbar">  
 	    <div class="sub-menu">
-	      <a href=""> Trades</a> /
+	      <a href=""> NorrLab</a> /
 
-	      <a href=""> Lessons</a> /
 	      <a href=""> Videos*</a>
-	      
 	    </div>
 	</div>
+	<div #__main_container class="row main-container">  
+		<div class="col-8 video-container" >  
 
-	<div class="row main-container">  
-		<div class="col-8 video-container" >
-			<div class="video" style="margin-bottom: 16px" >
-				<div class="video-content col-12">
-					<video  class="player-video viewer" src="http://localhost:369/norrlab-users-video-2018/test.mp4">
-						
+			<div class="video" style="margin-bottom: 16px" > 
+				<div class="ckin__player minimal ckin__overlay is-playing">
+					<video preload="true"  #videoPlayer poster="{{videoReadayToplay?videoReadayToplay.videoPoster:__defaultPicture()}}" src="{{__env?__env:''}}" data-ckin="minimal" data-overlay="1">
+						<track class="norrlab_track" default kind="captions" srclang="en" src="assets/norrlab/BelattarQuenelleZemmour.vtt"/>
 					</video>
-				</div>
-				<div class="contains-controls">
-					<div class="bar-separation progress-vid video-content-controls col-12">
-						<div class="video-progess col-12"> </div>
-					</div>
-					<div class="video-content-controls col-12">
-						<div class="row control-buttons">
-							<div class="col-3">
-								<div class="row">
-									<button mat-icon-button class="norrlab-play-circle-button" ><mat-icon>play_circle_outline</mat-icon></button> 
-									<button mat-icon-button class="norrlab-play-circle-button norrlab-play-circle-button-right"  ><mat-icon>volume_up</mat-icon></button> 
-									<button mat-icon-button class="norr-slider norrlab-play-circle-button norrlab-play-circle-button-right"  >
+					<!-- <button (click)="playPause()"class="minimal__button--big central-video toggle" title="Toggle Play">
+							<mat-icon class="">play_circle_outline</mat-icon>
+					</button> --> 
+					<div class="containing-minimal__controls"> 
+						<div (click)="position__track($event)" matTooltip="By default, I delay" #__upToMinimumControlProgresse
+        aria-label="Button that displays a tooltip that has custom delays through a default config" class="col-12 up-to-minimum-control-progresse ">
+							<div #__upToMin class="col-12 up-to-min" style="background-color: red; width: 67%; opacity: 1">
+							
+							</div>
+						</div>	
+						<div class="row minimal__controls ckin__controls">
+							<div class="col-6 row" style="padding-left: 0px;"> 
+									<div style="margin-right: 32px">
+										<button (click)="playPause()" mat-icon-button class="norrlab-play-circle-button" >
+											<mat-icon [hidden]="norrPlayPause">play_circle_outline</mat-icon><mat-icon [hidden]="!norrPlayPause ">pause</mat-icon>
+										</button>  
+										<button  (click)="muteVolume()" mat-icon-button class="norrlab-play-circle-button  norrlab-play-circle-button-right"  >
+											<mat-icon [hidden]="!volumeMuted ">volume_up</mat-icon><mat-icon [hidden]="volumeMuted">volume_off</mat-icon>
+										</button>
+ 
 
-									<mat-slider  ></mat-slider>
-									</button> 
-								</div>
+									</div> 
+									<div #__volumeClass (click)="changeVolume($event)" class="volumeClass">
+										<div  #__volumClassProgress class="volumClassProgress">
+											<div #__roundVolumControl class="roundVolumControl">
+												
+											</div>
+										</div>
+									</div>
+								  
 							</div>
-							<div class="col-6">
-								<div class="row timer"> 
-									00:15/11:45
-								</div>
+							<div class="col-3"> 
+								 
 							</div>
-							<div class="col-3" style="text-align: end">
-								<div class="row button-fullscreen-setting">
-									<button mat-icon-button class="norrlab-play-circle-button" ><mat-icon>settings</mat-icon></button> 
-									<button mat-icon-button class="norrlab-play-circle-button norrlab-play-circle-button-right" ><mat-icon>fullscreen</mat-icon></button> 
-								</div>
+							<div class="col-3" style="text-align: end" > 
+								<button mat-icon-button class="norrlab-play-circle-button" >
+									<mat-icon>settings</mat-icon>
+								</button> 
+								<button (click)="goFullScreen()" mat-icon-button class="norrlab-play-circle-button " >
+									<mat-icon>fullscreen</mat-icon>
+								</button>
 							</div>
+							
 						</div>
-					</div> 
+					</div>
 				</div>
 			</div>
 			<div class="video-description ">
 				<div class="row" style="padding-top: 9px"	>  
 					<div class="col-6">
-						<div class="col-12 video-title">Desire - The First Step toward Riches | Think and Grow Rich</div>
-						<div class="col-12 video-title-sub">300.000 views, published 02 Jan 2019</div>
+						<div class="col-12 video-title">{{videoReadayToplay?videoReadayToplay.videoTitle :''}}</div>
+						<div class="col-12 video-title-sub"><span class="view_video">{{videoReadayToplay?videoReadayToplay.videoViews:''}} views</span>&nbsp; &#8226;&nbsp; published {{(videoReadayToplay?videoReadayToplay.videoDate:'') | date:'medium'}}
+						</div>
 					</div>
-					<div class="col-6 ">
-						<div class="like-dislike row"> 
-							<mat-icon>thumb_up</mat-icon><span class="like-span"> 659</span>&nbsp; 
-							<mat-icon>thumb_down</mat-icon><span class="like-span"> 62</span>
-							<mat-icon>share</mat-icon>
+					<div class="col-6 contain-like-block">
+						<div #__norrlabSignIn  class="col-12" style="margin: -74px;"  > 
+							 <div  #__signIn  class="col-12 showSignIn" [hidden]="!showSignIn">
+							 	<mat-card  class="must-connect">
+							 		<div class="col-12">
+							 			<mat-card-subtitle>	
+							 			Like this video?
+						 			</mat-card-subtitle>
+									<mat-card-content> 
+										Sign in to make your opinion count.&nbsp;|&nbsp;{{showSignIn}}
+								 	</mat-card-content>
+							 		</div>
+								 	<mat-divider></mat-divider> 
+								 	<div  class="col-12 sign_in" style="text-align: start;display: inline-block;width: 100%;">
+								 		
+							          <span ><a [routerLink]="'/login'" style="text-decoration: none;font-size: 13px;color: #0056b3;cursor: pointer;">SIGN IN</a></span> 
+								 	</div>
+							 	</mat-card>
+							 </div>
+							<div #__boardSocialMedia style="margin-left: 105px;"  class="col-12 showSignIn boardSocialMedia" *ngIf="__shareOnSocialMedia">
+							 	<mat-card  class="must-connect" style="margin-bottom: 9px;">
+							 		<div class="col-12">
+							 			<mat-card-subtitle>	
+							 			<div class="row">
+							 				<div class="col-6">Share!</div>
+
+							 			<div class="col-6" style="text-align: end"  >
+							 				<mat-icon (click)="closeShareVideo()" style="cursor: pointer;">close</mat-icon>
+							 			</div>
+							 			</div>
+						 				</mat-card-subtitle>
+
+								 	<mat-divider></mat-divider> 
+									<mat-card-content style="margin-top: 30px">  
+										<div class="row">
+											<a  class="moreVideosOnDemand"><mat-icon svgIcon="icon-twiter"></mat-icon>TWITTER
+									</a>
+									<a  class="moreVideosOnDemand" (click)="moreVideosOnDemand($event)">	
+										<mat-icon svgIcon="icon-facebook"></mat-icon>FACEBBOK
+									</a>
+									<a  class="moreVideosOnDemand" (click)="moreVideosOnDemand($event)">
+										<mat-icon svgIcon="icon-linkedin"></mat-icon>LINKEDIN
+									</a>
+									<a  class="moreVideosOnDemand" (click)="moreVideosOnDemand($event)">
+										<mat-icon svgIcon="icon-instagram"></mat-icon>INSTAGRAM
+									</a>
+										</div>
+								 	</mat-card-content>
+							 		</div>
+								 	<div  class="col-12 sign_in share_by_url" style="text-align: start;display: inline-block;width: 100%;">
+								 		 <div class="row" style="padding-right: 9px;">
+								 		 	<div class="col-10" >
+								 		 		<input #userInput type="text" (ngModelChange)="onTextChange($event)" style="
+    font-size: 17px;"  name="" [(ngModel)]="page.url" matInput placeholder="" >
+								 		 	</div>
+								 		 	<div class="col-2" > 
+								 		 		<a class="copyClass" style="color: blue" (click)="copyInputMessage(userInput)">
+										 			COPY
+												</a>
+								 		 	</div>
+								 		 </div> 
+								 	</div>
+							 	</mat-card>
+							 </div>
+						</div>
+						<div class="like-dislike col-12"> 
+							<mat-icon (click)="shareOnSocialMediaNoArg()" style="
+    margin-right: 16px;
+">share</mat-icon>
+							<mat-icon class="like-span-mat-icon" (click)="likeVideo(1)">thumb_up</mat-icon><span class="like-span"> {{videoReadayToplay?videoReadayToplay.videoLikes:'0'}}</span>&nbsp; 
+							<mat-icon class="like-span-mat-icon" (click)="likeVideo(-1)">thumb_down</mat-icon><span class="like-span"> {{videoReadayToplay?videoReadayToplay.videoDislikes:'0'}}</span>
 						</div>
 					</div>
 				</div>
@@ -67,89 +147,173 @@
 			<div class="video-description-author ">
 				<div class="row" style="padding-top: 9px"	>  
 					<div class="col-12">
-						<div class="col-3 video-author-avatar ">
-							<div class="row">
-									<div class="col-3"> 
+						<div class="col-12 video-author-avatar ">
+							<div class="row" style="padding-left: 9px;">
+									<!--<div class="col-3"> 
 										<img src="assets/norrlab/imageedit_43_5024767093.gif" class="advs-avatar main">
+									</div>-->
+									<div class="chip col-4" (click)="goToUserProfil(videoReadayToplay?.videoUser?._id)" >
+										<img src="assets/norrlab/imageedit_43_5024767093.gif">
+										<div>
+											<div>{{videoReadayToplay?.videoUser?.lastName}} {{videoReadayToplay?.videoUser?.firstName}}</div>
+										</div>
 									</div>
-									<div> 
-										<div class="col-12 author-of-vid col-9">  Ulrich O.</div>
-										<div class="col-12"> <p>45k subscriber</p></div>
+
+									<div class="col-9 author-avatar">  
+										<span class="subscriber_class">
+											{{videoReadayToplay?.videoUser?.userFollowers}}6985
+										</span>&nbsp;subscribers 
 									</div>
 							</div>
 						</div> 
 					</div> 
 				</div>
-			</div>
-
+			</div> 
 			<mat-divider class="divider-archive-analyse"></mat-divider>
-			<div class="video-description-author " *ngFor="let comment of [1,2,3]">
+			<div class="video-description-author " *ngFor="let videoComment of videoComments">
 				<div class="row" style="padding-top: 9px"	>  
 					<div class="col-12">
 						<div class="col-3 video-author-avatar">
 							<div class="row">
 									<div class="col-3"> 
-										<img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Charles_Henry_Dow.jpg" class="advs-avatar">
+										<img (click)="goToUserProfil(videoComment?.videoCommentUser?._id)" src="{{(videoComment?.videoCommentUser?.userPictureUrl.length>0)?('http://localhost:369/images'+ videoComment?.videoCommentUser?.userPictureUrl):__defaultPicture()}}" class="advs-avatar" alt="{{(videoComment?.videoCommentUser?.userPictureUrl.length>0)?videoComment?.videoCommentUser?.userPictureUrl:'/default_user.png'}}">
 									</div>
-									<div> 
-										<div class="col-12 author-of-vid col-9">  Charles D.</div> 
+									<div class="col-9" style="text-align: start;padding-left: 0px"> 
+										<div class="col-12 author-of-vid col-9">  
+											<div  (click)="goToUserProfil(videoComment?.videoCommentUser?._id)" class="comment_user" >
+												{{videoComment?.videoCommentUser?.firstName}} {{videoComment?.videoCommentUser?.lastName}}
+											</div>
+										<span class="comment_date">{{videoComment?.videoCommentDate | date : 'medium'}}</span>
+										</div> 
 									</div>
 							</div>
 						</div> 
 						<div class="col-12"> 
 							<p class="users-comments"> 
-	Dissident Officiel
-	3 days ago
-	2ème partie de l'émission "Face à l'info" du 11 décembre 2019.
-	Soutenez moi gratuitement en visionnant une publicité sur Utip : https://www.utip.io/dissidentofficiel
-
-	Retrouvez toutes les interventions d'Eric Zemmour sur http://www.ericzemmour.org/
-
-	Merci de vous abonner à la chaîne de secours Dissident Officiel 2 : https://www.youtube.com/channel/UC-14rMLJVb4HKScomtWSGtw
-
-	Pour tout commentaire ou question : dissidentofficiel@gmail.com (Le délai de réponse peut être long dépendant du volume des courriels)
+	 						 {{videoComment?.videoCommentDescription}}
 							</p>
-						</div>			
+						</div>
+									
+					</div>
+
+					<div class="col-12">
+						<div class="col-3">
+							<span *ngIf="videoComment?._hideReply" class="hidde_reply" >&nbsp;</span>
+						 	<span (click)="enableReply(videoComment)" [attr.disabled]="true" class="reply_comment" >REPLY</span> 
+						 	
+						 	<span *ngIf="!videoComment?.display" class="reply_comment_facts">&nbsp; &#8226; &nbsp;{{videoComment?.replies?.length}} replies
+						 		<mat-icon (click)="__norrShoweReplied(videoComment)" class="drop_arrow_reply">arrow_drop_down</mat-icon> </span>
+						</div>
 					</div> 
 				</div>
+				<div class="row" *ngIf="videoComment?.display">
+					<div class="col-1"></div>
+					<div  class="col-10 norr-lab-mat-card" style="background-color: #f4f4f4;padding-bottom: 0px;text-align: center;"> 
+                      <div class="in_title" style=" text-align:  start; padding:  6px;font-size:  13px; color:  blue"> 
+                         REPLY
+                        </div>
+                        <div role="textarea"  [textContent]="replyVideoComment" contenteditable="true" class="col-12 textarea_title" (input)="replyVideoComment=$event.target.innerText"  #textarea tabindex="1">  
+                        </div>
+                    </div>
+					<div class="col-1"></div>
+				</div>
+				<div  *ngIf="videoComment?.displayReply">
+					<div class="row" *ngFor="let reply of videoComment?.replies" >
+						<div class="col-1"></div>
+						<div  class="col-10 norr-lab-mat-card" style="background-color: #f4f4f4;padding-bottom: 0px;text-align: center;"> 
+
+	                      <div class="row in_title" style=" text-align:  start; padding:  6px;font-size:  13px; color:  blue"> 
+	                         <div class="col-1">
+	                         	<img (click)="goToUserProfil(reply?.replyUser?._id)" src="{{(reply?.replyUser?.userPictureUrl.length>0)?('http://localhost:369/images'+ reply?.replyUser?.userPictureUrl):__defaultPicture()}}" class="advs-avatar" alt="{{(reply?.replyUser?.userPictureUrl.length>0)?reply?.replyUser?.userPictureUrl:'/default_user.png'}}">
+	                         </div>
+	                         <div class="col-11 albi_ween">
+	                         	<span (click)="goToUserProfil(reply?.replyUser?._id)" class="reply-advs-avatar">{{reply?.replyUser?.lastName}} {{reply?.replyUser?.firstName}}</span>&nbsp;&#8226;&nbsp;
+	                         	<span class="reply-date" >
+	                         		{{reply?.replyDate | date:'medium'}}
+	                         	</span>
+	                         </div>
+	                       </div>
+	                        <div role="textarea"  [textContent]="reply?.videoCommentReply" contenteditable="false" class="col-12 textarea_title" (input)="replyVideoComment=$event.target.innerText"  #textarea tabindex="1">  
+	                        </div>
+	                    </div>
+						<div class="col-1"></div>
+					</div>
+				</div>
+
+				<div *ngIf="videoComment?.display" class="col-12 row video_comment_class_button">  
+                  <div class="col-12" style="text-align: end">
+                  	<button (click)="cancelReply(videoComment)" mat-flat-button class="mat_cancel_cancel">CANCEL</button>
+                  	<button (click)="submitReply(videoComment)" mat-flat-button class="mat_success_success">COMMENT</button>
+                  </div> 
+                </div>
+			</div>
+			<div (click)="openCmtEdito()">
+
+				<mat-expansion-panel #__matExpansionPanel [expanded]="norrlabExpanded === 1" class="add_comment" (opened)="norrlabExpanded = 1"
+                       (closed)="matExpansionPanel($event)">
+			    <mat-expansion-panel-header> 
+			      <div class="col-12 add_comment_header">
+			      	<mat-panel-description class="comment_panel_description">
+			        Add public comment...
+			      </mat-panel-description>	
+			      </div>      
+			    </mat-expansion-panel-header>
+			    <mat-form-field class="video_comment_class" > 
+			    	
+			    	<div #__signIn class="col-12 showSignIn must-connect-comment" *ngIf="!asRight()">
+					 	<mat-card  class="must-connect ">
+					 		<div class="col-12">
+					 			<mat-card-subtitle>	
+					 			Comment this video?
+				 			</mat-card-subtitle>
+							<mat-card-content> 
+								Sign in to make your opinion count.
+						 	</mat-card-content>
+					 		</div>
+						 	<mat-divider></mat-divider> 
+						 	<div  class="col-12 sign_in" style="text-align: start;display: inline-block;width: 100%;">
+						 		
+					          <span ><a [routerLink]="'/login'"  style="text-decoration: none;font-size: 13px;color: #0056b3;cursor: pointer;">SIGN IN</a></span> 
+						 	</div>
+					 	</mat-card>
+					 </div>
+				 	<div #__checkUser ><input (ngModelChange)="onTextChange($event)"  name="norrLabVideoTradeComment" [(ngModel)]="cmt.videoCommentDescription" matInput placeholder="" ></div>
+				      
+			    </mat-form-field>
+			    <div class="col-12 video_comment_class_button"> 
+				 	
+  					<button (click)="cancelComment()" mat-flat-button >CANCEL</button>
+  					<button (click)="valideComment()" [disabled]="__openCmtEdito" mat-flat-button class="mat_success">COMMENT</button>
+			    </div>
+			  </mat-expansion-panel>
 			</div>
 		</div>
-		<div class="col-4">
-			<div style="padding-top:9px  "  class="row list-free-videos" *ngFor="let offVideo of [1,2,3]"> 
+		<div class="col-4"> 
+			<div #__listFreeVideos style="padding:9px  "  class="row list-free-videos" *ngFor="let offVideo of weekFreeVideos"> 
 				 <div class="col-6 img-video-cont"> 
 				 	<div class="img-video-button">
 					    
-				 	<button mat-icon-button class=" proposal-video" ><mat-icon>play_circle_outline</mat-icon></button> 
+				 	<button mat-icon-button (click)="playCurrentVideo(offVideo._id)" class=" proposal-video" ><mat-icon>play_circle_outline</mat-icon></button> 
 					 </div>																																																																		
-				 		<img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="https://nucleotrader.com/wp-content/uploads/2019/04/Charles-Henry-Dow-happy-live-420x305.jpg">
+			 		<img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{offVideo.videoPoster?offVideo.videoPoster:__defaultVideoPicture()}}">
 				 </div>	
-				  <div class="col-6" style="
+				  <div class="col-6 img-video-cont-desc" style="
+		}
+		}
     padding-left: 0px;
     padding-right: 0px;
 "> 
-				 		<div>  <span class="video-proposition-title"> Dissid Retrouvez toutes les interventions  </span></div>
-				 		<div>  <span class="video-proposition"> Dissid Retrouvez toutes les interventions  </span></div>
+				 		<div>  <span class="video-proposition-title"> {{offVideo.videoTitle}}  </span></div>
+				 		<div class="video-proposition-description row"> 
+				 			<div class="video-proposition col-12">  <span > {{offVideo.videoDescription}} </span></div>
+
+				 			<div class="video-proposition col-12">  <span > {{offVideo.videoViews}}&nbsp;views </span></div>
+				 		</div>	
 				 </div>	
 			</div>	
 			<div class="row"> 
-				<div class="col-12" style="	margin-top: 9px"> 
-					<div class="list-header"> To follow</div> 
-				<mat-list>
-				  <mat-list-item *ngFor="let shoe of [1,2,3,4,5,6]">
-				    <img matListAvatar src="https://nucleotrader.com/wp-content/uploads/2019/04/Charles-Henry-Dow-happy-live-420x305.jpg" alt="...">
-				    <h3 matLine> Emile B. </h3>
-				    <p matLine>
-				      <span> EUR/USD</span>
-				      <span class="demo-2"> Dissident Officiel
-	3 days ago
-	2ème partie de l'émission "Face à l'info" du 11 décembre 2019.
-	Soutenez moi gratuitement en visionnant une publicité sur Utip : https://www.utip.io/dissidentofficiel
-
-	Retrouvez toutes les interventions d'Eric Zemmour sur  </span>
-				    </p>
-				  </mat-list-item>
-				</mat-list> 
-
+				<div class="col-12 moreVideosOnDemands" style="	margin-top: 9px"> 
+					<a mat-raised-button class="moreVideosOnDemandx" (click)="moreVideosOnDemand($event)">Voir plus de vidéos</a>
 				</div>
 			</div>	
 		</div>

@@ -1,4 +1,10 @@
 
+/** Import core style */
+@import "~ngx-sharebuttons/styles/share-buttons";
+ 
+/** Import a theme */
+@import "~ngx-sharebuttons/styles/themes/circles/circles-theme";
+
 /*@import '~@angular/material/prebuilt-themes/indigo-pink.css';*/
 .example-container {
   display: flex;

@@ -1,7 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ShareButtonsModule } from 'ngx-sharebuttons';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,6 +33,7 @@ import { NorrlabUserComponent } from './norrlab-user/norrlab-user.component';
 import { MatPaginatorIntl } from '@angular/material';
 import { NorrLabMatPaginatorIntl } from './norrlab-video-comments-list/norrlab-video-comments-list.component';
 import { UserProfilComponent } from './user-profil/user-profil.component';
+
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { UserProfilComponent } from './user-profil/user-profil.component';
       success: 'toast-success',
       warning: 'toast-warning'
     }
-  })
+  }),
+    ShareButtonsModule.forRoot()
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: NorrLabMatPaginatorIntl}],
   bootstrap: [AppComponent]

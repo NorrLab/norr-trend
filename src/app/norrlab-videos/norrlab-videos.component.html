@@ -4,7 +4,9 @@
 
 	      <a href=""> Videos*</a>
 	    </div>
+	    
 	</div>
+<share-buttons></share-buttons>
 	<div #__main_container class="row main-container">  
 		<div class="col-8 video-container" >  
 
@@ -102,17 +104,15 @@
 								 	<mat-divider></mat-divider> 
 									<mat-card-content style="margin-top: 30px">  
 										<div class="row">
-											<a  class="moreVideosOnDemand"><mat-icon svgIcon="icon-twiter"></mat-icon>TWITTER
-									</a>
-									<a  class="moreVideosOnDemand" (click)="moreVideosOnDemand($event)">	
-										<mat-icon svgIcon="icon-facebook"></mat-icon>FACEBBOK
-									</a>
-									<a  class="moreVideosOnDemand" (click)="moreVideosOnDemand($event)">
-										<mat-icon svgIcon="icon-linkedin"></mat-icon>LINKEDIN
-									</a>
-									<a  class="moreVideosOnDemand" (click)="moreVideosOnDemand($event)">
-										<mat-icon svgIcon="icon-instagram"></mat-icon>INSTAGRAM
-									</a>
+											<a style="background:url('assets/icons/svg/mdi-facebook.svg');background-repeat: no-repeat; " (click)="shareOn(1)"  class="moreVideosOnDemand">&nbsp;
+											</a>
+											<a style="background:url('assets/icons/svg/mdi-twitter.svg');background-repeat: no-repeat; "  (click)="shareOn(2)"  class="moreVideosOnDemand">	
+												
+											</a>
+											<a style="background:url('assets/icons/svg/mdi-instagram.svg');background-repeat: no-repeat; "  (click)="shareOn(3)" class="moreVideosOnDemand">
+											</a>
+											<a style="background:url('assets/icons/svg/mdi-whatsapp.svg');background-repeat: no-repeat; "  (click)="shareOn(4)" class="moreVideosOnDemand"> 
+											</a>
 										</div>
 								 	</mat-card-content>
 							 		</div>
@@ -133,9 +133,8 @@
 							 </div>
 						</div>
 						<div class="like-dislike col-12"> 
-							<mat-icon (click)="shareOnSocialMediaNoArg()" style="
-    margin-right: 16px;
-">share</mat-icon>
+							<mat-icon class="like-span-mat-icon" (click)="shareOnSocialMediaNoArg()" style="margin-right: 16px;">share</mat-icon>
+		    
 							<mat-icon class="like-span-mat-icon" (click)="likeVideo(1)">thumb_up</mat-icon><span class="like-span"> {{videoReadayToplay?videoReadayToplay.videoLikes:'0'}}</span>&nbsp; 
 							<mat-icon class="like-span-mat-icon" (click)="likeVideo(-1)">thumb_down</mat-icon><span class="like-span"> {{videoReadayToplay?videoReadayToplay.videoDislikes:'0'}}</span>
 						</div>
@@ -313,7 +312,7 @@
 			</div>	
 			<div class="row"> 
 				<div class="col-12 moreVideosOnDemands" style="	margin-top: 9px"> 
-					<a mat-raised-button class="moreVideosOnDemandx" (click)="moreVideosOnDemand($event)">Voir plus de vidéos</a>
+					<a mat-raised-button class="moreVideosOnDemandx">Voir plus de vidéos</a>
 				</div>
 			</div>	
 		</div>
