@@ -5,6 +5,7 @@ import { NorrlabNavgationService } from '../../norrlab-navgation/norrlab-navgati
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 import { ToastrService } from 'ngx-toastr';
 import {Router, ActivatedRoute, Params} from '@angular/router'; 
+import { MessageService} from '../message-service/message.service';
 
 
 
@@ -23,7 +24,7 @@ const USER = {
 export class UserService {
   userLoginUrl = "http://localhost:369/norr-user/login"; 
   userIsLoggedInUrl = "http://localhost:369/norr-user/"; 
-  constructor(private httpClient:HttpClient, private norrlabNavgationService:NorrlabNavgationService,
+  constructor(private messageService:MessageService,private httpClient:HttpClient, private norrlabNavgationService:NorrlabNavgationService,
   	@Inject(SESSION_STORAGE) private storage: StorageService,private toastr: ToastrService, private router:Router) { }
 
   userStatus(param) {
@@ -40,7 +41,9 @@ export class UserService {
   reloadComponent() {
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
         this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate(['/user-trades/']);
+        //this.router.navigate(['/user-trades/']);
+         this.messageService.sendMessage('reload')
+         window.history.back();
       } 
 
   userLogin(data,nextPage){

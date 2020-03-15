@@ -19,19 +19,26 @@ export class NorrlabNavgationService {
     });
   }
 
+
+
+   setPreviousPage(previousPage){
+
+   }
+
   getPreviousUrl(){
   	return this.previousUrl;
   }
   goToNextUrl(nextPage){
   	console.log("previousUrl")
   	console.log(this.previousUrl)
-  	this.router.navigate([nextPage]);
+    window.history.back();
   }
 
   goTo(destination) {
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
         this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate([destination]);
+        //this.router.navigate([destination]);
+        window.location.href=destination
   } 
 
 }

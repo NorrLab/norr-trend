@@ -26,6 +26,7 @@ const map = new Map();
   }
 
   var linkedin = {
+    mini:"&mini=true",
     url:"https://www.linkedin.com/shareArticle/?apiUrl=",
     title:"&title=",
     summary:"&summary=",
@@ -34,8 +35,8 @@ const map = new Map();
 
   var twitter = {
     url:"https://twitter.com/intent/tweet?url=",
-    text:"&text=",
-    hashtags:"&hashtags=",
+    text:"&text=" ,
+    hashtags:"&hashtags=NorrLab, FOREX, DREAMS",
   }
 
   var whatsapp = {
@@ -95,21 +96,27 @@ norrlabVideo={
 
 
 public shareOn(index){
-  
+
     var url = map.get(index).url
     var title = map.get(index).title
     var summary = map.get(index).summary
     var source = map.get(index).source
     var text = map.get(index).text
     var hashtags = map.get(index).hashtags
+    var mini = map.get(index).mini
+ 
 
     var left = (screen.width - 670) / 2;
     var top = (screen.height - 670) / 2;
-    var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
-    
-    url = `${url+window.location.href}${title?title:''}${summary?summary:''}${source?source:''}
-    ${text?text:''}${hashtags?hashtags:''}`
-    window.open(url,"NewWindow",params);
+    var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left; 
+    text = text?text.concat(this.videoReadayToplay.videoTitle) :text;
+
+    url = `${url+window.location.href}${title?title+this.videoReadayToplay.videoTitle:''}${summary?summary:''}${source?source:''}
+    ${mini?mini:''}${hashtags?hashtags:''}${text?text:''}`;
+
+     console.log(decodeURIComponent(url))
+
+    window.open(decodeURIComponent(url),"NewWindow",params);
 }
 
 asRight(){
@@ -460,6 +467,8 @@ openLoginDialog():void {
 
 
   __norrShoweReplied(_cmt){ 
+    if(_cmt.replies==0)
+      return;
     this.deactivateAllOrOtherCmts(_cmt,false);
     _cmt.displayReply = !_cmt.displayReply;
     _cmt._hideReply = ! _cmt._hideReply

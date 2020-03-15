@@ -15,16 +15,16 @@
       <div class="row profilClass">
         <div class="col-2">
           <div class="col-12" mat-card-avatar>
-            <img class="example-header-image" [src]="__getUserPicture().trim()"  width="100%">
+            <img class="example-header-image" [src]="__getUserPicture()"  width="100%">
           </div> 
         </div>
-        <div class="col-8">__getUserPicture() {{__getUserPicture()}}
+        <div class="col-8">
           
           <div class="col-12"> 
             <div style="color: #000;
-    height: 18px;">{{ONLINE_USER.lastName}} {{ONLINE_USER.firstName}}</div>
+    height: 18px;">{{ONLINE_USER?.lastName}} {{ONLINE_USER?.firstName}}</div>
 
-            <div style="font-size: 13px">{{ONLINE_USER.email}}</div>
+            <div style="font-size: 13px">{{ONLINE_USER?.email}}</div>
           </div>
           <div class="col-12"> 
             <a (click)="gorToAccountManager()" style="font-size: 11px;cursor: pointer;color: #007bff">Manage your NorrLab account</a>

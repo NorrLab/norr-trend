@@ -1,8 +1,10 @@
+import { Subscription } from 'rxjs';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, OnDestroy} from '@angular/core';
 import { Component, OnInit,ViewChild, ElementRef,AfterViewInit } from '@angular/core'; 
 import { UserService} from './services/user-service/user.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'; 
+import { MessageService} from './services/message-service/message.service';
 
 @Component({
   selector: 'app-root',
@@ -29,13 +31,20 @@ export class AppComponent  implements OnDestroy, OnInit{
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
 
   private _mobileQueryListener: () => void;
+  private subscription:Subscription;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private userService:UserService, private router:Router,
+  constructor(private messageService:MessageService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private userService:UserService, private router:Router,
     private activatedRoute: ActivatedRoute,) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     
+     this.subscription = this.messageService.getMessage()
+     .subscribe(message =>{
+       if(message){
+           this.isLogged();
+       }
+     })
   }
 
   ngOnDestroy(): void {
@@ -112,6 +121,7 @@ export class AppComponent  implements OnDestroy, OnInit{
     this.userService.userIsLogged().subscribe(user =>{
       this.__isLogged =  true; 
       this.ONLINE_USER = user;
+      this.__getUserPicture();
       return this.userIsLogged== true;
     }, err =>{
       this.__isLogged =  false; 
@@ -130,8 +140,6 @@ export class AppComponent  implements OnDestroy, OnInit{
 
   ngOnInit():void{ 
     this.isLogged();
-
-    this.__getUserPicture();
   }
 
 
