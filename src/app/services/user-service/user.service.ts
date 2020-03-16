@@ -57,14 +57,22 @@ export class UserService {
   }
 
   userIsLogged(){
-  	const params = new HttpParams()
-	.set('userId', this.storage.get(STORAGE_USER_KEY)?this.storage.get(STORAGE_USER_KEY)._id:'');
+  	  const params = new HttpParams()
+	    .set('userId', this.storage.get(STORAGE_USER_KEY)?this.storage.get(STORAGE_USER_KEY)._id:''); 
+
   	return this.httpClient.get<NorrLabUser>(this.userIsLoggedInUrl,{params});
   } 
 
   getUser(){
   	return this.storage.get(STORAGE_USER_KEY);
   }
+
+  getUserById(userId){
+      const params = new HttpParams()
+      .set('userId', userId);  
+      return this.httpClient.get<NorrLabUser>(this.userIsLoggedInUrl,{params});
+  }
+
 	userMapperToClient(data){
 		 	USER.firstName = data.user.firstName
 			USER.firstName = data.user.firstName;

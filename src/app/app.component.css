@@ -304,5 +304,13 @@ mat-nav-list.mat-nav-list.mat-list-base {
 }
 
 .span_notifs{
-  
+    background: red;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 50%;
+    font-size: 8px;
+    text-align: center;
+    margin-left: -13px;
 }

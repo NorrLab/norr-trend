@@ -468,10 +468,12 @@ openLoginDialog():void {
 
   __norrShoweReplied(_cmt){ 
     if(_cmt.replies==0)
-      return;
-    this.deactivateAllOrOtherCmts(_cmt,false);
-    _cmt.displayReply = !_cmt.displayReply;
-    _cmt._hideReply = ! _cmt._hideReply
+      return; 
+    
+      this.deactivateAllOrOtherCmts(_cmt,false);
+      _cmt.displayReply = !_cmt.displayReply;
+      _cmt._hideReply = ! _cmt._hideReply;
+
   }
 
   moreVideosOnDemand(e){
@@ -511,9 +513,14 @@ openLoginDialog():void {
 
   replyVideoComment="ALPHA";
 
-  enableReply( cmt){
-    this.deactivateAllOrOtherCmts(cmt,false);
-    cmt.display = ! cmt.display; 
+  enableReply( cmt){ 
+    this.userService.userIsLogged()
+    .subscribe(user =>{    
+      this.deactivateAllOrOtherCmts(cmt,false);
+      cmt.display = ! cmt.display; 
+    }, err =>{
+        window.location.href="/login";
+    })
   }
 
   cancelReply(cmt){ 
