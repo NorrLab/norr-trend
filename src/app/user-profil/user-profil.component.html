@@ -30,25 +30,70 @@
 		</div>
 		<div class="container_video_edit "> 
     		<div class="container_"> 
-    			<div class="row row_add sub_profil">  
+    			<div class="col-12 row_add sub_profil">  
 		      		<div class="add_pic_pic row"> 
 		      			<div class="profil_pic"> 
 			  			<img class="profil_pic_img" src="http://localhost:369/images/community-user/ossene-profile.jpg">
 			  		</div>
-			  		<div class="sub_profil row"> 
-			  				dkldkmdkldk <br> 
-			  				jdkjkjdkdjkdjk <br> 
-			  				l,kdm,jkjdkjdkj <br> 
+			  		<div class="sub_profil row "> 
+			  			  <div class="sub-toolbar">  
+						      <div class="sub-menu menu_profil">
+						        <a href=""> Trades</a>&nbsp; /
+
+						        <a href=""> Videos</a>&nbsp; /
+						        <a href=""> Analyses</a>&nbsp; /
+						        <a href="">Subscribers </a>&nbsp; 
+						      </div>
+						  </div>
 			  		</div>
 			  		
 	      		</div> 
-			</div>
-			<div class="sub_profil2 row"> 
-			  			123
-			  				dkldkmdkldk <br> 
-			  				jdkjkjdkdjkdjk <br> 
-			  				l,kdm,jkjdkjdkj <br> 
-			  		</div>
+			</div> 
+    		</div>
+
+    		<div style="margin-top: 13px"> 
+
+				  <div class="row"> 
+				  	<div class="col-12"> 
+				  			<mat-card class="example-card">
+				 					<mat-card-content>
+				  						<div class="row"> 
+				  									<p> Intro</p>
+				  							</div>		
+		  							</mat-card-content>
+				  				</mat-card>
+				  	</div>	
+				  		<div class="col-3" style="padding-right: 0px;">
+				  				<mat-card class="example-card">
+				 					<mat-card-content>
+				  						<div class="row"> 
+				  									<p> Intro</p>
+				  							</div>		
+		  							</mat-card-content>
+				  				</mat-card>
+				  		</div>
+				  		<div class="col-9"> 
+				  				<mat-card *ngFor="let publication of [1,2,3] " class="example-card">
+				  <mat-card-header>
+				    <div mat-card-avatar class="example-header-image"></div>
+				    <mat-card-title>Shiba Inu</mat-card-title>
+				    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+				  </mat-card-header>
+				  <img mat-card-image class="_trades" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+				  <mat-card-content>
+				    <p>
+				      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+				      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+				      bred for hunting.
+				    </p>
+				  </mat-card-content>
+				  <mat-card-actions>
+				    <button mat-button>LIKE</button>
+				    <button mat-button>SHARE</button>
+				  </mat-card-actions>
+				</mat-card>
+				  		</div>	
+				  </div>	
     		</div>
 			
 		</div> 

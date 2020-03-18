@@ -32,8 +32,6 @@
     border: 1px solid #ccc;
 }  
 .add_pic_pic{
-
-  padding-top: 6px;
     cursor: pointer;
     margin-left: 35px;
 
@@ -65,9 +63,29 @@ img.profil_pic_img {
 .container_{
 
     padding-left: 16px;
+    background: #fff;
     padding-right: 14px;
 }
 
 .sub_profil{
   display:  inline-block;
+}
+
+.example-card {
+  max-width: 100%;
+  margin-bottom: 13px
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover; 
+} 
+
+._trades{
+    height:  190px;
+}
+
+
+.example-spacer {
+  flex: 1 1 auto;
 }
