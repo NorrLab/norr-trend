@@ -1,0 +1,17 @@
+<mat-card *ngFor="let publication of _userTrades" class="example-card">
+	<mat-card-header>
+		<div mat-card-avatar class="example-header-image"></div>
+		<mat-card-title>{{_norrUser?.lastName}}&nbsp;{{_norrUser?.firstName}}</mat-card-title>
+		<mat-card-subtitle>Published&nbsp; &#8226; &nbsp;{{publication.creationDate | date:'medium'}} </mat-card-subtitle>
+	</mat-card-header>
+		<img mat-card-image class="_trades" [src]="getPicture(publication)" alt="Photo of a Shiba Inu">
+	<mat-card-content>
+	<p>
+	  {{publication.description}}
+	</p>
+	</mat-card-content>
+	<!--<mat-card-actions>
+		<button mat-button>LIKE</button>
+		<button mat-button>SHARE</button>
+	</mat-card-actions>	-->																					
+</mat-card>

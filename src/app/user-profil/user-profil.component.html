@@ -4,7 +4,7 @@
 
         <a href=""> Video comments</a>
       </div>
-  </div>   
+  </div>  
 <mat-tab-group>
   <mat-tab label="">
   		<div class="container_video_edit main"> 
@@ -57,41 +57,75 @@
 				  	<div class="col-12"> 
 				  			<mat-card class="example-card">
 				 					<mat-card-content>
-				  						<div class="row"> 
-				  									<p> Intro</p>
-				  							</div>		
+				  						<div class="row">
+				  							<div class="col-6">
+				  							<div class="row intro"> 
+				  								<p > Recommande {{_norrUser?.lastName}} {{_norrUser?.firstName}} </p>
+					  						</div>
+					  						<div class="row">
+					  							<img *ngFor="let mag of [1,2...10] " class="cloud_upload" src="assets/icons/svg/forex-seeklogo.com.svg" alt="Kiwi standing on oval"> 
+					  						</div>
+				  						</div>
+				  						<div class="col-6" style="text-align: end">
+				  							
+					  						<div class="col-12 btn_subscribe"> 
+  												<button style="outline: none;" mat-flat-button color="primary">SUBSCRIBE</button>
+					  						</div>
+				  						</div>
+
+				  						</div>
+
 		  							</mat-card-content>
 				  				</mat-card>
 				  	</div>	
 				  		<div class="col-3" style="padding-right: 0px;">
 				  				<mat-card class="example-card">
 				 					<mat-card-content>
-				  						<div class="row"> 
-				  									<p> Intro</p>
-				  							</div>		
+				  						<div class="row intro"> 
+				  									<mat-icon style="padding: 0px ;color: blue; border-radius: 50%	">public</mat-icon>	<p>&nbsp;Intro</p>
+				  							</div>
+
+				  						<div class="row intro" style="text-align:  center;"> 
+				  								<p > I'm a Forex trader i trade love</p>
+				  						</div>
+			  							<div class="row">  
+				  							<div class="col-6">Wins </div>
+				  							<div class="col-6" style="text-align:  end">{{_norrUser?.userWins}} </div> 
+				  						</div>	
+			  							<div class="row">  
+				  							<div class="col-6">Losses </div>
+				  							<div class="col-6" style="text-align:  end">{{_norrUser?.userLosses}} </div> 
+				  						</div>	
+			  							<div class="row">  
+				  							<div class="col-9">Average wins (pips) </div>
+				  							<div class="col-3" style="text-align:  end">{{_norrUser?.userPercentWins}} </div> 
+				  						</div>		
+			  							<div class="row">  
+				  							<div class="col-9">Average losses (pips) </div>
+				  							<div class="col-3" style="text-align:  end">{{_norrUser?.userPercentWins}}</div> 
+				  						</div>		
+			  							<div class="row">  
+				  							<div class="col-3">P/L </div>
+				  							<div class="col-9" style="text-align:  end; color: 	green"> {{_norrUser?.userProfits}}&nbsp;$ </div> 
+				  						</div> 		
+		  							</mat-card-content>
+				  				</mat-card>
+				  				<mat-card class="example-card">
+				 					<mat-card-content>
+				  						<div class="row intro"> 
+				  								<mat-icon style="color:#f50e6b;" aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">supervised_user_circle</mat-icon> 	
+			  									<p>&nbsp;Subscribers</p>&nbsp; &#8226; &nbsp; <span class="count_subscribers">{{(__norrSubscribers.length>0 )? __norrSubscribers?.length : '0'}} </span>
+				  							</div> 	
+				  						<div class="row intro">  
+				  							<div class="subscriber_pic_up col-4" *ngFor="let subscriber of __norrSubscribers">
+				  									<img alt="..." class="subscriber_pic" src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+				  							</div>
+				  						</div>		
 		  							</mat-card-content>
 				  				</mat-card>
 				  		</div>
 				  		<div class="col-9"> 
-				  				<mat-card *ngFor="let publication of [1,2,3] " class="example-card">
-				  <mat-card-header>
-				    <div mat-card-avatar class="example-header-image"></div>
-				    <mat-card-title>Shiba Inu</mat-card-title>
-				    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-				  </mat-card-header>
-				  <img mat-card-image class="_trades" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-				  <mat-card-content>
-				    <p>
-				      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-				      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-				      bred for hunting.
-				    </p>
-				  </mat-card-content>
-				  <mat-card-actions>
-				    <button mat-button>LIKE</button>
-				    <button mat-button>SHARE</button>
-				  </mat-card-actions>
-				</mat-card>
+				  				<app-profile-trades></app-profile-trades>
 				  		</div>	
 				  </div>	
     		</div>

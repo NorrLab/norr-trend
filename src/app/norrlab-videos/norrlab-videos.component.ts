@@ -561,9 +561,10 @@ __env;
             this.videoReadayToplay  = video; 
         }
 
-        this.__env = environment.apiUrl+this.videoReadayToplay.videoUrl
+        this.__env = environment.apiUrl+(this.videoReadayToplay?this.videoReadayToplay.videoUrl:videoId)
         //TODO get video comments, from video id.
-        this.videoService.getVideoFreeComments(this.videoReadayToplay._id).subscribe(comments =>{ 
+        var videoId = this.videoReadayToplay?this.videoReadayToplay._id:undefined;
+        this.videoService.getVideoFreeComments(videoId).subscribe(comments =>{ 
             this.videoComments = comments;
             if(comments instanceof Array){
               this.videoComments.forEach(cmt =>{

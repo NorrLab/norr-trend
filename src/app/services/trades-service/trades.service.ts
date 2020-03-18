@@ -5,6 +5,10 @@ import { NorrLabDetail} from '../../interfaces/norr-lab-detail';
 import { NorrLabTradeComment} from '../../interfaces/norrLabTradeComment/norr-lab-trade-comment';
 import { HttpClient,HttpParams } from '@angular/common/http';
 
+
+
+const TRADE_URL:string="http://localhost:369/user/trade-by-user"; 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +25,12 @@ export class TradesService {
 
   	console.log(TradesEntity)  
   	return this.trades;
+  }
+
+  getTradeByUserId(userId){
+    const params = new HttpParams()
+    .set('userId', userId);
+    return this.httpClient.get<NorrLabTrade>(TRADE_URL, {params});
   }
 
   getTradeDetail(tradeId){
