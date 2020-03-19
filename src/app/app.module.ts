@@ -34,6 +34,9 @@ import { MatPaginatorIntl } from '@angular/material';
 import { NorrLabMatPaginatorIntl } from './norrlab-video-comments-list/norrlab-video-comments-list.component';
 import { UserProfilComponent } from './user-profil/user-profil.component';
 import { ProfileTradesComponent } from './profile-trades/profile-trades.component';
+import { ProfileAnalysesComponent } from './profile-analyses/profile-analyses.component';
+import { ProfileVideosComponent } from './profile-videos/profile-videos.component';
+import { ProfileSubscribersComponent } from './profile-subscribers/profile-subscribers.component';
 
 
 
@@ -54,7 +57,7 @@ import { ProfileTradesComponent } from './profile-trades/profile-trades.componen
     NorrlabMemberShipsComponent,
     NorrlabPositionBublicationComponent,
     NorrlabAccountManagerComponent,
-    NorrlabVideoCreationComponent,NorrlabVideoAnalyticsComponent,NorrlabVideoCommentsListComponent, NorrlabUserComponent, UserProfilComponent, ProfileTradesComponent
+    NorrlabVideoCreationComponent,NorrlabVideoAnalyticsComponent,NorrlabVideoCommentsListComponent, NorrlabUserComponent, UserProfilComponent, ProfileTradesComponent, ProfileAnalysesComponent, ProfileVideosComponent, ProfileSubscribersComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,

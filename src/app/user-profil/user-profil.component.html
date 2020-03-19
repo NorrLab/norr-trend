@@ -5,7 +5,10 @@
         <a href=""> Video comments</a>
       </div>
   </div>  
-<mat-tab-group>
+
+  			 componentMap: {{componentMap |json}}
+  			 {{componentMap.get('_profileTrades')}}
+<mat-tab-group *ngIf="appActive">
   <mat-tab label="">
   		<div class="container_video_edit main"> 
     		<div class=""> 
@@ -25,7 +28,7 @@
 
 	  		  </div>
 			</div>
-    		</div>
+    		</div> 
 			
 		</div> 
 		<div class="container_video_edit "> 
@@ -33,16 +36,16 @@
     			<div class="col-12 row_add sub_profil">  
 		      		<div class="add_pic_pic row"> 
 		      			<div class="profil_pic"> 
-			  			<img class="profil_pic_img" src="{{pictureUrl}}">
+			  			<img class="profil_pic_img" src="{{picturUsereUrl}}">
 			  		</div>
 			  		<div class="sub_profil row "> 
 			  			  <div class="sub-toolbar">  
 						      <div class="sub-menu menu_profil">
-						        <a href=""> Trades</a>&nbsp; /
+						        <a style="color: #007bff;cursor: pointer;" (click)="displayTrades('_profileTrades')"> Trades</a>&nbsp; /
 
-						        <a href=""> Videos</a>&nbsp; /
-						        <a href=""> Analyses</a>&nbsp; /
-						        <a href="">Subscribers </a>&nbsp; 
+						        <a style="color: #007bff;cursor: pointer;" (click)="displayVideos('_profileVideos')"> Videos</a>&nbsp; /
+						        <a style="color: #007bff;cursor: pointer;" (click)="displayAnalyses('_profileAnalyses')"> Analyses</a>&nbsp; /
+						        <a style="color: #007bff;cursor: pointer;" (click)="displaySubscribers('_profileSubscribers')">Subscribers </a>&nbsp; 
 						      </div>
 						  </div>
 			  		</div>
@@ -63,13 +66,13 @@
 				  								<p > Recommande {{_norrUser?.lastName}} {{_norrUser?.firstName}} </p>
 					  						</div>
 					  						<div class="row">
-					  							<img *ngFor="let mag of [1,2...10] " class="cloud_upload" src="assets/icons/svg/forex-seeklogo.com.svg" alt="Kiwi standing on oval"> 
+					  							<img *ngFor="let mag of [1,2,3] " class="cloud_upload" src="assets/icons/svg/forex-seeklogo.com.svg" alt="Kiwi standing on oval"> 
 					  						</div>
 				  						</div>
 				  						<div class="col-6" style="text-align: end">
 				  							
 					  						<div class="col-12 btn_subscribe"> 
-  												<button style="outline: none;" mat-flat-button color="primary">SUBSCRIBE</button>
+  												<button (click)="subscribeToPublications(_norrUser?.id)" style="outline: none;" mat-flat-button color="primary">SUBSCRIBE</button>
 					  						</div>
 				  						</div>
 
@@ -117,19 +120,32 @@
 			  									<p>&nbsp;Subscribers</p>&nbsp; &#8226; &nbsp; <span class="count_subscribers">{{(__norrSubscribers.length>0 )? __norrSubscribers?.length : '0'}} </span>
 				  							</div> 	
 				  						<div class="row intro">  
-				  							<div class="subscriber_pic_up col-4" *ngFor="let subscriber of __norrSubscribers">
-				  									<img alt="..." class="subscriber_pic" src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+
+				  							<div class="subscriber_pic_up col-4" *ngFor="let userSubscriber of __norrSubscribers"> 
+
+				  									<img  matTooltip="{{userSubscriber.norrUserFollowed.lastName}} {{userSubscriber.norrUserFollowed.firstName}}"
+			         			[matTooltipPosition]="'above'" alt="..." class="subscriber_pic" [src]="getSubscriberPicture(userSubscriber)"> 
 				  							</div>
 				  						</div>		
 		  							</mat-card-content>
 				  				</mat-card>
 				  		</div>
 				  		<div class="col-9"> 
-				  				<app-profile-trades></app-profile-trades>
+				  				<app-profile-trades *ngIf="componentMap.get('_profileTrades')" ></app-profile-trades>
+
+				  				<app-profile-videos *ngIf="componentMap.get('_profileVideos')" ></app-profile-videos>
+
+				  				<app-profile-analyses *ngIf="componentMap.get('_profileAnalyses')" ></app-profile-analyses>
+
+				  				<app-profile-subscribers *ngIf="componentMap.get('_profileSubscribers')" ></app-profile-subscribers>
 				  		</div>	
 				  </div>	
     		</div>
 			
 		</div> 
+}
+}
+}
+}
 </mat-tab> 
 </mat-tab-group>

@@ -4,4 +4,5 @@ export interface NorrLabUser {
 	commentDate:any,
 	commentUser:string,
 	commentTrade:any, 
+	userPictureUrl:string
 }

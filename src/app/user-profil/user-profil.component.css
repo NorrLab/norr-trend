@@ -1,3 +1,8 @@
+
+.display_component{
+  cursor: pointer;
+  color: #007bff;
+} 
 .sub-toolbar{
   height: 35px;
   background: #fff;
@@ -31,8 +36,7 @@
 
     border: 1px solid #ccc;
 }  
-.add_pic_pic{
-    cursor: pointer;
+.add_pic_pic{ 
     margin-left: 35px;
 
 }
@@ -91,7 +95,11 @@ img.profil_pic_img {
 }
 .subscriber_pic{
   width:  100%;
-      border-radius:  1px;
+      border-radius:  3px;
+  
+  cursor: pointer;
+  height: 52px;
+  border: 0.1em solid #f1f1f1
 }
 .example-spacer {
   flex: 1 1 auto;

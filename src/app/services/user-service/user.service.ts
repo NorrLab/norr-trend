@@ -18,6 +18,15 @@ const USER = {
 	userPictureUrl:"",
 }
 
+
+export interface Subscriber{
+  norrUserFollowed:string,
+  norrUserFollowing:string,
+  subqcriptionDate:Date
+}
+
+const SUBSCRIBER_URL = 'http://localhost:369/norr-user/subscribers'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,12 +40,52 @@ export class UserService {
   	return false;
   }
 
+
+  /******************************************************
+  *
+  *              Subscribers
+  *
+  *******************************************************/
+
+  getSubscribers(userId){ 
+    return this.httpClient.get<Subscriber>(`${SUBSCRIBER_URL}/${userId}`);
+  }
+
+  createSubscribers(userId){ 
+    var _subscriber: Subscriber = {
+      norrUserFollowed:userId,
+      norrUserFollowing:this.getUser()._id,
+      subqcriptionDate: new Date()
+    }
+    return this.httpClient.post<Subscriber>(`${SUBSCRIBER_URL}`, _subscriber);
+  }
+ /******************************************************
+  *
+  *              sign-log 
+  *
+  *******************************************************/
   signOut(){
     //TODO post to save last onile date and duration
     var user = this.storage.get(STORAGE_USER_KEY);
     this.storage.set(STORAGE_USER_KEY,null);
   }
 
+  userLogin(data,nextPage){
+    return this.httpClient.post(this.userLoginUrl,data).subscribe(user =>{ 
+        this.storage.set(STORAGE_USER_KEY,  this.userMapperToClient(user));
+        this.reloadComponent()
+
+    },err=>{
+      this.toastr.error('provide good email and password') 
+    });
+  }
+
+  userIsLogged(){
+      const params = new HttpParams()
+      .set('userId', this.storage.get(STORAGE_USER_KEY)?this.storage.get(STORAGE_USER_KEY)._id:''); 
+
+    return this.httpClient.get<NorrLabUser>(this.userIsLoggedInUrl,{params});
+  } 
 
   reloadComponent() {
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -46,23 +95,18 @@ export class UserService {
          window.history.back();
       } 
 
-  userLogin(data,nextPage){
-  	return this.httpClient.post(this.userLoginUrl,data).subscribe(user =>{ 
-        this.storage.set(STORAGE_USER_KEY,  this.userMapperToClient(user));
-        this.reloadComponent()
-
-  	},err=>{
-      this.toastr.error('provide good email and password') 
-  	});
+  toastError(err){
+    this.toastr.error(err)
   }
 
-  userIsLogged(){
-  	  const params = new HttpParams()
-	    .set('userId', this.storage.get(STORAGE_USER_KEY)?this.storage.get(STORAGE_USER_KEY)._id:''); 
+  toastSuccess(success){
+    this.toastr.success(success)
+  }
 
-  	return this.httpClient.get<NorrLabUser>(this.userIsLoggedInUrl,{params});
-  } 
-
+ /******************************************************
+  *
+  *              USER
+  *****************************************************/
   getUser(){
   	return this.storage.get(STORAGE_USER_KEY);
   }
@@ -70,7 +114,7 @@ export class UserService {
   getUserById(userId){
       const params = new HttpParams()
       .set('userId', userId);  
-      return this.httpClient.get<NorrLabUser>(this.userIsLoggedInUrl,{params});
+      return this.httpClient.get<NorrLabUser>(`${this.userIsLoggedInUrl}`,{params});
   }
 
 	userMapperToClient(data){

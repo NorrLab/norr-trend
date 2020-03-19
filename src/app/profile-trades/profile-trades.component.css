@@ -77,12 +77,13 @@ img.profil_pic_img {
 }
 
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  /*background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');*/
   background-size: cover; 
 } 
 
 ._trades{
     height:  190px;
+    padding: 3px
 }
 
 .row.intro {
@@ -99,4 +100,12 @@ img.profil_pic_img {
 
 .subscriber_pic_up{
       padding: 3px; 
+}
+ 
+
+img.profil_publication{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%; 
+    border: 2px solid #8EE1B6;
 }

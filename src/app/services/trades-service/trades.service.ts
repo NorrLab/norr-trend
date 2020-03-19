@@ -4,6 +4,7 @@ import { NorrLabTrade} from '../../interfaces/norr-lab-trade';
 import { NorrLabDetail} from '../../interfaces/norr-lab-detail';
 import { NorrLabTradeComment} from '../../interfaces/norrLabTradeComment/norr-lab-trade-comment';
 import { HttpClient,HttpParams } from '@angular/common/http';
+import { UserService} from '../user-service/user.service';
 
 
 
@@ -19,7 +20,7 @@ export class TradesService {
 	configNorrLabTradeCommentUrl:string = "http://localhost:369/user/free-trade-comment"; 
 	trades = []; 
 	
-  constructor(private httpClient:HttpClient) { }//private httpParams:HttpParams
+  constructor(private httpClient:HttpClient,private userService: UserService) { }//private httpParams:HttpParams
 
   getAllTrades(){
 
@@ -30,7 +31,7 @@ export class TradesService {
   getTradeByUserId(userId){
     const params = new HttpParams()
     .set('userId', userId);
-    return this.httpClient.get<NorrLabTrade>(TRADE_URL, {params});
+    return this.httpClient.get<NorrLabTrade>(`${TRADE_URL}/${this.userService.getUser()?this.userService.getUser()._id:undefined}`, {params});
   }
 
   getTradeDetail(tradeId){

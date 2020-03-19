@@ -20,13 +20,14 @@ export class ProfileTradesComponent implements OnInit {
   constructor(private userService:UserService,private toastrService:ToastrService,private activatedRoute: ActivatedRoute,
     private tradesService:TradesService) { }
   _norrUser;
-  _userTrades=[] ;
+  _userTrades ;
+  picturUsereUrl;
 
-  ngOnInit() {
-
+  ngOnInit() { 
   	this.userService.getUserById(this.activatedRoute.snapshot.params.userId)
   	.subscribe(user =>{
   		this._norrUser = user; 
+      this.picturUsereUrl = user.userPictureUrl?`${environment.apiUrl}/images${user.userPictureUrl}`:`${environment.apiUrl}/images/default_user.jpg`
       this.tradesService.getTradeByUserId(user._id)
       .subscribe( trades =>{
         this._userTrades = trades;
@@ -38,7 +39,9 @@ export class ProfileTradesComponent implements OnInit {
   }
 
   getPicture(publication){
-    return environment.apiUrl+publication.pictureUrl;
+    var picutre = (publication.pictureUrl)?`${environment.apiUrl}${publication.pictureUrl}`:`${environment.apiUrl}/images/default-img.jpg`;
+    return picutre;
+    //+publication.pictureUrl
   }
 
 }

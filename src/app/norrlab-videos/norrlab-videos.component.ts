@@ -489,8 +489,12 @@ openLoginDialog():void {
   }
 
   goToUserProfil(userId){
-    var url =  `user-profil/${userId}`;
-    window.location.href=url;
+    this.userService.userIsLogged()
+    .subscribe(user =>{  
+      window.location.href=`user-profil/${userId}`;
+    },err =>{
+      this.userService.toastError('You must be connected!'); 
+    })
   }
 
   __enableReply:boolean = false;
