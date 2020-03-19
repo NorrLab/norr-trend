@@ -51,7 +51,7 @@ export class UserProfilComponent implements OnInit {
   getSubscriberPicture(subscriber){
     if(undefined == subscriber)
       return ;
-    var url= (subscriber.norrUserFollowed.userPictureUrl.length > 1)? `${environment.apiUrl }/images${subscriber.norrUserFollowed.userPictureUrl}`: `${environment.apiUrl}/images/default_user.jpg`;
+    var url= (subscriber.norrUserFollowing.userPictureUrl.length > 1)? `${environment.apiUrl }/images${subscriber.norrUserFollowing.userPictureUrl}`: `${environment.apiUrl}/images/default_user.jpg`;
     return url
     //user.userPictureUrl?`${environment.apiUrl}/images${user.userPictureUrl}`:`${environment.apiUrl}/images/default_user.jpg`
   }
@@ -60,6 +60,7 @@ export class UserProfilComponent implements OnInit {
     this.userService.createSubscribers(this.activatedRoute.snapshot.params.userId)
     .subscribe(subs =>{
       this.toastrService.success(`You will receive ${this._norrUser.lastName} notoficatons`)
+      window.location.href = window.location.href
     }, err =>{
       this.toastrService.error(`Error trying to follow ${this._norrUser.lastName}`)
     })
