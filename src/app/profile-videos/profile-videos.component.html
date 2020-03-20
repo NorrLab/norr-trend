@@ -1,3 +1,44 @@
-<p>
-  profile-videos works!
-</p>
+<div #tradePublication class="row" > 
+	<div class="row">
+		<mat-card  *ngFor="let publication of _userTrades" class="col-3 example-card" (click)="goToTradeDetail(publication._id)">
+	<mat-card-header> 
+		<div mat-card-avatar class="example-header-image">
+			<img style="width: 45px" class="profil_publication" src="{{picturUsereUrl}}">
+		</div>
+		<mat-card-title>{{_norrUser?.lastName}}&nbsp;{{_norrUser?.firstName}}</mat-card-title>
+		<mat-card-subtitle>Published&nbsp; &#8226; &nbsp;{{publication.creationDate | date:'medium'}} </mat-card-subtitle>
+	</mat-card-header>
+		<img mat-card-image class="_trades" [src]="getPicture(publication)" alt="Photo of a Shiba Inu">
+	<mat-card-content>
+	<p>
+	  {{publication.description}}
+	</p>
+	</mat-card-content>
+	<!--<mat-card-actions>
+		<button mat-button>LIKE</button>
+		<button mat-button>SHARE</button>
+	</mat-card-actions>	-->																					
+</mat-card> 
+	</div>
+
+<div *ngIf="_userTrades?.length>0" >
+	<mat-paginator #__paginator style="background-color: #fafafa"  [length]="totalCount"
+      [pageSize]="3"
+      [pageSizeOptions]="[3,6,9]"
+      (page)="pageEvent = loadTrades($event)">
+	</mat-paginator>
+</div>
+<div class="row" *ngIf="_userTrades?.length==0"> 
+		<div class="col-3">
+			 
+		</div>
+		<div class="col-6" style="margin-top: 88px;">
+			<div class="col-12">
+				<span style="font-size: 16px; color:  #ccc ">Aske {{_norrUser?.lastName}}&nbsp;{{_norrUser?.firstName}} to publish trades</span>
+			</div>
+		</div>
+		<div class="col-3">
+			 
+		</div> 
+</div>
+</div>

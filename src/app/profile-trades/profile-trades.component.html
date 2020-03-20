@@ -1,5 +1,5 @@
-<div #tradePublication >
-<mat-card *ngFor="let publication of _userTrades" class=" example-card">
+<div #tradePublication  >
+<mat-card *ngFor="let publication of _userTrades" class=" example-card" (click)="goToTradeDetail(publication._id)">
 	<mat-card-header> 
 		<div mat-card-avatar class="example-header-image">
 			<img class="profil_publication" src="{{picturUsereUrl}}">

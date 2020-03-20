@@ -22,12 +22,16 @@ export class ProfileTradesComponent implements OnInit {
   _norrUser;
   _userTrades ;
   picturUsereUrl; 
-  totalCount;
+  totalCount:number;
   //@ViewChild("tradePublication") tradePublication: ElementRef;
 
   onScrollDown(){
     let tradePublication = this.elementRef.nativeElement.querySelector(`#tradePublication`);
     alert(`${tradePublication.nativeElement.scrollTop()}`); 
+  }
+
+  goToTradeDetail(publicationId){
+      window.location.href = `/user-trades/${publicationId}/detail`;
   }
 
   loadTrades(e){
@@ -52,6 +56,7 @@ export class ProfileTradesComponent implements OnInit {
       this.tradesService.getTradeByUserId(user._id,1,3,undefined)
       .subscribe( trades =>{
         this._userTrades =  trades.data;
+        this.totalCount = trades.totalCount;
       }) 
   	},err =>{
   		//TODO  getTradeByUserId(userId,pageNumber, nbPerPage,criteria)
