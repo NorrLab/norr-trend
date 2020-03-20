@@ -28,9 +28,12 @@ export class TradesService {
   	return this.trades;
   }
 
-  getTradeByUserId(userId){
+  getTradeByUserId(userId,pageNumber, nbPerPage,criteria){
     const params = new HttpParams()
-    .set('userId', userId);
+    .set('userId', userId)
+    .set('pageNumber', pageNumber)
+    .set('nbPerPage', nbPerPage)
+    .set('criteria', criteria) ;
     return this.httpClient.get<NorrLabTrade>(`${TRADE_URL}/${this.userService.getUser()?this.userService.getUser()._id:undefined}`, {params});
   }
 

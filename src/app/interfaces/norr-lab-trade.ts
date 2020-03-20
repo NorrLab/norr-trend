@@ -3,5 +3,6 @@ export interface NorrLabTrade {
 	message:string,
 	data:any,
 	access:false,
-	tradeDetail:any
+	tradeDetail:any,
+	totalCount:any
 }

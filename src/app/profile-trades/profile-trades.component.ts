@@ -22,6 +22,7 @@ export class ProfileTradesComponent implements OnInit {
   _norrUser;
   _userTrades ;
   picturUsereUrl; 
+  totalCount;
   //@ViewChild("tradePublication") tradePublication: ElementRef;
 
   onScrollDown(){
@@ -29,9 +30,17 @@ export class ProfileTradesComponent implements OnInit {
     alert(`${tradePublication.nativeElement.scrollTop()}`); 
   }
 
-
-  loadTraeds(event){
-
+  loadTrades(e){
+    console.log(e);
+    this.tradesService.getTradeByUserId(this.activatedRoute.snapshot.params.userId,e.pageIndex,e.pageSize,undefined)
+    .subscribe(trade =>{ 
+        this._userTrades =  trade.data; 
+        this.totalCount = trade.totalCount;
+        console.log("this.norrLabTrades") 
+        console.log(trade.data) 
+    },err=>{
+        alert(err)
+    });
   }
 
   ngOnInit() {  
@@ -40,12 +49,12 @@ export class ProfileTradesComponent implements OnInit {
   	.subscribe(user =>{
   		this._norrUser = user; 
       this.picturUsereUrl = user.userPictureUrl?`${environment.apiUrl}/images${user.userPictureUrl}`:`${environment.apiUrl}/images/default_user.jpg`
-      this.tradesService.getTradeByUserId(user._id)
+      this.tradesService.getTradeByUserId(user._id,1,3,undefined)
       .subscribe( trades =>{
-        this._userTrades = trades;
+        this._userTrades =  trades.data;
       }) 
   	},err =>{
-  		//TODO
+  		//TODO  getTradeByUserId(userId,pageNumber, nbPerPage,criteria)
   		window.history.back()// https://material.angular.io/assets/img/examples/shiba2.jpg
   	})
   }

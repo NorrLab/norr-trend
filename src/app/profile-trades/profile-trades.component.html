@@ -19,9 +19,24 @@
 	</mat-card-actions>	-->																					
 </mat-card>
 
-<mat-paginator #__paginator style="background-color: #fafafa"  [length]="norrLabTrades?.totalCount"
-      [pageSize]="5"
-      [pageSizeOptions]="[5,10, 20]"
-      (page)="pageEvent = loadTraeds($event)">
-</mat-paginator>
+<div *ngIf="_userTrades?.length>0" >
+	<mat-paginator #__paginator style="background-color: #fafafa"  [length]="totalCount"
+      [pageSize]="3"
+      [pageSizeOptions]="[3,6,9]"
+      (page)="pageEvent = loadTrades($event)">
+	</mat-paginator>
+</div>
+<div class="row" *ngIf="_userTrades?.length==0"> 
+		<div class="col-3">
+			 
+		</div>
+		<div class="col-6" style="margin-top: 88px;">
+			<div class="col-12">
+				<span style="font-size: 16px; color:  #ccc ">Aske {{_norrUser?.lastName}}&nbsp;{{_norrUser?.firstName}} to publish trades</span>
+			</div>
+		</div>
+		<div class="col-3">
+			 
+		</div> 
+</div>
 </div>
