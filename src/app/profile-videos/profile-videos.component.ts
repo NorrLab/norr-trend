@@ -30,8 +30,8 @@ export class ProfileVideosComponent implements OnInit {
     alert(`${tradePublication.nativeElement.scrollTop()}`); 
   }
 
-  goToTradeDetail(publicationId){
-      window.location.href = `/user-trades/${publicationId}/detail`;
+  goToVideoPage(publicationId){ 
+      window.location.href = `/videos/${publicationId}`;
   }
 
   loadTrades(e){
@@ -53,7 +53,7 @@ export class ProfileVideosComponent implements OnInit {
   	.subscribe(user =>{
   		this._norrUser = user; 
       this.picturUsereUrl = user.userPictureUrl?`${environment.apiUrl}/images${user.userPictureUrl}`:`${environment.apiUrl}/images/default_user.jpg`
-      this.tradesService.getTradeByUserId(user._id,1,4,undefined)
+      this.tradesService.getTradeByUserId(user._id,1,6,undefined)
       .subscribe( trades =>{
         this._userTrades =  trades.data;
         this.totalCount = trades.totalCount;
