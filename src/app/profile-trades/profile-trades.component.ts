@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { UserService} from '../services/user-service/user.service';  
 import { ToastrService } from 'ngx-toastr';
 import {Router, ActivatedRoute, Params} from '@angular/router'; 
@@ -18,12 +18,24 @@ import {environment} from './../../environments/environment.prod';
 export class ProfileTradesComponent implements OnInit {
 
   constructor(private userService:UserService,private toastrService:ToastrService,private activatedRoute: ActivatedRoute,
-    private tradesService:TradesService) { }
+    private tradesService:TradesService,private elementRef : ElementRef) { }
   _norrUser;
   _userTrades ;
-  picturUsereUrl;
+  picturUsereUrl; 
+  //@ViewChild("tradePublication") tradePublication: ElementRef;
 
-  ngOnInit() { 
+  onScrollDown(){
+    let tradePublication = this.elementRef.nativeElement.querySelector(`#tradePublication`);
+    alert(`${tradePublication.nativeElement.scrollTop()}`); 
+  }
+
+
+  loadTraeds(event){
+
+  }
+
+  ngOnInit() {  
+    //window.addEventListener('scroll', this.onScrollDown, true);
   	this.userService.getUserById(this.activatedRoute.snapshot.params.userId)
   	.subscribe(user =>{
   		this._norrUser = user; 
@@ -37,6 +49,7 @@ export class ProfileTradesComponent implements OnInit {
   		window.history.back()// https://material.angular.io/assets/img/examples/shiba2.jpg
   	})
   }
+
 
   getPicture(publication){
     var picutre = (publication.pictureUrl)?`${environment.apiUrl}${publication.pictureUrl}`:`${environment.apiUrl}/images/default-img.jpg`;

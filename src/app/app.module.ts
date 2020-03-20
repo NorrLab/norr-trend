@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NorrlabMaterialModule} from './norrlab-material/norrlab-material.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NorrlabTradesComponent } from './norrlab-trades/norrlab-trades.component';
 import { NorrlabHomeComponent } from './norrlab-home/norrlab-home.component';
 import { NorrlabLessonsComponent } from './norrlab-lessons/norrlab-lessons.component';
@@ -62,7 +63,7 @@ import { ProfileSubscribersComponent } from './profile-subscribers/profile-subsc
   imports: [
     BrowserModule,HttpClientModule,
     AppRoutingModule,ChartsModule,
-    BrowserAnimationsModule,NorrlabMaterialModule,MatVideoModule,FormsModule,ToastrModule.forRoot({
+    BrowserAnimationsModule,InfiniteScrollModule,NorrlabMaterialModule,MatVideoModule,FormsModule,ToastrModule.forRoot({
     timeOut: 1000,
     positionClass: /*'toast-top-right'*/'inline',
     preventDuplicates: true,

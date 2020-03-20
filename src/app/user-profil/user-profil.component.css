@@ -24,6 +24,11 @@
   margin-right: 250px;
 }
 
+.toolbar_profil{
+  left: 21%;
+  right: 25%
+}
+
 .main{ 
   background-color: #000;
     padding: 23px;
@@ -58,6 +63,14 @@ img.profil_pic_img {
     width: 207px;
     border-radius: 50%;
     border: 7px solid #fff;
+}
+
+img.profil_pic_img_toolbar {
+  
+    height: 47px;
+    width: 47px;
+    border-radius: 50%;
+    border: 0.3em solid #fff;
 }
 
 .sub_profil{
@@ -107,4 +120,17 @@ img.profil_pic_img {
 
 .subscriber_pic_up{
       padding: 3px; 
+}
+
+.search-results {
+        height: 20rem;
+        background-color:   red
+      } 
+
+.toolbar_profil{
+    left: 21%;
+    background-color: rgb(47, 53, 58);
+    z-index: 1000;
+    position: fixed; 
+    z-index: 1000;
 }

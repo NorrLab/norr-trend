@@ -48,7 +48,7 @@ export class UserService {
   *******************************************************/
 
   getSubscribers(userId){ 
-    return this.httpClient.get<Subscriber>(`${SUBSCRIBER_URL}/${userId}`);
+    return this.httpClient.get<Subscriber[]>(`${SUBSCRIBER_URL}/${userId}`);
   }
 
   createSubscribers(userId){ 
@@ -59,6 +59,11 @@ export class UserService {
     }
     return this.httpClient.post<Subscriber>(`${SUBSCRIBER_URL}`, _subscriber);
   }
+
+  unSubscribeToPublications(userId){
+       return this.httpClient.delete(`${SUBSCRIBER_URL}/${userId}/${this.getUser()._id}`);
+  }
+
  /******************************************************
   *
   *              sign-log 

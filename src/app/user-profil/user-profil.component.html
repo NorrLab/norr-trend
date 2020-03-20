@@ -1,16 +1,38 @@
+  <div *ngIf="userScrolled" class="row" style="text-align: center;">
+  	<!--<div class="col-2"></div>-->
+  	<div class="col-12" style="background-color: #000; z-index: 1000;position: fixed;
+    			width: 100%; z-index: 1000"> 
+	    <div class="row" style="padding: 3px"> 
+	    	<div class="col-3" style="color: #fff; text-align: start" >
+	    		<mat-card-header> 
+					<div mat-card-avatar class="example-header-image">
+						<img class="profil_pic_img_toolbar" src="{{picturUsereUrl}}">
+					</div>
+					<mat-card-title>{{_norrUser?.lastName}}&nbsp;{{_norrUser?.firstName}}</mat-card-title>
+					<mat-card-subtitle>
+						<img *ngFor="let mag of [1,2,3] " class="cloud_upload" src="assets/icons/svg/norr-forex-seeklogo.com.svg" alt="Kiwi standing on oval">  
+
+				</mat-card-subtitle>
+				</mat-card-header> 
+	    	</div> 
+	    </div>
+  	</div> 
+  	<!--<div class="col-2"></div>-->
+  </div>
+
+  
   <div class="sub-toolbar">  
       <div class="sub-menu">
         <a href=""> NorrLab</a> /
 
         <a href=""> Video comments</a>
       </div>
-  </div>  
-
-  			 componentMap: {{componentMap |json}}
-  			 {{componentMap.get('_profileTrades')}}
+  </div>   
 <mat-tab-group *ngIf="appActive">
   <mat-tab label="">
   		<div class="container_video_edit main"> 
+  	
+
     		<div class=""> 
     			<div class="row row_add_pic">  
 	      		<div class="add_pic"> 
@@ -33,7 +55,7 @@
 		</div> 
 		<div class="container_video_edit "> 
     		<div class="container_"> 
-    			<div class="col-12 row_add sub_profil">  
+    			<div class="col-12 row_add sub_profil"> 
 		      		<div class="add_pic_pic row"> 
 		      			<div class="profil_pic"> 
 			  			<img class="profil_pic_img" src="{{picturUsereUrl}}">
@@ -63,7 +85,9 @@
 				  						<div class="row">
 				  							<div class="col-6">
 				  							<div class="row intro"> 
+
 				  								<p > Recommande {{_norrUser?.lastName}} {{_norrUser?.firstName}} </p>
+				  							userScrolled: {{userScrolled}}
 					  						</div>
 					  						<div class="row">
 					  							<img *ngFor="let mag of [1,2,3] " class="cloud_upload" src="assets/icons/svg/forex-seeklogo.com.svg" alt="Kiwi standing on oval"> 
@@ -72,7 +96,8 @@
 				  						<div class="col-6" style="text-align: end">
 				  							
 					  						<div class="col-12 btn_subscribe"> 
-  												<button (click)="subscribeToPublications(_norrUser?.id)" style="outline: none;" mat-flat-button color="primary">SUBSCRIBE</button>
+  												<button *ngIf="!alreadySubscribed" (click)="subscribeToPublications(_norrUser?.id)" style="outline: none;" mat-flat-button color="primary">SUBSCRIBE</button> 
+  												<button *ngIf="alreadySubscribed"  (click)="unSubscribeToPublications(_norrUser?.id)" style="outline: none;" mat-flat-button color="warn">UNSUBSCRIBE</button>
 					  						</div>
 				  						</div>
 
@@ -117,7 +142,7 @@
 				 					<mat-card-content>
 				  						<div class="row intro"> 
 				  								<mat-icon style="color:#f50e6b;" aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">supervised_user_circle</mat-icon> 	
-			  									<p>&nbsp;Subscribers</p>&nbsp; &#8226; &nbsp; <span class="count_subscribers">{{(__norrSubscribers.length>0 )? __norrSubscribers?.length : '0'}} </span>
+			  									<p>&nbsp;Subscribers</p>&nbsp; &#8226; &nbsp; <span class="count_subscribers">{{(__norrSubscribers?.length>0 )? __norrSubscribers?.length : '0'}} </span>
 				  							</div> 	
 				  						<div class="row intro">  
 
@@ -130,22 +155,18 @@
 		  							</mat-card-content>
 				  				</mat-card>
 				  		</div>
-				  		<div class="col-9"> 
+				  		<div id="tradePublication"  class="col-9"> 
 				  				<app-profile-trades *ngIf="componentMap.get('_profileTrades')" ></app-profile-trades>
 
 				  				<app-profile-videos *ngIf="componentMap.get('_profileVideos')" ></app-profile-videos>
 
 				  				<app-profile-analyses *ngIf="componentMap.get('_profileAnalyses')" ></app-profile-analyses>
 
-				  				<app-profile-subscribers *ngIf="componentMap.get('_profileSubscribers')" ></app-profile-subscribers>
+				  				<app-profile-subscribers *ngIf="componentMap.get('_profileSubscribers')" ></app-profile-subscribers> 
 				  		</div>	
 				  </div>	
     		</div>
 			
-		</div> 
-}
-}
-}
-}
+		</div>  
 </mat-tab> 
 </mat-tab-group>

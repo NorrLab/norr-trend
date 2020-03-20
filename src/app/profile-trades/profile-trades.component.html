@@ -1,4 +1,5 @@
-<mat-card *ngFor="let publication of _userTrades" class="example-card">
+<div #tradePublication >
+<mat-card *ngFor="let publication of _userTrades" class=" example-card">
 	<mat-card-header> 
 		<div mat-card-avatar class="example-header-image">
 			<img class="profil_publication" src="{{picturUsereUrl}}">
@@ -17,3 +18,10 @@
 		<button mat-button>SHARE</button>
 	</mat-card-actions>	-->																					
 </mat-card>
+
+<mat-paginator #__paginator style="background-color: #fafafa"  [length]="norrLabTrades?.totalCount"
+      [pageSize]="5"
+      [pageSizeOptions]="[5,10, 20]"
+      (page)="pageEvent = loadTraeds($event)">
+</mat-paginator>
+</div>
