@@ -68,7 +68,13 @@ export class ProfileVideosComponent implements OnInit {
 
 
   getPicture(publication){
-    var picutre = (publication.pictureUrl)?`${environment.apiUrl}${publication.videoUrl}`:`${environment.apiUrl}/images/default-img.jpg`;
+    var picutre = (publication.videoPoster)?`${publication.videoPoster}`:`${environment.apiUrl}/images/default-img.jpg`;
+    return picutre;
+    //+publication.pictureUrl
+  }
+
+  getVideoPoster(publication){
+    var picutre = (publication.videoPoster)?`${environment.apiUrl}${publication.videoPoster}`:`${environment.apiUrl}/images/default-img.jpg`;
     return picutre;
     //+publication.pictureUrl
   }

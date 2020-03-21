@@ -48,12 +48,13 @@ export class ProfileTradesComponent implements OnInit {
   }
 
   ngOnInit() {  
-    //window.addEventListener('scroll', this.onScrollDown, true);
+    //window.addEventListener('scroll', this.onScrollDown, true);  .sort()
+   
   	this.userService.getUserById(this.activatedRoute.snapshot.params.userId)
   	.subscribe(user =>{
   		this._norrUser = user; 
       this.picturUsereUrl = user.userPictureUrl?`${environment.apiUrl}/images${user.userPictureUrl}`:`${environment.apiUrl}/images/default_user.jpg`
-      this.tradesService.getTradeByUserId(user._id,0,3,undefined)
+      this.tradesService.getTradeByUserId(user._id,0,3,{"commentDate":-1})
       .subscribe( trades =>{
         this._userTrades =  trades.data;
         this.totalCount = trades.totalCount;
