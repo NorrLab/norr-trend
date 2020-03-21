@@ -79,6 +79,15 @@ export class VideoService {
   		
   }
 
+  getVideoByUserProfile(userId,currentPage,chunk,criteria){
+      const params = new HttpParams()
+      .set('userId', userId)
+      .set('currentPage',currentPage)
+      .set('chunk',chunk)
+      .set('criteria',criteria);
+    return this.httpClient.get<NorrLabVideo[]>(`${VIDEO_URL}/${userId}`,{params}); 
+  }
+
   deleteVideo(videoId){
 
     return this.httpClient.delete(VIDEO_URL+'/delete/'+videoId )
@@ -98,7 +107,7 @@ export class VideoService {
   }
 
   getVideosByUserId(): Observable<NorrLabVideo[]> {
-      const url = VIDEO_URL+'/'+this.userService.getUser()._id+'/videos';
+      const url = `${VIDEO_URL}/${this.userService.getUser()._id}/videos`;
     return this.httpClient.get<NorrLabVideo[]>(url);
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { UserService} from '../services/user-service/user.service';  
+import { VideoService} from '../services/video-service/video.service';  
 import { ToastrService } from 'ngx-toastr';
 import {Router, ActivatedRoute, Params} from '@angular/router'; 
 import { DomSanitizer } from "@angular/platform-browser";
@@ -18,9 +19,10 @@ import {environment} from './../../environments/environment.prod';
 export class ProfileVideosComponent implements OnInit {
 
   constructor(private userService:UserService,private toastrService:ToastrService,private activatedRoute: ActivatedRoute,
-    private tradesService:TradesService,private elementRef : ElementRef) { }
+    private tradesService:TradesService,private elementRef : ElementRef,
+    private videoService:VideoService) { }
   _norrUser;
-  _userTrades ;
+  _userVideos ;
   picturUsereUrl; 
   totalCount:number;
   //@ViewChild("tradePublication") tradePublication: ElementRef;
@@ -38,7 +40,7 @@ export class ProfileVideosComponent implements OnInit {
     console.log(e);
     this.tradesService.getTradeByUserId(this.activatedRoute.snapshot.params.userId,e.pageIndex,e.pageSize,undefined)
     .subscribe(trade =>{ 
-        this._userTrades =  trade.data; 
+        this._userVideos =  trade.data; 
         this.totalCount = trade.totalCount;
         console.log("this.norrLabTrades") 
         console.log(trade.data) 
@@ -53,9 +55,9 @@ export class ProfileVideosComponent implements OnInit {
   	.subscribe(user =>{
   		this._norrUser = user; 
       this.picturUsereUrl = user.userPictureUrl?`${environment.apiUrl}/images${user.userPictureUrl}`:`${environment.apiUrl}/images/default_user.jpg`
-      this.tradesService.getTradeByUserId(user._id,1,6,undefined)
+      this.videoService.getVideoByUserProfile(user._id,0,6,undefined)
       .subscribe( trades =>{
-        this._userTrades =  trades.data;
+        this._userVideos =  trades.data;
         this.totalCount = trades.totalCount;
       }) 
   	},err =>{
@@ -66,7 +68,7 @@ export class ProfileVideosComponent implements OnInit {
 
 
   getPicture(publication){
-    var picutre = (publication.pictureUrl)?`${environment.apiUrl}${publication.pictureUrl}`:`${environment.apiUrl}/images/default-img.jpg`;
+    var picutre = (publication.pictureUrl)?`${environment.apiUrl}${publication.videoUrl}`:`${environment.apiUrl}/images/default-img.jpg`;
     return picutre;
     //+publication.pictureUrl
   }

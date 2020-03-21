@@ -1,12 +1,12 @@
-<!--	<mat-card class="col-4 example-card" (click)="goToTradeDetail(publication._id)">
+<!--	<mat-card class="col-4 example-card" (click)="goToTradeDetail(publication?._id)">
 	<div class="row">
-		<div class="col-4"   *ngFor="let publication of _userTrades">
+		<div class="col-4"   *ngFor="let publication of _userVideos">
 			<mat-card-header> 
 		<div mat-card-avatar class="example-header-image">
 			<img style="width: 45px" class="profil_publication" src="{{picturUsereUrl}}">
 		</div>
 		<mat-card-title>{{_norrUser?.lastName}}&nbsp;{{_norrUser?.firstName}}</mat-card-title>
-		<mat-card-subtitle>Published&nbsp; &#8226; &nbsp;{{publication.creationDate | date:'medium'}} </mat-card-subtitle>
+		<mat-card-subtitle>Published&nbsp; &#8226; &nbsp;{{publication?.creationDate | date:'medium'}} </mat-card-subtitle>
 	</mat-card-header>
 	<mat-card-content>
 	
@@ -20,34 +20,39 @@
 	</mat-card-actions>	-->																					
 
 <div class="row" style="padding-right: 9px;padding-left: 9px">
-	<mat-card class="col-4 example-card" *ngFor="let publication of _userTrades" (click)="goToVideoPage(publication._id)">
+	<mat-card class="col-4 example-card1" *ngFor="let publication of _userVideos" (click)="goToVideoPage(publication?._id)"
+	style="margin-bottom: 12px">
 		<mat-card-header> 
 		</mat-card-header>
 		<video src="" [poster]="getPicture(publication)" class="video_profil">
 				
 		</video>
-		<mat-card-content style="padding: 6px"> 
+		<mat-card-content style="padding: 6px;margin-bottom: 3px;"> 
 			<div class="video_title" >
-				<mat-card-title>Video Title</mat-card-title>
+				<mat-card-title>{{publication?.videoTitle}}</mat-card-title>
 			</div>
 			<div class="video_description" >
-				<mat-card-subtitle>video_descriptiond        grzgrgrzgrf</mat-card-subtitle>
+				<mat-card-subtitle>{{publication?.videoDescription}}</mat-card-subtitle>
 			</div>
 		</mat-card-content>
-		<mat-card-actions>
-		<p>300 views</p> 
+		<mat-card-actions style="padding-left: 9px;padding-top: 0px;
+    bottom: 0px;
+    position: absolute;">
+		<p class="mat-card-subtitle"><span style="background-color: #8EE1B6;border-radius: 45px;
+		padding: 3px
+		">{{publication?.videoViews}} views</span></p> 
 	</mat-card-actions>
 	</mat-card>
 </div>
 
-<div *ngIf="_userTrades?.length>5" >
+<div *ngIf="_userVideos?.length>5" >
 	<mat-paginator #__paginator style="background-color: #fafafa"  [length]="totalCount"
       [pageSize]="6"
       [pageSizeOptions]="[6,12,24]"
       (page)="pageEvent = loadTrades($event)">
 	</mat-paginator>
 </div>
-<div class="row" *ngIf="_userTrades?.length==0"> 
+<div class="row" *ngIf="_userVideos?.length==0"> 
 		<div class="col-3">
 			 
 		</div>

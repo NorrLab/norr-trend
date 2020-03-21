@@ -53,7 +53,7 @@ export class ProfileTradesComponent implements OnInit {
   	.subscribe(user =>{
   		this._norrUser = user; 
       this.picturUsereUrl = user.userPictureUrl?`${environment.apiUrl}/images${user.userPictureUrl}`:`${environment.apiUrl}/images/default_user.jpg`
-      this.tradesService.getTradeByUserId(user._id,1,3,undefined)
+      this.tradesService.getTradeByUserId(user._id,0,3,undefined)
       .subscribe( trades =>{
         this._userTrades =  trades.data;
         this.totalCount = trades.totalCount;
