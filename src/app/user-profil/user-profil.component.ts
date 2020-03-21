@@ -90,13 +90,13 @@ export class UserProfilComponent implements OnInit {
 
 
   onScrollDown(){
-    let tradePublication = document/*this.elementRef.nativeElement*/.querySelector(`#tradePublication`);
+    /*let tradePublication = document.querySelector(`#tradePublication`);
 
     let divMain = document.querySelector(`.container_video_edit.main`)
     console.log(`divMain.scrollHeight:${divMain.scrollHeight} window.pageYOffset: ${window.pageYOffset} `)
     console.log(`${document.documentElement.scrollTop}  `)
     console.log(document);
-    this.userScrolled = true;
+    this.userScrolled = true;*/
     //alert(`${tradePublication.scrollHeight}`); 
   }
 

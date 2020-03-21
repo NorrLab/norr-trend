@@ -157,10 +157,10 @@
 										</div>
 									</div>
 
-									<div class="col-9 author-avatar">  
+									<div class="col-8 author-avatar" style="text-align: end">  
 										<span class="subscriber_class">
-											{{videoReadayToplay?.videoUser?.userFollowers}}6985
-										</span>&nbsp;subscribers 
+											{{__norrSubscribers.length}}&nbsp;subscriber{{(__norrSubscribers.length>1)?'s':''}}
+										</span> 
 									</div>
 							</div>
 						</div> 
@@ -293,7 +293,7 @@
 					    
 				 	<button mat-icon-button (click)="playCurrentVideo(offVideo._id)" class=" proposal-video" ><mat-icon>play_circle_outline</mat-icon></button> 
 					 </div>																																																																		
-			 		<img _ngcontent-rto-c10="" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{offVideo.videoPoster?offVideo.videoPoster:__defaultVideoPicture()}}">
+			 		<img _ngcontent-rto-c10="" (click)="playCurrentVideo(offVideo._id)" alt="..." class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{offVideo.videoPoster?offVideo.videoPoster:__defaultVideoPicture()}}">
 				 </div>	
 				  <div class="col-6 img-video-cont-desc" style="
 		}

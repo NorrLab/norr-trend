@@ -528,10 +528,12 @@ openLoginDialog():void {
   }
 
   cancelReply(cmt){ 
-    this.deactivateAllOrOtherCmts(cmt,false);
+    this.deactivateAllOrOtherCmts(cmt,true);
   }
 
   submitReply(videoComment){
+    if(this.replyVideoComment==undefined || this.replyVideoComment.trim()=='')
+      return;
       var payLoad = {
         videoCommentId:videoComment._id,
         videoCommentReply:this.replyVideoComment,
@@ -540,7 +542,7 @@ openLoginDialog():void {
         videoId:this.videoReadayToplay._id
       }
       this.commentService.createCommentReplies(videoComment._id,payLoad);  
-      window.location.reload();
+      window.location.href = window.location.href;
     }
 
   goTo(destination) {
@@ -549,7 +551,7 @@ openLoginDialog():void {
       this.router.navigate([destination]); 
      // this.getVideoFree(this.activatedRoute.snapshot.params.videoId?this.activatedRoute.snapshot.params.videoId:this.weekFreeVideos[0]._id);
 }  
-__env;
+__env;__norrSubscribers=[];
   getVideoFree(videoId){
 
     if(videoId==undefined && Array.isArray(this.videoService.getVideo())){
@@ -578,6 +580,10 @@ __env;
                     cmt.replies =  replies; 
                     cmt.displayReply = false;
                     cmt._hideReply = false;
+                    this.userService.getSubscribers(video.videoUser._id) 
+                    .subscribe(subscribers =>{
+                      this.__norrSubscribers = subscribers; 
+                    })
                 }, err =>{
                   console.log(err)
                 })

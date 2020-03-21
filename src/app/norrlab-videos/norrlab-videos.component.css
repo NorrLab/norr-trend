@@ -585,7 +585,8 @@ img.advs-avatar {
     box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
     background-color: #fafafb;
     object-fit: cover;
-    border-radius:  3px
+    border-radius:  3px;
+    cursor: pointer;
 }
 
 .video-proposition{
@@ -857,7 +858,9 @@ video::-webkit-media-controls {
     height: 7px; 
     margin-top: 17px;
     background: #ccc;  
+    border-radius: 3px
 }
+
 
 .volumClassProgress{
 
@@ -865,6 +868,7 @@ video::-webkit-media-controls {
     background: #fff;
     height: 100%;   
     position: relative;
+    border-radius: 3px
 }
 
 .roundVolumControl{
@@ -1163,4 +1167,10 @@ span.reply-advs-avatar:hover {
     opacity: 0;
     height: 23px;
     background-color: red
+}
+
+span.subscriber_class {
+    background: #007bff;
+    padding: 3px;
+    border-radius: 3px;
 }
