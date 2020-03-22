@@ -1,0 +1,147 @@
+
+.display_component{
+  cursor: pointer;
+  color: #007bff;
+} 
+.sub-toolbar{
+  height: 35px;
+  background: #fff;
+}
+
+.sub-menu {
+    display: inline-block;
+    padding: 4px;
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.sub-menu>a { 
+    margin: 10px;
+}
+
+.container_video_edit{
+  margin-left: 250px;
+  margin-right: 250px;
+}
+
+.toolbar_profil{
+  left: 21%;
+  right: 25%
+}
+
+.main{ 
+  background-color: #000;
+    padding: 23px;
+    height: 270px;
+}
+.add_pic{ 
+  padding-top: 6px;
+    cursor: pointer;
+    margin-left: 50px;
+
+    border: 1px solid #ccc;
+}  
+.add_pic_pic{ 
+    margin-left: 35px;
+
+}
+.span_upload_profil_mat-icon{
+	color: #fff
+}
+
+.span_upload_profil{
+	color: #fff
+}
+
+.profil_pic {
+    margin-top: -161px;
+}
+
+img.profil_pic_img {
+  
+    height: 207px;
+    width: 207px;
+    border-radius: 50%;
+    border: 7px solid #fff;
+}
+
+img.profil_pic_img_toolbar {
+  
+    height: 47px;
+    width: 47px;
+    border-radius: 50%;
+    border: 0.3em solid #fff;
+}
+
+.sub_profil{
+  background-color:  #fff;/* rgb(230, 236, 240);*/
+}
+
+.container_{
+
+    padding-left: 16px;
+    background: #fff;
+    padding-right: 14px;
+}
+
+.sub_profil{
+  display:  inline-block;
+}
+
+.example-card {
+  max-width: 100%;
+  margin-bottom: 13px
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover; 
+} 
+
+._trades{
+    height:  190px;
+}
+
+.row.intro {
+    padding-left: 9px;
+    padding-right: 9px;
+}
+.subscriber_pic{
+  width:  100%;
+      border-radius:  3px;
+  
+  cursor: pointer;
+  height: 52px;
+  border: 0.1em solid #f1f1f1;
+  opacity: 0.7
+}
+
+.subscriber_pic:hover {
+  opacity: 1
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.subscriber_pic_up{
+      padding: 3px; 
+}
+
+.search-results {
+        height: 20rem;
+        background-color:   red
+      } 
+
+.toolbar_profil{
+    left: 21%;
+    background-color: rgb(47, 53, 58);
+    z-index: 1000;
+    position: fixed; 
+    z-index: 1000;
+}
+
+.span_upload_profil{
+    color: #fff;
+    margin-top: 3px;
+}
