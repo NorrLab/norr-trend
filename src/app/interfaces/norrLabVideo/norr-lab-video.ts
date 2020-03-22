@@ -13,4 +13,6 @@ export interface NorrLabVideo {
 	recordingDate:any,
 	videoLocation:string,
 	videoFileName:string,
+	data:any,
+	totalCount:any
 }

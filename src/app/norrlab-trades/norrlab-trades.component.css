@@ -97,7 +97,7 @@ mat-sidenav.norrlab-side.mat-drawer.mat-sidenav.ng-tns-c5-0.ng-trigger.ng-trigge
     width: 53px;
     border-radius: 50%;
     padding: 2px;
-    /* border-style: unset; */
+    cursor: pointer;
     border: 1px solid #8EE1B6;
 }
 
@@ -485,3 +485,8 @@ mat-icon.mat-icon.notranslate.material-icons.mat-icon-no-color {
     padding-left: 0px;
     padding-right: 0px;
 } 
+
+.title-header-card:hover .title_span1{  
+    border-bottom: 1px solid #8EE1B6;
+    cursor: pointer;
+  } 

@@ -33,8 +33,8 @@ export class TradesService {
     .set('userId', userId)
     .set('pageNumber', pageNumber)
     .set('nbPerPage', nbPerPage)
-    .set('criteria', criteria) ;
-    return this.httpClient.get<NorrLabTrade>(`${TRADE_URL}/${this.userService.getUser()?this.userService.getUser()._id:undefined}`, {params});
+    .set('creationDate', "Newest First") ;
+    return this.httpClient.get<NorrLabTrade>(`${TRADE_URL}/${userId}`, {params});
   }
 
   getTradeDetail(tradeId){

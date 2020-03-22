@@ -47,6 +47,10 @@ export class NorrlabTradesComponent implements OnInit {
     this.getNorrLabTrades(0, 5,this.sortCriteria);
   }
 
+  goToUserProfile(userId){
+      window.location.href = `${/user-profil/}${userId}`
+  }
+
   ngOnInit() { 
   	this.trades =this.tradesService.getAllTrades();
   }

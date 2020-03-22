@@ -580,7 +580,7 @@ __env;__norrSubscribers=[];
                     cmt.replies =  replies; 
                     cmt.displayReply = false;
                     cmt._hideReply = false;
-                    this.userService.getSubscribers(video.videoUser._id) 
+                    this.userService.getSubscribers(this.videoReadayToplay.videoUser._id) 
                     .subscribe(subscribers =>{
                       this.__norrSubscribers = subscribers; 
                     })

@@ -71,21 +71,21 @@ export class VideoService {
    }
 
 
-  getVideoFree(videoId, limite): Observable<NorrLabVideo[]> {
+  getVideoFree(videoId, limite){
   	const params = new HttpParams()
   	.set('videoId', (videoId?videoId:null))
 	.set('limite', (limite?limite:null))
-  	return this.httpClient.get<NorrLabVideo[]>(VIDEO_URL,{params});
+  	return this.httpClient.get(VIDEO_URL,{params});
   		
   }
 
-  getVideoByUserProfile(userId,currentPage,chunk,criteria){
+  getVideoByUserProfile(userId,currentPage,chunk,criteria): Observable<NorrLabVideo>{
       const params = new HttpParams()
       .set('userId', userId)
       .set('currentPage',currentPage)
       .set('chunk',chunk)
       .set('criteria',criteria);
-    return this.httpClient.get<NorrLabVideo[]>(`${VIDEO_URL}/${userId}`,{params}); 
+    return this.httpClient.get<NorrLabVideo>(`${VIDEO_URL}/${userId}`,{params}); 
   }
 
   deleteVideo(videoId){
