@@ -1,13 +1,13 @@
 import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
-import { UserService} from '../services/user-service/user.service';  
+import { UserService} from '../services/user-service/user.service';
 import { ToastrService } from 'ngx-toastr';
-import {Router, ActivatedRoute, Params} from '@angular/router'; 
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import { DomSanitizer } from "@angular/platform-browser";
 import { DOCUMENT } from '@angular/platform-browser';
 import { Inject,Injectable } from '@angular/core';
-import {COMMA, ENTER} from '@angular/cdk/keycodes'; 
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
-import {environment} from './../../environments/environment.prod'; 
+import {environment} from './../../environments/environment.prod';
 //import { InfiniteScroll } from 'ngx-infinite-scroll';
 
 
@@ -20,7 +20,7 @@ export class UserProfilComponent implements OnInit {
    _norrUser;
    __norrSubscribers ;
    picturUsereUrl;
-   appActive = false; 
+   appActive = false;
    componentMap = new Map();
    alreadySubscribed;
 
@@ -55,7 +55,7 @@ export class UserProfilComponent implements OnInit {
   getSubscriberPicture(subscriber){
     if(undefined == subscriber)
       return ;
-    var url= (subscriber.norrUserFollowing.userPictureUrl.length > 1)? `${environment.apiUrl }/images${subscriber.norrUserFollowing.userPictureUrl}`: `${environment.apiUrl}/images/default_user.jpg`;
+    var url= (subscriber.norrUserFollowing.userPictureUrl.length > 1)? `${subscriber.norrUserFollowing.userPictureUrl}`: `${environment.apiUrl}/images/default_user.jpg`;
     return url
     //user.userPictureUrl?`${environment.apiUrl}/images${user.userPictureUrl}`:`${environment.apiUrl}/images/default_user.jpg`
   }
@@ -85,7 +85,7 @@ export class UserProfilComponent implements OnInit {
     return list.forEach(item =>{
       if(item.norrUserFollowing._id._id == this.userService.getUser()._id)
             this.alreadySubscribed = true;
-    }) 
+    })
   }
 
 
@@ -97,9 +97,9 @@ export class UserProfilComponent implements OnInit {
     console.log(`${document.documentElement.scrollTop}  `)
     console.log(document);
     this.userScrolled = true;*/
-    //alert(`${tradePublication.scrollHeight}`); 
+    //alert(`${tradePublication.scrollHeight}`);
   }
-
+tmpThumbnail;
   ngOnInit() {
     window.addEventListener('scroll', this.onScrollDown, true);
 // default-img.jpg
@@ -110,9 +110,10 @@ export class UserProfilComponent implements OnInit {
         this.userService.getUserById(this.activatedRoute.snapshot.params.userId)
         .subscribe(user =>{
           this.appActive = true;
-          this._norrUser = user; 
-          this.picturUsereUrl = environment.apiUrl+'/images'+(user.userPictureUrl.trim().length>0?user.userPictureUrl :'/default_user.jpg');
-          this.userService.getSubscribers(user._id) 
+          this._norrUser = user;
+          this.picturUsereUrl = (user.userPictureUrl.trim().length>0?user.userPictureUrl :environment.apiUrl+'/images/default_user.jpg');
+          this.tmpThumbnail = (user.userBackgroundUrl.trim().length>0?user.userBackgroundUrl :'');
+          this.userService.getSubscribers(user._id)
           .subscribe(subscribers =>{
             this.__norrSubscribers = subscribers;
             this.checkIfSubscribed(this.__norrSubscribers);
@@ -121,8 +122,8 @@ export class UserProfilComponent implements OnInit {
         },err =>{
           //TODO
         this.userService.toastError("You must be connected!")
-        }) 
-    }, err =>{ 
+        })
+    }, err =>{
         this.userService.toastError("You must be connected!")
     })
   }
@@ -130,7 +131,7 @@ export class UserProfilComponent implements OnInit {
 
   hideAllOthers( param){
     this.componentMap.forEach( (value,key) =>{
-      if( key!= param ){ 
+      if( key!= param ){
         this.componentMap.set(key,false)
       }else{
         this.componentMap.set(param,true)
@@ -140,22 +141,22 @@ export class UserProfilComponent implements OnInit {
   }
 
   displayTrades(param){
-    this.hideAllOthers(param); 
+    this.hideAllOthers(param);
     this._profileTrades = true;
   }
 
   displayVideos(param){
-    this.hideAllOthers(param); 
+    this.hideAllOthers(param);
     this._profileVideos = true;
   }
 
   displayAnalyses(param){
-    this.hideAllOthers(param); 
+    this.hideAllOthers(param);
     this._profileAnalyses = true;
   }
 
   displaySubscribers(param){
-    this.hideAllOthers(param); 
+    this.hideAllOthers(param);
     this._profileSubscribers = true;
   }
 

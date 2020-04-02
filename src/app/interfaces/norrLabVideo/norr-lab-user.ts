@@ -1,5 +1,5 @@
 export interface NorrLabVideo {
-	_id:any,  
+	_id:any,
 	videoUrl:string,
 	videoTitle:string,
 	videoPoster:string,
@@ -8,5 +8,6 @@ export interface NorrLabVideo {
 	videoLikes:any,
 	videoDislikes:any,
 	videoViews:any,
-	videoUser:any
+	videoUser:any,
+	userBackgroundUrl:any
 }

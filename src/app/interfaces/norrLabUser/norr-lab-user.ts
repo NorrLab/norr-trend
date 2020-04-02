@@ -3,6 +3,7 @@ export interface NorrLabUser {
 	comment:string;
 	commentDate:any,
 	commentUser:string,
-	commentTrade:any, 
-	userPictureUrl:string
+	commentTrade:any,
+	userPictureUrl:string,
+	userBackgroundUrl:any
 }

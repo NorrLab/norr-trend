@@ -66,14 +66,8 @@ export class NorrlabAccountManagerComponent implements OnInit {
     this.userService.updateUserProfile(norrUser)
     .subscribe( user =>{
       console.log(user);
-    })
-    /*this.userService.createSubscribers(this.activatedRoute.snapshot.params.userId)
-    .subscribe(subs =>{
-      this.toastrService.success(`You will receive ${this._norrUser.lastName} notoficatons`)
       window.location.href = window.location.href
-    }, err =>{
-      this.toastrService.error(`Error trying to follow ${this._norrUser.lastName}`)
-    })*/
+    })
   }
 
   unSubscribeToPublications(norrUserId){
