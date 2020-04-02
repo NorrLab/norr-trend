@@ -1,103 +1,112 @@
   <div *ngIf="userScrolled" class="row" style="text-align: center;">
   	<!--<div class="col-2"></div>-->
   	<div class="col-12" style="background-color: #000; z-index: 1000;position: fixed;
-    			width: 100%; z-index: 1000"> 
-	    <div class="row" style="padding: 3px"> 
+    			width: 100%; z-index: 1000">
+	    <div class="row" style="padding: 3px">
 	    	<div class="col-3" style="color: #fff; text-align: start" >
-	    		<mat-card-header> 
+	    		<mat-card-header>
 					<div mat-card-avatar class="example-header-image">
 						<img class="profil_pic_img_toolbar" src="{{picturUsereUrl}}">
 					</div>
 					<mat-card-title>{{_norrUser?.lastName}}&nbsp;{{_norrUser?.firstName}}</mat-card-title>
 					<mat-card-subtitle>
-						<img *ngFor="let mag of [1,2,3] " class="cloud_upload" src="assets/icons/svg/norr-forex-seeklogo.com.svg" alt="Kiwi standing on oval">  
+						<img *ngFor="let mag of [1,2,3] " class="cloud_upload" src="assets/icons/svg/norr-forex-seeklogo.com.svg" alt="Kiwi standing on oval">
 
 				</mat-card-subtitle>
-				</mat-card-header> 
-	    	</div> 
+				</mat-card-header>
+	    	</div>
 	    </div>
-  	</div> 
+  	</div>
   	<!--<div class="col-2"></div>-->
   </div>
 
-  
-  <div class="sub-toolbar">  
+
+  <div class="sub-toolbar">
       <div class="sub-menu">
         <a href=""> NorrLab</a> /
 
         <a href=""> Video comments</a>
       </div>
-  </div>   
+  </div>
 <mat-tab-group *ngIf="appActive">
   <mat-tab label="">
-  		<div class="container_video_edit main"> 
-  	
+  		<div class="container_video_edit main" >
+        <img *ngIf="tmpThumbnail" class="poster_example_one_img" src="{{tmpThumbnail}}">
+			      		<input style="display: none;" #fileInput type="file" accept="image/*" (change)="onFileInputBackGround($event)" />
 
-    		<div class=""> 
-    			<div class="row row_add_pic" (click)="fileInput.click()">  
-	      		<div class="add_pic"> 
-	      				<div class="row" > 
+    		<div class="must_fix_image"  (click)="fileInput.click()">
+    			<div class="row row_add_pic">
+	      		<div class="add_pic">
+	      				<div class="row">
 			      			<div class="col-1" ><mat-icon class="span_upload_profil_mat-icon">photo_camera</mat-icon> </div>
-			      			 
+
 			      			<div class="col-10 span_upload_profil" >
 			      				Choose background picture
 			      			</div>
 			      		</div>
-			      		<input style="display: none;" #fileInput type="file" accept="image/*" (change)="onFileInputBackGround($event)" />
-	      		</div>	
-	          <div class="col-12" > 
-	          		<div class="col-6"> 
-	          			<div>;M.FMR.M.GRM%G.MTMH.MMHkmkmlyklbmjklh </div>
-	          		</div>	
-
-	  		  </div>
+	      		</div>
 			</div>
-    		</div> 
-			
-		</div> 
-		<div class="container_video_edit "> 
-    		<div class="container_"> 
-    			<div class="col-12 row_add sub_profil"> 
-		      		<div class="add_pic_pic row"> 
-		      			<div class="profil_pic"> 
-			  			<img class="profil_pic_img" src="{{picturUsereUrl}}">
-			  		</div>
-			  		<div class="sub_profil row "> 
-			  			  <div class="sub-toolbar">  
+    		</div>
+
+		</div>
+		<div class="container_video_edit ">
+    		<div class="container_">
+    			<div class="col-12 row_add sub_profil">
+		      		<div class="add_pic_pic row">
+		      			<div class="profil_pic">
+                  <input style="display: none;" #fileInputProfile type="file" accept="image/*" (change)="onFileInputProfile($event)" />
+                  <img style="z-index:99999999999999999999999999999999" (click)="fileInputProfile.click()" class="profil_pic_img clickable_img" src="{{picturUsereUrl}}">
+                </div>
+			  		<div class="sub_profil row ">
+			  			  <div class="sub-toolbar">
 						      <div class="sub-menu menu_profil">
 						        <a style="color: #007bff;cursor: pointer;" (click)="displayTrades('_profileTrades')"> Trades</a>&nbsp; /
 
 						        <a style="color: #007bff;cursor: pointer;" (click)="displayVideos('_profileVideos')"> Videos</a>&nbsp; /
-						        <a style="color: #007bff;cursor: pointer;" (click)="displayAnalyses('_profileAnalyses')"> Analyses</a>&nbsp; 
+						        <a style="color: #007bff;cursor: pointer;" (click)="displayAnalyses('_profileAnalyses')"> Analyses</a>&nbsp;
 						      </div>
 						  </div>
 			  		</div>
-			  		
-	      		</div> 
-			</div> 
+
+	      		</div>
+			</div>
     		</div>
 
-    		<div style="margin-top: 13px"> 
+    		<div style="margin-top: 13px">
 
-				  <div class="row"> 
-				  	<div class="col-12"> 
+				  <div class="row">
+				  	<div class="col-12">
 				  			<mat-card class="example-card">
 				 					<mat-card-content>
 				  						<div class="row">
 				  							<div class="col-6">
-				  							<div class="row intro"> 
-
-				  								<p > Recommande {{_norrUser?.lastName}} {{_norrUser?.firstName}} </p>
-				  							 
-					  						</div>
-					  						<div class="row">
-					  							<img *ngFor="let mag of [1,2,3] " class="cloud_upload" src="assets/icons/svg/forex-seeklogo.com.svg" alt="Kiwi standing on oval"> 
+                          <div class="row">
+                            <img *ngFor="let mag of [1,2,3] " class="cloud_upload" src="assets/icons/svg/forex-seeklogo.com.svg" alt="Kiwi standing on oval">
+                          </div>
+				  							<div class="col-12 intro">
+                          <form class="row example-form">
+                            <mat-form-field class="col-12 example-full-width">
+                              <mat-label>Lastname</mat-label>
+                              <input matInput placeholder=""  [(ngModel)]="_norrUser.lastName" name="lastName">
+                              <mat-icon matSuffix>mode_edit</mat-icon>
+                            </mat-form-field>
+                            <mat-form-field class="col-12 example-full-width">
+                              <mat-label>Firstname</mat-label>
+                              <input matInput placeholder="" [(ngModel)]="_norrUser.firstName"  name="firstName">
+                              <mat-icon matSuffix>mode_edit</mat-icon>
+                            </mat-form-field>
+                            <mat-form-field class="col-12 example-full-width">
+                              <mat-label>City</mat-label>
+                              <input matInput placeholder="" [(ngModel)]="_norrUser.city"  name="city">
+                              <mat-icon matSuffix>mode_edit</mat-icon>
+                            </mat-form-field>
+                          </form>
 					  						</div>
 				  						</div>
 				  						<div class="col-6" style="text-align: end">
-				  							
-					  						<div class="col-12 btn_subscribe"> 
-  												<button *ngIf="!alreadySubscribed" (click)="subscribeToPublications(_norrUser?.id)" style="outline: none;" mat-flat-button color="primary">SUBSCRIBE</button> 
+
+					  						<div class="col-12 btn_subscribe">
+  												<button *ngIf="!alreadySubscribed" (click)="updateProfile(_norrUser)" style="outline: none;" mat-flat-button color="primary">SAVE</button>
   												<button *ngIf="alreadySubscribed"  (click)="unSubscribeToPublications(_norrUser?.id)" style="outline: none;" mat-flat-button color="warn">UNSUBSCRIBE</button>
 					  						</div>
 				  						</div>
@@ -106,68 +115,68 @@
 
 		  							</mat-card-content>
 				  				</mat-card>
-				  	</div>	
+				  	</div>
 				  		<div class="col-3" style="padding-right: 0px;">
 				  				<mat-card class="example-card">
 				 					<mat-card-content>
-				  						<div class="row intro"> 
+				  						<div class="row intro">
 				  									<mat-icon style="padding: 0px ;color: blue; border-radius: 50%	">public</mat-icon>	<p>&nbsp;Intro</p>
 				  							</div>
 
-				  						<div class="row intro" style="text-align:  center;"> 
+				  						<div class="row intro" style="text-align:  center;">
 				  								<p > I'm a Forex trader i trade love</p>
 				  						</div>
-			  							<div class="row">  
+			  							<div class="row">
 				  							<div class="col-6">Wins </div>
-				  							<div class="col-6" style="text-align:  end">{{_norrUser?.userWins}} </div> 
-				  						</div>	
-			  							<div class="row">  
+				  							<div class="col-6" style="text-align:  end">{{_norrUser?.userWins}} </div>
+				  						</div>
+			  							<div class="row">
 				  							<div class="col-6">Losses </div>
-				  							<div class="col-6" style="text-align:  end">{{_norrUser?.userLosses}} </div> 
-				  						</div>	
-			  							<div class="row">  
+				  							<div class="col-6" style="text-align:  end">{{_norrUser?.userLosses}} </div>
+				  						</div>
+			  							<div class="row">
 				  							<div class="col-9">Average wins (pips) </div>
-				  							<div class="col-3" style="text-align:  end">{{_norrUser?.userPercentWins}} </div> 
-				  						</div>		
-			  							<div class="row">  
+				  							<div class="col-3" style="text-align:  end">{{_norrUser?.userPercentWins}} </div>
+				  						</div>
+			  							<div class="row">
 				  							<div class="col-9">Average losses (pips) </div>
-				  							<div class="col-3" style="text-align:  end">{{_norrUser?.userPercentWins}}</div> 
-				  						</div>		
-			  							<div class="row">  
+				  							<div class="col-3" style="text-align:  end">{{_norrUser?.userPercentWins}}</div>
+				  						</div>
+			  							<div class="row">
 				  							<div class="col-3">P/L </div>
-				  							<div class="col-9" style="text-align:  end; color: 	green"> {{_norrUser?.userProfits}}&nbsp;$ </div> 
-				  						</div> 		
+				  							<div class="col-9" style="text-align:  end; color: 	green"> {{_norrUser?.userProfits}}&nbsp;$ </div>
+				  						</div>
 		  							</mat-card-content>
 				  				</mat-card>
 				  				<mat-card class="example-card">
 				 					<mat-card-content>
-				  						<div class="row intro"> 
-				  								<mat-icon style="color:#f50e6b;" aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">supervised_user_circle</mat-icon> 	
+				  						<div class="row intro">
+				  								<mat-icon style="color:#f50e6b;" aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">supervised_user_circle</mat-icon>
 			  									<p>&nbsp;Subscribers</p>&nbsp; &#8226; &nbsp; <span class="count_subscribers">{{(__norrSubscribers?.length>0 )? __norrSubscribers?.length : '0'}} </span>
-				  							</div> 	
-				  						<div class="row intro">  
+				  							</div>
+				  						<div class="row intro">
 
-				  							<div class="subscriber_pic_up col-4" *ngFor="let userSubscriber of __norrSubscribers"> 
+				  							<div class="subscriber_pic_up col-4" *ngFor="let userSubscriber of __norrSubscribers">
 
 				  									<img  matTooltip="{{userSubscriber.norrUserFollowing.lastName}} {{userSubscriber.norrUserFollowing.firstName}}"
-			         			[matTooltipPosition]="'above'" alt="..." class="subscriber_pic" [src]="getSubscriberPicture(userSubscriber)"> 
+			         			[matTooltipPosition]="'above'" alt="..." class="subscriber_pic" [src]="getSubscriberPicture(userSubscriber)">
 				  							</div>
-				  						</div>		
+				  						</div>
 		  							</mat-card-content>
 				  				</mat-card>
 				  		</div>
-				  		<div id="tradePublication"  class="col-9"> 
+				  		<div id="tradePublication"  class="col-9">
 				  				<app-profile-trades *ngIf="componentMap.get('_profileTrades')" ></app-profile-trades>
 
 				  				<app-profile-videos *ngIf="componentMap.get('_profileVideos')" ></app-profile-videos>
 
 				  				<app-profile-analyses *ngIf="componentMap.get('_profileAnalyses')" ></app-profile-analyses>
 
-				  				<app-profile-subscribers *ngIf="componentMap.get('_profileSubscribers')" ></app-profile-subscribers> 
-				  		</div>	
-				  </div>	
+				  				<app-profile-subscribers *ngIf="componentMap.get('_profileSubscribers')" ></app-profile-subscribers>
+				  		</div>
+				  </div>
     		</div>
-			
-		</div>  
-</mat-tab> 
+
+		</div>
+</mat-tab>
 </mat-tab-group>

@@ -1,25 +1,25 @@
 import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
-import { UserService} from '../services/user-service/user.service';  
+import { UserService} from '../services/user-service/user.service';
 import { ToastrService } from 'ngx-toastr';
-import {Router, ActivatedRoute, Params} from '@angular/router'; 
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import { DomSanitizer } from "@angular/platform-browser";
 import { DOCUMENT } from '@angular/platform-browser';
 import { Inject,Injectable } from '@angular/core';
-import {COMMA, ENTER} from '@angular/cdk/keycodes'; 
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
-import {environment} from './../../environments/environment.prod'; 
+import {environment} from './../../environments/environment.prod';
 //import { InfiniteScroll } from 'ngx-infinite-scroll';
 
 @Component({
   selector: 'app-norrlab-account-manager',
   templateUrl: './norrlab-account-manager.component.html',
-  styleUrls: ['./norrlab-account-manager.component.scss']
+  styleUrls: ['./norrlab-account-manager.component.css']
 })
 export class NorrlabAccountManagerComponent implements OnInit {
  _norrUser;
    __norrSubscribers ;
    picturUsereUrl;
-   appActive = false; 
+   appActive = false;
    componentMap = new Map();
    alreadySubscribed;
 
@@ -59,14 +59,21 @@ export class NorrlabAccountManagerComponent implements OnInit {
     //user.userPictureUrl?`${environment.apiUrl}/images${user.userPictureUrl}`:`${environment.apiUrl}/images/default_user.jpg`
   }
 
-  subscribeToPublications(norrUserId){
-    this.userService.createSubscribers(this.activatedRoute.snapshot.params.userId)
+  updateProfile(norrUser){
+    norrUser.userPictureUrl = this.picturUsereUrl ;
+    norrUser.userBackgroundUrl = this.tmpThumbnail ;
+    console.log(norrUser);
+    this.userService.updateUserProfile(norrUser)
+    .subscribe( user =>{
+      console.log(user);
+    })
+    /*this.userService.createSubscribers(this.activatedRoute.snapshot.params.userId)
     .subscribe(subs =>{
       this.toastrService.success(`You will receive ${this._norrUser.lastName} notoficatons`)
       window.location.href = window.location.href
     }, err =>{
       this.toastrService.error(`Error trying to follow ${this._norrUser.lastName}`)
-    })
+    })*/
   }
 
   unSubscribeToPublications(norrUserId){
@@ -84,15 +91,28 @@ export class NorrlabAccountManagerComponent implements OnInit {
     return list.forEach(item =>{
       if(item.norrUserFollowing._id._id == this.userService.getUser()._id)
             this.alreadySubscribed = true;
-    }) 
+    })
   }
 
+  onFileInputProfile(event){
+     var file = event.dataTransfer ? event.dataTransfer.file[0] : <File>event.target.files[0];
+  	  var pattern = /image-*/;
+
+  	  var reader = new FileReader();
+  	  if(!file.type.match(pattern)){
+  	    alert('error')
+  	    return;
+  	  }
+
+  	  reader.onload =  this.profilePicHandleReaderLoaded.bind(this);
+  	  reader.readAsDataURL(file);
+  }
 
   onFileInputBackGround(event){
   	var file = event.dataTransfer ? event.dataTransfer.file[0] : <File>event.target.files[0];
 	  var pattern = /image-*/;
 
-	  var reader = new FileReader(); 
+	  var reader = new FileReader();
 	  if(!file.type.match(pattern)){
 	    alert('error')
 	    return;
@@ -101,8 +121,19 @@ export class NorrlabAccountManagerComponent implements OnInit {
 	  reader.onload =  this._handleReaderLoaded.bind(this);
 	  reader.readAsDataURL(file);
   }
+  tmpThumbnail;
+  profilePicHandleReaderLoaded(e){
+      let reader = e.target;
+      this.picturUsereUrl = reader.result;
+  }
 
-  onScrollDown(){ 
+  _handleReaderLoaded(e) {
+      let reader = e.target;
+      this.tmpThumbnail = reader.result;
+      console.log(this.tmpThumbnail)
+    }
+
+  onScrollDown(){
   }
 
   ngOnInit() {
@@ -115,9 +146,11 @@ export class NorrlabAccountManagerComponent implements OnInit {
         this.userService.getUserById(this.activatedRoute.snapshot.params.userId)
         .subscribe(user =>{
           this.appActive = true;
-          this._norrUser = user; 
-          this.picturUsereUrl = environment.apiUrl+'/images'+(user.userPictureUrl.trim().length>0?user.userPictureUrl :'/default_user.jpg');
-          this.userService.getSubscribers(user._id) 
+          this._norrUser = user;
+          this.picturUsereUrl = (user.userPictureUrl.trim().length>0?user.userPictureUrl :environment.apiUrl+'/images/default_user.jpg');
+          this.tmpThumbnail = (user.userBackgroundUrl.trim().length>0?user.userBackgroundUrl :'');
+          //environment.apiUrl+'/images'+
+          this.userService.getSubscribers(user._id)
           .subscribe(subscribers =>{
             this.__norrSubscribers = subscribers;
             this.checkIfSubscribed(this.__norrSubscribers);
@@ -126,8 +159,8 @@ export class NorrlabAccountManagerComponent implements OnInit {
         },err =>{
           //TODO
         this.userService.toastError("You must be connected!")
-        }) 
-    }, err =>{ 
+        })
+    }, err =>{
         this.userService.toastError("You must be connected!")
     })
   }
@@ -135,7 +168,7 @@ export class NorrlabAccountManagerComponent implements OnInit {
 
   hideAllOthers( param){
     this.componentMap.forEach( (value,key) =>{
-      if( key!= param ){ 
+      if( key!= param ){
         this.componentMap.set(key,false)
       }else{
         this.componentMap.set(param,true)
@@ -145,22 +178,22 @@ export class NorrlabAccountManagerComponent implements OnInit {
   }
 
   displayTrades(param){
-    this.hideAllOthers(param); 
+    this.hideAllOthers(param);
     this._profileTrades = true;
   }
 
   displayVideos(param){
-    this.hideAllOthers(param); 
+    this.hideAllOthers(param);
     this._profileVideos = true;
   }
 
   displayAnalyses(param){
-    this.hideAllOthers(param); 
+    this.hideAllOthers(param);
     this._profileAnalyses = true;
   }
 
   displaySubscribers(param){
-    this.hideAllOthers(param); 
+    this.hideAllOthers(param);
     this._profileSubscribers = true;
   }
 
