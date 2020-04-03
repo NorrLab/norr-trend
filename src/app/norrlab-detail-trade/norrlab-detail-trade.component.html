@@ -1,28 +1,28 @@
-<div class="sub-toolbar">  
+<div class="sub-toolbar">
     <div class="sub-menu">
       <a href=""> NorrLab</a> /
 
       <a href="/user-trades"> Users Trades</a> /
       <a href="/user-trades/{{linkTradeId}}/detail"> Detail</a>
-      
+
     </div>
-</div> 
-<div class="row main-container"> 
+</div>
+<div class="row main-container">
     <div class="col-12 main-container-left">
-      
+
       <mat-card class="example-card" style="border-radius: 0px;
   box-shadow: none;" >
         <mat-card-header>
           <div mat-card-avatar >
-            <img class="example-header-image" src="http://localhost:369/images{{__norrlabTrade.tradeUser.userPictureUrl?__norrlabTrade.tradeUser.userPictureUrl:'/default_user.png'}}"  width="100%">
+            <img class="example-header-image" src="{{__norrlabTrade.tradeUser.userPictureUrl?__norrlabTrade.tradeUser.userPictureUrl:'http://localhost:369/images/default_user.png'}}"  width="100%">
           </div>
           <mat-card-title>{{__norrlabTrade.tradeUser.lastName}} {{__norrlabTrade.tradeUser.firstName}}</mat-card-title>
           <mat-card-subtitle>{{__norrlabTrade.creationDate | date:'medium'}}</mat-card-subtitle>
         </mat-card-header>
         <!--<img mat-card-image src="http://localhost:369{{__norrlabTrade.pictureUrl}}" alt="Photo of a Shiba Inu">-->
-        <a mat-raised-button routerLinkActive="active" (click)="showAnalyse(analyse)"  
+        <a mat-raised-button routerLinkActive="active" (click)="showAnalyse(analyse)"
             class="mat-raised-button moreVideosOnDemand" style="
-    width: 100%;"> 
+    width: 100%;">
                       <img class="detail_img" src="http://localhost:369{{__norrlabTrade.pictureUrl?__norrlabTrade.pictureUrl:'/images/default-img.jpg'}}"  width="100%">
                 </a>
         <mat-card-content class="trade-card-content">
@@ -36,7 +36,7 @@
         <mat-card-actions class="trade-card-actions" >
 
            <div class="col-12" class=" shareSocial" *ngIf="__activedSocialShare">
-                    <mat-card-subtitle> 
+                    <mat-card-subtitle>
                     <div class="row" style="
     margin-left: 0px;
     margin-right: 0px;
@@ -47,8 +47,8 @@
                       <mat-icon (click)="closeShareVideo()" style="cursor: pointer;">close</mat-icon>
                     </div>
                     </div>
-                    </mat-card-subtitle> 
-                  <mat-card-content style="margin-top: 30px">  
+                    </mat-card-subtitle>
+                  <mat-card-content style="margin-top: 30px">
                     <div class="row" style="
     margin-left: 0px;
     margin-right: 0px;
@@ -57,7 +57,7 @@
 ">
                       <a  class="moreVideosOnDemand"><mat-icon svgIcon="icon-twiter"></mat-icon>TWITTER
                   </a>
-                  <a  class="col-3 moreVideosOnDemand" (click)="moreVideosOnDemand($event)">  
+                  <a  class="col-3 moreVideosOnDemand" (click)="moreVideosOnDemand($event)">
                     <mat-icon svgIcon="icon-facebook"></mat-icon>FACEBBOK
                   </a>
                   <a  class="col-3 moreVideosOnDemand" (click)="moreVideosOnDemand($event)">
@@ -74,62 +74,62 @@
                         <input #userInput type="text" (ngModelChange)="onTextChange($event)" style="
     font-size: 17px;"  name="" [(ngModel)]="page.url" matInput placeholder="" >
                       </div>
-                      <div class="col-2" > 
+                      <div class="col-2" >
                         <a class="copyClass profile-detail" style="color: blue" (click)="copyInputMessage(userInput)">
                           COPY
                         </a>
                       </div>
-                     </div> 
+                     </div>
                   </div>
                   </mat-card-content>
                 </div>
 
-          <div style="padding-right: 32px"> 
-           
-              <mat-icon (click)="reloadComponent()">restore_page</mat-icon> 
-          <mat-icon (click)="activeSocialShare()">share</mat-icon> 
+          <div style="padding-right: 32px">
+
+              <mat-icon (click)="reloadComponent()">restore_page</mat-icon>
+          <mat-icon (click)="activeSocialShare()">share</mat-icon>
           <mat-icon>thumb_up_alt</mat-icon>
           <mat-icon>thumb_down_alt</mat-icon>
           </div>
-        
+
         </mat-card-actions>
-      </mat-card> 
+      </mat-card>
     </div>
-     <div> 
-     		<div class="row trade_expo" style="background-color: #fafafa;"> 
-    			<div class="col-3 trade_position" *ngFor="let analyse of norrlabTradeAnalyses"> 
+     <div>
+     		<div class="row trade_expo" style="background-color: #fafafa;">
+    			<div class="col-3 trade_position" *ngFor="let analyse of norrlabTradeAnalyses">
     					<p class="trade_position_title">{{analyse.title}} </p>
-    					<a mat-raised-button routerLinkActive="active" (click)="showAnalyse(analyse)"  
+    					<a mat-raised-button routerLinkActive="active" (click)="showAnalyse(analyse)"
             class="mat-raised-button moreVideosOnDemand ">
             					<img  class="a_img" src="http://localhost:369{{analyse.pictureUrl?analyse.pictureUrl:'/images/default-img.jpg'}}" width="100%">
         				</a>
          		</div>
      		</div>
-     </div>	   
- 
+     </div>
+
       <div class="col-12 main-container-left" id="col_12_main_container" style="padding-top: 0px; ">
-      
+
       <mat-card class="example-card comment-detail" >
-        <div class=""> 
+        <div class="">
           <mat-card-header style="margin-bottom: 25px">
           <div mat-card-avatar>
-            <img class="example-header-image" src="http://localhost:369/images/{{ONLINE_USER && ONLINE_USER.userPictureUrl?ONLINE_USER.userPictureUrl:'default_user.jpg'}}"  width="100%">
+            <img class="example-header-image" src="{{ONLINE_USER && ONLINE_USER.userPictureUrl?ONLINE_USER.userPictureUrl:'http://localhost:369/images/default_user.jpg'}}"  width="100%">
           </div>
           <form class="example-form" style="
     width: 100%;
-">           
+">
             <mat-form-field  (click)="onSearchChange($event.target.value)" style="
     width: 100%;
 " class="example-full-width" [style.fontSize]="'14px'">
-              <input type="text" 
+              <input type="text"
                name="norr" #message maxlength="350" matInput [(ngModel)]="norrLabTradeCommentComment" placeholder="ADD COMMENT..." style="width: 100%;font-size: 13px"
-              > 
+              >
 
               <mat-hint align="end">{{message.value.length}} / 350</mat-hint>
-            </mat-form-field> 
+            </mat-form-field>
             <div class="" *ngIf="__isConnected">
-              
-              <button mat-button (click)="__cancel($event)"  
+
+              <button mat-button (click)="__cancel($event)"
             class="mat-button moreVideosOnDemand " style="margin-right: 9px">
               CANCEL
             </button>
@@ -137,7 +137,7 @@
             </div>
           </form>
 
-        </mat-card-header>  
+        </mat-card-header>
 
         </div>
           <mat-divider style="margin-bottom:  15px"></mat-divider>
@@ -145,19 +145,19 @@
         <div class=""  *ngFor="let comt of  tradeComments ">
           <mat-card-header>
           <div mat-card-avatar>
-            <img class="example-header-image" src="http://localhost:369/images{{comt.commentUser && comt.commentUser.userPictureUrl?comt.commentUser.userPictureUrl:'/default_user.png'}}"  width="100%">
+            <img class="example-header-image" src="{{comt.commentUser && comt.commentUser.userPictureUrl?comt.commentUser.userPictureUrl:'http://localhost:369/images/default_user.png'}}"  width="100%">
           </div>
           <mat-card-title>{{comt.commentUser && comt.commentUser.lastName?comt.commentUser.lastName : '?'}} {{comt.commentUser && comt.commentUser.firstName?comt.commentUser.firstName:'?'}}</mat-card-title>
           <mat-card-subtitle>{{comt.commentDate | date:'medium'}} </mat-card-subtitle>
-        </mat-card-header> 
+        </mat-card-header>
         <mat-card-content class="trade-card-content_comment">
           <p ><!-- class="trade-predescrib"-->
             {{comt.comment}}
           </p>
-        </mat-card-content> 
+        </mat-card-content>
 
         </div>
         </div>
-      </mat-card> 
-    </div> 
+      </mat-card>
+    </div>
 </div>

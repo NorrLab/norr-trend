@@ -158,7 +158,7 @@
 
 				  							<div class="subscriber_pic_up col-4" *ngFor="let userSubscriber of __norrSubscribers">
 
-				  									<img  matTooltip="{{userSubscriber.norrUserFollowing.lastName}} {{userSubscriber.norrUserFollowing.firstName}}"
+				  									<img (click)="goToSubscriberProfile(userSubscriber.norrUserFollowing)"   matTooltip="{{userSubscriber.norrUserFollowing.lastName}} {{userSubscriber.norrUserFollowing.firstName}}"
 			         			[matTooltipPosition]="'above'" alt="..." class="subscriber_pic" [src]="getSubscriberPicture(userSubscriber)">
 				  							</div>
 				  						</div>

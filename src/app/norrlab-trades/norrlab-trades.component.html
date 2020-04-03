@@ -1,11 +1,11 @@
-<div class="sub-toolbar">  
+<div class="sub-toolbar">
     <div class="sub-menu">
       <a href=""> NorrLab</a> /
 
       <a href="/user-trades"> Users Trades</a>
     </div>
-</div> 
-<div class="row main-container">  
+</div>
+<div class="row main-container">
     <div class="col-12 ">
       <button class="button-sort" mat-button (click)="__sortBy()"><mat-icon>sort</mat-icon>&nbsp;&nbsp;SORT BY</button>
       <mat-card class="sort_by" *ngIf="sortBy">
@@ -13,15 +13,15 @@
         <div class="col-12" (click)="__sortByEvent($event)">Most Liked</div>
         <div class="col-12" (click)="__sortByEvent($event)">Most Pofits</div>
       </mat-card>
-    </div> 
+    </div>
     <div class="col-8 main-container-left">
-      
+
       <mat-card class="example-card" *ngFor="let trade of norrLabTrades.data">
         <mat-card-header style="
     margin-bottom: 15px;
 }">
           <div mat-card-avatar>
-            <img (click)="goToUserProfile(trade?.tradeUser?._id)"  class="example-header-image" src="http://localhost:369/images{{trade?.tradeUser?.userPictureUrl? trade?.tradeUser?.userPictureUrl :'/default_user.png'}}" alt="{{trade?.tradeUser?.userPictureUrl}}" width="100%">
+            <img (click)="goToUserProfile(trade?.tradeUser?._id)"  class="example-header-image" src="{{trade?.tradeUser?.userPictureUrl? trade?.tradeUser?.userPictureUrl :'http://localhost:369/images/default_user.png'}}" alt="{{trade?.tradeUser?.userPictureUrl}}" width="100%">
           </div>
           <mat-card-title (click)="goToUserProfile(trade?.tradeUser?._id)" class="title-header-card">
             <span class="title_span1">
@@ -35,11 +35,11 @@
             {{trade?.description}}
           </p>
         </mat-card-content>
-        <mat-card-actions class="trade-card-actions" > 
-          <button mat-button>{{trade?.product}}</button> 
+        <mat-card-actions class="trade-card-actions" >
+          <button mat-button>{{trade?.product}}</button>
             <a mat-raised-button routerLinkActive="active" routerLink="/user-trades/{{trade?._id}}/detail"
             class="mat-raised-button moreVideosOnDemand {{trade?.profit>0? 'trade-gains':'trade-losses'}}">{{trade?.profit>0?"Wins":"Losses"}} ($ {{trade?.profit}})</a>
-        
+
         </mat-card-actions>
       </mat-card>
       <mat-paginator #__paginator  [length]="norrLabTrades.totalCount"
@@ -48,22 +48,22 @@
               (page)="pageEvent = loadTraeds($event)">
       </mat-paginator>
     </div>
-    <div class="col-4 main-container-rights" >  
-      <div style="padding-top:9px  "  class="row list-free-videos" > 
-         <div class="col-6 img-video-cont"> 
-          <div class="img-video-button"> 
-          <button mat-icon-button (click)="goToVideoPage(topWeekVideo[0]._id)" class=" proposal-video" ><mat-icon>play_circle_outline</mat-icon></button> 
-           </div>                                                 
-            <img    class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{ topWeekVideo[0]?topWeekVideo[0].videoPoster:''}}" alt="{{ topWeekVideo[0]?topWeekVideo[0].videoPoster:''}}">
-         </div> 
+    <div class="col-4 main-container-rights" >
+      <div style="padding-top:9px  "  class="row list-free-videos" >
+         <div class="col-6 img-video-cont">
+          <div class="img-video-button">
+          <button mat-icon-button (click)="goToVideoPage(topWeekVideo[0]._id)" class=" proposal-video" ><mat-icon>play_circle_outline</mat-icon></button>
+           </div>
+            <img    class="mat-list-avatar-video mat-list-avatar " matlistavatar="" src="{{ (topWeekVideo[0].videoPoster)?topWeekVideo[0].videoPoster:__defaultPicture()}}" alt="{{ topWeekVideo[0]?topWeekVideo[0].videoPoster:''}}">
+         </div>
           <div class="col-6" style="
     padding-left: 9px;
     padding-right: 0px;
-">  
+">
             <div>  <span class="video-proposition-title"> {{topWeekVideo[0]?topWeekVideo[0].videoTitle:'??'}} </span></div>
             <div>  <span class="video-proposition"> {{topWeekVideo[0]?topWeekVideo[0].videoDescription:''}}  </span></div>
-         </div> 
-      </div>  
+         </div>
+      </div>
       <div style="margin-top: 9px;">
         <div class="advs-content" >
            <p >Technical analyses
@@ -71,23 +71,23 @@
            fkbvfnkbnfknbkfnbkfkbnfknbkfnb</p>
 
         </div>
-         
+
       </div>
       <div class="col-12 twitter_new">
         <!-- You can now use the library component in app.component.html -->
-          <ngx-twitter-timeline 
+          <ngx-twitter-timeline
               [data]="{sourceType: 'profile',url: 'https://twitter.com/norrlab', screenName: '@NorrLab'}"
               [opts]="{tweetLimit: 2}"
           ></ngx-twitter-timeline>
       </div>
       <div>
-        
+
         <div class=" kil">
           <iframe src="https://widgets2.rt.prorealtime.com/ProRealTime_HTML5Quotes/itcharts.phtml?wid=2020376814&k=04efffb78e7e3c0c649df9ff1387c400" height="250" width ="403" frameborder="0" scrolling="no"></iframe>
         </div>
         <div class="side-header">
            <p class="tech-analyse">Technical analyses</p>
-        </div> 
+        </div>
 
         <mat-list>
           <mat-list-item *ngFor="let shoe of [1,2,3]">
@@ -106,7 +106,7 @@
         </mat-list>
       </div>
 
-      
+
     </div>
 
 

@@ -15,21 +15,21 @@ const VIDEO_URL= "/videos";
 export class NorrlabTradesComponent implements OnInit {
 
 //@ViewChild("__paginator") __paginator: ElementRef;
-  trades; 
+  trades;
   topWeekVideo = {};
   norrLabTrades={} ;
-  sortBy:Boolean =  false; 
+  sortBy:Boolean =  false;
   sortCriteria:String="";
 
   constructor(private tradesService: TradesService, private videoService: VideoService,
-    private norrlabNavgationService:NorrlabNavgationService) { 
-     
+    private norrlabNavgationService:NorrlabNavgationService) {
+
     this.getNorrLabTrades(0,5,null);
     this.videoService.getVideoFree(null,1).subscribe(video =>{
         this.topWeekVideo = video;
       });
-  } 
-	
+  }
+
   goToVideoPage(videoId){
 
     this.videoService.setVideo(undefined);
@@ -37,11 +37,15 @@ export class NorrlabTradesComponent implements OnInit {
     this.norrlabNavgationService.goToNextUrl(VIDEO_URL);
   }
 
+   __defaultPicture(): string {
+     return "/assets/norrlab/backgroud-images/norrLabBackGround.PNG"
+   }
+
   __sortBy(){
     this.sortBy = ! this.sortBy;
   }
 
-  __sortByEvent(event){ 
+  __sortByEvent(event){
     this.sortCriteria = event.target.innerHTML;
     this.sortBy = false;
     this.getNorrLabTrades(0, 5,this.sortCriteria);
@@ -51,15 +55,15 @@ export class NorrlabTradesComponent implements OnInit {
       window.location.href = `${/user-profil/}${userId}`
   }
 
-  ngOnInit() { 
+  ngOnInit() {
   	this.trades =this.tradesService.getAllTrades();
   }
 
   // MatPaginator Output
 
   getNorrLabTrades(pageNumber, nbPerPage,criteria){
-    this.tradesService.getNorrLabTrades(pageNumber, nbPerPage,criteria).subscribe(trade =>{ 
-        this.norrLabTrades =  trade;  
+    this.tradesService.getNorrLabTrades(pageNumber, nbPerPage,criteria).subscribe(trade =>{
+        this.norrLabTrades =  trade;
     },err=>{
         alert(err)
     });
@@ -67,10 +71,10 @@ export class NorrlabTradesComponent implements OnInit {
 
   loadTraeds(e){
     console.log(e);
-    this.tradesService.getNorrLabTrades(e.pageIndex,e.pageSize,this.sortCriteria).subscribe(trade =>{ 
-        this.norrLabTrades =  trade; 
-        console.log("this.norrLabTrades") 
-        console.log(trade.data) 
+    this.tradesService.getNorrLabTrades(e.pageIndex,e.pageSize,this.sortCriteria).subscribe(trade =>{
+        this.norrLabTrades =  trade;
+        console.log("this.norrLabTrades")
+        console.log(trade.data)
     },err=>{
         alert(err)
     });

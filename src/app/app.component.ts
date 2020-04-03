@@ -1,9 +1,9 @@
 import { Subscription } from 'rxjs';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, OnDestroy} from '@angular/core';
-import { Component, OnInit,ViewChild, ElementRef,AfterViewInit } from '@angular/core'; 
+import { Component, OnInit,ViewChild, ElementRef,AfterViewInit } from '@angular/core';
 import { UserService} from './services/user-service/user.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router'; 
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MessageService} from './services/message-service/message.service';
 
 @Component({
@@ -38,7 +38,7 @@ export class AppComponent  implements OnDestroy, OnInit{
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    
+
      this.subscription = this.messageService.getMessage()
      .subscribe(message =>{
        if(message){
@@ -53,14 +53,14 @@ export class AppComponent  implements OnDestroy, OnInit{
   }
 
   goToUserChannel(){
-      this.__showUserProfil =  !this.__showUserProfil; 
+      this.__showUserProfil =  !this.__showUserProfil;
     this.goTo('videos-channel/'+this.userService.getUser()._id)
   }
 
   __signOut(){
     this.userService.signOut();
 
-      this.__showUserProfil =  !this.__showUserProfil; 
+      this.__showUserProfil =  !this.__showUserProfil;
     this.goTo('home')
   }
 
@@ -68,46 +68,46 @@ export class AppComponent  implements OnDestroy, OnInit{
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
         this.router.onSameUrlNavigation = 'reload';
         this.router.navigate([destination]);
-  }   
+  }
 
   gorToMemberShips(){
-      this.__showUserProfil =  !this.__showUserProfil; 
+      this.__showUserProfil =  !this.__showUserProfil;
     this.goTo('memberships')
   }
 
   gorToAccountManager(){
-      this.__showUserProfil =  !this.__showUserProfil; 
+      this.__showUserProfil =  !this.__showUserProfil;
     this.goTo('account-manager/'+this.userService.getUser()._id+'')
   }
 
   goToUserProfil(){
-    
+
   }
 
   goToVideoCreation(){
-    this.userService.userIsLogged().subscribe(user =>{ 
+    this.userService.userIsLogged().subscribe(user =>{
 
-      this.goTo('video-creation')  
+      this.goTo('video-creation')
       return true;
     }, err =>{
-      this.__isLogged =  false; 
-      this.goTo('/login');  
+      this.__isLogged =  false;
+      this.goTo('/login');
       return false;
-    })   
+    })
   }
 
   gorToPositionPublication(){
-      this.__showUserProfil =  !this.__showUserProfil; 
+      this.__showUserProfil =  !this.__showUserProfil;
     this.goTo('position-bublication')
   }
 
   __goToProfil(){
     this.userService.userIsLogged().subscribe(user =>{
-      this.__showUserProfil =  !this.__showUserProfil; 
+      this.__showUserProfil =  !this.__showUserProfil;
       return true;
     }, err =>{
-      this.__isLogged =  false; 
-      this.goTo('/login');  
+      this.__isLogged =  false;
+      this.goTo('/login');
       return false;
     })
   }
@@ -119,35 +119,35 @@ export class AppComponent  implements OnDestroy, OnInit{
 
   isLogged(){
     this.userService.userIsLogged().subscribe(user =>{
-      this.__isLogged =  true; 
+      this.__isLogged =  true;
       this.ONLINE_USER = user;
       this.__getUserPicture();
       return this.userIsLogged== true;
     }, err =>{
-      this.__isLogged =  false; 
+      this.__isLogged =  false;
       return this.userIsLogged == false;
     })
   }
 
   goToProfilOrLog(){
     this.userService.userIsLogged().subscribe(user =>{
-      
-      this.__userProfil =  true;  
+
+      this.__userProfil =  true;
     }, err =>{
       this.__userProfil =  false;
     })
   }
 
-  ngOnInit():void{ 
+  ngOnInit():void{
     this.isLogged();
   }
 
 
   __getUserPicture(): string{
-    var picture = `http://localhost:369/images${this.ONLINE_USER && this.ONLINE_USER.userPictureUrl?this.ONLINE_USER.userPictureUrl: '/default_user.jpg'}`
+    var picture = `${this.ONLINE_USER && this.ONLINE_USER.userPictureUrl?this.ONLINE_USER.userPictureUrl: 'http://localhost:369/images/default_user.jpg'}`
 
       return picture;
-    } 
+    }
 
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
 }

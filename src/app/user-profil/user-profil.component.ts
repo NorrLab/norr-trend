@@ -52,6 +52,13 @@ export class UserProfilComponent implements OnInit {
     return '';
   }
 
+  goToSubscriberProfile(norrUserFollowing){
+
+    console.log(norrUserFollowing)
+    var url =
+    window.location.href = `/user-profil/${norrUserFollowing._id._id}`;
+  }
+
   getSubscriberPicture(subscriber){
     if(undefined == subscriber)
       return ;

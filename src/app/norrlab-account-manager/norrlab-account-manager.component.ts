@@ -54,7 +54,7 @@ export class NorrlabAccountManagerComponent implements OnInit {
   getSubscriberPicture(subscriber){
     if(undefined == subscriber)
       return ;
-    var url= (subscriber.norrUserFollowing.userPictureUrl.length > 1)? `${environment.apiUrl }/images${subscriber.norrUserFollowing.userPictureUrl}`: `${environment.apiUrl}/images/default_user.jpg`;
+    var url= (subscriber.norrUserFollowing.userPictureUrl.length > 1)? `${subscriber.norrUserFollowing.userPictureUrl}`: `${environment.apiUrl}/images/default_user.jpg`;
     return url
     //user.userPictureUrl?`${environment.apiUrl}/images${user.userPictureUrl}`:`${environment.apiUrl}/images/default_user.jpg`
   }
@@ -159,6 +159,12 @@ export class NorrlabAccountManagerComponent implements OnInit {
     })
   }
 
+  goToSubscriberProfile(norrUserFollowing){
+
+      console.log(norrUserFollowing)
+      var url =
+      window.location.href = `/user-profil/${norrUserFollowing._id._id}`;
+    }
 
   hideAllOthers( param){
     this.componentMap.forEach( (value,key) =>{
