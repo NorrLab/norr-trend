@@ -14,9 +14,9 @@
   box-shadow: none;" >
         <mat-card-header>
           <div mat-card-avatar >
-            <img class="example-header-image" src="{{__norrlabTrade.tradeUser.userPictureUrl?__norrlabTrade.tradeUser.userPictureUrl:'http://localhost:369/images/default_user.png'}}"  width="100%">
+            <img (click)="goToUserProfil(__norrlabTrade.tradeUser)" class="example-header-image" src="{{__norrlabTrade.tradeUser.userPictureUrl?__norrlabTrade.tradeUser.userPictureUrl:'http://localhost:369/images/default_user.png'}}"  width="100%">
           </div>
-          <mat-card-title>{{__norrlabTrade.tradeUser.lastName}} {{__norrlabTrade.tradeUser.firstName}}</mat-card-title>
+          <mat-card-title  (click)="goToUserProfil(__norrlabTrade.tradeUser)"><span class="span_card-title ">{{__norrlabTrade.tradeUser.lastName}} {{__norrlabTrade.tradeUser.firstName}}</span></mat-card-title>
           <mat-card-subtitle>{{__norrlabTrade.creationDate | date:'medium'}}</mat-card-subtitle>
         </mat-card-header>
         <!--<img mat-card-image src="http://localhost:369{{__norrlabTrade.pictureUrl}}" alt="Photo of a Shiba Inu">-->
@@ -55,17 +55,19 @@
     padding-left: 9px;
     padding-right: 9px;
 ">
-                      <a  class="moreVideosOnDemand"><mat-icon svgIcon="icon-twiter"></mat-icon>TWITTER
-                  </a>
-                  <a  class="col-3 moreVideosOnDemand" (click)="moreVideosOnDemand($event)">
-                    <mat-icon svgIcon="icon-facebook"></mat-icon>FACEBBOK
-                  </a>
-                  <a  class="col-3 moreVideosOnDemand" (click)="moreVideosOnDemand($event)">
-                    <mat-icon svgIcon="icon-linkedin"></mat-icon>LINKEDIN
-                  </a>
-                  <a  class="col-3 moreVideosOnDemand" (click)="moreVideosOnDemand($event)">
-                    <mat-icon svgIcon="icon-instagram"></mat-icon>INSTAGRAM
-                  </a>
+                      <a  class="moreVideosOnDemand twitter-share-button" href="https://twitter.com/intent/tweet?text={{page.description}}...&hashtags={{__norrlabTrade.type}},{{__norrlabTrade.product}}
+&url={{page.url}}&via=NorrLab&related=NorrLab" >
+                        <mat-icon svgIcon="icon-twiter"></mat-icon>TWITTER
+                      </a>
+                      <a  class="col-3 moreVideosOnDemand" href="https://www.facebook.com/dialog/share?app_id={{__env.facebookId}}&href={{page.url}}">
+                        <mat-icon svgIcon="icon-facebook"></mat-icon>FACEBBOK
+                      </a>
+                      <a  class="col-3 moreVideosOnDemand" href="https://www.linkedin.com/sharing/share-offsite/?url={{page.url}}">
+                        <mat-icon svgIcon="icon-linkedin"></mat-icon>LINKEDIN
+                      </a>
+                      <a  class="col-3 moreVideosOnDemand" href="socialMediaShare($event)">
+                        <mat-icon svgIcon="icon-instagram"></mat-icon>INSTAGRAM
+                      </a>
                     </div>
 
                   <div  class="col-12 sign_in share_by_url" style="text-align: start;display: inline-block;width: 100%;">
@@ -84,12 +86,11 @@
                   </mat-card-content>
                 </div>
 
-          <div style="padding-right: 32px">
-
-              <mat-icon (click)="reloadComponent()">restore_page</mat-icon>
-          <mat-icon (click)="activeSocialShare()">share</mat-icon>
-          <mat-icon>thumb_up_alt</mat-icon>
-          <mat-icon>thumb_down_alt</mat-icon>
+          <div style="padding-right: 32px" *ngIf="!__activedSocialShare">
+            <mat-icon class="btn_main" (click)="reloadComponent()">restore_page</mat-icon>
+            <mat-icon class="btn_main" (click)="activeSocialShare()">share</mat-icon>
+            <mat-icon class="btn_main" (click)="likeTrade(1)" >thumb_up_alt</mat-icon><span class="like-span"> {{__norrlabTrade.norrlabTradeLikes?__norrlabTrade.norrlabTradeLikes:'0'}}</span>&nbsp;
+            <mat-icon class="btn_main" (click)="likeTrade(-1)" >thumb_down_alt</mat-icon><span class="like-span"> {{__norrlabTrade.norrlabTradeDislikes?__norrlabTrade.norrlabTradeDislikes:'0'}}</span>&nbsp;
           </div>
 
         </mat-card-actions>
@@ -128,12 +129,11 @@
               <mat-hint align="end">{{message.value.length}} / 350</mat-hint>
             </mat-form-field>
             <div class="" *ngIf="__isConnected">
-
               <button mat-button (click)="__cancel($event)"
             class="mat-button moreVideosOnDemand " style="margin-right: 9px">
               CANCEL
             </button>
-            <button  (click)="createNorrLabTradeComment(linkTradeId)" [disabled]="!__isConnected" mat-button class="mat-button mat_success moreVideosOnDemand">COMMENT</button>
+            <button  (click)="createNorrLabTradeComment(linkTradeId)" [disabled]="isDisabled()" mat-button class="mat-button mat_success moreVideosOnDemand">COMMENT</button>
             </div>
           </form>
 
@@ -147,7 +147,7 @@
           <div mat-card-avatar>
             <img class="example-header-image" src="{{comt.commentUser && comt.commentUser.userPictureUrl?comt.commentUser.userPictureUrl:'http://localhost:369/images/default_user.png'}}"  width="100%">
           </div>
-          <mat-card-title>{{comt.commentUser && comt.commentUser.lastName?comt.commentUser.lastName : '?'}} {{comt.commentUser && comt.commentUser.firstName?comt.commentUser.firstName:'?'}}</mat-card-title>
+          <mat-card-title  (click)="goToUserProfil(__norrlabTrade.tradeUser)"> <span class="span_card-title ">{{comt.commentUser && comt.commentUser.lastName?comt.commentUser.lastName : '?'}} {{comt.commentUser && comt.commentUser.firstName?comt.commentUser.firstName:'?'}}</span> </mat-card-title>
           <mat-card-subtitle>{{comt.commentDate | date:'medium'}} </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="trade-card-content_comment">

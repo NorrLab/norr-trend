@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild, ElementRef,AfterViewInit } from '@angular/core'; 
+import { Component, OnInit,ViewChild, ElementRef,AfterViewInit } from '@angular/core';
 import { UserService} from '../services/user-service/user.service';
 import { VideoService} from '../services/video-service/video.service';
 import { CommentService } from '../services/comment-service/comment-service';
@@ -15,14 +15,14 @@ import { NorrlabNavgationService } from '../norrlab-navgation/norrlab-navgation.
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { DOCUMENT } from '@angular/platform-browser';
-import { Inject,Injectable } from '@angular/core'; 
-import {environment} from './../../environments/environment.prod'; 
+import { Inject,Injectable } from '@angular/core';
+import {environment} from './../../environments/environment.prod';
 
 const VIDEO_URL= "/videos/";
 const map = new Map();
   var facebook = {
     url:"https://www.facebook.com/sharer/sharer.php?u=",
-     
+
   }
 
   var linkedin = {
@@ -41,8 +41,8 @@ const map = new Map();
 
   var whatsapp = {
     url:"https://web.whatsapp.com/",
-     
-  } 
+
+  }
   map.set('facebook',facebook);
   map.set('linkedin',linkedin);
   map.set('twitter',twitter);
@@ -92,7 +92,7 @@ norrlabVideo={
   "videoId":0,
   "videoLikes":{},
   "videoPoster":"http://192.168.1.10:369/norrlab-users-video-2018/test.jpg"
-} 
+}
 
 
 public shareOn(index){
@@ -104,11 +104,11 @@ public shareOn(index){
     var text = map.get(index).text
     var hashtags = map.get(index).hashtags
     var mini = map.get(index).mini
- 
+
 
     var left = (screen.width - 670) / 2;
     var top = (screen.height - 670) / 2;
-    var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left; 
+    var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
     text = text?text.concat(this.videoReadayToplay.videoTitle) :text;
 
     url = `${url+window.location.href}${title?title+this.videoReadayToplay.videoTitle:''}${summary?summary:''}${source?source:''}
@@ -177,7 +177,7 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
     inputElement.select();
     document.execCommand('copy');
     inputElement.setSelectionRange(0, 0);
-    setTimeout(() =>{ 
+    setTimeout(() =>{
      this.__shareOnSocialMedia = false;
     },1000)
   }
@@ -195,7 +195,7 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
      this.videoService.shareOnSocialMedia(social);
    }
 
-   
+
    __defaultVideoPicture(): string {
      return "/assets/norrlab/backgroud-images/norrLabBackGround.PNG"
    }
@@ -208,18 +208,18 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
      this.__shareOnSocialMedia=false;
    }
 
-  playPause(){   
-  	if(this.videoplayer.nativeElement.paused){  
+  playPause(){
+  	if(this.videoplayer.nativeElement.paused){
       this.videoplayer.nativeElement.play().then(__vd =>{
          this.norrPlayPause = true;
          console.log("videoPlayed: "+ this.norrPlayPause);
-      }).catch(error => {  
+      }).catch(error => {
                 this.videoplayer.nativeElement.play().then(__vd =>{
                console.log("videoPlayed: "+ this.norrPlayPause);
-                this.norrPlayPause = true;      
+                this.norrPlayPause = true;
                // this.videoService.upDateViews(this.videoReadayToplay)
-            }); 
-        }); 
+            });
+        });
     }
   	else{
 
@@ -231,7 +231,7 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
   ngAfterViewInit(): void{
 
        this.__checkUser.nativeElement.onclick = () =>{
-        
+
          this.checkUser()
        }
 
@@ -240,29 +240,29 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
        }
   		this.videoplayer.nativeElement.ontimeupdate = () => {
             this.updateVideo();
-   		}  
+   		}
 
        /**/this.__main_container.nativeElement.onclick =  (param) => {
-           // body...    
+           // body...
             if(this.__signIn.nativeElement.contains( param.target)){
 
-                this.showSignIn=true; 
+                this.showSignIn=true;
             }else{
               this.showSignIn=false;
-            }   
+            }
          }
    		this.avoidControls();
        this.videoplayer.nativeElement.onended =  () =>{
-           // body... 
+           // body...
            this.videoReadayToplay.videoViews +=1;
-           this.updatePlayerIcon(); 
+           this.updatePlayerIcon();
          var payLoad = {
-                   
+
                   count: this.videoReadayToplay.videoViews,
                   viewedDate: new Date(),
-                  videoId: this.videoReadayToplay._id 
+                  videoId: this.videoReadayToplay._id
               }
-         
+
          this.videoService.createVideoAnalytics(payLoad)
          .subscribe(analyse =>{
            this.videoService.upDateViews(this.videoReadayToplay);
@@ -270,19 +270,19 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
            alert('error')
          })
 
-        }  
+        }
   }
 
 
  updatePlayerIcon(){
    this.norrPlayPause = false;
- } 
+ }
 
- changeVolume(event){ 
+ changeVolume(event){
   var bcr = this.__volumeClass.nativeElement.getBoundingClientRect();
 
   var xPosition   =  Math.max(0, (event.clientX - bcr.left) / bcr.width)*100;
-   
+
   var aWidth = parseFloat(this.__volumClassProgress.nativeElement.style.width);
   if(xPosition>100){
 
@@ -294,7 +294,7 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
 
   this.__volumClassProgress.nativeElement.style.width=xPosition+"%";
   this.videoplayer.nativeElement.volume= (xPosition/100)
-  } 
+  }
   this.volumePosition =  xPosition;
   this.videoService.setVolumePosition(this.volumePosition)
 }
@@ -315,7 +315,7 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
       this.__volumClassProgress.nativeElement.style.width="0%";
   	}
   }
-  
+
   avoidControls(){
   	if (this.videoplayer.nativeElement.addEventListener) {
 		    this.videoplayer.nativeElement.addEventListener('contextmenu', function(e) {
@@ -329,34 +329,34 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
 		}
   }
 
-   updateVideo(){ 
+   updateVideo(){
   	this.norrlab__progress__video = (this.videoplayer.nativeElement.currentTime*100)/this.videoplayer.nativeElement.duration;
-  	this.__upToMin.nativeElement.style.width=this.norrlab__progress__video+"%" ; 
+  	this.__upToMin.nativeElement.style.width=this.norrlab__progress__video+"%" ;
   }
 
-  position__track(event){ 
+  position__track(event){
   var bcr = this.__upToMinimumControlProgresse.nativeElement.getBoundingClientRect();
 
   var xPosition   = Math.min(Math.max(0, (event.clientX - bcr.left) / bcr.width), 1)*100;
-  this.__upToMin.nativeElement.style.width=xPosition+"%" ;   
-    this.videoplayer.nativeElement.currentTime = Math.round((xPosition*this.videoplayer.nativeElement.duration) / 100) ; 
+  this.__upToMin.nativeElement.style.width=xPosition+"%" ;
+    this.videoplayer.nativeElement.currentTime = Math.round((xPosition*this.videoplayer.nativeElement.duration) / 100) ;
   }
 
   openCmtEdito(){
     this.userService.userIsLogged().subscribe(user =>{
-        this.__openCmtEdito=false; 
+        this.__openCmtEdito=false;
       return true
-      }, err =>{ 
+      }, err =>{
         this.__openCmtEdito=true;
         return false
-      }); 
+      });
   }
 
   checkUser(){
     if(this.userService.getUser()){
       this.ableComment = false;
     }else{
-      
+
       this.ableComment =true;
     }
     return this.userConnecteddYet(this.currentUser);
@@ -366,24 +366,24 @@ constructor(private userService: UserService,public dialog: MatDialog,private vi
     alert()
   }
 
-  likeVideo(param){  
+  likeVideo(param){
 
-      this.userService.userIsLogged().subscribe(user =>{  
-           
+      this.userService.userIsLogged().subscribe(user =>{
+
           this.upDateNorrLabVideo(param);
-      }, err =>{ 
+      }, err =>{
         this.showSignIn=true;
-      });  
+      });
   }
 
   userConnecteddYet(param){
-   
+
     return this.userService.userStatus(param);
   }
 
 
 openLoginDialog():void {
-  
+
   console.log("NorrlabVideoDialogComponent")
   console.log(NorrlabVideoDialogComponent)
  const dialogRef = this.dialog.open(NorrlabVideoDialogComponent, {
@@ -405,16 +405,16 @@ openLoginDialog():void {
       }else if(this.videoplayer.nativeElement.webkitRequestFullscreen){
                     this.videoplayer.nativeElement.webkitRequestFullscreen();
       }else if(this.videoplayer.nativeElement.mozRequestFullscreen){
-                    this.videoplayer.nativeElement.mozRequestFullscreen(); 
+                    this.videoplayer.nativeElement.mozRequestFullscreen();
       }else if(this.videoplayer.nativeElement.msRequestFullscreen){
-                    this.videoplayer.nativeElement.msRequestFullscreen(); 
+                    this.videoplayer.nativeElement.msRequestFullscreen();
       }
   }
   onTextChange(value){
     //this.openCmtEdito();
   }
 
-  valideComment(){  
+  valideComment(){
     this.cmt.videoCommentDescription = this.cmt.videoCommentDescription.trim()
     if(!this.cmt.videoCommentDescription)
       return;
@@ -422,7 +422,7 @@ openLoginDialog():void {
     .subscribe(cmtR =>{
       console.log("done");
     this.norrlabExpanded = 0;
-    this.ableComment = false; 
+    this.ableComment = false;
     this.cmt.videoCommentDescription=""
     });
 
@@ -430,7 +430,7 @@ openLoginDialog():void {
 
   cancelComment(){
     this.norrlabExpanded = 0;
-    this.ableComment = false; 
+    this.ableComment = false;
   }
 
    matExpansionPanel(event){
@@ -438,22 +438,22 @@ openLoginDialog():void {
       return this.ableComment = false;
    }
 
-  playCurrentVideo(param){ 
+  playCurrentVideo(param){
     this.videoplayer.nativeElement.pause();
          this.norrPlayPause = false;
-     
+
     //this.getVideoFree(param);
     this.goTo('videos/'+param);
-  }  
+  }
 
   upDateNorrLabVideo(param){
     if(param>0)
       this.videoReadayToplay.videoLikes += 1;
     else
-      this.videoReadayToplay.videoDislikes += 1; 
+      this.videoReadayToplay.videoDislikes += 1;
     this.videoMapper.video = this.videoReadayToplay;
           this.videoMapper.videoUserLike = {
-              norrUser:this.userService.getUser()._id, 
+              norrUser:this.userService.getUser()._id,
               norrVideo:this.videoReadayToplay._id
             };
     this.videoService.upDateNorrLabVideo(this.videoMapper)
@@ -466,10 +466,10 @@ openLoginDialog():void {
   public showReply: boolean = false;
 
 
-  __norrShoweReplied(_cmt){ 
+  __norrShoweReplied(_cmt){
     if(_cmt.replies==0)
-      return; 
-    
+      return;
+
       this.deactivateAllOrOtherCmts(_cmt,false);
       _cmt.displayReply = !_cmt.displayReply;
       _cmt._hideReply = ! _cmt._hideReply;
@@ -479,21 +479,22 @@ openLoginDialog():void {
   moreVideosOnDemand(e){
       //TODO REGUEST MORE VIDEO ON RIGHTS
       alert('TODO REGUEST MORE VIDEOs ON RIGHTS')
-  } 
+  }
 
   getAllVideoComments(videoId) {
     this.videoService.getVideoFree(null,null).subscribe(videos =>{
-        this.weekFreeVideos = videos;   
+        this.weekFreeVideos = videos;
         this.getVideoFree(videoId);
       });
   }
 
   goToUserProfil(userId){
     this.userService.userIsLogged()
-    .subscribe(user =>{  
+    .subscribe(user =>{
       window.location.href=`user-profil/${userId}`;
     },err =>{
-      this.userService.toastError('You must be connected!'); 
+      //this.userService.toastError('You must be connected!');
+      window.location.href=`login/`;
     })
   }
 
@@ -502,7 +503,7 @@ openLoginDialog():void {
   deactivateAllOrOtherCmts(cmt,all){
 
       this.replyVideoComment = "";
-      this.videoComments.forEach(_cmt =>{    
+      this.videoComments.forEach(_cmt =>{
         if(all){
             _cmt.display = false;
             _cmt.displayReply = false;
@@ -511,23 +512,23 @@ openLoginDialog():void {
              _cmt.display = false;
              _cmt.displayReply = false;
              _cmt._hideReply = false
-          }            
+          }
       })
   }
 
   replyVideoComment="ALPHA";
 
-  enableReply( cmt){ 
+  enableReply( cmt){
     this.userService.userIsLogged()
-    .subscribe(user =>{    
+    .subscribe(user =>{
       this.deactivateAllOrOtherCmts(cmt,false);
-      cmt.display = ! cmt.display; 
+      cmt.display = ! cmt.display;
     }, err =>{
         window.location.href="/login";
     })
   }
 
-  cancelReply(cmt){ 
+  cancelReply(cmt){
     this.deactivateAllOrOtherCmts(cmt,true);
   }
 
@@ -541,16 +542,16 @@ openLoginDialog():void {
         replyDate: new Date(),
         videoId:this.videoReadayToplay._id
       }
-      this.commentService.createCommentReplies(videoComment._id,payLoad);  
+      this.commentService.createCommentReplies(videoComment._id,payLoad);
       window.location.href = window.location.href;
     }
 
   goTo(destination) {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';
-      this.router.navigate([destination]); 
+      this.router.navigate([destination]);
      // this.getVideoFree(this.activatedRoute.snapshot.params.videoId?this.activatedRoute.snapshot.params.videoId:this.weekFreeVideos[0]._id);
-}  
+}
 __env;__norrSubscribers=[];
   getVideoFree(videoId){
 
@@ -560,29 +561,29 @@ __env;__norrSubscribers=[];
         else if(videoId==undefined && this.videoService.getVideo()){
           videoId = this.videoService.getVideo()._id;
     }
-    this.videoService.getVideoFree(videoId,null).subscribe(video =>{ 
+    this.videoService.getVideoFree(videoId,null).subscribe(video =>{
         if(Array.isArray(video)){
-            this.videoReadayToplay  = video[0]; 
+            this.videoReadayToplay  = video[0];
         }else{
-            this.videoReadayToplay  = video; 
+            this.videoReadayToplay  = video;
         }
 
         this.__env = environment.apiUrl+(this.videoReadayToplay?this.videoReadayToplay.videoUrl:videoId)
         //TODO get video comments, from video id.
         var videoId = this.videoReadayToplay?this.videoReadayToplay._id:undefined;
-        this.videoService.getVideoFreeComments(videoId).subscribe(comments =>{ 
+        this.videoService.getVideoFreeComments(videoId).subscribe(comments =>{
             this.videoComments = comments;
             if(comments instanceof Array){
               this.videoComments.forEach(cmt =>{
-                cmt.display = false; 
+                cmt.display = false;
                 this.commentService.getCommentReplies(cmt._id)
                 .subscribe(replies =>{
-                    cmt.replies =  replies; 
+                    cmt.replies =  replies;
                     cmt.displayReply = false;
                     cmt._hideReply = false;
-                    this.userService.getSubscribers(this.videoReadayToplay.videoUser._id) 
+                    this.userService.getSubscribers(this.videoReadayToplay.videoUser._id)
                     .subscribe(subscribers =>{
-                      this.__norrSubscribers = subscribers; 
+                      this.__norrSubscribers = subscribers;
                     })
                 }, err =>{
                   console.log(err)
@@ -598,22 +599,22 @@ __env;__norrSubscribers=[];
         this.videoplayer.nativeElement.src =  this.videoReadayToplay.videoUrl;
         this.videoplayer.nativeElement.poster =  this.videoReadayToplay.videoPoster;
         this.videoplayer.nativeElement.title =  this.videoReadayToplay.videoTitle;
-        //this.videoplayer.nativeElement.play() 
+        //this.videoplayer.nativeElement.play()
         //this.playPause();
-        
+
       });
   }
 
   ngOnInit() {
-  	this.__upToMin.nativeElement.style.width="0%";  
+  	this.__upToMin.nativeElement.style.width="0%";
     var videoId = this.activatedRoute.snapshot.firstChild?this.activatedRoute.snapshot.firstChild.url[0].path:null;
     this.getAllVideoComments(videoId);
-    
-    this.volumePosition = this.videoService.getVolumePosition(); 
+
+    this.volumePosition = this.videoService.getVolumePosition();
 
   this.__volumClassProgress.nativeElement.style.width=(this.videoService.getVolumePosition()?this.videoService.getVolumePosition():100)+"%";
   this.videoplayer.nativeElement.volume= ((this.videoService.getVolumePosition()?this.videoService.getVolumePosition():100)/100) ;
-   
 
-  }  
+
+  }
 }

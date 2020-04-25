@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {TradesEntity} from '../entities/trade/trades-entity'; 
-import { NorrLabTrade} from '../../interfaces/norr-lab-trade'; 
+import {TradesEntity} from '../entities/trade/trades-entity';
+import { NorrLabTrade} from '../../interfaces/norr-lab-trade';
 import { NorrLabDetail} from '../../interfaces/norr-lab-detail';
 import { NorrLabTradeComment} from '../../interfaces/norrLabTradeComment/norr-lab-trade-comment';
 import { HttpClient,HttpParams } from '@angular/common/http';
@@ -8,23 +8,23 @@ import { UserService} from '../user-service/user.service';
 
 
 
-const TRADE_URL:string="http://localhost:369/user/trade-by-user"; 
+const TRADE_URL:string="http://localhost:369/user/trade-by-user";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TradesService {
-	configNorrLabTradesUrl:string="http://localhost:369/user/free-trades"; 
-	configNorrLabTradeUrl:string="http://localhost:369/user/free-trade"; 
-	configNorrLabDetailTradeUrl:string="http://localhost:369/user/free-trade-detail"; 
-	configNorrLabTradeCommentUrl:string = "http://localhost:369/user/free-trade-comment"; 
-	trades = []; 
-	
+	configNorrLabTradesUrl:string="http://localhost:369/user/free-trades";
+	configNorrLabTradeUrl:string="http://localhost:369/user/free-trade";
+	configNorrLabDetailTradeUrl:string="http://localhost:369/user/free-trade-detail";
+	configNorrLabTradeCommentUrl:string = "http://localhost:369/user/free-trade-comment";
+	trades = [];
+
   constructor(private httpClient:HttpClient,private userService: UserService) { }//private httpParams:HttpParams
 
   getAllTrades(){
 
-  	console.log(TradesEntity)  
+  	console.log(TradesEntity)
   	return this.trades;
   }
 
@@ -38,7 +38,7 @@ export class TradesService {
   }
 
   getTradeDetail(tradeId){
-  		//TODO GET URL FROM  ENV 
+  		//TODO GET URL FROM  ENV
   	const params = new HttpParams()
 	.set('tradeId', tradeId)/*
     .set('nbPerPage', nbPerPage)
@@ -46,40 +46,44 @@ export class TradesService {
   		return this.httpClient.get<NorrLabDetail>(this.configNorrLabDetailTradeUrl);
   }
 
+   upTradeDetail(tradeDetail){
+      return this.httpClient.patch<NorrLabDetail>(this.configNorrLabDetailTradeUrl,tradeDetail);
+    }
+
   getNorrLabTrades(pageNumber, nbPerPage,criteria){
-  	//TODO GET URL FROM  ENV 
+  	//TODO GET URL FROM  ENV
   	const params = new HttpParams()
 	.set('pageNumber', pageNumber)
     .set('nbPerPage', nbPerPage)
-    .set('criteria', criteria) 
+    .set('criteria', criteria)
 	return this.httpClient.get<NorrLabTrade>(this.configNorrLabTradesUrl,{params})
   }
 
   getNorrLabTrade(tradeId, user){
-  	//TODO GET URL FROM  ENV 
+  	//TODO GET URL FROM  ENV
   	const params = new HttpParams()
 	.set('tradeId', tradeId)
     .set('email', user.email)
-    .set('password', user.password) 
+    .set('password', user.password)
 	return this.httpClient.get<NorrLabTrade>(this.configNorrLabTradeUrl,{params})
   }
 
   getNorrLabTradeComment(tradeId){
-  	//TODO GET URL FROM  ENV 
+  	//TODO GET URL FROM  ENV
   	const params = new HttpParams()
-	.set('tradeId', tradeId) 
+	.set('tradeId', tradeId)
 	return this.httpClient.get<NorrLabTradeComment[]>(this.configNorrLabTradeCommentUrl,{params})
   }
 
   createNorrLabTradeComment(norrLabTradeComment){
-  	//TODO GET URL FROM  ENV 
+  	//TODO GET URL FROM  ENV
   	//const params = new HttpParams()
-	//.set('tradeId', tradeId)   
+	//.set('tradeId', tradeId)
 
 	return this.httpClient.post<NorrLabTradeComment>(this.configNorrLabTradeCommentUrl,norrLabTradeComment)
   };
 
- 
+
   }
 
-  
+
