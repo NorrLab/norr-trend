@@ -18,7 +18,7 @@
               <li class="  search_message">
                 <div class="row search_message" style="padding-top:9px;padding-bottom:9px; border-top:1px solid #f1f1f1">
                       <div class="row col-12 search_m">
-                        <span ><mat-icon>search</mat-icon></span> <input class="input_class" type="text" placeholder="...">
+                        <span ><mat-icon class="mat_search">search</mat-icon></span> <input class="input_class" type="text" placeholder="...">
                       </div>
                 </div>
               </li>
@@ -44,24 +44,26 @@
             </ul>
           </div>
         </div>
-        <div class="col-8"> 
+        <div class="col-8">
           <div class="row message_title"><span>{{__targetUser?.lastName}} {{__targetUser?.firstName}}</span></div>
-          <div class="{{(__currentUserId==msg.destination)?'plain_row_left':'plain_row_right'}}" *ngFor="let msg of __userChats ">
-            <div class="">
-              <img class="plain_row_right avatar_message" src="http://localhost:369/images/default_user.png">
-            </div>
-             <div class=" messages_content">
-                    <span class="span_contenet" >
-                      {{msg.message}}
-                    </span>
-             </div>
-            <div class="message_date" >
-
+          <div class="message_ctnt">
+            <div class="{{(__currentUserId==msg.destination)?'plain_row_left':'plain_row_right'}}" *ngFor="let msg of __userChats ">
+                  <div class="">
+                    <img class="plain_row_right avatar_message" src="{{__targetUser.userPictureUrl?__targetUser.userPictureUrl: 'http://localhost:369/images/default_user.png'}}">
+                  </div>
+              <div class=" messages_content">
+                  <span class="span_contenet" >
+                    {{msg.message}}
+                  </span>
+              </div>
+              <div class="message_date" style="color:#ccc">
+                {{msg.date | date:'medium'}}
+              </div>
             </div>
           </div>
-          <div class=" message_footer">
-              <div class="rounder">
-                <input type="text"  class="msg_input">
+          <div class="row message_footer">
+              <div class=" rounder">
+                <input type="text" #msgInput  ngModel="{{norrlabMail?.message}}"  class="msg_input">
               </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 export interface NorrlabMail {
   _id:any,
-	message:any;
+	message:any,
 	read:any,
 	author:any,
 	destination:any,

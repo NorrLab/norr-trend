@@ -171,7 +171,7 @@ img.avatar_user {
     outline: none;
     border: none;
     width: 90%;
-    background: #f1f1f1;
+    background: #fff;
 }
 .col-12.search_m {
     padding-top: 6px;
@@ -272,6 +272,9 @@ li.ul_message:hover {
     padding: 7px;
     border-top: 2px solid #f1f1f1;
     text-align: -webkit-center;
+        bottom: 0px;
+        position: absolute;
+        width: 100%;
 }
 input.msg_input {
     border: none;
@@ -279,6 +282,7 @@ input.msg_input {
     width: 100%;
     background:#fafafa;
     font-size:17px;
+    border-radius:9px
 }
 
 message_footer {
@@ -297,4 +301,25 @@ message_footer {
     border-radius: 47px;
     padding-left: 13px;
     background:#fafafa;
+        width: 100%;
+}
+
+input:focus{
+  background:#fff;
+}
+
+.rounder:focus-within {
+  background:#fff;
+}
+
+.col-12.search_m{
+  background:#fff;
+}
+
+.mat_search{
+  cursor:pointer;
+}
+
+.message_ctnt {
+    margin-bottom: 62px;
 }
