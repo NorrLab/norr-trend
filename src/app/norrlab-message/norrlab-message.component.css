@@ -1,0 +1,300 @@
+
+.display_component{
+  cursor: pointer;
+  color: #007bff;
+}
+.sub-toolbar{
+  height: 35px;
+  background: #fff;
+}
+
+.sub-menu {
+    display: inline-block;
+    padding: 4px;
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.sub-menu>a {
+    margin: 10px;
+}
+
+.container_video_edit{
+  margin-left: 250px;
+  margin-right: 250px;
+}
+
+.toolbar_profil{
+  left: 21%;
+  right: 25%
+}
+
+.main{
+  background-color: #000;
+    height: 270px;
+}
+.add_pic{
+  padding-top: 6px;
+    cursor: pointer;
+    margin-left: 50px;
+
+    border: 1px solid #ccc;
+}
+.add_pic_pic{
+    margin-left: 35px;
+
+}
+.span_upload_profil_mat-icon{
+	color: #fff
+}
+
+.span_upload_profil{
+	color: #fff
+}
+
+.profil_pic {
+    margin-top: -161px;
+}
+
+img.profil_pic_img {
+
+    height: 207px;
+    width: 207px;
+    border-radius: 50%;
+    border: 7px solid #fff;
+}
+
+img.profil_pic_img_toolbar {
+
+    height: 47px;
+    width: 47px;
+    border-radius: 50%;
+    border: 0.3em solid #fff;
+}
+
+.sub_profil{
+  background-color:  #fff;/* rgb(230, 236, 240);*/
+}
+
+.container_{
+
+    padding-left: 16px;
+    background: #fff;
+    padding-right: 14px;
+}
+
+.sub_profil{
+  display:  inline-block;
+}
+
+.example-card {
+  max-width: 100%;
+  margin-bottom: 13px
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+._trades{
+    height:  190px;
+}
+
+.row.intro {
+    padding-left: 9px;
+    padding-right: 9px;
+}
+.subscriber_pic{
+  width:  100%;
+      border-radius:  3px;
+
+  cursor: pointer;
+  height: 52px;
+  border: 0.1em solid #f1f1f1;
+  opacity: 0.7
+}
+
+.subscriber_pic:hover {
+  opacity: 1
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.subscriber_pic_up{
+      padding: 3px;
+}
+
+.search-results {
+        height: 20rem;
+        background-color:   red
+      }
+
+.toolbar_profil{
+    left: 21%;
+    background-color: rgb(47, 53, 58);
+    z-index: 1000;
+    position: fixed;
+    z-index: 1000;
+}
+
+
+ .poster_example_one_img{
+    width: 100%;
+    height: 272px;
+}
+.mail_outline {
+    color: #007bff;
+    font-size: 27px;
+    cursor:pointer;
+}
+
+
+.left_content_cl4{
+  border-right: 1px solid #f1f1f1;
+}
+
+img.avatar_user {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+}
+
+.search_message {
+    text-align: center;
+}
+
+.input_class {
+    font-size: 15px;
+    outline: none;
+    border: none;
+    width: 90%;
+    background: #f1f1f1;
+}
+.col-12.search_m {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border: 1px solid #f1f1f1;
+    border-radius: 45px;
+    margin-left: 0px;
+    background: #f1f1f1;
+}
+
+ul {
+  list-style-type: none;
+ }
+
+li.ul_message:hover {
+    width: 100%;
+    cursor: pointer;
+    background: #f1f1f1;
+}
+.name_user {
+    color: #1c1e21;
+    font-weight: 600;
+    white-space: nowrap;
+    font-size: 13px;
+}
+.row.message_title {
+    font-size: 22px;
+    line-height: 1.3125;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 7px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.col-3.date_message {
+    font-size: 11px;
+    width: 100%;
+    text-align: end;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.message_desc {
+    color: #ccc;
+}
+.col-11.messages_content {
+    padding: 16px;
+}
+
+.span_contenet {
+    background: rgb(230, 236, 240);
+    padding: 6px;
+    border-radius: 9px;
+    display: block;
+    text-align: center;
+    width: 50%;
+    font-size: 16px;
+    display: inline-table;
+}
+
+.span_contenet_main {
+    margin-left: 375px;
+}
+
+.plain_row_left{
+     text-align: -webkit-left;
+
+ }
+
+ .plain_row_right{
+     text-align: -webkit-right;
+ }
+
+
+.plain_row_right> .messages_content> .span_contenet{
+     background: #3578e5;
+     color: #fff;
+     margin-top: 27px;
+}
+
+.plain_row_right> div> .avatar_message{
+  display:none
+}
+
+.avatar_message{
+    height: 30px;
+    width: 30px;
+    margin:9px;
+    border-radius: 50%;
+}
+
+.message_footer{
+    font-size: 22px;
+    margin-top:12px;
+    line-height: 1.3125;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 7px;
+    border-top: 2px solid #f1f1f1;
+    text-align: -webkit-center;
+}
+input.msg_input {
+    border: none;
+    outline: none;
+    width: 100%;
+    background:#fafafa;
+    font-size:17px;
+}
+
+message_footer {
+    font-size: 22px;
+    /* margin-top: 12px; */
+    line-height: 1.3125;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 7px;
+    border-top: 2px solid #f1f1f1;
+    /* text-align: -webkit-center; */
+}
+
+.rounder {
+    border: 2px solid #f1f1f1;
+    border-radius: 47px;
+    padding-left: 13px;
+    background:#fafafa;
+}

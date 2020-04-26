@@ -10,11 +10,11 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NorrlabTradesComponent } from './norrlab-trades/norrlab-trades.component';
 import { NorrlabHomeComponent } from './norrlab-home/norrlab-home.component';
 import { NorrlabLessonsComponent } from './norrlab-lessons/norrlab-lessons.component';
-import { NorrlabVideosComponent } from './norrlab-videos/norrlab-videos.component'; 
+import { NorrlabVideosComponent } from './norrlab-videos/norrlab-videos.component';
 import { MatVideoModule } from 'mat-video';
 import { NorrlabVideoDialogComponent } from './norrlab-videos/dialog/norrlab-video-dialog/norrlab-video-dialog.component';
 import { NorrlabLoginComponent } from './norrlab.login/norrlab.login.component';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NorrlabDetailTradeComponent } from './norrlab-detail-trade/norrlab-detail-trade.component';
 import { NorrLabSnackBarComponentComponent } from './norr-lab-snack-bar-component/norr-lab-snack-bar-component.component';
@@ -28,7 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NorrlabVideoCreationComponent } from './norrlab-video-creation/norrlab-video-creation.component';
 import { NorrlabVideoAnalyticsComponent } from './norrlab-video-analytics/norrlab-video-analytics.component';
 import { NorrlabVideoCommentsListComponent } from './norrlab-video-comments-list/norrlab-video-comments-list.component';
-import { ChartsModule } from 'ng2-charts';
+//import { ChartsModule } from 'ng2-charts';
 import { NorrlabUserComponent } from './norrlab-user/norrlab-user.component';
 
 import { MatPaginatorIntl } from '@angular/material';
@@ -38,6 +38,7 @@ import { ProfileTradesComponent } from './profile-trades/profile-trades.componen
 import { ProfileAnalysesComponent } from './profile-analyses/profile-analyses.component';
 import { ProfileVideosComponent } from './profile-videos/profile-videos.component';
 import { ProfileSubscribersComponent } from './profile-subscribers/profile-subscribers.component';
+import { NorrlabMessageComponent } from './norrlab-message/norrlab-message.component';
 
 
 
@@ -58,11 +59,11 @@ import { ProfileSubscribersComponent } from './profile-subscribers/profile-subsc
     NorrlabMemberShipsComponent,
     NorrlabPositionBublicationComponent,
     NorrlabAccountManagerComponent,
-    NorrlabVideoCreationComponent,NorrlabVideoAnalyticsComponent,NorrlabVideoCommentsListComponent, NorrlabUserComponent, UserProfilComponent, ProfileTradesComponent, ProfileAnalysesComponent, ProfileVideosComponent, ProfileSubscribersComponent
+    NorrlabVideoCreationComponent,NorrlabVideoAnalyticsComponent,NorrlabVideoCommentsListComponent, NorrlabUserComponent, UserProfilComponent, ProfileTradesComponent, ProfileAnalysesComponent, ProfileVideosComponent, ProfileSubscribersComponent, NorrlabMessageComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,
-    AppRoutingModule,ChartsModule,
+    AppRoutingModule,//ChartsModule,
     BrowserAnimationsModule,InfiniteScrollModule,NorrlabMaterialModule,MatVideoModule,FormsModule,ToastrModule.forRoot({
     timeOut: 1000,
     positionClass: /*'toast-top-right'*/'inline',

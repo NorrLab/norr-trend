@@ -8,7 +8,7 @@ export class MessageService {
   private subject = new Subject<any>();
 
   constructor() { }
-  
+
   sendMessage(message: string){
   	this.subject.next({text:message});
   }
@@ -17,8 +17,7 @@ export class MessageService {
   	this.subject.next();
   }
 
-
-  getMessage(): Observable<any>{
+  getAllMessages(): Observable<any>{
   	return this.subject.asObservable();
   }
 

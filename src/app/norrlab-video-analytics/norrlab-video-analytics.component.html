@@ -1,19 +1,19 @@
-  <div class="sub-toolbar">  
+  <div class="sub-toolbar">
       <div class="sub-menu">
         <a href=""> NorrLab</a> /
 
         <a href=""> Video edition</a>
       </div>
-  </div>   
+  </div>
 <mat-tab-group>
   <mat-tab label="Video analytics
 ">
 
-        <div class="container_video_edit"> 
-        <div class="row">  
-        <div class="col-12">   
-          <div class="chart_container"> 
-                <canvas  baseChart width="400" height="120"
+        <div class="container_video_edit">
+        <div class="row">
+        <div class="col-12">
+          <div class="chart_container">
+                <!--<canvas  baseChart width="400" height="120"
                 [datasets]="lineChartData"
                 [labels]="lineChartLabels"
                 [options]="lineChartOptions"
@@ -22,66 +22,66 @@
                 [chartType]="lineChartType"
                 [plugins]="lineChartPlugins"
                 (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+                (chartClick)="chartClicked($event)"></canvas>-->
 
                 <!-- <progress id="animationProgress" max="1" value="0" style="width: 100%;background-color:  blue"></progress> -->
             </div>
-          <div class="video_properties"> 
-            <div class="col-12"> 
+          <div class="video_properties">
+            <div class="col-12">
                 <button mat-raised-button class="button_time" (click)="updateChartYear()">YEARLY</button>
             <button mat-raised-button class="button_time" (click)="updateChartMonth()">MONTHLY</button>
             <button mat-raised-button class="button_time" (click)="updateChartDay(baseChart)">DAILY</button>
-            </div>  
-       
+            </div>
+
           </div>
         </div>
 
-          <div class="col-12" > 
-            <div class="norr-lab-mat-card invalide"> 
-                <div class="row"> 
-                    <div class="col-6"> 
-                        <div class="top_views_title"> 
-                          <p> <span  class="under_line"> Top countries</span> </p> 
+          <div class="col-12" >
+            <div class="norr-lab-mat-card invalide">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="top_views_title">
+                          <p> <span  class="under_line"> Top countries</span> </p>
                         </div>
                         <div class="row top_views_content" *ngFor="let country of (countries | orderBy:order:true)"> <!--  -->
                             <p class="col-4 top_views_country" > {{country.name}}</p>
 
                             <p class="col-4  top_views_country_value" >{{country.value}} %</p>
-                        </div> 
-                        <div class="top_views_title"> 
+                        </div>
+                        <div class="top_views_title">
                           <p> <span  class="under_line"> Comments</span></p>
-                        </div> 
-                        <div class="row top_views_content"> 
+                        </div>
+                        <div class="row top_views_content">
                             <p class="col-4 top_views_country" > &nbsp;</p>
                             <p class="col-4  top_views_country_value" style="color: blue;cursor: pointer;" (click)="goToVideoComment()" >52</p>
                             <p class="col-4  top_views_country_value_perc" >78 %</p>
                         </div>
                     </div>
-                    <div class="col-6">  
-                            <div class="top_views_title"> 
+                    <div class="col-6">
+                            <div class="top_views_title">
                               <p> <span  class="under_line"> Likes v.s dislikes</span></p>
-                            </div> 
-                            <div class="row top_views_content"> 
+                            </div>
+                            <div class="row top_views_content">
                                 <p class="col-4 top_views_country" > Likes</p>
                                 <p class="col-4  top_views_country_value" >52</p>
                                 <p class="col-4  top_views_country_value_perc" >78 %</p>
-                            </div> 
-                            <div class="row top_views_content"> 
+                            </div>
+                            <div class="row top_views_content">
                                 <p class="col-4 top_views_country" > Dislikes</p>
                                 <p class="col-4  top_views_country_value" >3</p>
                                 <p class="col-4  top_views_country_value_perc" >8 %</p>
-                            </div> 
+                            </div>
 
-                    </div> 
-                </div>  
+                    </div>
+                </div>
 
             </div>
           </div>
 
 
-        </div>  
-        </div>   
-  </mat-tab> 
+        </div>
+        </div>
+  </mat-tab>
   <span class="space"></span>
   <div>some</div>
 </mat-tab-group>

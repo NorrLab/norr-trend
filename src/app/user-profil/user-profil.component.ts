@@ -42,7 +42,7 @@ export class UserProfilComponent implements OnInit {
     this.componentMap.set("_profileAnalyses",this._profileAnalyses);
     this.componentMap.set("_profileSubscribers",this._profileSubscribers);
    }
-
+   sameUser;
   getUserpicture(){
     if(this._norrUser){
 
@@ -95,6 +95,13 @@ export class UserProfilComponent implements OnInit {
     })
   }
 
+redirectToSendMessage(userId){
+    this.userService.userIsLogged()
+    .subscribe(user =>{
+      window.location.href=`/messages/${userId}`
+    })
+
+}
 
   onScrollDown(){
     /*let tradePublication = document.querySelector(`#tradePublication`);
@@ -112,12 +119,13 @@ tmpThumbnail;
 // default-img.jpg
   this.setMap();
     this.userService.userIsLogged()
-    .subscribe(user =>{
+    .subscribe(userLogged =>{
 
         this.userService.getUserById(this.activatedRoute.snapshot.params.userId)
         .subscribe(user =>{
           this.appActive = true;
           this._norrUser = user;
+          this.sameUser = (userLogged._id == this._norrUser._id)?true:false;
           this.picturUsereUrl = (user.userPictureUrl.trim().length>0?user.userPictureUrl :environment.apiUrl+'/images/default_user.jpg');
           this.tmpThumbnail = (user.userBackgroundUrl.trim().length>0?user.userBackgroundUrl :'');
           this.userService.getSubscribers(user._id)

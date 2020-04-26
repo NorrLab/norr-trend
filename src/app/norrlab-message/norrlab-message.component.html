@@ -1,0 +1,71 @@
+<div class="sub-toolbar">
+  <div class="sub-menu">
+    <a href="/"> NorrLab</a> /
+
+    <a > Messages</a>
+  </div>
+</div>
+
+<mat-tab-group >
+  <mat-tab  >
+    <div class="container_video_edit ">
+      <div class="row" style="
+    background: #fff;">
+        <div class="col-4 left_content_cl4" >
+          <div class="row message_title"><span >Messages</span></div>
+          <div class="row">
+            <ul class=" col-12">
+              <li class="  search_message">
+                <div class="row search_message" style="padding-top:9px;padding-bottom:9px; border-top:1px solid #f1f1f1">
+                      <div class="row col-12 search_m">
+                        <span ><mat-icon>search</mat-icon></span> <input class="input_class" type="text" placeholder="...">
+                      </div>
+                </div>
+              </li>
+                <li class="ul_message  " *ngFor="let o of [1,2,3] ">
+                    <div class="row" style="padding-top:9px;padding-bottom:9px; border-top:1px solid #f1f1f1">
+                        <div class="col-1 ">
+                            <img class="avatar_user" src="http://localhost:369/images/default_user.png">
+                        </div>
+
+                      <div class="col-9" style="margin-left: 23px;font-size: 14px;">
+                        <div class="row">
+                          <div class="col-9 " >
+                            <div  class=" name_user"> Blair Harold</div>
+                            <div  class=" message_desc"> Blair Harold, I did my first...</div>
+                          </div>
+                          <div class="col-3 date_message" style="text-align:end">
+                            Feb 18, 2015
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-8"> 
+          <div class="row message_title"><span>{{__targetUser?.lastName}} {{__targetUser?.firstName}}</span></div>
+          <div class="{{(__currentUserId==msg.destination)?'plain_row_left':'plain_row_right'}}" *ngFor="let msg of __userChats ">
+            <div class="">
+              <img class="plain_row_right avatar_message" src="http://localhost:369/images/default_user.png">
+            </div>
+             <div class=" messages_content">
+                    <span class="span_contenet" >
+                      {{msg.message}}
+                    </span>
+             </div>
+            <div class="message_date" >
+
+            </div>
+          </div>
+          <div class=" message_footer">
+              <div class="rounder">
+                <input type="text"  class="msg_input">
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

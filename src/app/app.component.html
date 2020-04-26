@@ -3,51 +3,52 @@
     <a href="">
       <img class="norrlab-logo" src="assets/norrlab/designed-logo-big.png">
     </a>
-    <button mat-icon-button class="norrlab-menu-button" (click)="__snav.toggle()"><mat-icon>menu</mat-icon></button>   
+    <button mat-icon-button class="norrlab-menu-button" (click)="__snav.toggle()"><mat-icon>menu</mat-icon></button>
     <img class="cloud_upload" src="assets/icons/svg/forex-seeklogo.com.svg" alt="Kiwi standing on oval">
-    
+
     <span class="example-spacer"></span>
-    <div class="col-4" style="text-align: end"> 
-    <div class="clickable"> 
+    <div class="col-4" style="text-align: end">
+    <div class="clickable">
         <button *ngIf="__userIsLogged()" mat-icon-button class="norrlab-share-video-button  " (click)="goToVideoCreation()">
-          <mat-icon >notification_important</mat-icon><span class="span_notifs" > 5</span> 
+          <mat-icon >notification_important</mat-icon><span class="span_notifs" > 5</span>
         </button>
         <button *ngIf="__userIsLogged()" mat-icon-button class="norrlab-share-video-button  " (click)="goToVideoCreation()"><mat-icon >video_call</mat-icon></button>
         <button mat-icon-button class="norrlab-sign-in-button" (click)="__goToProfil()"><mat-icon [ngClass]="{'logged' : __userIsLogged()}">account_circle</mat-icon></button>
-    </div>    
+    </div>
      <div class="userProfil" *ngIf="__showUserProfil">
       <div class="row profilClass">
         <div class="col-2">
           <div class="col-12" mat-card-avatar>
             <img class="example-header-image" [src]="__getUserPicture()"  width="100%">
-          </div> 
+          </div>
         </div>
         <div class="col-8">
-          
-          <div class="col-12"> 
+
+          <div class="col-12">
             <div style="color: #000;
     height: 18px;">{{ONLINE_USER?.lastName}} {{ONLINE_USER?.firstName}}</div>
 
             <div style="font-size: 13px">{{ONLINE_USER?.email}}</div>
           </div>
-          <div class="col-12"> 
+          <div class="col-12">
             <a (click)="gorToAccountManager()" style="font-size: 11px;cursor: pointer;color: #007bff">Manage your NorrLab account</a>
           </div>
         </div>
       </div>
 
-                  <mat-divider></mat-divider> 
+                  <mat-divider></mat-divider>
       <div class="listProfil" style="margin-top: 9px">
 
         <ul>
-         <li (click)="goToUserChannel()" class="list_profil"><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">personal_video</mat-icon><span class="anySpan">your channel </span> </li>
+          <li (click)="goToUserChannel()" class="list_profil"><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">message</mat-icon><span class="anySpan">messages </span> </li>
+          <li (click)="goToUserChannel()" class="list_profil"><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">personal_video</mat-icon><span class="anySpan">your channel </span> </li>
          <li class="list_profil" (click)="gorToPositionPublication()"><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">trending_up</mat-icon> <span class="anySpan">publish position</span> </li>
          <li (click)="gorToMemberShips()" class="list_profil"><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">attach_money</mat-icon><span class="anySpan">paid memebership </span> </li>
-         <li class="list_profil" (click)="__signOut()" ><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">power_settings_new</mat-icon> <span class="anySpan">sign out</span> </li> 
+         <li class="list_profil" (click)="__signOut()" ><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon listProfIcon">power_settings_new</mat-icon> <span class="anySpan">sign out</span> </li>
        </ul>
-      </div> 
+      </div>
 
-     </div> 
+     </div>
     </div>
   </mat-toolbar>
   <style type="text/css">
@@ -59,26 +60,26 @@
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav [opened]="true" class="norrlab-side" #__snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-      <mat-nav-list> 
+      <mat-nav-list>
         <a mat-list-item routerLink="." style="height: 45px"></a>
         <a [routerLink]="nav.link" mat-list-item   *ngFor="let nav of fillerNav"><mat-icon aria-hidden="false" aria-label="Example home icon" class="menu-icon">{{nav.icon}}</mat-icon>&nbsp;{{nav.libelle}}</a>
       </mat-nav-list>
-      <div class="menu-footer"> 
-        
+      <div class="menu-footer">
+
       </div>
     </mat-sidenav>
 
-    
+
     <mat-sidenav-content>
-      
-      
-      
+
+
+
       <router-outlet></router-outlet>
     </mat-sidenav-content>
 
   </mat-sidenav-container>
 
-  <mat-toolbar color="primary" class="example-toolbar footer-toolbar"> 
+  <mat-toolbar color="primary" class="example-toolbar footer-toolbar">
   </mat-toolbar>
 </div>
 

@@ -31,7 +31,6 @@ export class AppComponent  implements OnDestroy, OnInit{
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
 
   private _mobileQueryListener: () => void;
-  private subscription:Subscription;
 
   constructor(private messageService:MessageService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private userService:UserService, private router:Router,
     private activatedRoute: ActivatedRoute,) {
@@ -39,12 +38,6 @@ export class AppComponent  implements OnDestroy, OnInit{
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
-     this.subscription = this.messageService.getMessage()
-     .subscribe(message =>{
-       if(message){
-           this.isLogged();
-       }
-     })
   }
 
   ngOnDestroy(): void {

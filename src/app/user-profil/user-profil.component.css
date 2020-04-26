@@ -145,3 +145,8 @@ img.profil_pic_img_toolbar {
     width: 100%;
     height: 272px;
 }
+.mail_outline {
+    color: #007bff;
+    font-size: 27px;
+    cursor:pointer;
+}
