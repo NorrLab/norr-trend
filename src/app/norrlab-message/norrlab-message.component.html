@@ -49,7 +49,7 @@
           <div class="message_ctnt">
             <div class="{{(__currentUserId==msg.destination)?'plain_row_left':'plain_row_right'}}" *ngFor="let msg of __userChats ">
                   <div class="">
-                    <img class="plain_row_right avatar_message" src="{{__targetUser.userPictureUrl?__targetUser.userPictureUrl: 'http://localhost:369/images/default_user.png'}}">
+                    <img click="goToProfil()" class="plain_row_right avatar_message" src="{{__targetUser.userPictureUrl?__targetUser.userPictureUrl: 'http://localhost:369/images/default_user.png'}}">
                   </div>
               <div class=" messages_content">
                   <span class="span_contenet" >

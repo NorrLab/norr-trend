@@ -30,8 +30,10 @@ export class NorrlabMessageComponent implements OnInit, AfterViewInit {
   constructor(private mailService:MailService,private activatedRoute: ActivatedRoute,private userService: UserService) {}
 
    ngAfterViewInit(): void{
-      this.msgInput.nativeElement.addEventListener('keyup', function(e) {
-           alert(`${this.__mail.message}`)
+      this.msgInput.nativeElement.addEventListener('keypress', function(e) {
+           if(e.keyCode == 13){
+              alert(this.__mail)
+            }
       }, false);
    }
 
@@ -49,6 +51,10 @@ export class NorrlabMessageComponent implements OnInit, AfterViewInit {
     },err=>{
       //TODO
     })
+  }
+
+  goToProfil(){
+    window.location.href=`/user-profil/${this.__targetUser._id}`
   }
 
   getAllMessages(targetId){

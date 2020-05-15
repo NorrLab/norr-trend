@@ -10,20 +10,20 @@
     font-weight: 200;
 }
 
-.sub-menu>a { 
+.sub-menu>a {
     margin: 10px;
 }
+
 .container_video_edit{
-  margin-left: 250px;
-  margin-right: 250px;
+  margin-left: 10%;
+  margin-right: 10%;
     padding: 23px;
 }
-
 .norr-lab-mat-card:not([class*=mat-elevation-z]) {
     /*box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);*/
     border: 1px solid #ccc;
     margin-bottom: 9px;
-} 
+}
 
 .norr-lab-mat-card.invalide{
         border: 2px solid #f4f4f4;
@@ -45,14 +45,14 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     outline: none;
-} 
+}
 
 .mat-datepicker-toggle> .mat-icon-button {
     outline: none;
     color: red
-} 
+}
 
-.mat_success_undo{ 
+.mat_success_undo{
     z-index: 999;
     outline: none;
     margin-right: 7px
@@ -63,8 +63,8 @@
     color: #fff;
     cursor: pointer;
     z-index: 999;
-    outline: none;    
-} 
+    outline: none;
+}
 
 .norr-lab-mat-card {
     transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
@@ -87,7 +87,7 @@
 }
 span.in_title_6_1 {
     font-size: 14px;
-    color: #ccc; 
+    color: #ccc;
     line-height: 3;
 }
 
@@ -95,12 +95,12 @@ span.in_title_6_1 {
 
 }
 
-mat-icon.help_in_title_6_1.mat-icon.notranslate.material-icons.mat-icon-no-color { 
-    font-size: 19px; 
+mat-icon.help_in_title_6_1.mat-icon.notranslate.material-icons.mat-icon-no-color {
+    font-size: 19px;
     color: #ccc;
 }
 
- 
+
 
 .col-12.textarea_title {
     font-size: 16px;
@@ -128,19 +128,19 @@ img.poster_example {
     border-radius: 3px;
     cursor: pointer;
     filter: brightness(75%);
-} 
+}
 
 .poster_example_one {
     padding: 9px;
     text-align: center;
     border: 1px dashed #ccc;
-    cursor:pointer;   
-    filter: brightness(75%);  
+    cursor:pointer;
+    filter: brightness(75%);
 }
 
 ul{
-  list-style: none; 
-    padding-left: 0px; 
+  list-style: none;
+    padding-left: 0px;
 }
 
 .norrthumbnail>div{
@@ -166,11 +166,11 @@ p {
 .video_properties_link>a{
   color: #065fd4;
   font-size:  13px;
-  cursor:   pointer;  
+  cursor:   pointer;
 }
 
 mat-datepicker-toggle{
-  outline:  none; 
+  outline:  none;
 }
 
 
@@ -194,30 +194,30 @@ img.poster_example_one_img {
 
 .row_validation{
     font-size: 12px;
-    color: #ccc; 
+    color: #ccc;
     text-align: center;
     margin-left: -4px;
 }
 
 .input_chips{
 
-} 
+}
 
 .example-chip-list {
     width: 100%;
 }
 
 .copy_link {
-    text-align: center;  
+    text-align: center;
 }
- 
+
 .copy_link > p {
     padding: 3px;
     border: 1px solid #ccc;
     cursor: pointer;
     color: blue;
 }
- 
+
 
  input.link_input {
     width: 100%;
@@ -228,30 +228,30 @@ img.poster_example_one_img {
     color: cornflowerblue;
     cursor: pointer;
     outline: none;
-} 
+}
 
 .video_properties {
     background-color: #f4f4f4;
-    padding: 9px; 
+    padding: 9px;
     margin-bottom: 14px;
     box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
 }
 
-.chart_container { 
+.chart_container {
     background: #cccccc40;
-    
+
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
 }
 
-.top_views_title {  
+.top_views_title {
     text-align: start;
 }
 
 .top_views_title > p{
     font-size: 16px;
-    line-height: 3; 
+    line-height: 3;
 }
 
 .row.top_views_content {
@@ -273,7 +273,7 @@ p.col-4.top_views_country_value_perc {
 
 button.button_time.mat-raised-button {
     margin-right: 16px;
-    outline:    none;  
+    outline:    none;
     background-color: #8EE1B6 ;
     color: #fff;
 }
