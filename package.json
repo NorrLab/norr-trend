@@ -30,7 +30,7 @@
     "angular-webstorage-service": "^1.0.2",
     "angular2-toaster": "^8.0.0",
     "bootstrap": "^4.4.1",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "chartjs-plugin-annotation": "^0.5.7",
     "chartjs-plugin-zoom": "^0.7.5",
     "core-js": "^2.6.11",
